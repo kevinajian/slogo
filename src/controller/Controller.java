@@ -12,7 +12,6 @@ import model.State;
  * Controller also receives processed info and then updates
  * the view based on this info.
  * @author carlosreyes kevinjian
- *
  */
 public class Controller {
 	private Model myModel;
@@ -50,6 +49,8 @@ public class Controller {
 	 */
 	public void processString(){
 		myModel.processString(viewString());
+		//myModel.getOutput();
+		//myView.setOutput();
 	}
 	
 	/**
@@ -67,6 +68,5 @@ public class Controller {
 	public List<Line> getTrail() {
 		return myModel.getTrail();
 	}
-	
 	
 }

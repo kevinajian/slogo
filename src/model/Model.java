@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import parser.Parser;
+
 /**
  * interprets user input and contains state
  * @author Kevin
@@ -28,7 +30,6 @@ public class Model {
 	public double getOrientation() {
 		return getCurrentState().getOrientation();
 	}
-
 
 	/**
 	 * gets x coordinate of current state
@@ -67,8 +68,13 @@ public class Model {
 		return myStates.get(myStates.size()-1);
 	}
 
+	/**
+	 * processes user input, sends through parser
+	 * @param input - user input
+	 */
 	public void processString(String input) {
-		
+		Parser parser = new Parser();
+		parser.parse(input);
 	}
 
 }
