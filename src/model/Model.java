@@ -1,7 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Model {
 	
+	List<State> myStates = new ArrayList<State>();
+	List<Line> myTrail = new ArrayList<Line>();
 	
 	
 	public double getOrientation() {
@@ -22,6 +27,11 @@ public class Model {
 	public double getY() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public List<Line> getTrail() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
