@@ -59,8 +59,16 @@ public class Model {
 		return myTrail;
 	}
 
+	/**
+	 * get current state of the turtle
+	 * @return - State of turtle
+	 */
 	public State getCurrentState() {
 		return myStates.get(myStates.size()-1);
+	}
+
+	public void processString(String input) {
+		
 	}
 
 }

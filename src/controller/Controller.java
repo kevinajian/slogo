@@ -33,6 +33,7 @@ public class Controller {
 	 */
 	public void initiate(){
 		myModel.initiate();
+		myView.initiate();
 	}
 	
 	/**
@@ -41,6 +42,14 @@ public class Controller {
 	 */
 	public String viewString() {
 		return myView.getInputString();
+	}
+	
+	/**
+	 * passes user input to model to process
+	 * @param input - String of user input 
+	 */
+	public void processString(){
+		myModel.processString(viewString());
 	}
 	
 	/**
