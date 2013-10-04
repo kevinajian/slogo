@@ -5,23 +5,21 @@ import model.State;
 
 import commands.OneInput;
 
+/**
+ * Rotates the turtle left, by shifting the angle
+ * by -90 degrees.
+ * @author carlosreyes
+ *
+ */
 public class Left extends OneInput{
-	private static final double RIGHT_ANGLE = 90;
+	private static final double LEFT_ANGLE = -90;
 
-	//TODO this is almost the same as the right command, make a parent class!
 	@Override
 	public double operation(Model model) {
 		double orientation = model.getOrientation();
-		double x = model.getX();
-		double y = model.getY();
-		double distance = getInputValue();
-	
-		double newX = x + distance*Math.sin(Math.toRadians(orientation) - RIGHT_ANGLE);
-		double newY = y + distance*Math.cos(Math.toRadians(orientation) - RIGHT_ANGLE);
-
-		State state = new State(newX, newY, orientation);
+		double newOrientation = orientation + LEFT_ANGLE;
 		
-		model.setState(state);
+		model.addState(new State(model.getX(), model.getY(), newOrientation));
 		
 		return getInputValue();
 	}

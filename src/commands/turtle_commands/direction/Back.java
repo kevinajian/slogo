@@ -26,10 +26,8 @@ public class Back extends OneInput{
 	
 		double newX = x- distance*Math.sin(Math.toRadians(orientation));
 		double newY = y- distance*Math.cos(Math.toRadians(orientation));
-
-		State state = new State(newX, newY, orientation);
 		
-		model.setState(state);
+		model.addState(new State(newX, newY, orientation));
 		
 		return getInputValue();
 	}
