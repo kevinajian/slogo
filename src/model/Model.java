@@ -70,5 +70,23 @@ public class Model {
 	public void processString(String input) {
 		
 	}
+	
+	/**
+	 * determines if the turtle is showing
+	 * 1, or hiding 0
+	 * @return - turle showing or not
+	 */
+	public double isShowing() {
+		return 0;
+	}
+
+	/**
+	 * get the state of the pen, 
+	 * 1 if down, 0 if up
+	 * @return pen up or down
+	 */
+	public double getPenState() {
+		return 0;
+	}
 
 }
