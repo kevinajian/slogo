@@ -12,7 +12,7 @@ public class TurtleGame extends JGEngine{
 
 	public void initCanvas() { 
 		initEngineApplet();
-		setCanvasSettings(80,30,16,16,null,null,null); 
+		setCanvasSettings(80,30,16,16,JGColor.blue,JGColor.blue,null); 
 	}
 	
 	public TurtleGame(JGPoint size) {initEngine(size.x,size.y);}
@@ -39,5 +39,4 @@ public class TurtleGame extends JGEngine{
 	public void doFrameTitle() {
 
 	}
-
 }
