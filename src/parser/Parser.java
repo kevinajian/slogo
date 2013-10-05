@@ -27,8 +27,10 @@ public class Parser {
 	 * creates classes from list of user input
 	 * @param list - String[] of user input
 	 */
-	private void lexer(String[] list){
-		
+	private void lexer(String[] input){
+		for (String string:input){
+			
+		}
 	}
 	
 }

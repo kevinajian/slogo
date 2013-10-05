@@ -7,7 +7,7 @@ import parser.Parser;
 
 /**
  * interprets user input and contains state
- * @author Kevin
+ * @author Kevin, Carlos
  */
 public class Model {
 	

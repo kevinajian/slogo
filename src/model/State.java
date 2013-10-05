@@ -2,8 +2,7 @@ package model;
 
 /**
  * set of x and y coordinates as well as orientation
- * @author Kevin
- *
+ * @author Kevin, Carlos
  */
 public class State {
 	private double myX;
