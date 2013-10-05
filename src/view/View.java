@@ -2,6 +2,8 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 
+import slogoGame.TurtleGame;
+
 import controller.Controller;
 
 import java.util.ResourceBundle;
