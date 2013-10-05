@@ -1,13 +1,14 @@
-package commands.turtle_queries;
+package commands.view;
 
 import model.Model;
 import commands.Command;
 
-public class Showing implements Command {
+public class PenUp implements Command {
 
 	@Override
 	public double operation(Model model) {
-		return model.isShowing();
+		model.setMyPenPos("up");
+		return 0;
 	}
 
 }

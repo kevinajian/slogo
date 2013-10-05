@@ -1,5 +1,13 @@
 package commands.turtle_queries;
 
-public class XCor {
+import model.Model;
+import commands.Command;
+
+public class XCor implements Command {
+
+	@Override
+	public double operation(Model model) {
+		return model.getX();
+	}
 
 }
