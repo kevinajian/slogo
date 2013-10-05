@@ -28,6 +28,11 @@ public class Parser {
 	public void parse(String input){
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
+		List<String> inputs = new ArrayList<String>();
+		for (String item:list){
+			inputs.add(item);
+		}
+		lexer(inputs);
 	}
 	
 	/**
@@ -35,29 +40,45 @@ public class Parser {
 	 * @param list - String[] of user input
 	 * @throws ClassNotFoundException 
 	 */
-	private void lexer(String[] input){
-		//iterator
-		for (String s : input){
-			Command current = s.toCommand();
+	private Command lexer(List<String> inputs){
+		for (int i=0; i<inputs.size(); i++){
+			if (inputs.get(i).getClass() instanceof OneInput){
+				
 			
-			if (s.value.getClass() instanceof OneInput){
-				current.leftChild = s.next.toCommand();
-				current.leftChild.parent = current;
 			}
-			
-			if (myTree.current.value.getClass() instanceof TwoInput){
-				current.leftChild.
-			}
-
-			else if (myTree.root.value.getClass() instanceof Command) {
+			if {input 
+				
 				
 			}
-			
-			
-			
-			System.out.println(string);
+			else if
+			else lexer(inputs);
 		}
 	}
+	
+	
+//	private void lexer(String[] input){
+//		//iterator
+//		for (String s : input){
+//			Command current = s.toCommand();
+//			
+//			if (s.value.getClass() instanceof OneInput){
+//				current.leftChild = s.next.toCommand();
+//				current.leftChild.parent = current;
+//			}
+//			
+//			if (myTree.current.value.getClass() instanceof TwoInput){
+//				current.leftChild.
+//			}
+//
+//			else if (myTree.root.value.getClass() instanceof Command) {
+//				
+//			}
+//			
+//			
+//			
+//			System.out.println(string);
+//		}
+//	}
 	
 	private static final String PATH = "commands.*";
 	
