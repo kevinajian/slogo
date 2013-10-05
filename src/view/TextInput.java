@@ -15,6 +15,7 @@ public class TextInput extends JPanel{
     private JTextArea myTextArea;
     private static final int FIELD_SIZE = 30;
     private ActionListener myActionListener;
+    private JTextField myField;
 	/**
 * Create an input area for the user ---
 * text field for text,
@@ -52,9 +53,16 @@ public class TextInput extends JPanel{
 	* pressed as an ActionEvent) that listens for a variety of kinds of events
 	*/
 	    protected JTextField makeTextField () {
-	        JTextField result = new JTextField(FIELD_SIZE);
-	        result.addActionListener(myActionListener);
-	        return result;
+	        myField = new JTextField(FIELD_SIZE);
+	        myField.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					myField.setText("");
+					
+				}
+	        	
+	        });
+	        return myField;
 	    }
 
 	    /**
