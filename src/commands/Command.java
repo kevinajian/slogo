@@ -7,4 +7,6 @@ public abstract class Command {
 	
 	Command leftChild;
 	Command parent;
+	
+	
 }

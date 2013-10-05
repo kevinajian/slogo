@@ -18,8 +18,5 @@ public abstract class OneInput extends Command{
 	public void setInputValue(double inputValue) {
 		this.inputValue = inputValue;
 	}
-	
-	public abstract double operation (Model model);
-
 
 }
