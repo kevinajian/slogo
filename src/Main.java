@@ -1,5 +1,6 @@
 import controller.Controller;
 import model.Model;
+import view.View;
 
 /**
  * Program starts here
