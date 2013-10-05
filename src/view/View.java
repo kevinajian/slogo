@@ -2,34 +2,37 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 import java.io.*;
 import java.util.ResourceBundle;
+import jgame.*;
+import org.jbox2d.*;
 public class View extends JFrame{
     // this constant should be defined by Java, not me :(
     private static final int FIELD_SIZE = 30;
     // most GUI components will be temporary variables,
     // only store components you need to refer to later
     private JTextArea myTextArea;
-    private JFileChooser myChooser;
     // get strings from resource file
     private ActionListener myActionListener;
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     // this constant should be defined by Java, not me :(
     private static final String USER_DIR = "user.dir";
     private ResourceBundle myResources;
+    private TextInput myTextInput;
     
     public View ()
     {
         setTitle("Turtle View");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // create a single file chooser for the entire example
-        myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
         // create and arrange sub-parts of the GUI
         myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         // create listeners that will respond to events
         makeListeners();
         // position interface components
-        getContentPane().add(makeInput(), BorderLayout.NORTH);
+        myTextInput = new TextInput();
+        getContentPane().add(myTextInput, BorderLayout.SOUTH);
         getContentPane().add(makeDisplay(), BorderLayout.CENTER);
         // create app menus
         setJMenuBar(makeMenus());
@@ -83,121 +86,23 @@ public class View extends JFrame{
 */
     protected JMenuBar makeMenus () {
         JMenuBar result = new JMenuBar();
-        result.add(makeFileMenu());
         return result;
     }
 
-    /**
-* Create an input area for the user ---
-* text field for text,
-* buttons for starting actions
-*/
-    protected JComponent makeInput () {
-        JPanel result = new JPanel();
-        result.add(makeTextField());
-        result.add(makeButton());
-        result.add(makeClear());
-        return result;
-    }
 
-    /**
-* Create a display area for showing out to the user, since it may display
-* lots of text, make it automatically scroll when needed
-*/
-    protected JComponent makeDisplay () {
-        // create with size in rows and columns
-        myTextArea = new JTextArea(FIELD_SIZE, FIELD_SIZE);
-        return new JScrollPane(myTextArea);
-    }
 
-    /**
-* Create a menu that will pop up when the menu button is pressed in the
-* frame. File menu usually contains Open, Save, and Exit
-*
-* Note, since these classes will not ever be used by any other class, make
-* them inline (i.e., as anonymous inner classes) --- saves making a
-* separate file for one line of actual code.
-*/
-    protected JMenu makeFileMenu () {
-        JMenu result = new JMenu(myResources.getString("FileMenu"));
-        result.add(new AbstractAction(myResources.getString("OpenCommand")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                try {
-                    int response = myChooser.showOpenDialog(null);
-                    if (response == JFileChooser.APPROVE_OPTION) {
-                        echo(new FileReader(myChooser.getSelectedFile()));
-                    }
-                }
-                catch (IOException io) {
-                    // let user know an error occurred, but keep going
-                    showError(io.toString());
-                }
-            }
-        });
-        result.add(new AbstractAction(myResources.getString("SaveCommand")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                try {
-                    echo(new FileWriter("demo.out"));
-                }
-                catch (IOException io) {
-                    // let user know an error occurred, but keep going
-                    showError(io.toString());
-                }
-            }
-        });
-        result.add(new JSeparator());
-        result.add(new AbstractAction(myResources.getString("QuitCommand")) {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                // clean up any open resources, then
-                // end program
-                System.exit(0);
-            }
-        });
-        return result;
-    }
+	   /**
+	* Create a display area for showing out to the user, since it may display
+	* lots of text, make it automatically scroll when needed
+	*/
+	    protected JComponent makeDisplay () {
+	        // create with size in rows and columns
+	        myTextArea = new JTextArea(FIELD_SIZE, FIELD_SIZE);
+	        return new JScrollPane(myTextArea);
+	    }
 
-    /**
-* Create a standard text field (a single line that responds to enter being
-* pressed as an ActionEvent) that listens for a variety of kinds of events
-*/
-    protected JTextField makeTextField () {
-        JTextField result = new JTextField(FIELD_SIZE);
-        result.addActionListener(myActionListener);
-        return result;
-    }
 
-    /**
-* Create a standard button (a rectangular area that responds to mouse
-* press and release within its bounds) that listens for a variety of kinds
-* of events
-*/
-    protected JButton makeButton () {
-        JButton result = new JButton(myResources.getString("ActionCommand"));
-        result.addActionListener(myActionListener);
-        return result;
-    }
-
-    /**
-* Create a button whose action is to clear the display area when pressed.
-*
-* Note, since this class will not ever be used by any other class, make it
-* inline (i.e., as anonymous inner classes) --- saves making a separate
-* file for one line of actual code.
-*/
-    protected JButton makeClear () {
-        JButton result = new JButton(myResources.getString("ClearCommand"));
-        result.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                myTextArea.setText("");
-            }
-        });
-        return result;
-    }
-
+ 
     /**
 * Echo key presses by showing important attributes
 */
