@@ -1,13 +1,13 @@
 package view;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
-import java.io.*;
+import controller.Controller;
+
 import java.util.ResourceBundle;
 import jgame.*;
 
-import org.jbox2d.*;
+@SuppressWarnings("serial")
 public class View extends JFrame{
     // this constant should be defined by Java, not me :(
     // most GUI components will be temporary variables,
@@ -15,10 +15,10 @@ public class View extends JFrame{
     // get strings from resource file
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     // this constant should be defined by Java, not me :(
-    private static final String USER_DIR = "user.dir";
     private ResourceBundle myResources;
     private TextInput myTextInput;
     private TurtleGame myTurtleGame;
+    private Controller myController;
     
     public View ()
     {
@@ -40,8 +40,12 @@ public class View extends JFrame{
         setVisible(true);
     }
     
-	public String getInputString() {
-		return "";
+    public void setController(Controller controller){
+    	myController = controller;
+    }
+    
+	public void sendString(String string) {
+		myController.processString(string);
 	}
 
     /**
