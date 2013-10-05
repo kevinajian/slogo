@@ -1,5 +1,6 @@
 package parser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -25,8 +26,6 @@ public class Parser {
 	public void parse(String input){
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
-		
-		lexer(list);
 	}
 	
 	/**
@@ -36,8 +35,10 @@ public class Parser {
 	 */
 	private void lexer(String[] input){
 		//iterator
+		root = input[0].toClass();
+		current = root;
+
 		for (int i=0; i< input.length; i++){
-			
 			myTree.current.value = string.toClass();
 			
 			if (myTree.current.value.getClass() instanceof TwoInput){
@@ -57,10 +58,17 @@ public class Parser {
 		}
 	}
 	
+	private static final String PATH = "commands.*";
+	
+	public void toClass(String in) {
+		String command = PATH + in;
+	}
+	
 	
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+
 		String className = "commands.turtle_commands.direction.Forward";
 		Object xyz = Class.forName(className).newInstance();
-		System.out.println(xyz.getClass());
+		System.out.println(xyz.getClass()); 
 	}
 }

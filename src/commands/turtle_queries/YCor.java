@@ -8,7 +8,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class YCor implements Command {
+public class YCor extends Command {
 
 	@Override
 	public double operation(Model model) {

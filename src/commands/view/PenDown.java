@@ -3,7 +3,7 @@ package commands.view;
 import model.Model;
 import commands.Command;
 
-public class PenDown implements Command {
+public class PenDown extends Command {
 
 	@Override
 	public double operation(Model model) {

@@ -2,6 +2,9 @@ package commands;
 
 import model.Model;
 
-public interface Command {
-	public double operation(Model model);
+public abstract class Command {
+	public abstract double operation(Model model);
+	
+	Command leftChild;
+	Command parent;
 }

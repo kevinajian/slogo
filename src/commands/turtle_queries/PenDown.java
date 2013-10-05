@@ -9,7 +9,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class PenDown implements Command{
+public class PenDown extends Command{
 
 	@Override
 	public double operation(Model model) {

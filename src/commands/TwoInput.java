@@ -2,7 +2,7 @@ package commands;
 
 import model.Model;
 
-public abstract class TwoInput implements Command{
+public abstract class TwoInput extends Command{
 
 	/**
 	 * Carries out an operation.

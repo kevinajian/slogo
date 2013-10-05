@@ -4,7 +4,7 @@ import commands.Command;
 import model.Model;
 import model.State;
 
-public class Home implements Command {
+public class Home extends Command {
 	
 	@Override
 	public double operation(Model model) {
