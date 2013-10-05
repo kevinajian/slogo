@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ResourceBundle;
 import jgame.*;
+
 import org.jbox2d.*;
 public class View extends JFrame{
     // this constant should be defined by Java, not me :(
@@ -20,9 +21,11 @@ public class View extends JFrame{
     private static final String USER_DIR = "user.dir";
     private ResourceBundle myResources;
     private TextInput myTextInput;
+    private TurtleGame myTurtleGame;
     
     public View ()
     {
+    	//this.setName("Turtle View");
         setTitle("Turtle View");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // create a single file chooser for the entire example
@@ -32,8 +35,9 @@ public class View extends JFrame{
         makeListeners();
         // position interface components
         myTextInput = new TextInput();
+        myTurtleGame = new TurtleGame(new JGPoint(1600,750));//
         getContentPane().add(myTextInput, BorderLayout.SOUTH);
-        getContentPane().add(makeDisplay(), BorderLayout.CENTER);
+        getContentPane().add(myTurtleGame, BorderLayout.CENTER);
         // create app menus
         setJMenuBar(makeMenus());
         // size and display the GUI

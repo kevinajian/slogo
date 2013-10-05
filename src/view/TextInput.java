@@ -57,10 +57,9 @@ public class TextInput extends JPanel{
 	        myField.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					System.out.println(myField.getText());
 					myField.setText("");
-					
 				}
-	        	
 	        });
 	        return myField;
 	    }
