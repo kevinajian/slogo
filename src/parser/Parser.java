@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import commands.Command;
+import commands.turtle_commands.direction.Forward;
+
 /**
  * Parses user input
  * @author Kevin, Carlos
  *
  */
 public class Parser {
-	private String[] myList;
+	private Tree<Command> myTree;
 	
 	public Parser(){
 	}
@@ -29,37 +32,35 @@ public class Parser {
 	/**
 	 * creates classes from list of user input
 	 * @param list - String[] of user input
+	 * @throws ClassNotFoundException 
 	 */
 	private void lexer(String[] input){
-		for (String string:input){
+		//iterator
+		for (int i=0; i< input.length; i++){
 			
+			myTree.current.value = string.toClass();
+			
+			if (myTree.current.value.getClass() instanceof TwoInput){
+				
+			}
+			if (myTree.current.value.getClass() instanceof OneInput){
+				myTree.leftChild = null;
+				current = myTree.rightChild;
+			}
+			else if (myTree.root.value.getClass() instanceof NInput) {
+				
+			}
+			
+			
+			
+			System.out.println(string);
 		}
 	}
 	
 	
-	static String in = "fd fd 50";
-	static List<String> commandList = new ArrayList<String>();
-
-	public static void tokenizer (String input) {
-		
-		StringTokenizer st = new StringTokenizer(input);
-		
-		while (st.hasMoreTokens()) {
-			commandList.add(st.nextToken());
-		} 
-		
-	}
-	
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException {
-		String clsName = "Forward";  // use fully qualified name
-		Class<?> cls = null;
-		try {
-			cls = Class.forName(clsName);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Object clsInstance = (Object) cls.newInstance();
-		//tokenizer(in);
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		String className = "commands.turtle_commands.direction.Forward";
+		Object xyz = Class.forName(className).newInstance();
+		System.out.println(xyz.getClass());
 	}
 }
