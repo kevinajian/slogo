@@ -1,5 +1,5 @@
 package controller;
-
+import view.View;
 import java.util.List;
 
 import model.Line;
@@ -32,7 +32,6 @@ public class Controller {
 	 */
 	public void initiate(){
 		myModel.initiate();
-		myView.initiate();
 	}
 	
 	/**
