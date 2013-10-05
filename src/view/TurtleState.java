@@ -6,24 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class TurtleState extends JPanel{
+public class TurtleState extends JScrollPane{
     private ActionListener myActionListener;
-    private JTextField myField;
-	public TurtleState()
+    private JTextArea myTextArea;
+	public TurtleState(JTextArea text)
 	{
-		add(makeButton());
-		myField = new JTextField();
+		super(text);
+		myTextArea = text;
 	}
 
-	private JButton makeButton() {
-        JButton result = new JButton();
-        result.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed (ActionEvent e) {
-                myField.setText("HERE IS WHERE TURTLE STATUS IS DISPLAYED");
-            }
-        });
-        return result;
-	}
 	
 }

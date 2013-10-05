@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 public class TextInput extends JPanel{
    
     private ResourceBundle myResources;
-    private static final int FIELD_SIZE = 100;
+    private static final int FIELD_SIZE = 60;
     private JTextField myField;
     private View myView;
 	/**

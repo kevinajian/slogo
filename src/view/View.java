@@ -31,7 +31,8 @@ public class View extends JFrame{
         // create listeners that will respond to events
         // position interface components
         myTextInput = new TextInput(this);
-        myTurtleGame = new TurtleGame(new JGPoint(1600,750));//
+        myTurtleGame = new TurtleGame(new JGPoint(1000,750));//
+        getContentPane().add(new TurtleState(new JTextArea(35,35)), BorderLayout.EAST);
         getContentPane().add(myTextInput, BorderLayout.SOUTH);
         getContentPane().add(myTurtleGame, BorderLayout.CENTER);
         // create app menus
