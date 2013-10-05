@@ -1,17 +1,20 @@
-package commands.turtle_commands.degree;
+package commands.view;
 
+import commands.Command;
 import model.Model;
 import model.State;
-import commands.TwoInput;
 
-public class SetXY extends TwoInput {
-
+public class ClearScreen implements Command {
+	
 	@Override
 	public double operation(Model model) {
 		double x = model.getX();
 		double y = model.getY();
-		model.addState(new State(getInputValueOne(), getInputValueTwo(), model.getOrientation()));
-		return calculateLength(x, y, getInputValueOne(), getInputValueTwo());
+		
+		model.getTrail().clear();
+		
+		model.addState(new State(0, 0, model.getOrientation()));
+		return calculateLength(x, y, 0, 0);
 	}
 	
 	private double calculateLength(double x1, double y1, double x2, double y2) {

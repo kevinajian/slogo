@@ -7,8 +7,15 @@ public class Towards extends TwoInput{
 
 	@Override
 	public double operation(Model model) {
-		// TODO Auto-generated method stub
-		return 0;
+		double orientation = model.getOrientation();
+		double x = model.getX();
+		double y = model.getY();
+		double directionX = getInputValueOne();
+		double directionY = getInputValueTwo();
+		
+		double newOrientation = Math.atan((directionY-y)/(directionX-x));
+		
+		return Math.abs(orientation-newOrientation);
 	}
 
 }
