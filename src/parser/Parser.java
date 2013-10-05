@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import commands.Command;
+import commands.OneInput;
+import commands.TwoInput;
 import commands.turtle_commands.direction.Forward;
 
 /**
@@ -35,20 +37,19 @@ public class Parser {
 	 */
 	private void lexer(String[] input){
 		//iterator
-		root = input[0].toClass();
-		current = root;
-
-		for (int i=0; i< input.length; i++){
-			myTree.current.value = string.toClass();
+		for (String s : input){
+			Command current = s.toCommand();
+			
+			if (s.value.getClass() instanceof OneInput){
+				current.leftChild = s.next.toCommand();
+				current.leftChild.parent = current;
+			}
 			
 			if (myTree.current.value.getClass() instanceof TwoInput){
-				
+				current.leftChild.
 			}
-			if (myTree.current.value.getClass() instanceof OneInput){
-				myTree.leftChild = null;
-				current = myTree.rightChild;
-			}
-			else if (myTree.root.value.getClass() instanceof NInput) {
+
+			else if (myTree.root.value.getClass() instanceof Command) {
 				
 			}
 			

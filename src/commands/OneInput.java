@@ -1,7 +1,5 @@
 package commands;
 
-import model.Model;
-
 public abstract class OneInput extends Command{
 
 	/**

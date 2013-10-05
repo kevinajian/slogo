@@ -1,7 +1,5 @@
 package commands;
 
-import model.Model;
-
 public abstract class TwoInput extends Command{
 	Command rightChild;
 	
