@@ -1,9 +1,8 @@
 package commands;
 
-import model.Model;
-
-public abstract class TwoInput implements Command{
-
+public abstract class TwoInput extends Command{
+	Command rightChild;
+	
 	/**
 	 * Carries out an operation.
 	 * @param model
@@ -27,7 +26,4 @@ public abstract class TwoInput implements Command{
 	public void setInputValueTwo(double inputValueTwo) {
 		this.inputValueTwo = inputValueTwo;
 	}
-	
-	public abstract double operation (Model model);
-
 }

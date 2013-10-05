@@ -1,10 +1,13 @@
 package parser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import commands.Command;
+import commands.OneInput;
+import commands.TwoInput;
 import commands.turtle_commands.direction.Forward;
 
 /**
@@ -25,8 +28,6 @@ public class Parser {
 	public void parse(String input){
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
-		
-		lexer(list);
 	}
 	
 	/**
@@ -36,18 +37,19 @@ public class Parser {
 	 */
 	private void lexer(String[] input){
 		//iterator
-		for (int i=0; i< input.length; i++){
+		for (String s : input){
+			Command current = s.toCommand();
 			
-			myTree.current.value = string.toClass();
+			if (s.value.getClass() instanceof OneInput){
+				current.leftChild = s.next.toCommand();
+				current.leftChild.parent = current;
+			}
 			
 			if (myTree.current.value.getClass() instanceof TwoInput){
-				
+				current.leftChild.
 			}
-			if (myTree.current.value.getClass() instanceof OneInput){
-				myTree.leftChild = null;
-				current = myTree.rightChild;
-			}
-			else if (myTree.root.value.getClass() instanceof NInput) {
+
+			else if (myTree.root.value.getClass() instanceof Command) {
 				
 			}
 			
@@ -57,10 +59,17 @@ public class Parser {
 		}
 	}
 	
+	private static final String PATH = "commands.*";
+	
+	public void toClass(String in) {
+		String command = PATH + in;
+	}
+	
 	
 	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+
 		String className = "commands.turtle_commands.direction.Forward";
 		Object xyz = Class.forName(className).newInstance();
-		System.out.println(xyz.getClass());
+		System.out.println(xyz.getClass()); 
 	}
 }

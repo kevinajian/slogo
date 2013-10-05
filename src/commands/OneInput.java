@@ -1,8 +1,6 @@
 package commands;
 
-import model.Model;
-
-public abstract class OneInput implements Command{
+public abstract class OneInput extends Command{
 
 	/**
 	 * Carries out an operation.
@@ -18,8 +16,5 @@ public abstract class OneInput implements Command{
 	public void setInputValue(double inputValue) {
 		this.inputValue = inputValue;
 	}
-	
-	public abstract double operation (Model model);
-
 
 }

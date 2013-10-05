@@ -4,7 +4,7 @@ import commands.Command;
 import model.Model;
 import model.State;
 
-public class ClearScreen implements Command {
+public class ClearScreen extends Command {
 	
 	@Override
 	public double operation(Model model) {
