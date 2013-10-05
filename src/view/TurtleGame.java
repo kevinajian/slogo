@@ -7,7 +7,10 @@ public class TurtleGame extends JGEngine{
 
 	public TurtleGame() {initEngineApplet();}
 
-	public void initCanvas() { setCanvasSettings(80,30,16,16,null,null,null); }
+	public void initCanvas() { 
+		initEngineApplet();
+		setCanvasSettings(80,30,16,16,null,null,null); 
+	}
 	
 	public TurtleGame(JGPoint size) {initEngine(size.x,size.y);}
 	
