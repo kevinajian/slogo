@@ -20,7 +20,9 @@ public class Parser {
 	 * @param input - String of user input
 	 */
 	public void parse(String input){
+		input.toUpperCase();
 		String [] list = input.split("\\s+");
+		
 		lexer(list);
 	}
 	

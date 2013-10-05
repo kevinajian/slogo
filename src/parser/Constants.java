@@ -1,0 +1,51 @@
+package parser;
+
+public class Constants {
+	public static final String[] FORWARD_CMD = new String[]{"FORWARD", "FD"};
+	public static final String[] BACK_CMD = new String[]{"BACK", "BK"};
+	public static final String[] LEFT_CMD = new String[]{"LEFT", "LT"};
+	public static final String[] RIGHT_CMD = new String[]{"RIGHT", "RT"};
+	public static final String[] SETHEADING_CMD = new String[]{"SETHEADING", "SETH"};
+	public static final String[] TOWARDS = new String[]{"TOWARDS"};
+	public static final String[] SET_CMD = new String[]{"SETXY", "GOTO"};
+	public static final String[] PENDOWN_CMD = new String[]{"PENDOWN", "PD"};
+	public static final String[] PENUP_CMD = new String[]{"PENUP", "PU"};
+	public static final String[] SHOWTURTLE_CMD = new String[]{"SHOWTURTLE", "ST"};
+	public static final String[] HIDETURTLE_CMD = new String[]{"HIDETURTLE", "FD"};
+	public static final String[] HOME_CMD = new String[]{"HOME"};
+	public static final String[] CLEARSCREEN_CMD = new String[]{"CLEARSCREEN", "CS"};
+	public static final String[] XCOR_QRY = new String[]{"XCOR"};
+	public static final String[] YCOR_QRY = new String[]{"YCOR"};
+	public static final String[] HEADING_QRY = new String[]{"HEADING"};
+	public static final String[] PENDOWN_QRY = new String[]{"PENDOWN?", "PENDOWNP"};
+	public static final String[] SHOWING_QRY = new String[]{"SHOWING?", "SHOWINGP"};
+	public static final String[] SUM_OP = new String[]{"SUM"}; 
+	public static final String[] DIFFERENCE_OP = new String[]{"DIFFERENCE"};
+	public static final String[] PRODUCT = new String[]{"PRODUCT"};
+	public static final String[] QUOTIENT = new String[]{"QUOTIENT"};
+	public static final String[] REMAINDER = new String[]{"REMAINDER"};
+	public static final String[] MINUS = new String[]{"MINUS"};
+	public static final String[] RANDOM = new String[]{"RANDOM"};
+	public static final String[] SIN_OP = new String[]{"SIN"};
+	public static final String[] COS_OP = new String[]{"COS"};
+	public static final String[] TAN_OP = new String[]{"TAN"};
+	public static final String[] ATAN_OP = new String[]{"ATAN"};
+	public static final String[] LOG_OP = new String[]{"LOG"};
+	public static final String[] POW_OP = new String[]{"POW"};
+	public static final String[] LESS_OP = new String[]{"LESS?", "LESSP"};
+	public static final String[] GREATER_OP = new String[]{"GREATER?", "GREATERP"};
+	public static final String[] EQUAL_OP = new String[]{"EQUAL?", "EQUALP"};
+	public static final String[] NOTEQUAL_OP = new String[]{"NOTEQUAL?", "NOTEQUALP"};
+	public static final String[] AND_OP = new String[]{"AND"};
+	public static final String[] OR_OP = new String[]{"OR"};
+	public static final String[] NOT_OP = new String[]{"NOT"};
+	public static final String[] MAKE_CMD = new String[]{"MAKE", "SET"};
+	public static final String[] REPEAT_CMD = new String[]{"REPEAT"};
+	public static final String[] DOTIMES_CMD = new String[]{"DOTIMES"};
+	public static final String[] FOR_CMD = new String[]{"FOR"};
+	public static final String[] IF_CMD = new String[]{"IF"};
+	public static final String[] IFELSE_CMD = new String[]{"IFELSE"};
+	public static final String[] TO_CMD = new String[]{"TO"};
+	
+	public static final double VARIABLE_DEFAULT = 0;
+}
