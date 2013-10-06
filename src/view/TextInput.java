@@ -1,52 +1,29 @@
 package view;
-import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
 
-import java.io.*;
 import java.util.ResourceBundle;
-import jgame.*;
-import org.jbox2d.*;
 
+@SuppressWarnings("serial")
 public class TextInput extends JPanel{
    
     private ResourceBundle myResources;
-    private JTextArea myTextArea;
-    private static final int FIELD_SIZE = 30;
-    private ActionListener myActionListener;
+    private static final int FIELD_SIZE = 60;
     private JTextField myField;
+    private View myView;
 	/**
 * Create an input area for the user ---
 * text field for text,
 * buttons for starting actions
 */
-	public TextInput()
+	public TextInput(View view)
 	{
 	    myResources = ResourceBundle.getBundle("resources." + "English");
         add(makeTextField());
-        add(makeButton());
-        add(makeClear());
-        myTextArea = new JTextArea();
+        add(makeSubmit());
+        myView = view;
 	}
-	   /**
-	* Create a button whose action is to clear the display area when pressed.
-	*
-	* Note, since this class will not ever be used by any other class, make it
-	* inline (i.e., as anonymous inner classes) --- saves making a separate
-	* file for one line of actual code.
-	*/
-	    protected JButton makeClear () {
-	        JButton result = new JButton(myResources.getString("ClearCommand"));
-	        result.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed (ActionEvent e) {
-	                myTextArea.setText("");
-	            }
-	        });
-	        return result;
-	    }
-
 
 	    /**
 	* Create a standard text field (a single line that responds to enter being
@@ -57,10 +34,10 @@ public class TextInput extends JPanel{
 	        myField.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					System.out.println(myField.getText());
+					//myView.sendString(myField.getText());
 					myField.setText("");
-					
 				}
-	        	
 	        });
 	        return myField;
 	    }
@@ -70,9 +47,16 @@ public class TextInput extends JPanel{
 	* press and release within its bounds) that listens for a variety of kinds
 	* of events
 	*/
-	    protected JButton makeButton () {
+	    protected JButton makeSubmit () {
 	        JButton result = new JButton(myResources.getString("ActionCommand"));
-	        result.addActionListener(myActionListener);
+	        result.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					System.out.println(myField.getText());
+					//myView.sendString(myField.getText());
+					myField.setText("");
+				}
+	        });
 	        return result;
 	    }
 }

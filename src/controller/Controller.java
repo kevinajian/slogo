@@ -35,19 +35,11 @@ public class Controller {
 	}
 	
 	/**
-	 * gets user input types into command window
-	 * @return String of user input
-	 */
-	public String viewString() {
-		return myView.getInputString();
-	}
-	
-	/**
 	 * passes user input to model to process
 	 * @param input - String of user input 
 	 */
-	public void processString(){
-		myModel.processString(viewString());
+	public void processString(String string){
+		myModel.processString(string);
 		//myModel.getOutput();
 		//myView.setOutput();
 	}
