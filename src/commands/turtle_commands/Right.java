@@ -22,10 +22,10 @@ public class Right extends TurtleCommandOneInput {
 		return getInputValueOne();
 	}
 
-	@Override
-	public double evaluate() {
-		
-		return getInputValueOne();
-	}
+//	@Override
+//	public double evaluate() {
+//		
+//		return getInputValueOne();
+//	}
 	
 }
