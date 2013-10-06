@@ -11,7 +11,6 @@ import commands.math.Sum;
 
 public class MathTest {
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testSum() {
 		Sum sum = new Sum();

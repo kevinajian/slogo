@@ -58,11 +58,11 @@ public class Parser {
 				double n = getClass(inputs.get(j)).getNumInputs(); //then set n = # of params that command needs 
 				for(double m=1; m<=n; m++) { //go forward in the list n spots
 					inputList.add(j+m); //add the constants to a list of commands that will be fed to our command
-					inputs.remove(j+1);
+					inputs.remove(j+1); //remove what we added
 				}
 				Command current = getClass(inputs.get(j));
-				current.setInputList(inputList);
-				Double newVal = current.evaluate(); //feed all params in list to the command, and execute, set to newVal
+				current.setInputList(inputList); // feeds list of input parameters into the command
+				Double newVal = current.evaluate(); // executes command, sets result to newVal
 //				if affects turtle commandList(current);
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}
