@@ -17,7 +17,7 @@ import commands.basic_syntax.Constant;
  *
  */
 public class Parser {
-	private Tree<Command> myTree;
+	private List<Command> commandList = new ArrayList<Command>();
 	
 	public Parser(){
 	}
@@ -37,11 +37,10 @@ public class Parser {
 	}
 	
 	/**
-	 * creates classes from list of user input
-	 * @param list - String[] of user input
-	 * @throws ClassNotFoundException 
+	 * creates Command objects from user input
+	 * @param inputs - List<String> of user input 
 	 */
-	private Command lexer(List<String> inputs){
+	private void lexer(List<String> inputs){
 		
 		for(int j = inputs.size()-1; j>=0; j--) { //traverses the array of string inputs BACKWARDS
 			List<Double> constantList  = new ArrayList<Double>();
@@ -68,31 +67,7 @@ public class Parser {
 		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
 		return xyz;
 	}
-	
-//	private void lexer(String[] input){
-//		//iterator
-//		for (String s : input){
-//			Command current = s.toCommand();
-//			
-//			if (s.value.getClass() instanceof OneInput){
-//				current.leftChild = s.next.toCommand();
-//				current.leftChild.parent = current;
-//			}
-//			
-//			if (myTree.current.value.getClass() instanceof TwoInput){
-//				current.leftChild.
-//			}
-//
-//			else if (myTree.root.value.getClass() instanceof Command) {
-//				
-//			}
-//			
-//			
-//			
-//			System.out.println(string);
-//		}
-//	}
-	
+
 	private static final String PATH = "commands.*";
 	
 	public String toClass(String in) {
