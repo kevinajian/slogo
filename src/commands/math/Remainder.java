@@ -10,7 +10,7 @@ import commands.TwoInput;
 public class Remainder extends TwoInput {
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate() {
 		return getInputValueOne() % getInputValueTwo();
 	}
 

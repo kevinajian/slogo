@@ -2,19 +2,42 @@ package commands;
 
 import java.util.List;
 
+/**
+ * Command class for one input parameter
+ * @author Kevin
+ */
 public abstract class OneInput extends Command{
-	private int myNumParams = 1;
+	private int myNumInputs = 1;
+	protected double myInputValueOne;
 	
-	private double inputValue;
-	
-	
-	public double getInputValue() {
-		return inputValue;
+	/**
+	 * gets input value
+	 * @return - double of input value
+	 */
+	public double getInputValueOne() {
+		return myInputValueOne;
 	}
 	
-	public void setInputValue(double inputValue) {
-		this.inputValue = inputValue;
+	/**
+	 * sets input value
+	 * @param inputValue - value to be set 
+	 */
+	public void setInputValueOne(double inputValue) {
+		myInputValueOne = inputValue;
 	}
 	
-	public abstract double evaluate(List<Double> paramList);
+	/**
+	 * sets param value and param list
+	 */
+	public void setInputList(List<Double> inputList){
+		super.setInputList(inputList);
+		setInputValueOne(inputList.get(0));
+	}
+	
+	/**
+	 * evaluates operations using parameters
+	 * @param paramList - List<Double> of parameters
+	 * @return - double of result
+	 */
+	public abstract double evaluate();
 }

@@ -4,7 +4,7 @@ import commands.TwoInput;
 import model.Model;
 
 /**
- * Takes the quotient of two values.
+ * Takes the product of two values.
  * Ex. 4*2 = 8
  * @author carlosreyes
  *
@@ -12,7 +12,7 @@ import model.Model;
 public class Product extends TwoInput {
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate() {
 		return getInputValueOne() * getInputValueTwo();
 	}
 

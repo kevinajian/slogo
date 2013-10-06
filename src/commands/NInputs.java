@@ -5,14 +5,21 @@ import java.util.List;
 
 import model.Model;
 
+/**
+ * Command that takes in n parameters
+ * Has a String for command name
+ * @author Kevin
+ *
+ */
 public class NInputs extends Command{
-	private String commandName;
+	private String myCommandName;
 	
-	public NInputs(int i){
-		myNumParams = i;
-	}
-	
-	public int getNumParams(){
-		return myNumParams;
+	/**
+	 * constructor, sets number of parameters
+	 * @param i
+	 */
+	public NInputs(String commandName, int i){
+		myCommandName = commandName;
+		myNumInputs = i;
 	}
 }

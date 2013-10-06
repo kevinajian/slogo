@@ -12,7 +12,7 @@ import model.Model;
 public class Sum extends TwoInput {
 	
 	@Override
-	public double operation(Model model) {
+	public double evaluate() {
 		return getInputValueOne() + getInputValueTwo();
 	}
 

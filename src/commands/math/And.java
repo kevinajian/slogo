@@ -5,13 +5,18 @@ import java.util.List;
 import model.Model;
 import commands.TwoInput;
 
+/**
+ * returns 1 if two inputs are not zero
+ * else returns 0
+ * @author Kevin
+ */
 public class And extends TwoInput {
 
 	@Override
-	public double evaluate(List<Double> paramList) {
-		if ((paramList.get(0) != 0) && (paramList.get(1) != 0)) return 1;
+	public double evaluate() {
+		if ((getInputValueTwo() != 0) && (getInputValueOne() != 0)) {
+			return 1;
+		}
 		return 0;
 	}
-
-
 }

@@ -3,12 +3,17 @@ package commands.math;
 import commands.OneInput;
 import model.Model;
 
+/**
+ * returns power of input value
+ * @author Kevin
+ *
+ */
 public class Power extends OneInput{
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate() {
 		//FIX THIS
-		return Math.pow(getInputValue(), 0);
+		return Math.pow(getInputValueOne(), 0);
 	}
 
 }

@@ -1,10 +1,12 @@
 package commands.math;
 
+import java.util.List;
+
 import model.Model;
 import commands.TwoInput;
 
 /**
- * Takes the quotient of two values.
+ * Takes the difference of two values.
  * Ex. 4-2 = 2
  * @author carlosreyes
  *
@@ -12,7 +14,7 @@ import commands.TwoInput;
 public class Difference extends TwoInput {
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate() {
 		return getInputValueOne() - getInputValueTwo();
 	}
 

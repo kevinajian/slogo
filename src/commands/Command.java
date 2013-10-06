@@ -3,15 +3,27 @@ package commands;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Command class, has number of parameters and a list of those parameters
+ * @author Kevin
+ */
 public abstract class Command {
-	protected int myNumParams = 0;
-	protected List<Double> myParamList;
+	protected int myNumInputs = 0;
+	protected List<Double> myInputList;
 	 
-	public int getNumInputs(){
-		return myNumParams;
+	/**
+	 * gets number of parameters this command holds
+	 * @return
+	 */
+	public int getNumParams(){
+		return myNumInputs;
 	}
 	
-	public void setParamList(List<Double> paramList){
-		myParamList = paramList;
+	/**
+	 * sets list of parameters
+	 * @param paramList - List<Double> of parameters
+	 */
+	public void setInputList(List<Double> inputList){
+		myInputList = inputList;
 	}
 }

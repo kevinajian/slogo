@@ -2,27 +2,45 @@ package commands;
 
 import java.util.List;
 
-public abstract class TwoInput extends Command{
-	private int myNumParams = 2;
-	private double inputValueOne;
-	private double inputValueTwo;
-		
-	public double getInputValueOne() {
-		return inputValueOne;
-	}
+/**
+ * Command class for two input parameters
+ * @author Kevin
+ *
+ */
+public abstract class TwoInput extends OneInput{
+	private int myNumInputs = 2;
+	private double myInputValueTwo;
 	
-	public void setInputValueOne(double inputValueOne) {
-		this.inputValueOne = inputValueOne;
-	}
 	
+	/**
+	 * gets second input value
+	 * @return - double of first input value
+	 */
 	public double getInputValueTwo() {
-		return inputValueTwo;
+		return myInputValueTwo;
 	}
 	
+	/**
+	 * sets second input value
+	 * @param inputValueTwo - double of value to be set
+	 */
 	public void setInputValueTwo(double inputValueTwo) {
-		this.inputValueTwo = inputValueTwo;
+		myInputValueTwo = inputValueTwo;
 	}
 	
-	public abstract double evaluate(List<Double> paramList);
+	/**
+	 * sets input value and input list
+	 */
+	public void setInputList(List<Double> inputList){
+		super.setInputList(inputList);
+		setInputValueTwo(inputList.get(1));
+	}
+	
+	/**
+	 * evaluates operations using parameters
+	 * @param paramList - List<Double> of parameters
+	 * @return - double of result
+	 */
+	public abstract double evaluate();
 
 }

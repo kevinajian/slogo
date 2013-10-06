@@ -7,28 +7,28 @@ import commands.OneInput;
 import parser.Constants;
 
 public class Variable extends OneInput{
-	String variableName = null;
-	double variableValue = Constants.VARIABLE_DEFAULT;
+	String myVariableName = null;
+	double myVariableValue = Constants.VARIABLE_DEFAULT;
 	
 	public String getVariableName() {
-		return variableName;
+		return myVariableName;
 	}
 	
 	public void setVariableName(String variableName) {
-		this.variableName = variableName;
+		myVariableName = variableName;
 	}
 	
 	public double getVariableValue() {
-		return variableValue;
+		return myVariableValue;
 	}
 	
 	public void setVariableValue(double variableValue) {
-		this.variableValue = variableValue;
+		myVariableValue = variableValue;
 	}
 
 	@Override
-	public double evaluate(List<Double> paramList) {
-		return paramList.get(0);
+	public double evaluate() {
+		return getInputValueOne();
 	}
 	
 }
