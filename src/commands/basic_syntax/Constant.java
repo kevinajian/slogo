@@ -8,6 +8,15 @@ import commands.Command;
  * @author Kevin
  */
 public class Constant extends Command{
-	private double value;
+	private double myValue;
+
+	public void setValue(double value){
+		myValue = value;
+	}
+	
+	@Override
+	public double evaluate() {
+		return myValue;
+	}
 	
 }

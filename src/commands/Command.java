@@ -15,7 +15,7 @@ public abstract class Command {
 	 * gets number of parameters this command holds
 	 * @return
 	 */
-	public int getNumParams(){
+	public int getNumInputs(){
 		return myNumInputs;
 	}
 	
@@ -26,4 +26,11 @@ public abstract class Command {
 	public void setInputList(List<Double> inputList){
 		myInputList = inputList;
 	}
+	
+	/**
+	 * evaluates operations using parameters
+	 * @param paramList - List<Double> of parameters
+	 * @return - double of result
+	 */
+	public abstract double evaluate();
 }

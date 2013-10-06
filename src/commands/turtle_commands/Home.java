@@ -4,7 +4,7 @@ import commands.Command;
 import model.Model;
 import model.State;
 
-public class Home extends Command {
+public class Home extends TurtleCommandOneInput {
 	
 	@Override
 	public double operation(Model model) {
@@ -17,5 +17,10 @@ public class Home extends Command {
 	
 	private double calculateLength(double x1, double y1, double x2, double y2) {
 		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)); 
+	}
+
+	@Override
+	public double evaluate() {
+		return (Double) null;
 	}
 }

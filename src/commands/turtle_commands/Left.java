@@ -11,7 +11,7 @@ import commands.OneInput;
  * @author carlosreyes
  *
  */
-public class Left extends OneInput{
+public class Left extends TurtleCommandOneInput{
 	private static final double LEFT_ANGLE = -90;
 
 	@Override
@@ -21,7 +21,12 @@ public class Left extends OneInput{
 		
 		model.addState(new State(model.getX(), model.getY(), newOrientation));
 		
-		return getInputValue();
+		return getInputValueOne();
+	}
+
+	@Override
+	public double evaluate() {
+		return getInputValueOne();
 	}
 	
 }

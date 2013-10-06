@@ -33,11 +33,4 @@ public abstract class OneInput extends Command{
 		super.setInputList(inputList);
 		setInputValueOne(inputList.get(0));
 	}
-	
-	/**
-	 * evaluates operations using parameters
-	 * @param paramList - List<Double> of parameters
-	 * @return - double of result
-	 */
-	public abstract double evaluate();
 }

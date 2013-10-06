@@ -49,7 +49,7 @@ public class Parser {
 	private void lexer(List<String> inputs) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		
 		for(int j = inputs.size()-1; j>=0; j--) { //traverses the array of string inputs BACKWARDS
-			List<Double> paramList  = new ArrayList<Double>();
+			List<Double> inputList  = new ArrayList<Double>();
 
 			if(getClass(inputs.get(j)) instanceof Constant) { //If the one we're on is a constant,
 				continue; //move on!!!!!!!!!!!!!!!!
@@ -57,12 +57,12 @@ public class Parser {
 			else { //otherwise, if its not a constant
 				double n = getClass(inputs.get(j)).getNumInputs(); //then set n = # of params that command needs 
 				for(double m=1; m<=n; m++) { //go forward in the list n spots
-					paramList.add(j+m); //add the constants to a list of commands that will be fed to our command
+					inputList.add(j+m); //add the constants to a list of commands that will be fed to our command
 					inputs.remove(j+1);
 				}
 				Command current = getClass(inputs.get(j));
-				current.setParamList(paramList);
-				Double newVal = 0.0; //current.evaluate(constantList); //feed all params in list to the command, and execute, set to newVal
+				current.setInputList(inputList);
+				Double newVal = current.evaluate(); //feed all params in list to the command, and execute, set to newVal
 //				if affects turtle commandList(current);
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}

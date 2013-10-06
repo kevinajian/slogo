@@ -14,21 +14,26 @@ import commands.OneInput;
  * @author carlosreyes
  *
  */
-public class Forward extends OneInput{
+public class Forward extends TurtleCommandOneInput{
 	//TODO this is almost the same as the back command, make a parent class!
 	@Override
 	public double operation(Model model) {
 		double orientation = model.getOrientation();
 		double x = model.getX();
 		double y = model.getY();
-		double distance = getInputValue();
+		double distance = getInputValueOne();
 	
 		double newX = x + distance*Math.sin(Math.toRadians(orientation));
 		double newY = y + distance*Math.cos(Math.toRadians(orientation));
 		
 		model.addState(new State(newX, newY, orientation));
 		
-		return getInputValue();
+		return getInputValueOne();
+	}
+
+	@Override
+	public double evaluate() {
+		return getInputValueOne();
 	}
 	
 }

@@ -22,4 +22,10 @@ public class NInputs extends Command{
 		myCommandName = commandName;
 		myNumInputs = i;
 	}
+
+	@Override
+	public double evaluate() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

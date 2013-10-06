@@ -35,12 +35,4 @@ public abstract class TwoInput extends OneInput{
 		super.setInputList(inputList);
 		setInputValueTwo(inputList.get(1));
 	}
-	
-	/**
-	 * evaluates operations using parameters
-	 * @param paramList - List<Double> of parameters
-	 * @return - double of result
-	 */
-	public abstract double evaluate();
-
 }
