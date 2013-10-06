@@ -68,11 +68,11 @@ public class Parser {
 				}
 				Command current = getClass(inputs.get(j));
 				current.setInputList(inputList); // feeds list of input parameters into the command
-				Double newVal = current.evaluate(null); // executes command, sets result to newVal
-//				if affects turtle commandList(current);
+				Double newVal = current.evaluate(myModel); // executes command, sets result to newVal
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}
 		}
+		if (inputs.size()>1) throws  
 	}
 	
 	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
