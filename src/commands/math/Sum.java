@@ -1,7 +1,6 @@
 package commands.math;
 
 import commands.TwoInput;
-import model.Model;
 
 /**
  * Takes the sum of two values.

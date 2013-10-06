@@ -40,7 +40,10 @@ public class Parser {
 	}
 	
 	/**
-	 * creates Command objects from user input
+	 * creates Command objects from user input, executes the commands as soon as they are found,
+	 * traversing the array of split strings from back to front. The commands are executed based
+	 * on how many input statements they take, they are executed, and the return values are 
+	 * placed back in the list of commands as strings where they were taken out.
 	 * @param inputs - List<String> of user input 
 	 * @throws ClassNotFoundException 
 	 * @throws IllegalAccessException 

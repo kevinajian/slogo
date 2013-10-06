@@ -2,8 +2,6 @@ package commands.math;
 
 import commands.OneInput;
 
-import model.Model;
-
 /**
  * takes the log of the input value
  * @author Kevin

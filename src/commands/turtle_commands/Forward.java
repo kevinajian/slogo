@@ -2,7 +2,6 @@ package commands.turtle_commands;
 
 import model.Model;
 import model.State;
-import commands.OneInput;
 
 /**
  * Takes input pixels, changes x or y values based on

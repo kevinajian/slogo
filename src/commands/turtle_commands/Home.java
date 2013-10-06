@@ -1,6 +1,5 @@
 package commands.turtle_commands;
 
-import commands.Command;
 import model.Model;
 import model.State;
 

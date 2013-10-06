@@ -1,6 +1,5 @@
 package commands.math;
 
-import model.Model;
 import commands.TwoInput;
 
 /**

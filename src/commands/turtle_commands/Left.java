@@ -3,8 +3,6 @@ package commands.turtle_commands;
 import model.Model;
 import model.State;
 
-import commands.OneInput;
-
 /**
  * Rotates the turtle left, by shifting the angle
  * by -90 degrees.

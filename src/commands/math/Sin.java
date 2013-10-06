@@ -1,18 +1,17 @@
 package commands.math;
 
 import commands.OneInput;
-import model.Model;
 
 /**
  * returns sin of input value
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Sin extends OneInput{
 
 	@Override
 	public double evaluate() {
-		return Math.sin(getInputValueOne());
+		return Math.sin(Math.toRadians(getInputValueOne()));
 	}
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
  * @author Kevin
  */
 public abstract class OneInput extends Command{
-	private int myNumInputs = 1;
+	protected int myNumInputs = 1;
 	protected double myInputValueOne;
 	
 	/**

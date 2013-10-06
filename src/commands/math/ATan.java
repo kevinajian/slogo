@@ -1,13 +1,10 @@
 package commands.math;
 
-import java.util.List;
-
 import commands.OneInput;
-import model.Model;
 
 /**
  * atan operation on one input
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class ATan extends OneInput {

@@ -3,15 +3,13 @@ package commands.turtle_commands;
 import model.Model;
 import model.State;
 
-import commands.OneInput;
-
 /**
  * Rotates the turtle left, by shifting the angle
  * by 90 degrees.
  * @author carlosreyes
  *
  */
-public class Right extends OneInput{
+public class Right extends TurtleCommandOneInput {
 	private static final double RIGHT_ANGLE = 90;
 
 	@Override
@@ -21,7 +19,13 @@ public class Right extends OneInput{
 		
 		model.addState(new State(model.getX(), model.getY(), newOrientation));
 		
-		return getInputValue();
+		return getInputValueOne();
+	}
+
+	@Override
+	public double evaluate() {
+		
+		return getInputValueOne();
 	}
 	
 }

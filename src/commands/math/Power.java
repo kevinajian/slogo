@@ -1,7 +1,6 @@
 package commands.math;
 
 import commands.OneInput;
-import model.Model;
 
 /**
  * returns power of input value

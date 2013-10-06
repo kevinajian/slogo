@@ -1,8 +1,5 @@
 package commands.math;
 
-import java.util.List;
-
-import model.Model;
 import commands.TwoInput;
 
 /**

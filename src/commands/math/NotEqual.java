@@ -2,8 +2,6 @@ package commands.math;
 
 import commands.TwoInput;
 
-import model.Model;
-
 /**
  * returns 1 if two values are not equal to each other
  * else returns 0
