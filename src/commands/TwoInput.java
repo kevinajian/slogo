@@ -2,6 +2,7 @@ package commands;
 
 public abstract class TwoInput extends Command{
 	Command rightChild;
+	private int numParaams = 2;
 	
 	/**
 	 * Carries out an operation.
@@ -26,4 +27,5 @@ public abstract class TwoInput extends Command{
 	public void setInputValueTwo(double inputValueTwo) {
 		this.inputValueTwo = inputValueTwo;
 	}
+
 }

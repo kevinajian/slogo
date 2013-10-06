@@ -7,6 +7,9 @@ public abstract class Command {
 	
 	Command leftChild;
 	Command parent;
+	protected int numParams = 0;
 	
-	
+	public int getNumInputs(){
+		return numParams;
+	}
 }

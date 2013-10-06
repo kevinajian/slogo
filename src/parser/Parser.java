@@ -9,6 +9,7 @@ import commands.Command;
 import commands.OneInput;
 import commands.TwoInput;
 import commands.turtle_commands.direction.Forward;
+import commands.basic_syntax.Constant;
 
 /**
  * Parses user input
@@ -41,20 +42,32 @@ public class Parser {
 	 * @throws ClassNotFoundException 
 	 */
 	private Command lexer(List<String> inputs){
-		for (int i=0; i<inputs.size(); i++){
-			if (inputs.get(i).getClass() instanceof OneInput){
-				
-			
+		
+		for(int j = inputs.size()-1; j>=0; j--) { //traverses the array of string inputs BACKWARDS
+			List<Double> constantList  = new ArrayList<Double>();
+
+			if(getClass(inputs.get(j)) instanceof Constant) { //If the one we're on is a constant,
+				continue; //move on!!!!!!!!!!!!!!!!
 			}
-			if {input 
-				
-				
+			else { //otherwise, if its not a constant
+				double n = getClass(inputs.get(j)).getNumInputs(); //then set n = # of params that command needs 
+				for(double m=1; m<=n; m++) { //go forward in the list n spots
+					constantList.add(j+m); //add the constants to a list of commands that will be fed to our command
+					inputs.remove(j+1);
+				}
+				Command current = getClass(inputs.get(j));
+				current.setConstantList(constantList);
+				Double newVal = current.evaluate(constantList); //feed all params in list to the command, and execute, set to newVal
+				if affects turtle commandList(current);
+				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}
-			else if
-			else lexer(inputs);
 		}
 	}
 	
+	private Command getClass(String className){
+		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
+		return xyz;
+	}
 	
 //	private void lexer(String[] input){
 //		//iterator
@@ -82,8 +95,8 @@ public class Parser {
 	
 	private static final String PATH = "commands.*";
 	
-	public void toClass(String in) {
-		String command = PATH + in;
+	public String toClass(String in) {
+		return PATH + in;
 	}
 	
 	

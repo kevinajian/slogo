@@ -9,5 +9,4 @@ public class Constant extends Command{
 	public double operation(Model model) {
 		return value;
 	}
-	
 }
