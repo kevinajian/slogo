@@ -6,7 +6,7 @@ import commands.Command;
 public class XCor extends Command {
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		return model.getX();
 	}
 

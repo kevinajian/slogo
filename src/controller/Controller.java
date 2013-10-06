@@ -38,11 +38,9 @@ public class Controller {
 	/**
 	 * passes user input to model to process
 	 * @param input - String of user input 
-	 * @throws ClassNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 * @throws Exception 
 	 */
-	public void processString(String string) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	public void processString(String string) throws Exception{
 		myModel.processString(string);
 		//myModel.getOutput();
 		//myView.setOutput();

@@ -81,11 +81,9 @@ public class Model {
 	/**
 	 * processes user input, sends through parser
 	 * @param input - user input
-	 * @throws ClassNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 * @throws Exception 
 	 */
-	public void processString(String input) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public void processString(String input) throws Exception {
 		Parser parser = new Parser((this));
 		parser.parse(input);
 	}

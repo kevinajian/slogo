@@ -6,7 +6,7 @@ import commands.TwoInput;
 public class Towards extends TwoInput{
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
 		double x = model.getX();
 		double y = model.getY();

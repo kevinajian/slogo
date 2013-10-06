@@ -1,12 +1,14 @@
 package commands.turtle_commands;
 
+import commands.OneInput;
+
 import model.Model;
 import model.State;
 
-public class Home extends TurtleCommandOneInput {
+public class Home extends OneInput {
 	
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		double x = model.getX();
 		double y = model.getY();
 		
@@ -18,8 +20,4 @@ public class Home extends TurtleCommandOneInput {
 		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)); 
 	}
 
-	@Override
-	public double evaluate(Model model) {
-		return (Double) null;
-	}
 }

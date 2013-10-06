@@ -7,7 +7,7 @@ import commands.TwoInput;
 public class SetXY extends TwoInput {
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		double x = model.getX();
 		double y = model.getY();
 		model.addState(new State(getInputValueOne(), getInputValueTwo(), model.getOrientation()));
@@ -18,9 +18,4 @@ public class SetXY extends TwoInput {
 		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)); 
 	}
 
-	@Override
-	public double evaluate(Model model) {
-		return 0;
-	}
-	
 }

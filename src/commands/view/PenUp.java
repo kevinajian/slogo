@@ -6,7 +6,7 @@ import commands.Command;
 public class PenUp extends Command {
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		model.setMyPenPos("up");
 		return 0;
 	}

@@ -8,15 +8,10 @@ import model.State;
 public class SetHeading extends OneInput {
 
 	@Override
-	public double operation(Model model) {		
+	public double evaluate(Model model) {		
 		model.addState(new State(model.getX(), model.getY(), getInputValueOne()));
 		return Math.abs(getInputValueOne() - model.getOrientation());
 		
 	}
 
-	@Override
-	public double evaluate(Model model) {
-		return getInputValueOne();
-	}
-	
 }

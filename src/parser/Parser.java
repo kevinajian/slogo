@@ -11,6 +11,7 @@ import commands.OneInput;
 import commands.TwoInput;
 import commands.turtle_commands.Forward;
 import commands.basic_syntax.Constant;
+import java.lang.Throwable;
 
 /**
  * Parses user input
@@ -28,11 +29,9 @@ public class Parser {
 	/**
 	 * splits user input and passes results to lexer
 	 * @param input - String of user input
-	 * @throws ClassNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 * @throws Exception 
 	 */
-	public void parse(String input) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	public void parse(String input) throws Exception{
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
 		List<String> inputs = new ArrayList<String>();
@@ -48,11 +47,9 @@ public class Parser {
 	 * on how many input statements they take, they are executed, and the return values are 
 	 * placed back in the list of commands as strings where they were taken out.
 	 * @param inputs - List<String> of user input 
-	 * @throws ClassNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 * @throws Exception 
 	 */
-	private void lexer(List<String> inputs) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	private void lexer(List<String> inputs) throws Exception{
 		
 		for(int j = inputs.size()-1; j>=0; j--) { //traverses the array of string inputs BACKWARDS
 			List<Double> inputList  = new ArrayList<Double>();
@@ -60,6 +57,7 @@ public class Parser {
 			if(getClass(inputs.get(j)) instanceof Constant) { //If the one we're on is a constant,
 				continue; //move on!!!!!!!!!!!!!!!!
 			}
+			
 			else { //otherwise, if its not a constant
 				double n = getClass(inputs.get(j)).getNumInputs(); //then set n = # of params that command needs 
 				for(double m=1; m<=n; m++) { //go forward in the list n spots
@@ -72,6 +70,10 @@ public class Parser {
 //				if affects turtle commandList(current);
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}
+		}
+		
+		if(inputs.size() > 1) {
+			throw new Exception("Invalid command");
 		}
 	}
 	

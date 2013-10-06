@@ -6,7 +6,7 @@ import commands.Command;
 public class Showing extends Command {
 
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		return model.isShowing();
 	}
 

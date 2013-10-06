@@ -7,7 +7,7 @@ import model.State;
 public class ClearScreen extends Command {
 	
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		double x = model.getX();
 		double y = model.getY();
 		

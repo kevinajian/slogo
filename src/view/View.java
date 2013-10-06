@@ -48,7 +48,7 @@ public class View extends JFrame{
     	myController = controller;
     }
     
-	public void sendString(String string) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public void sendString(String string) throws Exception {
 		myController.processString(string);
 	}
 

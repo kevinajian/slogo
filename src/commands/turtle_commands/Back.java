@@ -1,5 +1,7 @@
 package commands.turtle_commands;
 
+import commands.OneInput;
+
 import model.Model;
 import model.State;
 
@@ -13,10 +15,10 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class Back extends TurtleCommandOneInput{
+public class Back extends OneInput {
 	//TODO this is almost the same as the forward command, make a parent class!
 	@Override
-	public double operation(Model model) {
+	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
 		double x = model.getX();
 		double y = model.getY();
