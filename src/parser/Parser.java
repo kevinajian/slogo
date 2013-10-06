@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import model.Model;
 import commands.Command;
 import commands.OneInput;
 import commands.TwoInput;
@@ -18,8 +19,10 @@ import commands.basic_syntax.Constant;
  */
 public class Parser {
 	private List<Command> commandList = new ArrayList<Command>();
+	private Model myModel;
 	
-	public Parser(){
+	public Parser(Model model){
+		myModel = model;
 	}
 	
 	/**
@@ -65,7 +68,7 @@ public class Parser {
 				}
 				Command current = getClass(inputs.get(j));
 				current.setInputList(inputList); // feeds list of input parameters into the command
-				Double newVal = current.evaluate(); // executes command, sets result to newVal
+				Double newVal = current.evaluate(null); // executes command, sets result to newVal
 //				if affects turtle commandList(current);
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}

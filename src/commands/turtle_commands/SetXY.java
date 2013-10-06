@@ -19,7 +19,7 @@ public class SetXY extends TwoInput {
 	}
 
 	@Override
-	public double evaluate() {
+	public double evaluate(Model model) {
 		return 0;
 	}
 	

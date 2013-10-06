@@ -19,7 +19,7 @@ public class Home extends TurtleCommandOneInput {
 	}
 
 	@Override
-	public double evaluate() {
+	public double evaluate(Model model) {
 		return (Double) null;
 	}
 }

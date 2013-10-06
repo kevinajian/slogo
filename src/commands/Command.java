@@ -3,6 +3,8 @@ package commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Model;
+
 /**
  * Command class, has number of parameters and a list of those parameters
  * @author Kevin
@@ -29,8 +31,9 @@ public abstract class Command {
 	
 	/**
 	 * evaluates operations using parameters
+	 * @param model TODO
 	 * @param paramList - List<Double> of parameters
 	 * @return - double of result
 	 */
-	public abstract double evaluate();
+	public abstract double evaluate(Model model);
 }

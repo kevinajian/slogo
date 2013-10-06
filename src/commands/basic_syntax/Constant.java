@@ -15,7 +15,7 @@ public class Constant extends Command{
 	}
 	
 	@Override
-	public double evaluate() {
+	public double evaluate(Model model) {
 		return myValue;
 	}
 	

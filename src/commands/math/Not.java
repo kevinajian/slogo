@@ -1,5 +1,6 @@
 package commands.math;
 
+import model.Model;
 import commands.OneInput;
 
 /**
@@ -11,7 +12,7 @@ import commands.OneInput;
 public class Not extends OneInput {
 
 	@Override
-	public double evaluate() {
+	public double evaluate(Model model) {
 		if (getInputValueOne() == 0) {
 			return 1;
 		}

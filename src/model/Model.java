@@ -86,7 +86,7 @@ public class Model {
 	 * @throws InstantiationException 
 	 */
 	public void processString(String input) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Parser parser = new Parser();
+		Parser parser = new Parser((this));
 		parser.parse(input);
 	}
 	

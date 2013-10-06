@@ -1,5 +1,6 @@
 package commands.math;
 
+import model.Model;
 import commands.TwoInput;
 
 /**
@@ -11,7 +12,7 @@ import commands.TwoInput;
 public class Sum extends TwoInput {
 	
 	@Override
-	public double evaluate() {
+	public double evaluate(Model model) {
 		return getInputValueOne() + getInputValueTwo();
 	}
 

@@ -1,5 +1,6 @@
 package commands.math;
 
+import model.Model;
 import commands.TwoInput;
 
 /**
@@ -10,7 +11,7 @@ import commands.TwoInput;
 public class And extends TwoInput {
 
 	@Override
-	public double evaluate() {
+	public double evaluate(Model model) {
 		if ((getInputValueTwo() != 0) && (getInputValueOne() != 0)) {
 			return 1;
 		}

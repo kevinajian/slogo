@@ -27,7 +27,7 @@ public class Variable extends OneInput{
 	}
 
 	@Override
-	public double evaluate() {
+	public double evaluate(Model model) {
 		return getInputValueOne();
 	}
 	
