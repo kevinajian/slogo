@@ -1,4 +1,4 @@
-package commands.turtle_commands.degree;
+package commands.turtle_commands;
 
 import model.Model;
 import model.State;

@@ -5,16 +5,14 @@ import java.util.List;
 
 import model.Model;
 
-public class NInputs{
-	private List<Command> inputs = new ArrayList<Command>();
-	private int numInputs;
+public class NInputs extends Command{
 	private String commandName;
 	
 	public NInputs(int i){
-		numInputs = i;
+		myNumParams = i;
 	}
 	
-	public int getNumInputs(){
-		return numInputs;
+	public int getNumParams(){
+		return myNumParams;
 	}
 }

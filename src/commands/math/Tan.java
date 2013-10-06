@@ -1,4 +1,4 @@
-package commands.math.evaluate;
+package commands.math;
 
 import commands.OneInput;
 import model.Model;

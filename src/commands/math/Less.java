@@ -1,13 +1,13 @@
-package commands.bool;
+package commands.math;
 
 import model.Model;
 import commands.TwoInput;
 
-public class Equal extends TwoInput{
-	
+public class Less extends TwoInput {
+
 	@Override
 	public double operation(Model model) {
-		if(getInputValueOne() == getInputValueTwo()) {
+		if(getInputValueOne() < getInputValueTwo()) {
 			return 1;
 		}
 		return 0;

@@ -1,12 +1,13 @@
 package view;
 import java.awt.*;
+
 import javax.swing.*;
 
 import slogoGame.TurtleGame;
-
 import controller.Controller;
 
 import java.util.ResourceBundle;
+
 import jgame.*;
 
 @SuppressWarnings("serial")
@@ -47,7 +48,7 @@ public class View extends JFrame{
     	myController = controller;
     }
     
-	public void sendString(String string) {
+	public void sendString(String string) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		myController.processString(string);
 	}
 

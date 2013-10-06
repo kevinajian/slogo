@@ -1,8 +1,9 @@
 package commands.basic_syntax;
 
+import java.util.List;
+
 import model.Model;
 import commands.OneInput;
-
 import parser.Constants;
 
 public class Variable extends OneInput{
@@ -20,13 +21,14 @@ public class Variable extends OneInput{
 	public double getVariableValue() {
 		return variableValue;
 	}
+	
 	public void setVariableValue(double variableValue) {
 		this.variableValue = variableValue;
 	}
-	
+
 	@Override
-	public double operation(Model model) {
-		return variableValue;
-	}	
-		
+	public double evaluate(List<Double> paramList) {
+		return paramList.get(0);
+	}
+	
 }

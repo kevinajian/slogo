@@ -1,4 +1,4 @@
-package commands.bool;
+package commands.math;
 
 import commands.TwoInput;
 

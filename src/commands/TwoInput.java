@@ -1,14 +1,9 @@
 package commands;
 
+import java.util.List;
+
 public abstract class TwoInput extends Command{
-	Command rightChild;
-	private int numParaams = 2;
-	
-	/**
-	 * Carries out an operation.
-	 * @param model
-	 * @return
-	 */
+	private int myNumParams = 2;
 	private double inputValueOne;
 	private double inputValueTwo;
 		
@@ -27,5 +22,7 @@ public abstract class TwoInput extends Command{
 	public void setInputValueTwo(double inputValueTwo) {
 		this.inputValueTwo = inputValueTwo;
 	}
+	
+	public abstract double evaluate(List<Double> paramList);
 
 }

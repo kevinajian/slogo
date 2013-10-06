@@ -1,13 +1,13 @@
-package commands.math.evaluate;
+package commands.math;
 
 import commands.OneInput;
 import model.Model;
 
-public class Cos extends OneInput{
+public class Random extends OneInput {
 
 	@Override
 	public double operation(Model model) {
-		return Math.cos(getInputValue());
+		return Math.random()*getInputValue();
 	}
 
 }

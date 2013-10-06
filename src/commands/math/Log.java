@@ -1,13 +1,14 @@
-package commands.math.evaluate;
+package commands.math;
 
 import commands.OneInput;
+
 import model.Model;
 
-public class Sin extends OneInput{
+public class Log extends OneInput{
 
 	@Override
 	public double operation(Model model) {
-		return Math.sin(getInputValue());
+		return Math.log(getInputValue());
 	}
 
 }

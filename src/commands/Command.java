@@ -1,15 +1,17 @@
 package commands;
 
-import model.Model;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Command {
-	public abstract double operation(Model model);
-	
-	Command leftChild;
-	Command parent;
-	protected int numParams = 0;
-	
+	protected int myNumParams = 0;
+	protected List<Double> myParamList;
+	 
 	public int getNumInputs(){
-		return numParams;
+		return myNumParams;
+	}
+	
+	public void setParamList(List<Double> paramList){
+		myParamList = paramList;
 	}
 }

@@ -1,19 +1,19 @@
-package commands.math.arithmetic;
+package commands.math;
 
 import commands.TwoInput;
 import model.Model;
 
 /**
  * Takes the quotient of two values.
- * Ex. 4/2 = 2
+ * Ex. 4*2 = 8
  * @author carlosreyes
  *
  */
-public class Quotient extends TwoInput {
+public class Product extends TwoInput {
 
 	@Override
 	public double operation(Model model) {
-		return getInputValueOne() / getInputValueTwo();
+		return getInputValueOne() * getInputValueTwo();
 	}
 
 }

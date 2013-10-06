@@ -1,5 +1,6 @@
 package controller;
 import view.View;
+
 import java.util.List;
 
 import model.Line;
@@ -37,8 +38,11 @@ public class Controller {
 	/**
 	 * passes user input to model to process
 	 * @param input - String of user input 
+	 * @throws ClassNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 */
-	public void processString(String string){
+	public void processString(String string) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		myModel.processString(string);
 		//myModel.getOutput();
 		//myView.setOutput();

@@ -1,13 +1,13 @@
-package commands.math.evaluate;
+package commands.math;
 
 import commands.OneInput;
 import model.Model;
 
-public class ATan extends OneInput {
+public class Minus extends OneInput{
 
 	@Override
 	public double operation(Model model) {
-		return Math.atan(getInputValue());
+		return -getInputValue();
 	}
 
 }

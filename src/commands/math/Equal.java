@@ -1,16 +1,16 @@
-package commands.bool;
+package commands.math;
 
 import model.Model;
 import commands.TwoInput;
 
-public class And extends TwoInput {
-
+public class Equal extends TwoInput{
+	
 	@Override
 	public double operation(Model model) {
-		if(getInputValueOne() != 0 && getInputValueOne() != 0){
+		if(getInputValueOne() == getInputValueTwo()) {
 			return 1;
 		}
 		return 0;
 	}
-
+	
 }

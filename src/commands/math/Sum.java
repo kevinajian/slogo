@@ -1,4 +1,4 @@
-package commands.math.arithmetic;
+package commands.math;
 
 import commands.TwoInput;
 import model.Model;

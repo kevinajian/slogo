@@ -1,13 +1,13 @@
-package commands.math.evaluate;
+package commands.math;
 
 import commands.OneInput;
 import model.Model;
 
-public class Minus extends OneInput{
+public class Sin extends OneInput{
 
 	@Override
 	public double operation(Model model) {
-		return -getInputValue();
+		return Math.sin(getInputValue());
 	}
 
 }

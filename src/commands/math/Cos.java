@@ -1,14 +1,13 @@
-package commands.math.evaluate;
+package commands.math;
 
 import commands.OneInput;
-
 import model.Model;
 
-public class Log extends OneInput{
+public class Cos extends OneInput{
 
 	@Override
 	public double operation(Model model) {
-		return Math.log(getInputValue());
+		return Math.cos(getInputValue());
 	}
 
 }
