@@ -72,7 +72,6 @@ public class Parser {
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}
 		}
-		if (inputs.size()>1) throws  
 	}
 	
 	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
