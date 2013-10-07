@@ -8,6 +8,7 @@ import parser.Constants;
 
 public class Variable extends Command{
 	String myVariableName = null;
+	double myNumInputs = 0;
 	
 	public String getVariableName() {
 		return myVariableName;
@@ -19,6 +20,7 @@ public class Variable extends Command{
 	
 	@Override
 	public double evaluate(Model model) {
+		myVariableName = 
 		return getInputValueOne();
 	}
 	

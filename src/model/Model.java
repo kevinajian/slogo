@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import parser.Constants;
 import parser.Parser;
@@ -16,6 +17,7 @@ public class Model {
 	private State myOrigin;
 	private String myTurtleVisible = Constants.TURTLE_SHOWING;
 	private String myPenVisible = Constants.PEN_SHOWING;
+	private Map<String, Double> variableMap;
 
 	/**
 	 * initializes the model
@@ -101,6 +103,14 @@ public class Model {
 	 */
 	public void setTurtleVisible(String turtleVisible) {
 		myTurtleVisible = turtleVisible;
+	}
+
+	public Map<String, Double> getVariableMap() {
+		return variableMap;
+	}
+
+	public void setVariableMap(Map<String, Double> variableMap) {
+		this.variableMap = variableMap;
 	}
 
 }

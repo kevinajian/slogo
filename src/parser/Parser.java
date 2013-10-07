@@ -33,9 +33,24 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
 		
-		for (String item:list){
-			inputs.add(item);
+		for(int i=0; i <list.length; i++){
+		//for (String item:list){
+			//Handles variables
+			if(list[i].substring(0, 1).equals(":") && !myModel.getVariableMap().containsKey(list[i].substring(0))) {
+				myModel.getVariableMap().put(list[i].substring(0), Double.parseDouble(list[i+1]));
+				inputs.add("Variable");
+				inputs.add(list[i].substring(0));
+				i++;
+			}
+			else if(list[i].substring(0, 1).equals(":")) {
+				inputs.add("Variable");
+				inputs.add(myModel.getVariableMap().get(list[i].substring(0)).toString());
+			}
+			else {
+				inputs.add(list[i]);
+			}
 		}
+		
 		lexer(inputs);
 	}
 	
@@ -71,6 +86,10 @@ public class Parser {
 //		if (root.getMyCommand() instanceof ControlStructure){
 //			Queue queue = new Queue();
 //		}
+		
+		if (root.getNumInputs() == 0) {
+			return root;
+		}
 
 		//was instance of TwoInputs
 		if (root.getNumInputs() == 2) {
