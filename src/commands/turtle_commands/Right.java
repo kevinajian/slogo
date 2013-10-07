@@ -16,7 +16,7 @@ public class Right extends OneInput {
 	@Override
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
-		double newOrientation = orientation + getInputValueOne();
+		double newOrientation = (orientation + getInputValueOne())%Constants.DEGREES;
 		
 		model.addState(new State(model.getX(), model.getY(), newOrientation, model.getTurtleVisible(), model.getPenVisible()));
 		

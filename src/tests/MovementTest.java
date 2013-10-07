@@ -11,8 +11,11 @@ import org.junit.Test;
 
 import commands.turtle_commands.Back;
 import commands.turtle_commands.Forward;
+import commands.turtle_commands.Home;
 import commands.turtle_commands.Left;
 import commands.turtle_commands.Right;
+import commands.turtle_commands.SetHeading;
+import commands.turtle_commands.SetXY;
 import commands.turtle_commands.Towards;
 
 public class MovementTest {
@@ -84,58 +87,61 @@ public class MovementTest {
 		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
 		assertEquals(state.getPenVisible(), modelState.getPenVisible());
 	}
-//	
-//	@Test
-//	public void testHome() {
-//		Model model = new Model();
-//		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
-//		Right right = new Right();
-//		right.setInputList(new ArrayList<Double>(){{add(90.0);}});
-//		assertEquals(right.evaluate(model), 90.0, 0.0);
-//		
-//		State state = new State(0.0, 0.0, 90.0, "1", "1");
-//		State modelState = model.getCurrentState();
-//		assertEquals(state.getX(), modelState.getX(), 0.0);
-//		assertEquals(state.getY(), modelState.getY(), 0.0);
-//		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
-//		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
-//		assertEquals(state.getPenVisible(), modelState.getPenVisible());
-//	}
-//	
-//	@Test
-//	public void testSetHeading() {
-//		Model model = new Model();
-//		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
-//		Right right = new Right();
-//		right.setInputList(new ArrayList<Double>(){{add(90.0);}});
-//		assertEquals(right.evaluate(model), 90.0, 0.0);
-//		
-//		State state = new State(0.0, 0.0, 90.0, "1", "1");
-//		State modelState = model.getCurrentState();
-//		assertEquals(state.getX(), modelState.getX(), 0.0);
-//		assertEquals(state.getY(), modelState.getY(), 0.0);
-//		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
-//		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
-//		assertEquals(state.getPenVisible(), modelState.getPenVisible());
-//	}
-//	
-//	@Test
-//	public void testSetXY() {
-//		Model model = new Model();
-//		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
-//		Right right = new Right();
-//		right.setInputList(new ArrayList<Double>(){{add(90.0);}});
-//		assertEquals(right.evaluate(model), 90.0, 0.0);
-//		
-//		State state = new State(0.0, 0.0, 90.0, "1", "1");
-//		State modelState = model.getCurrentState();
-//		assertEquals(state.getX(), modelState.getX(), 0.0);
-//		assertEquals(state.getY(), modelState.getY(), 0.0);
-//		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
-//		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
-//		assertEquals(state.getPenVisible(), modelState.getPenVisible());
-//	}
-//	
+	
+	@Test
+	public void testHome() {
+		Model model = new Model();
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		Forward forward = new Forward();
+		forward.setInputList(new ArrayList<Double>(){{add(5.0);}});
+		forward.evaluate(model);
+		State modelState = model.getCurrentState();
+		Home home = new Home();
+		assertEquals(home.evaluate(model), 5.0, 0.0);
+
+		State state = new State(0.0, 0.0, 0.0, "1", "1");
+		modelState = model.getCurrentState();
+		assertEquals(state.getX(), modelState.getX(), 0.0);
+		assertEquals(state.getY(), modelState.getY(), 0.0);
+		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
+		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
+		assertEquals(state.getPenVisible(), modelState.getPenVisible());
+	}
+	
+	@Test
+	public void testSetXY() {
+		Model model = new Model();
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		SetXY setXY = new SetXY();
+		setXY.setInputList(new ArrayList<Double>(){{add(3.0); add(4.0);}});
+		assertEquals(setXY.evaluate(model), 5.0, 0.0);
+		
+		State state = new State(3.0, 4.0, 0.0, "1", "1");
+		State modelState = model.getCurrentState();
+		assertEquals(state.getX(), modelState.getX(), 0.0);
+		assertEquals(state.getY(), modelState.getY(), 0.0);
+		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
+		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
+		assertEquals(state.getPenVisible(), modelState.getPenVisible());
+	}
+	
+	@Test
+	public void testSetHeading() {
+		Model model = new Model();
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		SetHeading setHeading = new SetHeading();
+		setHeading.setInputList(new ArrayList<Double>(){{add(380.0);}});
+		assertEquals(setHeading.evaluate(model), 20.0, 0.0);
+		
+		State state = new State(0.0, 0.0, 20.0, "1", "1");
+		State modelState = model.getCurrentState();
+		assertEquals(state.getX(), modelState.getX(), 0.0);
+		assertEquals(state.getY(), modelState.getY(), 0.0);
+		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
+		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
+		assertEquals(state.getPenVisible(), modelState.getPenVisible());
+	}
+	
 //	@Test
 //	public void testTowards() {
 //		Model model = new Model();
