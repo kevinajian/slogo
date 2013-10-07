@@ -75,7 +75,6 @@ public class Parser {
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
 			}
 		}
-		
 		if(inputs.size() > 1) {
 			throw new Exception("Invalid command");
 		}
@@ -90,13 +89,5 @@ public class Parser {
 	
 	public String toClass(String in) {
 		return PATH + in;
-	}
-	
-	
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-
-		String className = "commands.turtle_commands.direction.Forward";
-		Object xyz = Class.forName(className).newInstance();
-		System.out.println(xyz.getClass()); 
 	}
 }
