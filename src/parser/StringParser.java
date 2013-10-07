@@ -3,16 +3,17 @@ package parser;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 import model.Model;
 import commands.Command;
+import commands.vcu.ControlStructure;
 import commands.NInputs;
 import commands.OneInput;
 import commands.TwoInput;
 import commands.basic_syntax.Constant;
 import commands.turtle_commands.Forward;
-
 import java.lang.Throwable;
 
 
@@ -39,41 +40,45 @@ public class StringParser {
 		for (String item:list){
 			inputs.add(item);
 		}
-		//lexer(inputs);
+		lexer(inputs);
 	}
 	
-	/**
-	 * creates Command objects from user input, executes the commands as soon as they are found,
-	 * traversing the array of split strings from back to front. The commands are executed based
-	 * on how many input statements they take, they are executed, and the return values are 
-	 * placed back in the list of commands as strings where they were taken out.
-	 * @param inputs - List<String> of user input 
-	 * @throws Exception 
-	 */
-	
-	
-	private static void treeBuilder(Node root) throws Exception{
-		Constant constant = new Constant();
-		constant.setMyValue(Double.parseDouble("20"));
-		root.getMyLeftChild().myCommand = constant;
-		root.getMyRightChild().myCommand = constant;
+	private void lexer(List<String> inputs) throws Exception{
+		List<Node> rootList = new ArrayList<Node>();
+		
+		while(!rootList.isEmpty()) {
+			Node headNode = new Node(getClass(inputs.get(0)), null, null, null, null);
+			treeBuilder(headNode);
+			inputs.remove(0);
+			rootList.add(headNode);
+		}
+	}
+		
+	private static Node treeBuilder(Node root) throws Exception{
+		
+//		if (root.getMyCommand() instanceof ControlStructure){
+//			Queue queue = new Queue();
+//		}
 		
 		if (root.getMyCommand() instanceof OneInput) {
-			root.myLeftChild = new Node(constant, null, null);
-			treeBuilder(root.myLeftChild);
+			Command curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.myLeftChild = treeBuilder(new Node(curr, null, null, root, null));
 		}
 		
 		if (root.getMyCommand() instanceof TwoInput) {
-			root.myLeftChild = new Node(constant, null, null);
-			treeBuilder(root.myLeftChild);
-			root.myRightChild = new Node(constant, null, null);
-			treeBuilder(root.myRightChild);
-
+			Command curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.myLeftChild = treeBuilder(new Node(curr, null, null, root, null));
 			
+			curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.myRightChild = treeBuilder(new Node(curr, null, null, root, null));
 		}
 		
 		if (root.getMyCommand() instanceof Constant) {
-			
+			root.myValue = Double.parseDouble(inputs.get(0));
+			return root;
 		}
 		
 	}
@@ -83,8 +88,6 @@ public class StringParser {
 		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
 		return xyz;
 	}
-
-	private static final String PATH = "commands.sum";
 	
 	public static String toClass(String in) {
 		return PATH + in;
