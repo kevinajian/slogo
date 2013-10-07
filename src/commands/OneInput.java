@@ -9,13 +9,14 @@ import java.util.List;
 public abstract class OneInput extends Command{
 	protected int myNumInputs = 1;
 	protected double myInputValueOne;
+	protected Command myLeftChild;
 	
 	/**
 	 * gets input value
 	 * @return - double of input value
 	 */
 	public double getInputValueOne() {
-		return myInputValueOne;
+		return myLeftChild.getInputValueOne();
 	}
 	
 	/**

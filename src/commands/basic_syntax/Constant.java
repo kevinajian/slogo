@@ -5,7 +5,6 @@ import commands.Command;
 import model.Model;
 
 public class Constant extends Command {
-
 	public double myValue;
 	
 	public double getMyValue() {
