@@ -12,30 +12,18 @@ public class Node {
 		this.myCommand = myCommand;
 	}
 
-	public Node getMyLeftChild() {
-		return myLeftChild;
-	}
-
-	public void setMyLeftChild(Node myLeftChild) {
-		this.myLeftChild = myLeftChild;
-	}
-
-	public Node getMyRightChild() {
-		return myRightChild;
-	}
-
-	public void setMyRightChild(Node myRightChild) {
-		this.myRightChild = myRightChild;
-	}
-
 	Command myCommand;
 	Node myLeftChild;
 	Node myRightChild;
+	Node myParent;
+	double myValue;
 	
-	public Node(Command command, Node leftChild, Node rightChild){
+	public Node(Command command, Node leftChild, Node rightChild, Node parent, double value){
 		this.myCommand = command;
 		this.myLeftChild = leftChild;
 		this.myRightChild = rightChild;
+		this.myParent = parent;
+		this.myValue = value;
 	}
 	
 }
