@@ -53,10 +53,10 @@ public class View extends JFrame{
 	}
 
     /**
-* Display any string message in a popup error dialog.
-*
-* @param message message to display
-*/
+	* Display any string message in a popup error dialog.
+	*
+	* @param message message to display
+	*/
     public void showError (String message) {
         JOptionPane.showMessageDialog(this, message,
                                       myResources.getString("ErrorTitle"),

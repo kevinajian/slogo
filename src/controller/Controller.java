@@ -14,7 +14,7 @@ import model.State;
  * the view based on this info.
  * @author carlosreyes kevinjian
  */
-public class Controller {
+public class Controller { 
 	private Model myModel;
 	private View myView;
 	
@@ -55,10 +55,12 @@ public class Controller {
 	}
 	
 	/**
-	 * gets trail
-	 * @return List of Lines that create trail
+	 * gets states to give to view to create
+	 * images on screen.  FREE SEX MONEY: WE ALSO NEED TO
+	 * PARSE THE INFO INTO A LIST OF LISTS
+	 * @return List of states
 	 */
-	public List<State> getStates() {
+	public List<State> getStates() { 
 		return myModel.getStates();
 	}
 	
