@@ -15,14 +15,12 @@ public class Node {
 	Command myCommand;
 	Node myLeftChild;
 	Node myRightChild;
-	Node myParent;
 	double myValue;
 	
-	public Node(Command command, Node leftChild, Node rightChild, Node parent, double value){
+	public Node(Command command, Node leftChild, Node rightChild, double value){
 		this.myCommand = command;
 		this.myLeftChild = leftChild;
 		this.myRightChild = rightChild;
-		this.myParent = parent;
 		this.myValue = value;
 	}
 	
