@@ -36,6 +36,7 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
 		List<String> inputs = new ArrayList<String>();
+		
 		for (String item:list){
 			inputs.add(item);
 		}
@@ -59,6 +60,7 @@ public class Parser {
 				continue; //move on!!!!!!!!!!!!!!!!
 			}
 			
+			
 			if(getClass(inputs.get(j)) instanceof NInputs) {
 				//find first brackets, set to loop counter, pass to class
 				//find second bracket stuff, pass to class
@@ -81,6 +83,7 @@ public class Parser {
 			throw new Exception("Invalid command");
 		}
 	}
+	
 	
 	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		Command xyz = (Command) Class.forName(toClass(className)).newInstance();

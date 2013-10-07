@@ -9,10 +9,10 @@ import commands.NInputs;
 public class For {
 	
 	public double evaluate(Model model, List<String> commandList) {
-		for(String command : commandList) {
-			
-		}
-		return myNumInputs;
+		
+		
+		return 0;
+		
 	}
 	
 }
