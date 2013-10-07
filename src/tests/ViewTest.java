@@ -10,6 +10,7 @@ import model.State;
 import org.junit.Test;
 
 import parser.Constants;
+import commands.basic_syntax.Constant;
 import commands.turtle_commands.Forward;
 import commands.view.ClearScreen;
 import commands.view.HideTurtle;
@@ -24,7 +25,9 @@ public class ViewTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Forward forward = new Forward();
-		forward.setInputList(new ArrayList<Double>(){{add(5.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(5.0);
+		forward.setLeftChild(left);
 		forward.evaluate(model);
 		ClearScreen clearScreen = new ClearScreen();
 		assertEquals(clearScreen.evaluate(model), 5.0, 0.0);

@@ -56,34 +56,42 @@ public class MathTest {
 		assertEquals(sin.evaluate(null), 0.5, 0.02);
 	}
 	
-//	@Test
-//	public void testCos() {
-//		Cos cos = new Cos();
-//		cos.setInputList(new ArrayList<Double>(){{add(60.0);}});
-//		assertEquals(cos.evaluate(null), 0.5, 0.02);
-//	}
-//	
-//	@Test
-//	public void testTan() {
-//		Tan tan = new Tan();
-//		tan.setInputList(new ArrayList<Double>(){{add(50.0);}});
-//		assertEquals(tan.evaluate(null), 1.19, 0.02);
-//	}
-//	
-//	@Test
-//	public void testATan() {
-//		ATan aTan = new ATan();
-//		aTan.setInputList(new ArrayList<Double>(){{add(45.0);}});	
-//		assertEquals(aTan.evaluate(null), Math.atan(45.0), 0.02);
-//	}
-//	
-//	@Test
-//	public void testLog() {
-//		Log log = new Log();
-//		log.setInputList(new ArrayList<Double>(){{add(5.0);}});
-//		assertEquals(log.evaluate(null), 1.61, 0.02);
-//	}
-//	
+	@Test
+	public void testCos() {
+		Cos cos = new Cos();
+		Constant left = new Constant();
+		left.setInputValueOne(60.0);
+		cos.setLeftChild(left);
+		assertEquals(cos.evaluate(null), 0.5, 0.02);
+	}
+	
+	@Test
+	public void testTan() {
+		Tan tan = new Tan();
+		Constant left = new Constant();
+		left.setInputValueOne(50.0);
+		tan.setLeftChild(left);
+		assertEquals(tan.evaluate(null), 1.19, 0.02);
+	}
+	
+	@Test
+	public void testATan() {
+		ATan aTan = new ATan();
+		Constant left = new Constant();
+		left.setInputValueOne(45.0);
+		aTan.setLeftChild(left);
+		assertEquals(aTan.evaluate(null), Math.atan(45.0), 0.02);
+	}
+	
+	@Test
+	public void testLog() {
+		Log log = new Log();
+		Constant left = new Constant();
+		left.setInputValueOne(5.0);
+		log.setLeftChild(left);
+		assertEquals(log.evaluate(null), 1.61, 0.02);
+	}
+	
 //	@Test
 //	public void testPower() {
 //		Power power = new Power();
