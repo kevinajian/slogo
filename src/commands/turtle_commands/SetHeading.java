@@ -1,11 +1,11 @@
 package commands.turtle_commands;
 
 import parser.Constants;
-import commands.OneInput;
+import commands.Command;
 import model.Model;
 import model.State;
 
-public class SetHeading extends OneInput {
+public class SetHeading extends Command {
 
 	@Override
 	public double evaluate(Model model) {		

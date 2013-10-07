@@ -7,17 +7,18 @@ import model.Model;
 public class Constant extends Command {
 	public double myValue;
 	
-	public double getMyValue() {
+	@Override
+	public double getInputValueOne() {
 		return myValue;
 	}
-
-	public void setMyValue(double myValue) {
-		this.myValue = myValue;
+	
+	@Override
+	public void setInputValueOne(double inputValue) {
+		myValue = inputValue;
 	}
 
 	@Override
 	public double evaluate(Model model) {
 		return 0;
 	}
-
 }

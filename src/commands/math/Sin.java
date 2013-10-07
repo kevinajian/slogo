@@ -1,14 +1,14 @@
 package commands.math;
 
 import model.Model;
-import commands.OneInput;
+import commands.Command;
 
 /**
  * returns sin of input value
  * @author Kevin, Carlos
  *
  */
-public class Sin extends OneInput{
+public class Sin extends Command{
 
 	@Override
 	public double evaluate(Model model) {

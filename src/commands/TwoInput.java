@@ -7,17 +7,17 @@ import java.util.List;
  * @author Kevin
  *
  */
-public abstract class TwoInput extends OneInput{
+public abstract class TwoInput extends Command{
 	private int myNumInputs = 2;
 	private double myInputValueTwo;
-	
+	public Command myRightChild;
 	
 	/**
 	 * gets second input value
 	 * @return - double of first input value
 	 */
 	public double getInputValueTwo() {
-		return myInputValueTwo;
+		return myRightChild.getInputValueOne();
 	}
 	
 	/**
@@ -25,7 +25,7 @@ public abstract class TwoInput extends OneInput{
 	 * @param inputValueTwo - double of value to be set
 	 */
 	public void setInputValueTwo(double inputValueTwo) {
-		myInputValueTwo = inputValueTwo;
+		myRightChild.setInputValueOne(inputValueTwo);
 	}
 	
 	/**
@@ -34,5 +34,9 @@ public abstract class TwoInput extends OneInput{
 	public void setInputList(List<Double> inputList){
 		super.setInputList(inputList);
 		setInputValueTwo(inputList.get(1));
+	}
+	
+	public void setRightChild(Command rightChild){
+		myRightChild = rightChild;
 	}
 }

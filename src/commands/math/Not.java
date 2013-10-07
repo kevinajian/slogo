@@ -1,7 +1,7 @@
 package commands.math;
 
 import model.Model;
-import commands.OneInput;
+import commands.Command;
 
 /**
  * returns 1 if input value is 0
@@ -9,7 +9,7 @@ import commands.OneInput;
  * @author Kevin
  *
  */
-public class Not extends OneInput {
+public class Not extends Command {
 
 	@Override
 	public double evaluate(Model model) {

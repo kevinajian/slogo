@@ -1,14 +1,14 @@
 package commands.math;
 
 import model.Model;
-import commands.OneInput;
+import commands.Command;
 
 /**
  * takes the log of the input value
  * @author Kevin
  *
  */
-public class Log extends OneInput{
+public class Log extends Command{
 
 	@Override
 	public double evaluate(Model model) {

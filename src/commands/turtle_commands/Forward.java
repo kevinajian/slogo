@@ -1,6 +1,6 @@
 package commands.turtle_commands;
 
-import commands.OneInput;
+import commands.Command;
 
 import model.Model;
 import model.State;
@@ -15,7 +15,7 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class Forward extends OneInput {
+public class Forward extends Command {
 	//TODO this is almost the same as the back command, make a parent class!
 	@Override
 	public double evaluate(Model model) {

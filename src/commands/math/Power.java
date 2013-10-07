@@ -1,14 +1,14 @@
 package commands.math;
 
 import model.Model;
-import commands.OneInput;
+import commands.Command;
 
 /**
  * returns power of input value
  * @author Kevin
  *
  */
-public class Power extends OneInput{
+public class Power extends Command{
 
 	@Override
 	public double evaluate(Model model) {
