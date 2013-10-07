@@ -10,7 +10,7 @@ public class SetXY extends TwoInput {
 	public double evaluate(Model model) {
 		double x = model.getX();
 		double y = model.getY();
-		model.addState(new State(getInputValueOne(), getInputValueTwo(), model.getOrientation()));
+		model.addState(new State(getInputValueOne(), getInputValueTwo(), model.getOrientation(), model.getTurtleVisible(), model.getPenVisible()));
 		return calculateLength(x, y, getInputValueOne(), getInputValueTwo());
 	}
 	

@@ -21,7 +21,7 @@ public class Model {
 	 * initializes the model
 	 */
 	public void initiate(){
-		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN);
+		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
 		myStates.add(myOrigin);
 	}
 	
@@ -82,16 +82,8 @@ public class Model {
 		Parser parser = new Parser((this));
 		parser.parse(input);
 	}
-
-	/**
-	 * get the state of the pen
-	 * @return pen up or down
-	 */
-	public String getPenState() {
-		return myPenVisible;
-	}
 	
-	public String getMyPenVisible() {
+	public String getPenVisible() {
 		return myPenVisible;
 	}
 

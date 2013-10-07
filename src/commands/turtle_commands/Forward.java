@@ -27,14 +27,9 @@ public class Forward extends OneInput {
 		double newX = x + distance*Math.sin(Math.toRadians(orientation));
 		double newY = y + distance*Math.cos(Math.toRadians(orientation));
 		
-		model.addState(new State(newX, newY, orientation));
+		model.addState(new State(newX, newY, orientation, model.getTurtleVisible(), model.getPenVisible()));
 		
 		return getInputValueOne();
 	}
 
-//	@Override
-//	public double evaluate() {
-//		return getInputValueOne();
-//	}
-	
 }

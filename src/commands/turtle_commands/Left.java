@@ -1,7 +1,7 @@
 package commands.turtle_commands;
 
+import parser.Constants;
 import commands.OneInput;
-
 import model.Model;
 import model.State;
 
@@ -12,21 +12,14 @@ import model.State;
  *
  */
 public class Left extends OneInput {
-	private static final double LEFT_ANGLE = -90;
 
 	@Override
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
-		double newOrientation = orientation + LEFT_ANGLE;
+		double newOrientation = (orientation + Constants.DEGREES - getInputValueOne())%Constants.DEGREES;
 		
-		model.addState(new State(model.getX(), model.getY(), newOrientation));
+		model.addState(new State(model.getX(), model.getY(), newOrientation, model.getTurtleVisible(), model.getPenVisible()));
 		
 		return getInputValueOne();
 	}
-
-//	@Override
-//	public double evaluate() {
-//		return getInputValueOne();
-//	}
-	
 }

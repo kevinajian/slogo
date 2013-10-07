@@ -58,4 +58,9 @@ public class Constants {
 	public static final String PEN_NOTSHOWING = "0";
 	public static final String TURTLE_SHOWING = "1";
 	public static final String TURTLE_NOTSHOWING = "0";
+	public static final double UP_ANGLE = 0;
+	public static final double RIGHT_ANGLE = 90;
+	public static final double DOWN_ANGLE = 180;
+	public static final double LEFT_ANGLE = 270;
+	public static final double DEGREES = 360;
 }
