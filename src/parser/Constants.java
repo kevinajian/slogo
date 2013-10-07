@@ -51,4 +51,11 @@ public class Constants {
 //	public static final List<String> TO_CMD = new String[]{"TO")}};
 	
 	public static final double VARIABLE_DEFAULT = 0;
+	public static final double TURTLE_XORIGIN = 0.0;
+	public static final double TURTLE_YORIGIN = 0.0;
+	public static final double TURTLE_DEGREEORIGIN = 0.0;
+	public static final String PEN_SHOWING = "1";
+	public static final String PEN_NOTSHOWING = "0";
+	public static final String TURTLE_SHOWING = "1";
+	public static final String TURTLE_NOTSHOWING = "0";
 }
