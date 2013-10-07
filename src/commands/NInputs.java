@@ -1,14 +1,11 @@
 package commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Model;
 
 /**
  * Command that takes in n parameters
  * Has a String for command name
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class NInputs extends Command{
@@ -16,16 +13,16 @@ public class NInputs extends Command{
 	
 	/**
 	 * constructor, sets number of parameters
-	 * @param i
+	 * @param numParams - Number of parameters
+	 * @param numCommands - Number of commands
 	 */
-	public NInputs(String commandName, int i){
+	public NInputs(String commandName, int numParams, int numCommands){
 		myCommandName = commandName;
-		myNumInputs = i;
+		myNumInputs = numCommands;
 	}
 
 	@Override
 	public double evaluate(Model model) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 import model.Model;
 import commands.Command;
+import commands.NInputs;
 import commands.OneInput;
 import commands.TwoInput;
 import commands.turtle_commands.Forward;
@@ -56,6 +57,11 @@ public class Parser {
 
 			if(getClass(inputs.get(j)) instanceof Constant) { //If the one we're on is a constant,
 				continue; //move on!!!!!!!!!!!!!!!!
+			}
+			
+			if(getClass(inputs.get(j)) instanceof NInputs) {
+				//find first brackets, set to loop counter, pass to class
+				//find second bracket stuff, pass to class
 			}
 			
 			else { //otherwise, if its not a constant
