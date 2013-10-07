@@ -24,19 +24,13 @@ public class Back extends OneInput {
 		double y = model.getY();
 		double distance = getInputValueOne();
 	
-		double newX = x- distance*Math.sin(Math.toRadians(orientation));
-		double newY = y- distance*Math.cos(Math.toRadians(orientation));
+		double newX = x - distance*Math.sin(Math.toRadians(orientation));
+		double newY = y - distance*Math.cos(Math.toRadians(orientation));
 		
 		model.addState(new State(newX, newY, orientation, model.getTurtleVisible(), model.getPenVisible()));
 		
 		return getInputValueOne();
 	}
-
-//	@Override
-//	public double evaluate() {
-//		return getInputValueOne();
-//	}
-	
 	
 }
 

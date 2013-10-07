@@ -3,7 +3,6 @@ import view.View;
 
 import java.util.List;
 
-import model.Line;
 import model.Model;
 import model.State;
 
