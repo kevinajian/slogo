@@ -49,7 +49,7 @@ public class Parser {
 	private void lexer(List<String> inputs) throws Exception{
 		List<Command> rootList = new ArrayList<Command>();
 		
-		while(!rootList.isEmpty()) {
+		while(inputs.size() > 1) {
 			Command headNode = getClass(inputs.get(0));
 			treeBuilder(headNode);
 			inputs.remove(0);
@@ -73,7 +73,7 @@ public class Parser {
 //		}
 
 		//was instance of TwoInputs
-		if (root instanceof NInputs) {
+		if (root.getNumInputs() == 2) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr));
@@ -84,7 +84,7 @@ public class Parser {
 		}
 
 		//was instance of OneInput
-		if (root instanceof Command) {
+		if (root.getNumInputs() == 1) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr));
