@@ -1,13 +1,14 @@
 package commands.view;
 
+import parser.Constants;
 import model.Model;
 import commands.Command;
 
-public class PenDown extends Command {
+public class SetPenDown extends Command {
 
 	@Override
 	public double evaluate(Model model) {
-		model.setMyPenPos("down");
+		model.setPenVisible(Constants.PEN_SHOWING);
 		return 1;
 	}
 

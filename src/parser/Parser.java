@@ -55,7 +55,7 @@ public class Parser {
 		for(int j = inputs.size()-1; j>=0; j--) { //traverses the array of string inputs BACKWARDS
 			List<Double> inputList  = new ArrayList<Double>();
 
-			if(getClass(inputs.get(j)) instanceof Constant) { //If the one we're on is a constant,
+			if(inputs.get(j).matches("-?[0-9]+\\.?[0-9]*")) { //If the one we're on is a constant,
 				continue; //move on!!!!!!!!!!!!!!!!
 			}
 			
@@ -65,12 +65,12 @@ public class Parser {
 			}
 			
 			else { //otherwise, if its not a constant
-				double n = getClass(inputs.get(j)).getNumInputs(); //then set n = # of params that command needs 
+				Command current = getClass(inputs.get(j));
+				double n = current.getNumInputs(); //then set n = # of params that command needs 
 				for(double m=1; m<=n; m++) { //go forward in the list n spots
 					inputList.add(j+m); //add the constants to a list of commands that will be fed to our command
 					inputs.remove(j+1); //remove what we added
 				}
-				Command current = getClass(inputs.get(j));
 				current.setInputList(inputList); // feeds list of input parameters into the command
 				Double newVal = current.evaluate(myModel); // executes command, sets result to newVal
 				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was

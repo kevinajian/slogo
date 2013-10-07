@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import parser.Constants;
 import parser.Parser;
 
 /**
@@ -12,24 +13,15 @@ import parser.Parser;
 public class Model {
 	
 	private List<State> myStates = new ArrayList<State>();
-	private List<Line> myTrail = new ArrayList<Line>();
 	private State myOrigin;
-	private String myVisible;
-	private String myPenPos;
-	
-	public String getMyPenPos() {
-		return myPenPos;
-	}
-
-	public void setMyPenPos(String myPenPos) {
-		this.myPenPos = myPenPos;
-	}
+	private String myTurtleVisible = Constants.TURTLE_SHOWING;
+	private String myPenVisible = Constants.PEN_SHOWING;
 
 	/**
 	 * initializes the model
 	 */
 	public void initiate(){
-		myOrigin = new State(0,0,0);
+		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN);
 		myStates.add(myOrigin);
 	}
 	
@@ -57,17 +49,20 @@ public class Model {
 		return getCurrentState().getY();
 	}
 	
-	
+	/**
+	 * add state to states list
+	 * @param state - state to be added
+	 */
 	public void addState(State state) {
 		myStates.add(state);	
 	}
 
 	/**
-	 * gets trail that the turtle has traveled
+	 * gets states that the turtle has traveled
 	 * @return - List of Lines that make trail
 	 */
-	public List<Line> getTrail() {
-		return myTrail;
+	public List<State> getStates() {
+		return myStates;
 	}
 
 	/**
@@ -87,37 +82,33 @@ public class Model {
 		Parser parser = new Parser((this));
 		parser.parse(input);
 	}
-	
-	/**
-	 * determines if the turtle is showing
-	 * 1, or hiding 0
-	 * @return - turle showing or not
-	 */
-	public double isShowing() {
-		return 0;
-	}
 
 	/**
-	 * get the state of the pen, 
-	 * 1 if down, 0 if up
+	 * get the state of the pen
 	 * @return pen up or down
 	 */
-	public double getPenState() {
-		return 0;
+	public String getPenState() {
+		return myPenVisible;
 	}
 	
-	public String getMyVisible() {
-		return myVisible;
+	public String getMyPenVisible() {
+		return myPenVisible;
+	}
+
+	public void setPenVisible(String penVisible) {
+		myPenVisible = penVisible;
+	}
+	
+	public String getTurtleVisible() {
+		return myTurtleVisible;
 	}
 	
 	/**
 	 * sets the visibility of the turtle
-	 * via a string, if the string is visible
-	 * the turtle is visible, if the string is
-	 * invisible, the turtle is invisible
+	 * @param turtleVisible - new visibility of turtle
 	 */
-	public void setMyVisible(String myVisible) {
-		this.myVisible = myVisible;
+	public void setTurtleVisible(String turtleVisible) {
+		myTurtleVisible = turtleVisible;
 	}
 
 }

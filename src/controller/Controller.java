@@ -58,8 +58,8 @@ public class Controller {
 	 * gets trail
 	 * @return List of Lines that create trail
 	 */
-	public List<Line> getTrail() {
-		return myModel.getTrail();
+	public List<State> getStates() {
+		return myModel.getStates();
 	}
 	
 }
