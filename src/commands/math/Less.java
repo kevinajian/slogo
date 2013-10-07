@@ -1,7 +1,7 @@
 package commands.math;
 
 import model.Model;
-import commands.TwoInput;
+import commands.Command;
 
 /**
  * returns 1 if the first input is less than the second input
@@ -9,7 +9,7 @@ import commands.TwoInput;
  * @author Kevin
  *
  */
-public class Less extends TwoInput {
+public class Less extends Command {
 
 	@Override
 	public double evaluate(Model model) {

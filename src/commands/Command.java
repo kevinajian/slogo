@@ -10,10 +10,12 @@ import model.Model;
  * @author Kevin
  */
 public abstract class Command {
-	protected int myNumInputs = 1;
-	protected List<Double> myInputList;
-	protected double myInputValueOne;
-	protected Command myLeftChild;
+	protected int myNumInputs = 2;
+	private double myInputValueOne;
+	private double myInputValueTwo;
+	private Command myLeftChild;
+	private Command myRightChild;
+	
 	 
 	/**
 	 * gets number of parameters this command holds
@@ -47,14 +49,27 @@ public abstract class Command {
 		myLeftChild.setInputValueOne(inputValue);
 	}
 	
-	/**
-	 * sets param value and param list
-	 */
-	public void setInputList(List<Double> inputList){
-		setInputValueOne(inputList.get(0));
-	}
-	
 	public void setLeftChild(Command leftChild){
 		myLeftChild = leftChild;
+	}
+	
+	/**
+	 * gets second input value
+	 * @return - double of first input value
+	 */
+	public double getInputValueTwo() {
+		return myRightChild.getInputValueOne();
+	}
+	
+	/**
+	 * sets second input value
+	 * @param inputValueTwo - double of value to be set
+	 */
+	public void setInputValueTwo(double inputValueTwo) {
+		myRightChild.setInputValueOne(inputValueTwo);
+	}
+	
+	public void setRightChild(Command rightChild){
+		myRightChild = rightChild;
 	}
 }

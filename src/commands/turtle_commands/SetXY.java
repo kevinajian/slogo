@@ -2,9 +2,9 @@ package commands.turtle_commands;
 
 import model.Model;
 import model.State;
-import commands.TwoInput;
+import commands.Command;
 
-public class SetXY extends TwoInput {
+public class SetXY extends Command {
 
 	@Override
 	public double evaluate(Model model) {

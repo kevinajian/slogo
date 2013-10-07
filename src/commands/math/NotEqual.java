@@ -1,7 +1,7 @@
 package commands.math;
 
 import model.Model;
-import commands.TwoInput;
+import commands.Command;
 
 /**
  * returns 1 if two values are not equal to each other
@@ -9,7 +9,7 @@ import commands.TwoInput;
  * @author Kevin
  *
  */
-public class NotEqual extends TwoInput {
+public class NotEqual extends Command {
 	
 	@Override
 	public double evaluate(Model model) {

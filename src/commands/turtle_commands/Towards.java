@@ -3,9 +3,9 @@ package commands.turtle_commands;
 import parser.Constants;
 import model.Model;
 import model.State;
-import commands.TwoInput;
+import commands.Command;
 
-public class Towards extends TwoInput{
+public class Towards extends Command{
 
 	@Override
 	public double evaluate(Model model) {
