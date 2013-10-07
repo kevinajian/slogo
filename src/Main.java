@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.Controller;
 import model.Model;
 import view.View;
@@ -19,5 +22,4 @@ public class Main {
 		view.setController(controller);
 		controller.initiate();
 	}
-	
 }

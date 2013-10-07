@@ -10,7 +10,7 @@ import commands.basic_syntax.Constant;
 
 /**
  * Takes in input String and tokenizes this. Uses these
- * tokens in a recurive parse tree to build and execute the
+ * tokens in a recursive parse tree to build and execute the
  * commands as they are converted into their classes when
  * building the tree.
  * @author carlosreyes, Kevin
@@ -33,23 +33,24 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
 		
-		for(int i=0; i <list.length; i++){
-		//for (String item:list){
-			//Handles variables
-			if(list[i].substring(0, 1).equals(":") && !myModel.getVariableMap().containsKey(list[i].substring(0))) {
-				myModel.getVariableMap().put(list[i].substring(0), Double.parseDouble(list[i+1]));
-				inputs.add("Variable");
-				inputs.add(list[i].substring(0));
-				i++;
-			}
-			else if(list[i].substring(0, 1).equals(":")) {
-				inputs.add("Variable");
-				inputs.add(myModel.getVariableMap().get(list[i].substring(0)).toString());
-			}
-			else {
-				inputs.add(list[i]);
-			}
-		}
+//		this will be in lexer / treeBuilder. just check for : and make a variable there.
+//		for(int i=0; i <list.length; i++){
+//		//for (String item:list){
+//			//Handles variables
+//			if(list[i].substring(0, 1).equals(":") && !myModel.getVariableMap().containsKey(list[i].substring(0))) {
+//				myModel.getVariableMap().put(list[i].substring(0), Double.parseDouble(list[i+1]));
+//				inputs.add("Variable");
+//				inputs.add(list[i].substring(0));
+//				i++;
+//			}
+//			else if(list[i].substring(0, 1).equals(":")) {
+//				inputs.add("Variable");
+//				inputs.add(myModel.getVariableMap().get(list[i].substring(0)).toString());
+//			}
+//			else {
+//				inputs.add(list[i]);
+//			}
+//		}
 		
 		lexer(inputs);
 	}
