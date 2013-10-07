@@ -142,30 +142,30 @@ public class MovementTest {
 		assertEquals(state.getPenVisible(), modelState.getPenVisible());
 	}
 	
-//	@Test
-//	public void testTowards() {
-//		Model model = new Model();
-//		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
-//		Towards towards = new Towards();
-//		towards.setInputList(new ArrayList<Double>(){{add(-1.0); add(-1.0);}});
-//		System.out.println(towards.evaluate(model));
-//		System.out.println(45.0);
-//		assertEquals(towards.evaluate(model), 45.0, 5.2);
-//
-//		
-//		State state = new State(0.0, 0.0, 90.0, "1", "1");
-//		State modelState = model.getCurrentState();
-//		
-//		System.out.println(modelState.getX());
-//		System.out.println(modelState.getY());
-//		System.out.println(modelState.getOrientation());
-//		System.out.println(modelState.getTurtleVisible());
-//		System.out.println(modelState.getPenVisible());
-//		
-//		assertEquals(state.getX(), modelState.getX(), 0.0);
-//		assertEquals(state.getY(), modelState.getY(), 0.0);
-//		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
-//		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
-//		assertEquals(state.getPenVisible(), modelState.getPenVisible());
-//	}
+	@Test
+	public void testTowards() {
+		Model model = new Model();
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		Towards towards = new Towards();
+		towards.setInputList(new ArrayList<Double>(){{add(-1.0); add(-1.0);}});
+		assertEquals(towards.evaluate(model), 225.0, 0.0);
+
+		towards.setInputList(new ArrayList<Double>(){{add(0.0); add(1.0);}});
+		assertEquals(towards.evaluate(model), 225, 0.0);
+
+		towards.setInputList(new ArrayList<Double>(){{add(-1.0); add(1.0);}});
+		assertEquals(towards.evaluate(model), 315.0, 0.0);
+
+		towards.setInputList(new ArrayList<Double>(){{add(0.0); add(0.0);}});
+		assertEquals(towards.evaluate(model), 315.0, 0.0);
+
+		towards.setInputList(new ArrayList<Double>(){{add(1.0); add(-1.0);}});
+		assertEquals(towards.evaluate(model), 135.0, 0.0);
+		
+		towards.setInputList(new ArrayList<Double>(){{add(0.0); add(0.0);}});
+		assertEquals(towards.evaluate(model), 135.0, 0.0);
+
+		towards.setInputList(new ArrayList<Double>(){{add(1.0); add(1.0);}});
+		assertEquals(towards.evaluate(model), 45.0, 0.0);
+	}
 }

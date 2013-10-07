@@ -1,5 +1,6 @@
 package commands.turtle_commands;
 
+import parser.Constants;
 import model.Model;
 import model.State;
 import commands.TwoInput;
@@ -15,12 +16,20 @@ public class Towards extends TwoInput{
 		double directionY = getInputValueTwo();
 		double newX = directionX - x;
 		double newY = directionY - y;
+		double calculation = Math.toDegrees(Math.atan(newX / newY));
+		double newOrientation;
+		if (newX > 0) {
+			newOrientation = Constants.RIGHT_ANGLE - calculation;
+		}
+		else if (newX < 0) {
+			newOrientation = Constants.LEFT_ANGLE - calculation;
+		}
+		else
+			newOrientation = 0;
 		
-		
-		double newOrientation = Math.atan((directionY-y)/(directionX-x));
 		model.addState(new State(x, y, newOrientation, model.getTurtleVisible(), model.getPenVisible()));
 		
-		return Math.toDegrees(Math.abs(orientation-newOrientation));
+		return Math.abs(orientation-newOrientation);
 	}
 
 }

@@ -82,14 +82,6 @@ public class Model {
 		Parser parser = new Parser((this));
 		parser.parse(input);
 	}
-
-	/**
-	 * get the state of the pen
-	 * @return pen up or down
-	 */
-	public String getPenState() {
-		return myPenVisible;
-	}
 	
 	public String getPenVisible() {
 		return myPenVisible;

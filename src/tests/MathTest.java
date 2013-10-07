@@ -49,13 +49,12 @@ public class MathTest {
 		assertEquals(tan.evaluate(null), 1.19, 0.02);
 	}
 	
-//	@Test
-//	public void testATan() {
-//		ATan atan = new ATan();
-//		atan.setInputList(new ArrayList<Double>(){{add(45.0);}});	
-//		System.out.println(atan.evaluate());
-//		assertEquals(atan.evaluate(), 0.67, 0.02);
-//	}
+	@Test
+	public void testATan() {
+		ATan aTan = new ATan();
+		aTan.setInputList(new ArrayList<Double>(){{add(45.0);}});	
+		assertEquals(aTan.evaluate(null), Math.atan(45.0), 0.02);
+	}
 	
 	@Test
 	public void testLog() {
