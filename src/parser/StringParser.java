@@ -19,7 +19,7 @@ import java.lang.Throwable;
 
 
 public class StringParser {
-	private List<Command> commandList = new ArrayList<Command>();
+	private List<String> inputs;
 	private Model myModel;
 	
 	public StringParser(Model model){
@@ -31,11 +31,9 @@ public class StringParser {
 	 * @param input - String of user input
 	 * @throws Exception 
 	 */
-	List<String> inputs;
 	public void parse(String input) throws Exception{
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
-		inputs = new ArrayList<String>();
 		
 		for (String item:list){
 			inputs.add(item);
@@ -44,39 +42,39 @@ public class StringParser {
 	}
 	
 	private void lexer(List<String> inputs) throws Exception{
-		List<Node> rootList = new ArrayList<Node>();
+		List<Command> rootList = new ArrayList<Command>();
 		
 		while(!rootList.isEmpty()) {
-			Node headNode = new Node(getClass(inputs.get(0)), null, null, null, null);
+			Command headNode = getClass(inputs.get(0));
 			treeBuilder(headNode);
 			inputs.remove(0);
 			rootList.add(headNode);
 		}
 	}
 		
-	private static Node treeBuilder(Node root) throws Exception{
+	private Command treeBuilder(Command root) throws Exception{
 		
 //		if (root.getMyCommand() instanceof ControlStructure){
 //			Queue queue = new Queue();
 //		}
 		
-		if (root.getMyCommand() instanceof OneInput) {
+		if (root instanceof OneInput) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.myLeftChild = treeBuilder(new Node(curr, null, null, root, null));
+			root.myLeftChild = treeBuilder(curr);
 		}
 		
-		if (root.getMyCommand() instanceof TwoInput) {
+		if (root instanceof TwoInput) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.myLeftChild = treeBuilder(new Node(curr, null, null, root, null));
+			root.myLeftChild = treeBuilder(curr);
 			
 			curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.myRightChild = treeBuilder(new Node(curr, null, null, root, null));
+			root.myRightChild = treeBuilder(curr);
 		}
 		
-		if (root.getMyCommand() instanceof Constant) {
+		if (root instanceof Constant) {
 			root.myValue = Double.parseDouble(inputs.get(0));
 			return root;
 		}
@@ -94,12 +92,4 @@ public class StringParser {
 	}
 	
 	
-	public static void main(String[] args) throws Exception {
-		String s = "SUM 20 40";
-		ArrayList<String> in = new ArrayList<String>(); 
-		in.add("SUM"); in.add("20"); in.add("40");
-		Node root = new Node(getClass(in.get(0)), null, null);
-		treeBuilder(root);
-
-	}
 }
