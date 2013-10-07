@@ -1,25 +1,16 @@
 package parser;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
-
 import model.Model;
 import commands.Command;
 import commands.NInputs;
-import commands.OneInput;
-import commands.TwoInput;
-import commands.turtle_commands.Forward;
-import java.lang.Throwable;
+import commands.basic_syntax.Constant;
 
-/**
- * Parses user input
- * @author Kevin, Carlos
- *
- */
+
+
 public class Parser {
-	private List<Command> commandList = new ArrayList<Command>();
+	private List<String> inputs;
 	private Model myModel;
 	
 	public Parser(Model model){
@@ -34,68 +25,66 @@ public class Parser {
 	public void parse(String input) throws Exception{
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
-		List<String> inputs = new ArrayList<String>();
+		
 		for (String item:list){
 			inputs.add(item);
 		}
 		lexer(inputs);
 	}
 	
-	/**
-	 * creates Command objects from user input, executes the commands as soon as they are found,
-	 * traversing the array of split strings from back to front. The commands are executed based
-	 * on how many input statements they take, they are executed, and the return values are 
-	 * placed back in the list of commands as strings where they were taken out.
-	 * @param inputs - List<String> of user input 
-	 * @throws Exception 
-	 */
 	private void lexer(List<String> inputs) throws Exception{
+		List<Command> rootList = new ArrayList<Command>();
 		
-		for(int j = inputs.size()-1; j>=0; j--) { //traverses the array of string inputs BACKWARDS
-			List<Double> inputList  = new ArrayList<Double>();
+		while(!rootList.isEmpty()) {
+			Command headNode = getClass(inputs.get(0));
+			treeBuilder(headNode);
+			inputs.remove(0);
+			rootList.add(headNode);
+		}
+	}
+		
+	private Command treeBuilder(Command root) throws Exception{
+		
+//		if (root.getMyCommand() instanceof ControlStructure){
+//			Queue queue = new Queue();
+//		}
 
-			if(inputs.get(j).matches("-?[0-9]+\\.?[0-9]*")) { //If the one we're on is a constant,
-				continue; //move on!!!!!!!!!!!!!!!!
-			}
+		//was instance of TwoInputs
+		if (root instanceof NInputs) {
+			Command curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.setLeftChild(treeBuilder(curr));
 			
-			if(getClass(inputs.get(j)) instanceof NInputs) {
-				//find first brackets, set to loop counter, pass to class
-				//find second bracket stuff, pass to class
-			}
-			
-			else { //otherwise, if its not a constant
-				Command current = getClass(inputs.get(j));
-				double n = current.getNumInputs(); //then set n = # of params that command needs 
-				for(double m=1; m<=n; m++) { //go forward in the list n spots
-					inputList.add(j+m); //add the constants to a list of commands that will be fed to our command
-					inputs.remove(j+1); //remove what we added
-				}
-				current.setInputList(inputList); // feeds list of input parameters into the command
-				Double newVal = current.evaluate(myModel); // executes command, sets result to newVal
-				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
-			}
+			curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.setRightChild(treeBuilder(curr));
 		}
-		if(inputs.size() > 1) {
-			throw new Exception("Invalid command");
+
+		//was instance of OneInput
+		if (root instanceof Command) {
+			Command curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.setLeftChild(treeBuilder(curr));
 		}
+		
+		if (root instanceof Constant) {
+			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
+			return root;
+		}	
+		//Should this be here?
+		return root;
+		
 	}
 	
 	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
 		return xyz;
 	}
-
-	private static final String PATH = "commands.*";
 	
-	public String toClass(String in) {
-		return PATH + in;
+	public static String toClass(String in) {
+		FindFilePath filePath = new FindFilePath(in);
+		return filePath.makePath();
 	}
 	
 	
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-
-		String className = "commands.turtle_commands.direction.Forward";
-		Object xyz = Class.forName(className).newInstance();
-		System.out.println(xyz.getClass()); 
-	}
 }

@@ -1,20 +1,11 @@
 package parser;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
-import java.util.StringTokenizer;
-
 import model.Model;
 import commands.Command;
-import commands.vcu.ControlStructure;
 import commands.NInputs;
-import commands.OneInput;
-import commands.TwoInput;
 import commands.basic_syntax.Constant;
-import commands.turtle_commands.Forward;
-import java.lang.Throwable;
 
 
 
@@ -57,38 +48,44 @@ public class StringParser {
 //		if (root.getMyCommand() instanceof ControlStructure){
 //			Queue queue = new Queue();
 //		}
-		
-		if (root instanceof OneInput) {
+
+		//was instance of TwoInputs
+		if (root instanceof NInputs) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.myLeftChild = treeBuilder(curr);
-		}
-		
-		if (root instanceof TwoInput) {
-			Command curr = getClass(inputs.get(1));
-			inputs.remove(0);
-			root.myLeftChild = treeBuilder(curr);
+			root.setLeftChild(treeBuilder(curr));
 			
 			curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.myRightChild = treeBuilder(curr);
+			root.setRightChild(treeBuilder(curr));
+		}
+
+		//was instance of OneInput
+		if (root instanceof Command) {
+			Command curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.setLeftChild(treeBuilder(curr));
 		}
 		
 		if (root instanceof Constant) {
-			root.myValue = Double.parseDouble(inputs.get(0));
+			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
 			return root;
 		}
+		
+		//Should this be here?
+		return root;
 		
 	}
 	
 	
-	private static Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
 		return xyz;
 	}
 	
 	public static String toClass(String in) {
-		return PATH + in;
+		FindFilePath filePath = new FindFilePath(in);
+		return filePath.makePath();
 	}
 	
 	
