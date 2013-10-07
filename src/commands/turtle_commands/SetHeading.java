@@ -9,7 +9,7 @@ public class SetHeading extends OneInput {
 
 	@Override
 	public double evaluate(Model model) {		
-		model.addState(new State(model.getX(), model.getY(), getInputValueOne()));
+		model.addState(new State(model.getX(), model.getY(), getInputValueOne(), model.getTurtleVisible(), model.getPenVisible()));
 		return Math.abs(getInputValueOne() - model.getOrientation());
 		
 	}

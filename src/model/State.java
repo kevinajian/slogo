@@ -8,6 +8,8 @@ public class State {
 	private double myX;
 	private double myY;
 	private double myOrientation;
+	private String myPenVisible;
+	private String myTurtleVisible;
 	
 	/**
 	 * constructor that sets x, y and orientation
@@ -15,10 +17,12 @@ public class State {
 	 * @param y - double of y coordinate of turtle
 	 * @param orientation - double of degree that the turtle is facing
 	 */
-	public State(double x, double y, double orientation) {
+	public State(double x, double y, double orientation, String turtleVisible, String penVisible) {
 		myX = x;
 		myY = y;
 		myOrientation = orientation;
+		myTurtleVisible = turtleVisible;
+		myPenVisible = penVisible;
 	}
 
 	/**
@@ -44,5 +48,12 @@ public class State {
 	public double getOrientation() {
 		return myOrientation;
 	}
+	
+	public String getTurtleVisible() {
+		return myTurtleVisible;
+	}
 
+	public String getPenVisible() {
+		return myPenVisible;
+	}
 }

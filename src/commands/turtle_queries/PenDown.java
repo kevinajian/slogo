@@ -8,7 +8,7 @@ public class PenDown extends Command{
 
 	@Override
 	public double evaluate(Model model) {
-		if (model.getMyPenVisible().equals(Constants.PEN_SHOWING)) {
+		if (model.getPenVisible().equals(Constants.PEN_SHOWING)) {
 			return 1;
 		}
 		return 0;
