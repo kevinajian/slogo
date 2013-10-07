@@ -32,9 +32,4 @@ public class Forward extends OneInput {
 		return getInputValueOne();
 	}
 
-//	@Override
-//	public double evaluate() {
-//		return getInputValueOne();
-//	}
-	
 }
