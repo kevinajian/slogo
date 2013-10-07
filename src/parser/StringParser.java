@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
+
 import model.Model;
 import commands.Command;
 import commands.vcu.ControlStructure;
 import commands.NInputs;
 import commands.OneInput;
 import commands.TwoInput;
+import commands.basic_syntax.Constant;
 import commands.turtle_commands.Forward;
-import commands.vcu.Constant;
 import java.lang.Throwable;
 
 

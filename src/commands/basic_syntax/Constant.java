@@ -1,4 +1,6 @@
-package commands;
+package commands.basic_syntax;
+
+import commands.Command;
 
 import model.Model;
 
