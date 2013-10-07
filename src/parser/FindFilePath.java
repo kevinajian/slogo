@@ -28,7 +28,6 @@ public class FindFilePath {
 		File currentDir = new File(System.getProperty("user.dir")+"/src/commands"); // current directory
 		String classType = myInputString;
 		displayDirectoryContents(currentDir, classType);
-		System.out.println(findStringAndCut());
 		return findStringAndCut();
 		
 	}
@@ -50,10 +49,10 @@ public class FindFilePath {
 		}
 	}
 	
-	public static String findStringAndCut() {
+	public String findStringAndCut() {
 		String rawPath = null; 
 		for (int i=0; i < pathStringList.size(); i++) {
-			if(pathStringList.get(i).contains("Forward.java")){
+			if(pathStringList.get(i).contains(myInputString)){
 				rawPath = pathStringList.get(i);
 				rawPath = rawPath.replaceAll(Pattern.quote("/"),".");
 				rawPath = rawPath.replaceAll(Pattern.quote(".java"), "");

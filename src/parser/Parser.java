@@ -81,7 +81,7 @@ public class Parser {
 		return xyz;
 	}
 	
-	public static String toClass(String in) {
+	public String toClass(String in) {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();
 	}
