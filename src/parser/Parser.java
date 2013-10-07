@@ -8,7 +8,14 @@ import commands.NInputs;
 import commands.basic_syntax.Constant;
 
 
-
+/**
+ * Takes in input String and tokenizes this. Uses these
+ * tokens in a recurive parse tree to build and execute the
+ * commands as they are converted into their classes when
+ * building the tree.
+ * @author carlosreyes, Kevin
+ *
+ */
 public class Parser {
 	private List<String> inputs;
 	private Model myModel;
@@ -18,7 +25,7 @@ public class Parser {
 	}
 	
 	/**
-	 * splits user input and passes results to lexer
+	 * Splits user input and passes results to lexer
 	 * @param input - String of user input
 	 * @throws Exception 
 	 */
@@ -32,6 +39,13 @@ public class Parser {
 		lexer(inputs);
 	}
 	
+	/**
+	 * Makes a list of trees by storing their root, loops over
+	 * all commands tokenized by the parse method, and calls
+	 * treebuilder, putting the root in an array of roots.
+	 * @param inputs
+	 * @throws Exception
+	 */
 	private void lexer(List<String> inputs) throws Exception{
 		List<Command> rootList = new ArrayList<Command>();
 		
@@ -42,7 +56,16 @@ public class Parser {
 			rootList.add(headNode);
 		}
 	}
-		
+	
+	/**
+	 * Recursively builds a tree of commands from a list of
+	 * Strings. Creates instances of the appropriate classes
+	 * when it encounters strings of the same name and executes
+	 * the function of the classes.
+	 * @param root
+	 * @return Command which is the root Node of the tree
+	 * @throws Exception
+	 */
 	private Command treeBuilder(Command root) throws Exception{
 		
 //		if (root.getMyCommand() instanceof ControlStructure){
@@ -76,11 +99,24 @@ public class Parser {
 		
 	}
 	
+	/**
+	 * Creates a class from a string.
+	 * @param className
+	 * @return A class that is a subclass of Command, based off of the string given.
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 */
 	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
 		return xyz;
 	}
 	
+	/**
+	 * Gets file path from String that represents a class.
+	 * @param in
+	 * @return String that is the package path to that class.
+	 */
 	public String toClass(String in) {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();

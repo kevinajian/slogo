@@ -11,14 +11,23 @@ import parser.Parser;
 public class ParserTest {
 
 	@Test
-	public void testMakePath() {
+	public void testToClass() {
 		Model model = new Model();
 		Parser parser = new Parser(model);
 		assertEquals(parser.toClass("Forward"), "commands.turtle_commands.Forward");
 		assertEquals(parser.toClass("Sum"), "commands.math.Sum");
 		assertEquals(parser.toClass("Constant"), "commands.basic_syntax.Constant");
 
+	}
+	
+	@Test
+	public void testParser() throws Exception {
+//		Model model = new Model();
+//		Parser parser = new Parser(model);
+//		String inputString = "SUM 3 4";
+//		parser.parse(inputString);
 
 	}
-
+	
+	
 }
