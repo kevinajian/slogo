@@ -1,13 +1,10 @@
 package commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Model;
 
 /**
  * Command class, has number of parameters and a list of those parameters
- * @author Kevin
+ * @author Kevin, Carlos
  */
 public abstract class Command {
 	protected int myNumInputs = 2;

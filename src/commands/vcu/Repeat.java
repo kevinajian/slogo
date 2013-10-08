@@ -1,9 +1,9 @@
 package commands.vcu;
 
-import commands.Command;
 import model.Model;
+import commands.Command;
 
-public class ControlStructure extends Command {
+public class Repeat extends Command{
 
 	@Override
 	public double evaluate(Model model) {

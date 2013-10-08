@@ -1,14 +1,15 @@
 package commands.basic_syntax;
 
-import java.util.List;
-
 import model.Model;
 import commands.Command;
-import parser.Constants;
 
 public class Variable extends Command{
 	String myVariableName = null;
 	double myNumInputs = 1;
+	
+	public Variable(String variableName) {
+		this.myVariableName = variableName;
+	}
 	
 	public String getVariableName() {
 		return myVariableName;

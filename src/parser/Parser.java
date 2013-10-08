@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Model;
 import commands.Command;
-import commands.NInputs;
 import commands.basic_syntax.Constant;
+import commands.basic_syntax.Variable;
+import commands.vcu.ControlStructure;
+import commands.vcu.For;
+import commands.vcu.*;
 
 
 /**
@@ -33,24 +36,9 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
 		
-//		this will be in lexer / treeBuilder. just check for : and make a variable there.
-//		for(int i=0; i <list.length; i++){
-//		//for (String item:list){
-//			//Handles variables
-//			if(list[i].substring(0, 1).equals(":") && !myModel.getVariableMap().containsKey(list[i].substring(0))) {
-//				myModel.getVariableMap().put(list[i].substring(0), Double.parseDouble(list[i+1]));
-//				inputs.add("Variable");
-//				inputs.add(list[i].substring(0));
-//				i++;
-//			}
-//			else if(list[i].substring(0, 1).equals(":")) {
-//				inputs.add("Variable");
-//				inputs.add(myModel.getVariableMap().get(list[i].substring(0)).toString());
-//			}
-//			else {
-//				inputs.add(list[i]);
-//			}
-//		}
+		for(int i=0; i <list.length; i++){
+			inputs.add(list[i]);
+		}
 		
 		lexer(inputs);
 	}
@@ -64,10 +52,13 @@ public class Parser {
 	 */
 	private void lexer(List<String> inputs) throws Exception{
 		List<Command> rootList = new ArrayList<Command>();
-		
+		List<String> inputList = new ArrayList<String>();
 		while(inputs.size() > 1) {
 			Command headNode = getClass(inputs.get(0));
-			treeBuilder(headNode);
+			if(headNode instanceof ControlStructure) {
+				controlTree(headNode, inputList);
+			}
+			treeBuilder(headNode, inputs);
 			inputs.remove(0);
 			rootList.add(headNode);
 		}
@@ -82,7 +73,7 @@ public class Parser {
 	 * @return Command which is the root Node of the tree
 	 * @throws Exception
 	 */
-	private Command treeBuilder(Command root) throws Exception{
+	private Command treeBuilder(Command root, List<String> inputs) throws Exception{
 		
 //		if (root.getMyCommand() instanceof ControlStructure){
 //			Queue queue = new Queue();
@@ -96,18 +87,18 @@ public class Parser {
 		if (root.getNumInputs() == 2) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.setLeftChild(treeBuilder(curr));
+			root.setLeftChild(treeBuilder(curr, inputs));
 			
 			curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.setRightChild(treeBuilder(curr));
+			root.setRightChild(treeBuilder(curr, inputs));
 		}
 
 		//was instance of OneInput
 		if (root.getNumInputs() == 1) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
-			root.setLeftChild(treeBuilder(curr));
+			root.setLeftChild(treeBuilder(curr, inputs));
 		}
 		
 		if (root instanceof Constant) {
@@ -119,8 +110,65 @@ public class Parser {
 		
 	}
 	
+	private Command controlTree(Command root, List<String> inputList) throws Exception {
+		if(root instanceof For) {
+			int openBracket = inputList.indexOf("[");
+			int closeBracket = makeParameterList(openBracket, inputList);
+			List<String> params = new ArrayList<String>();
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				params.add(inputList.get(i));
+			}
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				inputList.remove(i);
+			}
+			For forLoop = new For();
+			forLoop.setMyVariable(Double.parseDouble(params.get(0)));
+			forLoop.setMyMax(Double.parseDouble(params.get(1)));
+			
+			inputList = inputList.subList(openBracket, closeBracket);
+			lexer(inputList);
+			
+		}
+		
+		if(root instanceof DoTimes){
+			
+		}
+		
+		if(root instanceof Repeat) {
+			
+		}
+		
+		return root;
+		
+	}
+	
+	private int makeParameterList(int firstBracket, List<String> inputList) {
+		int bcount = 1;
+		
+		for(int i=firstBracket+1; i < inputList.size(); i ++) {
+			if (bcount <= 0) {
+				return i;
+			}
+			if (inputList.get(i).equals("]")){
+				i--;
+			}
+			if(inputList.get(i).equals("[")) {
+				i++;
+			}
+			else {
+				continue;
+			}
+		}
+		
+		return 1;
+	
+}
+	
 	/**
-	 * Creates a class from a string.
+	 * Creates a class from a string. If its a variable, make it of type variable
+	 * and add its name to a map in model which maps the variable name (including
+	 * the ':' to the value (which is set by default to 0.
+	 * Otherwise a new command is created based on the String passed.
 	 * @param className
 	 * @return A class that is a subclass of Command, based off of the string given.
 	 * @throws InstantiationException
@@ -128,7 +176,16 @@ public class Parser {
 	 * @throws ClassNotFoundException
 	 */
 	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
-		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
+		//check if it starts with ':' if so its a variable
+		Command xyz;
+		if (className.charAt(0) == ':') {
+			xyz = new Variable(className);
+			myModel.getVariableMap().put(xyz, 0.0);
+		} 
+		
+		else {
+			xyz = (Command) Class.forName(toClass(className)).newInstance();
+		}
 		return xyz;
 	}
 	
