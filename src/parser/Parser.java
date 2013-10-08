@@ -110,7 +110,26 @@ public class Parser {
 		
 	}
 	
-	private Command controlTree(Command root, List<String> inputList) throws Exception {
+	private Command controlTree(Command root, List<String> inputList) throws Exception {	
+		if(root instanceof DoTimes){
+			int openBracket = inputList.indexOf("[");
+			int closeBracket = makeParameterList(openBracket, inputList);
+			List<String> params = new ArrayList<String>();
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				params.add(inputList.get(i));
+			}
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				inputList.remove(i);
+			}
+			DoTimes doTimes = new DoTimes();
+			doTimes.setMyVariable(params.get(0));			
+			doTimes.setMyMax(Double.parseDouble(params.get(1)));
+			
+			inputList = inputList.subList(openBracket, closeBracket);
+			lexer(inputList);
+			
+		}
+		
 		if(root instanceof For) {
 			int openBracket = inputList.indexOf("[");
 			int closeBracket = makeParameterList(openBracket, inputList);
@@ -122,20 +141,29 @@ public class Parser {
 				inputList.remove(i);
 			}
 			For forLoop = new For();
-			forLoop.setMyVariable(Double.parseDouble(params.get(0)));
-			forLoop.setMyMax(Double.parseDouble(params.get(1)));
+			forLoop.setMyVariable(params.get(0));			
+			forLoop.setMyValue(Double.parseDouble(params.get(1)));
+			forLoop.setMyMax(Double.parseDouble(params.get(2)));
 			
 			inputList = inputList.subList(openBracket, closeBracket);
 			lexer(inputList);
 			
 		}
 		
-		if(root instanceof DoTimes){
-			
-		}
-		
 		if(root instanceof Repeat) {
-			
+			int openBracket = inputList.indexOf("[");
+			int closeBracket = makeParameterList(openBracket, inputList);
+			List<String> params = new ArrayList<String>();
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				params.add(inputList.get(i));
+			}
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				inputList.remove(i);
+			}
+			Repeat repeat = new Repeat();
+			repeat.setMyExpression(params.get(0));			
+			inputList = inputList.subList(openBracket, closeBracket);
+			lexer(inputList);
 		}
 		
 		return root;

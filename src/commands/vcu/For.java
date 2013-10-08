@@ -4,13 +4,23 @@ import java.util.List;
 import model.Model;
 import commands.Command;
 
-public class For extends Command{
-	private double myVariable;
-	public double getMyVariable() {
+public class For extends ControlStructure{
+	private String myVariable;
+	private double myMax;
+	private double myValue;
+	public double getMyValue() {
+		return myValue;
+	}
+
+	public void setMyValue(double myValue) {
+		this.myValue = myValue;
+	}
+
+	public String getMyVariable() {
 		return myVariable;
 	}
 
-	public void setMyVariable(double myVariable) {
+	public void setMyVariable(String myVariable) {
 		this.myVariable = myVariable;
 	}
 
@@ -22,7 +32,7 @@ public class For extends Command{
 		this.myMax = myMax;
 	}
 
-	private double myMax;
+
 	
 	
 	public double evaluate(Model model, List<String> commandList) {
