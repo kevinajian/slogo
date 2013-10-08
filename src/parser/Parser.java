@@ -36,8 +36,8 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
 		
-		for(int i=0; i <list.length; i++){
-			inputs.add(list[i]);
+		for(String string:list){
+			inputs.add(string);
 		}
 		
 		lexer(inputs);
