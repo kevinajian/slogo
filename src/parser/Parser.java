@@ -31,15 +31,15 @@ public class Parser {
 	 * @param input - String of user input
 	 * @throws Exception 
 	 */
-	public void parse(String input) throws Exception{
+	public List<String> parse(String input) throws Exception{
 		input.toUpperCase();
 		String [] list = input.split("\\s+");
-		
+		List<String> inputs = new ArrayList<String>();
 		for(String string:list){
 			inputs.add(string);
 		}
-		
 		lexer(inputs);
+		return inputs;
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class Parser {
 	 * @param inputs
 	 * @throws Exception
 	 */
-	private void lexer(List<String> inputs) throws Exception{
+	private List<Command> lexer(List<String> inputs) throws Exception{
 		List<Command> rootList = new ArrayList<Command>();
 		List<String> inputList = new ArrayList<String>();
 		while(inputs.size() > 1) {
@@ -61,6 +61,7 @@ public class Parser {
 			inputs.remove(0);
 			rootList.add(headNode);
 		}
+		return rootList;
 	}
 	
 	/**
@@ -72,18 +73,25 @@ public class Parser {
 	 * @return Command which is the root Node of the tree
 	 * @throws Exception
 	 */
-	private Command treeBuilder(Command root, List<String> inputs) throws Exception{
+	 public Command treeBuilder(Command root, List<String> inputs) throws Exception{
 		
 //		if (root.getMyCommand() instanceof ControlStructure){
 //			Queue queue = new Queue();
 //		}
-		
+
+		if (root instanceof Constant) {
+			System.out.println("root");
+			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
+			return root;
+		}	
+		 
 		if (root.getNumInputs() == 0) {
 			return root;
 		}
 
 		//was instance of TwoInputs
 		if (root.getNumInputs() == 2) {
+			System.out.println("2");
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));
@@ -95,15 +103,14 @@ public class Parser {
 
 		//was instance of OneInput
 		if (root.getNumInputs() == 1) {
+			System.out.println("1");
+			System.out.println(inputs.get(1));
 			Command curr = getClass(inputs.get(1));
+			System.out.println(curr.getClass());
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));
 		}
 		
-		if (root instanceof Constant) {
-			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
-			return root;
-		}	
 		//Should this be here?
 		return root;
 		
@@ -202,7 +209,7 @@ public class Parser {
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 */
-	private Command getClass(String className){
+	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		//check if it starts with ':' if so its a variable
 		Command xyz;
 		if (className.charAt(0) == ':') {
@@ -211,18 +218,7 @@ public class Parser {
 		} 
 		
 		else {
-			try {
-				xyz = (Command) Class.forName(toClass(className)).newInstance();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			xyz = (Command) Class.forName(toClass(className)).newInstance();
 		}
 		return xyz;
 	}
