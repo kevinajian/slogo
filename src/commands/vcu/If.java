@@ -1,9 +1,8 @@
 package commands.vcu;
 
 import model.Model;
-import commands.Command;
 
-public class Repeat extends ControlStructure {
+public class If extends Repeat {
 	private String myExpression;
 	public String getMyExpression() {
 		return myExpression;
@@ -16,5 +15,4 @@ public class Repeat extends ControlStructure {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

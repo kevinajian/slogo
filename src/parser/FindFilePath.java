@@ -69,7 +69,8 @@ public class FindFilePath {
 		for (int i=0; i < pathStringList.size(); i++) {
 			if(pathStringList.get(i).contains(myInputString)){
 				rawPath = pathStringList.get(i);
-				rawPath = rawPath.replaceAll(Pattern.quote("/"),".");
+				rawPath = rawPath.replaceAll( Pattern.quote("\\"), "." );
+				rawPath = rawPath.replaceAll( Pattern.quote("/"), "." );
 				rawPath = rawPath.replaceAll(Pattern.quote(".java"), "");
 				rawPath = rawPath.replaceAll(Pattern.quote("*.src"), "");
 			    rawPath = rawPath.substring(rawPath.lastIndexOf("src.") + 4);
