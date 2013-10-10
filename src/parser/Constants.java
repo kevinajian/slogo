@@ -63,4 +63,7 @@ public class Constants {
 	public static final double DOWN_ANGLE = 180;
 	public static final double LEFT_ANGLE = 270;
 	public static final double DEGREES = 360;
+	public static final String CONSTANT_ID = "-?[0-9]+\\.?[0-9]*";
+	public static final String VARIABLE_ID = ":";
+	public static final String INPUT_SPLITTER = "\\s+";
 }

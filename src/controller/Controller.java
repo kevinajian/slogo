@@ -28,13 +28,6 @@ public class Controller {
 	}
 	
 	/**
-	 * creates display and command window, sets origin in model
-	 */
-	public void initiate(){
-		myModel.initiate();
-	}
-	
-	/**
 	 * passes user input to model to process
 	 * @param input - String of user input 
 	 * @throws Exception 
@@ -58,6 +51,7 @@ public class Controller {
 	 * @return List of Lines that create trail
 	 */
 	public List<State> getStates() {
+		myModel.createStates();
 		return myModel.getStates();
 	}
 	

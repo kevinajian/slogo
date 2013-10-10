@@ -1,6 +1,7 @@
 package parser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import model.Model;
@@ -33,13 +34,15 @@ public class Parser {
 	 */
 	public List<String> parse(String input) throws Exception{
 		input.toUpperCase();
-		String [] list = input.split("\\s+");
+		String [] list = input.split(Constants.INPUT_SPLITTER);
 		List<String> inputs = new ArrayList<String>();
+//		List<String> output = new ArrayList<String>();
+//		Collections.copy(inputs, output);
 		for(String string:list){
 			inputs.add(string);
 		}
-		lexer(inputs);
-		return inputs;
+		myModel.setCommands(lexer(inputs));
+		return inputs;//output;
 	}
 	
 	/**
@@ -49,7 +52,7 @@ public class Parser {
 	 * @param inputs
 	 * @throws Exception
 	 */
-	private List<Command> lexer(List<String> inputs) throws Exception{
+	public List<Command> lexer(List<String> inputs) throws Exception{
 		List<Command> rootList = new ArrayList<Command>();
 		List<String> inputList = new ArrayList<String>();
 		while(inputs.size() > 1) {
@@ -76,7 +79,6 @@ public class Parser {
 	 public Command treeBuilder(Command root, List<String> inputs) throws Exception{
 		
 //		if (root.getMyCommand() instanceof ControlStructure){
-//			Queue queue = new Queue();
 //		}
 
 		if (root instanceof Constant) {
@@ -106,14 +108,12 @@ public class Parser {
 			System.out.println("1");
 			System.out.println(inputs.get(1));
 			Command curr = getClass(inputs.get(1));
-			System.out.println(curr.getClass());
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));
 		}
 		
 		//Should this be here?
 		return root;
-		
 	}
 	
 	private Command controlTree(Command root, List<String> inputList) throws Exception {	
@@ -212,16 +212,16 @@ public class Parser {
 	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		//check if it starts with ':' if so its a variable
 		Command xyz;
-		if (className.matches("-?[0-9]+\\.?[0-9]*")) {
+		if (className.matches(Constants.CONSTANT_ID)) {
 			xyz = new Constant();
 			xyz.setInputValueOne(Double.parseDouble(className));
 		}
-		else if (className.charAt(0) == ':') {
+		else if (className.charAt(0) == Constants.VARIABLE_ID.charAt(0)) {
 			xyz = new Variable(className);
 			myModel.getVariableMap().put(xyz, 0.0);
 		} 
 		else {
-			xyz = (Command) Class.forName(toClass(className)).newInstance();
+			xyz = (Command) Class.forName(toClass(className)).newInstance(); // IF THIS ISN"T FOUND WE SHOULD RETURN AT ERROR. 
 		}
 		return xyz;
 	}

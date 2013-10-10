@@ -20,15 +20,8 @@ public class Model {
 	private String myTurtleVisible = Constants.TURTLE_SHOWING;
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private Map<Command, Double> variableMap;
+	private List<Command> myCommands = new ArrayList<Command>();
 
-	/**
-	 * initializes the model
-	 */
-	public void initiate(){
-		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
-		myStates.add(myOrigin);
-	}
-	
 	/**
 	 * gets degree of current state
 	 * @return - double of current orientation
@@ -68,6 +61,14 @@ public class Model {
 	public List<State> getStates() {
 		return myStates;
 	}
+	
+	public void createStates() {
+		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
+		myStates.add(myOrigin);
+		for (Command c:myCommands){
+			c.evaluate(this);
+		}
+	}
 
 	/**
 	 * get current state of the turtle
@@ -76,7 +77,15 @@ public class Model {
 	public State getCurrentState() {
 		return myStates.get(myStates.size()-1);
 	}
-
+	
+	public List<Command> getCommands() {
+		return myCommands;
+	}
+	
+	public void setCommands(List<Command> commands) {
+		myCommands = commands;
+	}
+	
 	/**
 	 * processes user input, sends through parser
 	 * @param input - user input
