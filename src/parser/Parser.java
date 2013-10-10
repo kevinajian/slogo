@@ -212,11 +212,14 @@ public class Parser {
 	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
 		//check if it starts with ':' if so its a variable
 		Command xyz;
-		if (className.charAt(0) == ':') {
+		if (className.matches("-?[0-9]+\\.?[0-9]*")) {
+			xyz = new Constant();
+			xyz.setInputValueOne(Double.parseDouble(className));
+		}
+		else if (className.charAt(0) == ':') {
 			xyz = new Variable(className);
 			myModel.getVariableMap().put(xyz, 0.0);
 		} 
-		
 		else {
 			xyz = (Command) Class.forName(toClass(className)).newInstance();
 		}

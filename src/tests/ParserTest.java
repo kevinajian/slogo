@@ -60,8 +60,8 @@ public class ParserTest {
 		Command test = parser.getClass("Forward");
 		assertTrue(test instanceof Forward);
 		parser.treeBuilder(test, testInputs);
-//		System.out.println(fd.getInputValueOne());
-//		assertEquals(fd.getInputValueOne(), 50.0, 0.0);
+		System.out.println(test.getInputValueOne());
+		assertEquals(test.getInputValueOne(), 50.0, 0.0);
 	}
 	
 }
