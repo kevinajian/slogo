@@ -2,12 +2,11 @@ package parser;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import model.Model;
 import commands.Command;
 import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
-import commands.vcu.ControlStructure;
-import commands.vcu.For;
 import commands.vcu.*;
 
 
@@ -175,7 +174,7 @@ public class Parser {
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 */
-	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	private Command getClass(String className){
 		//check if it starts with ':' if so its a variable
 		Command xyz;
 		if (className.charAt(0) == ':') {
@@ -184,7 +183,18 @@ public class Parser {
 		} 
 		
 		else {
-			xyz = (Command) Class.forName(toClass(className)).newInstance();
+			try {
+				xyz = (Command) Class.forName(toClass(className)).newInstance();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return xyz;
 	}

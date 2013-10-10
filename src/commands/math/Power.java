@@ -12,8 +12,7 @@ public class Power extends Command{
 
 	@Override
 	public double evaluate(Model model) {
-		//FIX THIS
-		return Math.pow(getInputValueOne(), 0);
+		return Math.pow(getInputValueOne(), getInputValueTwo());
 	}
 
 }
