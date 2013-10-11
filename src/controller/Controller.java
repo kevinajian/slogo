@@ -38,6 +38,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		//List<Line> trail = getLines();
+		getStates();
 		double[] turtlePosition = getTurtle();
 /*		for (Line line:trail) {
 			//view.drawLine
