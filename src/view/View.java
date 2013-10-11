@@ -135,6 +135,10 @@ public class View extends JFrame{
 		// TODO Auto-generated method stub
 		myTurtleGame.squirt.setPos(turtlePosition[0],turtlePosition[1]);
 		myTurtleGame.squirt.rotate(turtlePosition[2]);
+		System.out.println(turtlePosition[2]);
+	}
+	
+	public void drawLine(double[] LinesNShit){
 	}
 
 }

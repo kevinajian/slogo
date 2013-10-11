@@ -39,6 +39,6 @@ public class Turtle extends JGObject implements Constants{
 	@Override
 	public void setPos(double x, double y){
 		this.x = x + DEFAULT_WIDTH/2 - DEFAULT_IMAGE_WIDTH/2;
-		this.y = y + DEFAULT_HEIGHT/2 - DEFAULT_IMAGE_HEIGHT/2;
+		this.y = -y + DEFAULT_HEIGHT/2 - DEFAULT_IMAGE_HEIGHT/2;
 	}
 }

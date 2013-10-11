@@ -13,6 +13,9 @@ import model.State;
  */
 public class Left extends Command {
 
+	public Left() {
+		super.myNumInputs = 1;
+	}
 	@Override
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
