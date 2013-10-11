@@ -15,5 +15,10 @@ public class Sum extends Command {
 	public double evaluate(Model model) {
 		return getInputValueOne() + getInputValueTwo();
 	}
+	
+	@Override
+	public double getInputValueOne() {
+		return super.getInputValueOne() + getInputValueTwo();
+	}
 
 }
