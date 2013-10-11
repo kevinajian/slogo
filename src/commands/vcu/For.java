@@ -1,5 +1,7 @@
 package commands.vcu;
 
+import commands.basic_syntax.Variable;
+
 import model.Model;
 
 /**
@@ -12,6 +14,7 @@ public class For extends ControlStructure{
 	private String myVariable;
 	private double myMax;
 	private double myValue;
+	private double myIncrement;
 	
 	public double getMyValue() {
 		return myValue;
@@ -39,7 +42,25 @@ public class For extends ControlStructure{
 
 	@Override
 	public double evaluate(Model model) {
+		//TODO: Result needs to be the output of every
+		//iteration of the loop
+		double result = 0.0;
+		for(double i=myValue; i<myMax; i+= myIncrement) {
+			setVariableValue(model, myVariable, result);
+		}
 		return 0;
+	}
+	
+	/**
+	 * Set the value of a variable from its name
+	 * @return 
+	 */
+	public void setVariableValue(Model m, String var, double setVal) {
+		for(Variable v : m.getVariableList()) {
+			if(var.equals(v.getVariableName())) {
+				v.setInputValueOne(setVal);
+			}
+		}
 	}
 	
 }

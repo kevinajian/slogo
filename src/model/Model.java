@@ -117,7 +117,7 @@ public class Model {
 		myTurtleVisible = turtleVisible;
 	}
 
-	public List getVariableList() {
+	public List<Variable> getVariableList() {
 		return myVariables;
 	}
 
