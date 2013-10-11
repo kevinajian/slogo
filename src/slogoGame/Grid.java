@@ -18,6 +18,7 @@ public class Grid extends JGObject{
 		int num = 10;
 		int xNum = myEngine.getWidth()/num;
 		int yNum = myEngine.getHeight()/num;
+		
 		for (int i = 0; i <= num; i++) //horizontal lines
 		{
 			l.add(new Line("line", 10, myEngine, 0, yNum*i, myEngine.getWidth(), yNum*i));
