@@ -1,11 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import commands.Command;
-
+import commands.basic_syntax.Variable;
 import parser.Constants;
 import parser.Parser;
 
@@ -19,7 +21,7 @@ public class Model {
 	private State myOrigin;
 	private String myTurtleVisible = Constants.TURTLE_SHOWING;
 	private String myPenVisible = Constants.PEN_SHOWING;
-	private Map<Command, Double> variableMap;
+	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
 
 	/**
@@ -116,12 +118,23 @@ public class Model {
 		myTurtleVisible = turtleVisible;
 	}
 
-	public Map<Command, Double> getVariableMap() {
-		return variableMap;
+	public List getVariableList() {
+		return myVariables;
 	}
 
-	public void setVariableMap(Map<Command, Double> variableMap) {
-		this.variableMap = variableMap;
+	public void setVariableList(List variableMap) {
+		myVariables = variableMap;
+	}
+	
+	public void addVariable(Command variable) {
+		myVariables.add((Variable) variable);
 	}
 
+	public Map getVariableMap() {
+		Map variableList = new HashMap();
+		for (Variable v:myVariables) {
+			variableList.put(v.getVariableName(), v.getInputValueOne());
+		}
+		return variableList;
+	}
 }

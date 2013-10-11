@@ -2,6 +2,7 @@ package controller;
 import view.View;
 
 import java.util.List;
+import java.util.Map;
 
 import model.Model;
 import model.State;
@@ -53,6 +54,10 @@ public class Controller {
 	public List<State> getStates() {
 		myModel.createStates();
 		return myModel.getStates();
+	}
+	
+	public Map getVariables() {
+		return myModel.getVariableMap();
 	}
 	
 }

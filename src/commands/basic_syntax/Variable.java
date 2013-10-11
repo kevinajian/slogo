@@ -8,7 +8,7 @@ public class Variable extends Command{
 	double myNumInputs = 1;
 	
 	public Variable(String variableName) {
-		this.myVariableName = variableName;
+		myVariableName = variableName;
 	}
 	
 	public String getVariableName() {

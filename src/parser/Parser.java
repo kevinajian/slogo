@@ -218,7 +218,7 @@ public class Parser {
 		}
 		else if (className.charAt(0) == Constants.VARIABLE_ID.charAt(0)) {
 			xyz = new Variable(className);
-			myModel.getVariableMap().put(xyz, 0.0);
+			myModel.addVariable(xyz);
 		} 
 		else {
 			xyz = (Command) Class.forName(toClass(className)).newInstance(); // IF THIS ISN"T FOUND WE SHOULD RETURN AT ERROR. 
