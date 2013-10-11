@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns 1 if the first input is less than the second input
+ * Returns 1 if the first input is less than the second input
  * else returns 0
  * @author Kevin
  *

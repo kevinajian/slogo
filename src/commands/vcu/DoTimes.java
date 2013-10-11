@@ -1,8 +1,12 @@
 package commands.vcu;
 
 import model.Model;
-import commands.Command;
 
+/**
+ * Runs the commands for each value specified in the range, i.e., from 0 up to (limit - 1).
+ * @author carlosreyes
+ *
+ */
 public class DoTimes extends For {
 	
 	private String myVariable;

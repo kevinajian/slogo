@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns 1 if two inputs are not zero
+ * Returns 1 if two inputs are not zero
  * else returns 0
  * @author Kevin
  */

@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * takes the log of the input value
+ * Takes the log of the input value
  * @author Kevin
  *
  */

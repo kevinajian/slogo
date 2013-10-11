@@ -4,6 +4,12 @@ import parser.Constants;
 import model.Model;
 import commands.Command;
 
+/**
+ * Returns 1 if the turtle's pen in down.
+ * Returns 0 if its up.
+ * @author carlosreyes
+ *
+ */
 public class PenDown extends Command{
 
 	@Override

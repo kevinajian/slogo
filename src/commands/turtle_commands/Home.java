@@ -5,6 +5,13 @@ import commands.Command;
 import model.Model;
 import model.State;
 
+/**
+ * Returns the turtle to the 0,0 coordinate (center of the grid)
+ * and resets the orientation of the turtle to the default orientation.
+ * Returns the distance that the turtle moved to get to the origin.
+ * @author carlosreyes
+ *
+ */
 public class Home extends Command {
 	
 	@Override

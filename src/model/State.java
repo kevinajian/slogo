@@ -1,7 +1,7 @@
 package model;
 
 /**
- * set of x and y coordinates as well as orientation
+ * Set of x and y coordinates as well as orientation
  * @author Kevin, Carlos
  */
 public class State {
@@ -12,7 +12,7 @@ public class State {
 	private String myTurtleVisible;
 	
 	/**
-	 * constructor that sets x, y and orientation
+	 * Constructor that sets x, y and orientation
 	 * @param x - double of x coordinate of turtle
 	 * @param y - double of y coordinate of turtle
 	 * @param orientation - double of degree that the turtle is facing
@@ -26,7 +26,7 @@ public class State {
 	}
 
 	/**
-	 * gets x coordinate of state
+	 * Gets x coordinate of state
 	 * @return - double of x coordinate
 	 */
 	public double getX() {
@@ -34,7 +34,7 @@ public class State {
 	}
 	
 	/**
-	 * gets y coordinate of state
+	 * Gets y coordinate of state
 	 * @return - double of y coordinate
 	 */
 	public double getY() {
@@ -42,7 +42,7 @@ public class State {
 	}
 	
 	/**
-	 * gets orientation coordinate of state
+	 * Gets orientation coordinate of state
 	 * @return - double of degree
 	 */
 	public double getOrientation() {

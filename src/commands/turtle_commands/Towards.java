@@ -5,6 +5,13 @@ import model.Model;
 import model.State;
 import commands.Command;
 
+/**
+ * Changes the orientation of the turtle to be facing
+ * coordinates x,y as specified.
+ * Returns the number of degrees that the turtle turned.
+ * @author carlosreyes
+ *
+ */
 public class Towards extends Command{
 
 	@Override
@@ -18,6 +25,7 @@ public class Towards extends Command{
 		double newY = directionY - y;
 		double calculation = Math.toDegrees(Math.atan(newX / newY));
 		double newOrientation;
+		
 		if (newX > 0) {
 			newOrientation = Constants.RIGHT_ANGLE - calculation;
 		}

@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns random number less than input
+ * returns Random number less than input
  * @author Kevin
  *
  */

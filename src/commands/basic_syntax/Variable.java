@@ -11,10 +11,18 @@ public class Variable extends Command{
 		myVariableName = variableName;
 	}
 	
+	/**
+	 * Gets the variable name that was set.
+	 * @return String variable name
+	 */
 	public String getVariableName() {
 		return myVariableName;
 	}
 	
+	/**
+	 * Sets the variable name to something different
+	 * @param variableName
+	 */
 	public void setVariableName(String variableName) {
 		myVariableName = variableName;
 	}

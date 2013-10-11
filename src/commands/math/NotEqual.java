@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns 1 if two values are not equal to each other
+ * Returns 1 if two values are not equal to each other
  * else returns 0
  * @author Kevin
  *

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import commands.Command;
 import commands.basic_syntax.Variable;
@@ -23,6 +22,14 @@ public class Model {
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
+
+	public List<Command> getMyCommands() {
+		return myCommands;
+	}
+
+	public void setMyCommands(List<Command> myCommands) {
+		this.myCommands = myCommands;
+	}
 
 	/**
 	 * gets degree of current state
@@ -118,7 +125,7 @@ public class Model {
 		myTurtleVisible = turtleVisible;
 	}
 
-	public List getVariableList() {
+	public List<Variable> getVariableList() {
 		return myVariables;
 	}
 

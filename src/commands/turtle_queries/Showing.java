@@ -4,6 +4,12 @@ import parser.Constants;
 import model.Model;
 import commands.Command;
 
+/**
+ * Returns 1 if the turtle is showing.
+ * Returns 0 otherwise.
+ * @author carlosreyes
+ *
+ */
 public class Showing extends Command {
 
 	@Override

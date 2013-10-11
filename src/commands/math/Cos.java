@@ -15,5 +15,21 @@ public class Cos extends Command{
 	public double evaluate(Model model) {
 		return Math.cos(Math.toRadians(getInputValueOne()));
 	}
+	
+	/**
+	 * Gets the number of inputs
+	 * @return
+	 */
+	public int getMyNumInputs() {
+		return myNumInputs;
+	}
+
+	/**
+	 * Sets the number of inputs
+	 * @param myNumInputs
+	 */
+	public void setMyNumInputs(int myNumInputs) {
+		this.myNumInputs = myNumInputs;
+	}
 
 }

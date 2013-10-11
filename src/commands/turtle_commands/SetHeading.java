@@ -5,6 +5,12 @@ import commands.Command;
 import model.Model;
 import model.State;
 
+/**
+ * Turns the turtle to face an absolute degree given.
+ * Returns the number of degrees moved.
+ * @author carlosreyes
+ *
+ */
 public class SetHeading extends Command {
 
 	@Override
