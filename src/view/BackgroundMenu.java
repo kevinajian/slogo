@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import javax.swing.JMenu;
 
 import slogoGame.TurtleGame;
@@ -9,15 +7,18 @@ import slogoGame.TurtleGame;
 import java.util.ResourceBundle;
 
 @SuppressWarnings("serial")
-public class ColorMenu extends JMenu {
+public class BackgroundMenu extends JMenu {
 
 	private ResourceBundle myResources;
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
 
-	public ColorMenu(String menuName, TurtleGame game){
+	public BackgroundMenu(String menuName, TurtleGame game){
 		super(menuName);
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
+		String lumpedColors = myResources.getString("Colors");
+		String Colors[] = lumpedColors.split(" ");
 		
-		add(new ColorAction(myResources.getString("Color1"),game));
+		for (String color : Colors)
+			add(new ColorAction(color,game));
 	}
 }

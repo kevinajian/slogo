@@ -14,12 +14,12 @@ public class ColorAction extends AbstractAction {
 	public ColorAction(String color,TurtleGame game){
 		super(color);
 		myColor = color;
-		myGame = game;
+		myGame = game;		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		myGame.setBackground(myColor);
 	}
 
 }

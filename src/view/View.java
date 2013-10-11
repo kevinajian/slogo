@@ -56,7 +56,7 @@ public class View extends JFrame{
         JMenuBar result = new JMenuBar();
         result.add(makeFileMenu());
         result.add(makeHelpMenu());
-        result.add(makeBackgroundMenu());
+        result.add(new BackgroundMenu(myResources.getString("BackgroundMenu"), myTurtleGame));
         result.add(makePenColorMenu());
         result.add(makeTurtleMenu());
         return result;
@@ -79,16 +79,6 @@ public class View extends JFrame{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-            }
-        });
-		return result;	
-	}
-    
-    private JMenu makeBackgroundMenu() {
-		JMenu result = new JMenu(myResources.getString("BackgroundMenu"));
-        result.add(new AbstractAction(myResources.getString("Color1")) {
-            public void actionPerformed (ActionEvent e) {
-            	
             }
         });
 		return result;	
