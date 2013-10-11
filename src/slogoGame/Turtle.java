@@ -3,7 +3,7 @@ package slogoGame;
 import jgame.*;
 import jgame.platform.JGEngine;
 
-public class Turtle extends JGObject{
+public class Turtle extends JGObject implements Constants{
 	private JGEngine myEngine;
 	private String myImage;
 	private String myName;
@@ -35,5 +35,10 @@ public class Turtle extends JGObject{
 		myName = "turtle";
 		myImage = myName+0;
 		amCustom = false;
+	}
+	@Override
+	public void setPos(double x, double y){
+		this.x = x + DEFAULT_WIDTH/2 - DEFAULT_IMAGE_WIDTH/2;
+		this.y = y + DEFAULT_HEIGHT/2 - DEFAULT_IMAGE_HEIGHT/2;
 	}
 }

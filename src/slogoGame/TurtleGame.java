@@ -15,9 +15,9 @@ import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 
 @SuppressWarnings("serial")
-public class TurtleGame extends JGEngine{
+public class TurtleGame extends JGEngine implements Constants{
 	private JGColor myPenColor;
-	private JGColor myBackgroundColor;
+	//private JGColor myBackgroundColor;
 	private Map<String,JGColor> colorMap = new HashMap<String,JGColor>();
 	public Turtle squirt;
 	public Grid g;
@@ -28,12 +28,14 @@ public class TurtleGame extends JGEngine{
 		setCanvasSettings(80,30,16,16,JGColor.blue,JGColor.blue,null); 
 	}*/
 
-	public TurtleGame() {initEngine(800, 600);}
+	public TurtleGame() {initEngine(DEFAULT_WIDTH, DEFAULT_HEIGHT);}
 
 	public void initCanvas() { 
 		initEngineApplet();
 		//setScalingPreferences(1,1,0,0,0,0);   ???
-		setCanvasSettings(80,30,10,20,JGColor.blue,JGColor.white,null); 
+		setCanvasSettings(DEFAULT_WIDTH/DEFAULT_TILE_SIZE,
+				DEFAULT_HEIGHT/DEFAULT_TILE_SIZE,DEFAULT_TILE_SIZE,
+				DEFAULT_TILE_SIZE,JGColor.blue,JGColor.white,null); 
 	}
 
 	public TurtleGame(JGPoint size) {initEngine(size.x,size.y);}
@@ -82,6 +84,10 @@ public class TurtleGame extends JGEngine{
 			return;
 		myPenColor = colorBG;
 		System.out.println(color);
+	}
+	
+	public JGColor getPenColor(){
+		return myPenColor;
 	}
 
 	private JGColor getJGColor(String color){
