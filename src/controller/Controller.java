@@ -37,22 +37,23 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<Line> trail = getLines();
+		//List<Line> trail = getLines();
 		double[] turtlePosition = getTurtle();
-		for (Line line:trail) {
+/*		for (Line line:trail) {
 			//view.drawLine
-		}
-		//view.drawTurtle
+		}*/
+		myView.drawTurtle(turtlePosition);
 	}
 	
-	/**
+/*	*//**
 	 * passes user input to model to process
 	 * @param input - String of user input 
 	 * @throws Exception 
-	 */
+	 *//*
 	public void processString(String string) throws Exception{
 		myModel.processString(string);
-	}
+		myView.
+	}*/
 	
 	/**
 	 * gets current State of turtle

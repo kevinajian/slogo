@@ -9,7 +9,7 @@ public class Turtle extends JGObject implements Constants{
 	private String myName;
 	private boolean amCustom;
 	public Turtle(String name, int collisionid, JGEngine tgame) {
-		super(name, false, tgame.getWidth(), tgame.getHeight(), collisionid, null);
+		super(name, false, 0, 0, collisionid, null);
 		myEngine = tgame;
 		myName = "turtle";
 		myImage = myName+0;

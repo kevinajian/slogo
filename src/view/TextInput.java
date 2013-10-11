@@ -35,7 +35,12 @@ public class TextInput extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					System.out.println(myField.getText());
-					//myView.sendString(myField.getText());
+					try {
+						myView.sendString(myField.getText());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					myField.setText("");
 				}
 	        });
@@ -53,7 +58,12 @@ public class TextInput extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					System.out.println(myField.getText());
-					//myView.sendString(myField.getText());
+					try {
+						myView.sendString(myField.getText());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					myField.setText("");
 				}
 	        });

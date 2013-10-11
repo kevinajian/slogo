@@ -131,4 +131,10 @@ public class View extends JFrame{
                                       JOptionPane.ERROR_MESSAGE);
     }
 
+	public void drawTurtle(double[] turtlePosition) {
+		// TODO Auto-generated method stub
+		myTurtleGame.squirt.setPos(turtlePosition[0],turtlePosition[1]);
+		myTurtleGame.squirt.rotate(turtlePosition[2]);
+	}
+
 }
