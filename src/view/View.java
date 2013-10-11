@@ -56,6 +56,9 @@ public class View extends JFrame{
         JMenuBar result = new JMenuBar();
         result.add(makeFileMenu());
         result.add(makeHelpMenu());
+        result.add(makeBackgroundMenu());
+        result.add(makePenColorMenu());
+        result.add(makeTurtleMenu());
         return result;
 	}
     private JMenu makeHelpMenu() {
@@ -78,8 +81,63 @@ public class View extends JFrame{
 				}
             }
         });
-		return result;
-		
+		return result;	
+	}
+    
+    private JMenu makeBackgroundMenu() {
+		JMenu result = new JMenu(myResources.getString("BackgroundMenu"));
+        result.add(new AbstractAction(myResources.getString("Color1")) {
+            public void actionPerformed (ActionEvent e) {
+            	
+            }
+        });
+		return result;	
+	}
+    
+    private JMenu makePenColorMenu() {
+		JMenu result = new JMenu(myResources.getString("PenMenu"));
+        result.add(new AbstractAction(myResources.getString("HelpCommand")) {
+            public void actionPerformed (ActionEvent e) {
+            	String helpPage = "http://www.cs.duke.edu/courses/fall13/compsci308/assign/03_slogo/commands.php";
+            	URI myNewLocation = null;
+            	java.awt.Desktop myNewBrowserDesktop = java.awt.Desktop.getDesktop();
+            	try {
+					myNewLocation = new java.net.URI(helpPage);
+				} catch (URISyntaxException e1) {
+					helpPage = "www.google.com";
+				}
+				try {
+					myNewBrowserDesktop.browse(myNewLocation);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        });
+		return result;	
+	}
+    
+    private JMenu makeTurtleMenu() {
+		JMenu result = new JMenu(myResources.getString("TurtleMenu"));
+        result.add(new AbstractAction(myResources.getString("HelpCommand")) {
+            public void actionPerformed (ActionEvent e) {
+            	String helpPage = "http://www.cs.duke.edu/courses/fall13/compsci308/assign/03_slogo/commands.php";
+            	URI myNewLocation = null;
+            	java.awt.Desktop myNewBrowserDesktop = java.awt.Desktop.getDesktop();
+            	try {
+					myNewLocation = new java.net.URI(helpPage);
+				} catch (URISyntaxException e1) {
+					helpPage = "www.google.com";
+				}
+				try {
+					myNewBrowserDesktop.browse(myNewLocation);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+            }
+        });
+		return result;	
 	}
 
 	protected JMenu makeFileMenu () {

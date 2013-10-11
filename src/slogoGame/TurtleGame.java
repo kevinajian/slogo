@@ -8,6 +8,8 @@ import jgame.platform.JGEngine;
 
 @SuppressWarnings("serial")
 public class TurtleGame extends JGEngine{
+	private JGColor myPenColor;
+	private JGColor myBackgroundColor;
 	public Turtle squirt;
 	
 	public TurtleGame() {initEngineApplet();}
