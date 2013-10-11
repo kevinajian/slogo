@@ -16,7 +16,7 @@ public class TurtleGame extends JGEngine{
 	private JGColor myBackgroundColor;
 	private Map<String,JGColor> colorMap = new HashMap<String,JGColor>();
 	public Turtle squirt;
-
+	public Grid g;
 	/*	public TurtleGame() {initEngineApplet();}
 
 	public void initCanvas() { 
@@ -38,6 +38,7 @@ public class TurtleGame extends JGEngine{
 		setCursor(null);
 		defineImages();
 		squirt = new Turtle("turtle", 50, this);
+		g = new Grid("grid", 69, this);
 		colorMap.put("Blue", JGColor.blue);
 		colorMap.put("Red", JGColor.red);
 		colorMap.put("White", JGColor.white);
@@ -84,6 +85,7 @@ public class TurtleGame extends JGEngine{
 
 	public void paintFrameTitle() {
 		squirt.paint();
+		g.paint();
 	}
 
 	public void doFrameTitle() {
