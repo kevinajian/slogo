@@ -28,6 +28,7 @@ public class TurtleGame extends JGEngine{
 
 	public void initCanvas() { 
 		initEngineApplet();
+		//setScalingPreferences(1,1,0,0,0,0);   ???
 		setCanvasSettings(80,30,10,20,JGColor.blue,JGColor.white,null); 
 	}
 
