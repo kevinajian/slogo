@@ -58,6 +58,7 @@ public class TurtleGame extends JGEngine{
 		if (colorBG == null)
 			return;
 		myPenColor = colorBG;
+		System.out.println(color);
 	}
 
 	private JGColor getJGColor(String color){

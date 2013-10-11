@@ -7,11 +7,11 @@ import javax.swing.AbstractAction;
 import slogoGame.TurtleGame;
 
 @SuppressWarnings("serial")
-public class ColorAction extends AbstractAction {
-	private String myColor;
-	private TurtleGame myGame;
+public class BackgroundAction extends AbstractAction {
+	protected String myColor;
+	protected TurtleGame myGame;
 
-	public ColorAction(String color,TurtleGame game){
+	public BackgroundAction(String color,TurtleGame game){
 		super(color);
 		myColor = color;
 		myGame = game;		
