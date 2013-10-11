@@ -1,7 +1,7 @@
 package commands.math;
 
 import model.Model;
-import commands.TwoInput;
+import commands.Command;
 
 /**
  * Takes the sum of two values.
@@ -9,7 +9,7 @@ import commands.TwoInput;
  * @author carlosreyes
  *
  */
-public class Sum extends TwoInput {
+public class Sum extends Command {
 	
 	@Override
 	public double evaluate(Model model) {

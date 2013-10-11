@@ -10,6 +10,7 @@ import model.State;
 import org.junit.Test;
 
 import parser.Constants;
+import commands.basic_syntax.Constant;
 import commands.turtle_commands.Forward;
 import commands.turtle_commands.Left;
 import commands.turtle_queries.Heading;
@@ -30,7 +31,9 @@ public class QueryTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Left left = new Left();
-		left.setInputList(new ArrayList<Double>(){{add(90.0);}});
+		Constant leftChild = new Constant();
+		leftChild.setInputValueOne(90.0);
+		left.setLeftChild(leftChild);
 		left.evaluate(model);
 		Heading heading = new Heading();
 		assertEquals(heading.evaluate(model), 270.0, 0.0);
@@ -40,6 +43,9 @@ public class QueryTest {
 	public void testPenDown() {
 		Model model = new Model();		
 		PenDown penDown = new PenDown();
+		Constant left = new Constant();
+		left.setInputValueOne(30.0);
+		penDown.setLeftChild(left);
 		assertEquals(penDown.evaluate(model), 1, 0.0);
 		
 		SetPenUp setPenUp = new SetPenUp();
@@ -51,7 +57,6 @@ public class QueryTest {
 		assertEquals(penDown.evaluate(model), 1, 0.0);
 	}
 
-	
 	@Test
 	public void testShowing() {
 		Model model = new Model();
@@ -72,7 +77,9 @@ public class QueryTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Forward forward = new Forward();
-		forward.setInputList(new ArrayList<Double>(){{add(1.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(1.0);
+		forward.setLeftChild(left);
 		forward.evaluate(model);
 		XCor xCor = new XCor();
 		assertEquals(xCor.evaluate(model), 0.0, 0.0);
@@ -83,7 +90,9 @@ public class QueryTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Forward forward = new Forward();
-		forward.setInputList(new ArrayList<Double>(){{add(1.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(1.0);
+		forward.setLeftChild(left);
 		forward.evaluate(model);
 		YCor yCor = new YCor();
 		assertEquals(yCor.evaluate(model), 1.0, 0.0);

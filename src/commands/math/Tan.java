@@ -1,14 +1,14 @@
 package commands.math;
 
 import model.Model;
-import commands.OneInput;
+import commands.Command;
 
 /**
- * returns tan of input value
+ * Returns tan of input value
  * @author Kevin, Carlos
  *
  */
-public class Tan extends OneInput {
+public class Tan extends Command {
 
 	@Override
 	public double evaluate(Model model) {

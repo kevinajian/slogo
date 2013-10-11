@@ -1,11 +1,17 @@
 package commands.turtle_commands;
 
 import parser.Constants;
-import commands.OneInput;
+import commands.Command;
 import model.Model;
 import model.State;
 
-public class SetHeading extends OneInput {
+/**
+ * Turns the turtle to face an absolute degree given.
+ * Returns the number of degrees moved.
+ * @author carlosreyes
+ *
+ */
+public class SetHeading extends Command {
 
 	@Override
 	public double evaluate(Model model) {		

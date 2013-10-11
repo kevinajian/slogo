@@ -1,31 +1,32 @@
 package commands.basic_syntax;
 
-import java.util.List;
-
 import model.Model;
-import commands.OneInput;
-import parser.Constants;
+import commands.Command;
 
-public class Variable extends OneInput{
+public class Variable extends Command{
 	String myVariableName = null;
-	double myVariableValue = Constants.VARIABLE_DEFAULT;
+	double myNumInputs = 1;
 	
+	public Variable(String variableName) {
+		myVariableName = variableName;
+	}
+	
+	/**
+	 * Gets the variable name that was set.
+	 * @return String variable name
+	 */
 	public String getVariableName() {
 		return myVariableName;
 	}
 	
+	/**
+	 * Sets the variable name to something different
+	 * @param variableName
+	 */
 	public void setVariableName(String variableName) {
 		myVariableName = variableName;
 	}
 	
-	public double getVariableValue() {
-		return myVariableValue;
-	}
-	
-	public void setVariableValue(double variableValue) {
-		myVariableValue = variableValue;
-	}
-
 	@Override
 	public double evaluate(Model model) {
 		return getInputValueOne();

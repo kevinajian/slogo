@@ -1,7 +1,7 @@
 package commands.turtle_commands;
 
 import parser.Constants;
-import commands.OneInput;
+import commands.Command;
 import model.Model;
 import model.State;
 
@@ -11,7 +11,7 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class Right extends OneInput {
+public class Right extends Command {
 
 	@Override
 	public double evaluate(Model model) {

@@ -49,7 +49,7 @@ public class View extends JFrame{
     }
     
 	public void sendString(String string) throws Exception {
-		myController.processString(string);
+		myController.processInput(string);
 	}
 
     /**

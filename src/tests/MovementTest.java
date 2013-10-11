@@ -17,6 +17,7 @@ import commands.turtle_commands.Right;
 import commands.turtle_commands.SetHeading;
 import commands.turtle_commands.SetXY;
 import commands.turtle_commands.Towards;
+import commands.basic_syntax.Constant;
 
 public class MovementTest {
 	
@@ -25,7 +26,9 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Forward forward = new Forward();
-		forward.setInputList(new ArrayList<Double>(){{add(1.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(1.0);
+		forward.setLeftChild(left);
 		assertEquals(forward.evaluate(model), 1.0, 0.0);
 		
 		State state = new State(0.0, 1.0, 0.0, "1", "1");
@@ -42,7 +45,9 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Back back = new Back();
-		back.setInputList(new ArrayList<Double>(){{add(5.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(5.0);
+		back.setLeftChild(left);
 		assertEquals(back.evaluate(model), 5.0, 0.0);
 		
 		State state = new State(0.0, -5.0, 0.0, "1", "1");
@@ -59,7 +64,9 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Left left = new Left();
-		left.setInputList(new ArrayList<Double>(){{add(90.0);}});
+		Constant leftChild = new Constant();
+		leftChild.setInputValueOne(90.0);
+		left.setLeftChild(leftChild);
 		assertEquals(left.evaluate(model), 90.0, 0.0);
 
 		State state = new State(0.0, 0.0, 270.0, "1", "1");
@@ -76,7 +83,9 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Right right = new Right();
-		right.setInputList(new ArrayList<Double>(){{add(40.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(40.0);
+		right.setLeftChild(left);
 		assertEquals(right.evaluate(model), 40.0, 0.0);
 		
 		State state = new State(0.0, 0.0, 40.0, "1", "1");
@@ -93,7 +102,9 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Forward forward = new Forward();
-		forward.setInputList(new ArrayList<Double>(){{add(5.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(5.0);
+		forward.setLeftChild(left);
 		forward.evaluate(model);
 		State modelState = model.getCurrentState();
 		Home home = new Home();
@@ -113,7 +124,12 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		SetXY setXY = new SetXY();
-		setXY.setInputList(new ArrayList<Double>(){{add(3.0); add(4.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(3.0);
+		setXY.setLeftChild(left);
+		Constant right = new Constant();
+		right.setInputValueOne(4.0);
+		setXY.setRightChild(right);
 		assertEquals(setXY.evaluate(model), 5.0, 0.0);
 		
 		State state = new State(3.0, 4.0, 0.0, "1", "1");
@@ -130,7 +146,9 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		SetHeading setHeading = new SetHeading();
-		setHeading.setInputList(new ArrayList<Double>(){{add(380.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(380.0);
+		setHeading.setLeftChild(left);
 		assertEquals(setHeading.evaluate(model), 20.0, 0.0);
 		
 		State state = new State(0.0, 0.0, 20.0, "1", "1");
@@ -147,25 +165,37 @@ public class MovementTest {
 		Model model = new Model();
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
 		Towards towards = new Towards();
-		towards.setInputList(new ArrayList<Double>(){{add(-1.0); add(-1.0);}});
+		Constant left = new Constant();
+		left.setInputValueOne(-1.0);
+		towards.setLeftChild(left);
+		Constant right = new Constant();
+		right.setInputValueOne(-1.0);
+		towards.setRightChild(right);
+		
 		assertEquals(towards.evaluate(model), 225.0, 0.0);
 
-		towards.setInputList(new ArrayList<Double>(){{add(0.0); add(1.0);}});
+		left.setInputValueOne(0.0);
+		right.setInputValueOne(1.0);
 		assertEquals(towards.evaluate(model), 225, 0.0);
 
-		towards.setInputList(new ArrayList<Double>(){{add(-1.0); add(1.0);}});
+		left.setInputValueOne(-1.0);
+		right.setInputValueOne(1.0);
 		assertEquals(towards.evaluate(model), 315.0, 0.0);
 
-		towards.setInputList(new ArrayList<Double>(){{add(0.0); add(0.0);}});
+		left.setInputValueOne(0.0);
+		right.setInputValueOne(0.0);
 		assertEquals(towards.evaluate(model), 315.0, 0.0);
 
-		towards.setInputList(new ArrayList<Double>(){{add(1.0); add(-1.0);}});
+		left.setInputValueOne(1.0);
+		right.setInputValueOne(-1.0);
 		assertEquals(towards.evaluate(model), 135.0, 0.0);
 		
-		towards.setInputList(new ArrayList<Double>(){{add(0.0); add(0.0);}});
+		left.setInputValueOne(0.0);
+		right.setInputValueOne(0.0);
 		assertEquals(towards.evaluate(model), 135.0, 0.0);
 
-		towards.setInputList(new ArrayList<Double>(){{add(1.0); add(1.0);}});
+		left.setInputValueOne(1.0);
+		right.setInputValueOne(1.0);
 		assertEquals(towards.evaluate(model), 45.0, 0.0);
 	}
 }

@@ -1,15 +1,15 @@
 package commands.math;
 
 import model.Model;
-import commands.TwoInput;
+import commands.Command;
 
 /**
- * returns 1 if two values are not equal to each other
+ * Returns 1 if two values are not equal to each other
  * else returns 0
  * @author Kevin
  *
  */
-public class NotEqual extends TwoInput {
+public class NotEqual extends Command {
 	
 	@Override
 	public double evaluate(Model model) {

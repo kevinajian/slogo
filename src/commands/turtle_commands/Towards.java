@@ -3,9 +3,16 @@ package commands.turtle_commands;
 import parser.Constants;
 import model.Model;
 import model.State;
-import commands.TwoInput;
+import commands.Command;
 
-public class Towards extends TwoInput{
+/**
+ * Changes the orientation of the turtle to be facing
+ * coordinates x,y as specified.
+ * Returns the number of degrees that the turtle turned.
+ * @author carlosreyes
+ *
+ */
+public class Towards extends Command{
 
 	@Override
 	public double evaluate(Model model) {
@@ -18,6 +25,7 @@ public class Towards extends TwoInput{
 		double newY = directionY - y;
 		double calculation = Math.toDegrees(Math.atan(newX / newY));
 		double newOrientation;
+		
 		if (newX > 0) {
 			newOrientation = Constants.RIGHT_ANGLE - calculation;
 		}

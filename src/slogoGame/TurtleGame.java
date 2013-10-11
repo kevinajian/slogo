@@ -1,7 +1,6 @@
 package slogoGame;
 
 import jgame.JGColor;
-import jgame.JGFont;
 import jgame.JGPoint;
 import jgame.platform.JGEngine;
 

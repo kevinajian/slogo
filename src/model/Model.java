@@ -1,8 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import commands.Command;
+import commands.basic_syntax.Variable;
 import parser.Constants;
 import parser.Parser;
 
@@ -16,15 +20,17 @@ public class Model {
 	private State myOrigin;
 	private String myTurtleVisible = Constants.TURTLE_SHOWING;
 	private String myPenVisible = Constants.PEN_SHOWING;
+	private List<Variable> myVariables = new ArrayList<Variable>();
+	private List<Command> myCommands = new ArrayList<Command>();
 
-	/**
-	 * initializes the model
-	 */
-	public void initiate(){
-		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
-		myStates.add(myOrigin);
+	public List<Command> getMyCommands() {
+		return myCommands;
 	}
-	
+
+	public void setMyCommands(List<Command> myCommands) {
+		this.myCommands = myCommands;
+	}
+
 	/**
 	 * gets degree of current state
 	 * @return - double of current orientation
@@ -64,6 +70,14 @@ public class Model {
 	public List<State> getStates() {
 		return myStates;
 	}
+	
+	public void createStates() {
+		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
+		myStates.add(myOrigin);
+		for (Command c:myCommands){
+			c.evaluate(this);
+		}
+	}
 
 	/**
 	 * get current state of the turtle
@@ -72,7 +86,15 @@ public class Model {
 	public State getCurrentState() {
 		return myStates.get(myStates.size()-1);
 	}
-
+	
+	public List<Command> getCommands() {
+		return myCommands;
+	}
+	
+	public void setCommands(List<Command> commands) {
+		myCommands = commands;
+	}
+	
 	/**
 	 * processes user input, sends through parser
 	 * @param input - user input
@@ -103,4 +125,23 @@ public class Model {
 		myTurtleVisible = turtleVisible;
 	}
 
+	public List<Variable> getVariableList() {
+		return myVariables;
+	}
+
+	public void setVariableList(List variableMap) {
+		myVariables = variableMap;
+	}
+	
+	public void addVariable(Command variable) {
+		myVariables.add((Variable) variable);
+	}
+
+	public Map getVariableMap() {
+		Map variableList = new HashMap();
+		for (Variable v:myVariables) {
+			variableList.put(v.getVariableName(), v.getInputValueOne());
+		}
+		return variableList;
+	}
 }

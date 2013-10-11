@@ -17,12 +17,28 @@ public class NInputs extends Command{
 	 * @param numCommands - Number of commands
 	 */
 	public NInputs(String commandName, int numParams, int numCommands){
-		myCommandName = commandName;
+		setMyCommandName(commandName);
 		myNumInputs = numCommands;
 	}
 
 	@Override
 	public double evaluate(Model model) {
 		return 0;
+	}
+	
+	/**
+	 * Gets the name of the command
+	 * @return name of command
+	 */
+	public String getMyCommandName() {
+		return myCommandName;
+	}
+	
+	/**
+	 * Sets command name
+	 * @param myCommandName
+	 */
+	public void setMyCommandName(String myCommandName) {
+		this.myCommandName = myCommandName;
 	}
 }

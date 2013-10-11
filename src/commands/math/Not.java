@@ -1,15 +1,15 @@
 package commands.math;
 
 import model.Model;
-import commands.OneInput;
+import commands.Command;
 
 /**
- * returns 1 if input value is 0
+ * Returns 1 if input value is 0
  * else returns 0
  * @author Kevin
  *
  */
-public class Not extends OneInput {
+public class Not extends Command {
 
 	@Override
 	public double evaluate(Model model) {

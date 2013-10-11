@@ -1,14 +1,14 @@
 package commands.math;
 
 import model.Model;
-import commands.OneInput;
+import commands.Command;
 
 /**
- * atan operation on one input
+ * Atan operation on one input
  * @author Kevin, Carlos
  *
  */
-public class ATan extends OneInput {
+public class ATan extends Command {
 
 	@Override
 	public double evaluate(Model model) {

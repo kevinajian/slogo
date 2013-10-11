@@ -1,25 +1,25 @@
 package parser;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import model.Model;
 import commands.Command;
-import commands.NInputs;
-import commands.OneInput;
-import commands.TwoInput;
-import commands.turtle_commands.Forward;
-import java.lang.Throwable;
+import commands.basic_syntax.Constant;
+import commands.basic_syntax.Variable;
+import commands.vcu.*;
+
 
 /**
- * Parses user input
- * @author Kevin, Carlos
+ * Takes in input String and tokenizes this. Uses these
+ * tokens in a recursive parse tree to build and execute the
+ * commands as they are converted into their classes when
+ * building the tree.
+ * @author carlosreyes, Kevin
  *
  */
 public class Parser {
-	private List<Command> commandList = new ArrayList<Command>();
+	private List<String> inputs;
 	private Model myModel;
 	
 	public Parser(Model model){
@@ -27,76 +27,213 @@ public class Parser {
 	}
 	
 	/**
-	 * splits user input and passes results to lexer
+	 * Splits user input and passes results to lexer
 	 * @param input - String of user input
 	 * @throws Exception 
 	 */
-	public void parse(String input) throws Exception{
+	public List<String> parse(String input) throws Exception{
 		input.toUpperCase();
-		String [] list = input.split("\\s+");
+		String [] list = input.split(Constants.INPUT_SPLITTER);
 		List<String> inputs = new ArrayList<String>();
-		for (String item:list){
-			inputs.add(item);
+//		List<String> output = new ArrayList<String>();
+//		Collections.copy(inputs, output);
+		for(String string:list){
+			inputs.add(string);
 		}
-		lexer(inputs);
+		myModel.setCommands(lexer(inputs));
+		return inputs;//output;
 	}
 	
 	/**
-	 * creates Command objects from user input, executes the commands as soon as they are found,
-	 * traversing the array of split strings from back to front. The commands are executed based
-	 * on how many input statements they take, they are executed, and the return values are 
-	 * placed back in the list of commands as strings where they were taken out.
-	 * @param inputs - List<String> of user input 
-	 * @throws Exception 
+	 * Makes a list of trees by storing their root, loops over
+	 * all commands tokenized by the parse method, and calls
+	 * treebuilder, putting the root in an array of roots.
+	 * @param inputs
+	 * @throws Exception
 	 */
-	private void lexer(List<String> inputs) throws Exception{
-		
-		for(int j = inputs.size()-1; j>=0; j--) { //traverses the array of string inputs BACKWARDS
-			List<Double> inputList  = new ArrayList<Double>();
-
-			if(inputs.get(j).matches("-?[0-9]+\\.?[0-9]*")) { //If the one we're on is a constant,
-				continue; //move on!!!!!!!!!!!!!!!!
+	public List<Command> lexer(List<String> inputs) throws Exception{
+		List<Command> rootList = new ArrayList<Command>();
+		List<String> inputList = new ArrayList<String>();
+		while(inputs.size() > 1) {
+			Command headNode = getClass(inputs.get(0));
+			if(headNode instanceof ControlStructure) {
+				controlTree(headNode, inputList);
 			}
-			
-			if(getClass(inputs.get(j)) instanceof NInputs) {
-				//find first brackets, set to loop counter, pass to class
-				//find second bracket stuff, pass to class
-			}
-			
-			else { //otherwise, if its not a constant
-				Command current = getClass(inputs.get(j));
-				double n = current.getNumInputs(); //then set n = # of params that command needs 
-				for(double m=1; m<=n; m++) { //go forward in the list n spots
-					inputList.add(j+m); //add the constants to a list of commands that will be fed to our command
-					inputs.remove(j+1); //remove what we added
-				}
-				current.setInputList(inputList); // feeds list of input parameters into the command
-				Double newVal = current.evaluate(myModel); // executes command, sets result to newVal
-				inputs.set(j, newVal.toString()); //we will put newVal in the place where the other shit was
-			}
+			treeBuilder(headNode, inputs);
+			inputs.remove(0);
+			rootList.add(headNode);
 		}
-		
-		if(inputs.size() > 1) {
-			throw new Exception("Invalid command");
-		}
+		return rootList;
 	}
 	
-	private Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
-		Command xyz = (Command) Class.forName(toClass(className)).newInstance();
+	/**
+	 * Recursively builds a tree of commands from a list of
+	 * Strings. Creates instances of the appropriate classes
+	 * when it encounters strings of the same name and executes
+	 * the function of the classes.
+	 * @param root
+	 * @return Command which is the root Node of the tree
+	 * @throws Exception
+	 */
+	 public Command treeBuilder(Command root, List<String> inputs) throws Exception{
+		
+//		if (root.getMyCommand() instanceof ControlStructure){
+//		}
+
+		if (root instanceof Constant) {
+			System.out.println("root");
+			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
+			return root;
+		}	
+		 
+		if (root.getNumInputs() == 0) {
+			return root;
+		}
+
+		//was instance of TwoInputs
+		if (root.getNumInputs() == 2) {
+			System.out.println("2");
+			Command curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.setLeftChild(treeBuilder(curr, inputs));
+			
+			curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.setRightChild(treeBuilder(curr, inputs));
+		}
+
+		//was instance of OneInput
+		if (root.getNumInputs() == 1) {
+			System.out.println("1");
+			System.out.println(inputs.get(1));
+			Command curr = getClass(inputs.get(1));
+			inputs.remove(0);
+			root.setLeftChild(treeBuilder(curr, inputs));
+		}
+		
+		//Should this be here?
+		return root;
+	}
+	
+	private Command controlTree(Command root, List<String> inputList) throws Exception {	
+		if(root instanceof DoTimes){
+			int openBracket = inputList.indexOf("[");
+			int closeBracket = makeParameterList(openBracket, inputList);
+			List<String> params = new ArrayList<String>();
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				params.add(inputList.get(i));
+			}
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				inputList.remove(i);
+			}
+			DoTimes doTimes = new DoTimes();
+			doTimes.setMyVariable(params.get(0));			
+			doTimes.setMyMax(Double.parseDouble(params.get(1)));
+			
+			inputList = inputList.subList(openBracket, closeBracket);
+			lexer(inputList);
+			
+		}
+		
+		if(root instanceof For) {
+			int openBracket = inputList.indexOf("[");
+			int closeBracket = makeParameterList(openBracket, inputList);
+			List<String> params = new ArrayList<String>();
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				params.add(inputList.get(i));
+			}
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				inputList.remove(i);
+			}
+			For forLoop = new For();
+			forLoop.setMyVariable(params.get(0));			
+			forLoop.setMyValue(Double.parseDouble(params.get(1)));
+			forLoop.setMyMax(Double.parseDouble(params.get(2)));
+			
+			inputList = inputList.subList(openBracket, closeBracket);
+			lexer(inputList);
+			
+		}
+		
+		if(root instanceof Repeat) {
+			int openBracket = inputList.indexOf("[");
+			int closeBracket = makeParameterList(openBracket, inputList);
+			List<String> params = new ArrayList<String>();
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				params.add(inputList.get(i));
+			}
+			for(int i=openBracket+1; i < closeBracket; i ++) {
+				inputList.remove(i);
+			}
+			Repeat repeat = new Repeat();
+			repeat.setMyExpression(params.get(0));			
+			inputList = inputList.subList(openBracket, closeBracket);
+			lexer(inputList);
+		}
+		
+		return root;
+		
+	}
+	
+	private int makeParameterList(int firstBracket, List<String> inputList) {
+		int bcount = 1;
+		
+		for(int i=firstBracket+1; i < inputList.size(); i ++) {
+			if (bcount <= 0) {
+				return i;
+			}
+			if (inputList.get(i).equals("]")){
+				i--;
+			}
+			if(inputList.get(i).equals("[")) {
+				i++;
+			}
+			else {
+				continue;
+			}
+		}
+		
+		return 1;
+	
+}
+	
+	/**
+	 * Creates a class from a string. If its a variable, make it of type variable
+	 * and add its name to a map in model which maps the variable name (including
+	 * the ':' to the value (which is set by default to 0.
+	 * Otherwise a new command is created based on the String passed.
+	 * @param className
+	 * @return A class that is a subclass of Command, based off of the string given.
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 */
+	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+		//check if it starts with ':' if so its a variable
+		Command xyz;
+		if (className.matches(Constants.CONSTANT_ID)) {
+			xyz = new Constant();
+			xyz.setInputValueOne(Double.parseDouble(className));
+		}
+		else if (className.charAt(0) == Constants.VARIABLE_ID.charAt(0)) {
+			xyz = new Variable(className);
+			myModel.addVariable(xyz);
+		} 
+		else {
+			xyz = (Command) Class.forName(toClass(className)).newInstance(); // IF THIS ISN"T FOUND WE SHOULD RETURN AT ERROR. 
+		}
 		return xyz;
 	}
-
-	private static final String PATH = "commands.*";
 	
+	/**
+	 * Gets file path from String that represents a class.
+	 * @param in
+	 * @return String that is the package path to that class.
+	 */
 	public String toClass(String in) {
-		return PATH + in;
+		FindFilePath filePath = new FindFilePath(in);
+		return filePath.makePath();
 	}
 	
 	
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-
-		String className = "commands.turtle_commands.direction.Forward";
-		Object xyz = Class.forName(className).newInstance();
-		System.out.println(xyz.getClass()); 
-	}
 }

@@ -1,11 +1,18 @@
 package commands.turtle_commands;
 
 import parser.Constants;
-import commands.OneInput;
+import commands.Command;
 import model.Model;
 import model.State;
 
-public class Home extends OneInput {
+/**
+ * Returns the turtle to the 0,0 coordinate (center of the grid)
+ * and resets the orientation of the turtle to the default orientation.
+ * Returns the distance that the turtle moved to get to the origin.
+ * @author carlosreyes
+ *
+ */
+public class Home extends Command {
 	
 	@Override
 	public double evaluate(Model model) {

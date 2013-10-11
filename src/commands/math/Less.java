@@ -1,15 +1,15 @@
 package commands.math;
 
 import model.Model;
-import commands.TwoInput;
+import commands.Command;
 
 /**
- * returns 1 if the first input is less than the second input
+ * Returns 1 if the first input is less than the second input
  * else returns 0
  * @author Kevin
  *
  */
-public class Less extends TwoInput {
+public class Less extends Command {
 
 	@Override
 	public double evaluate(Model model) {

@@ -1,8 +1,11 @@
 package controller;
 import view.View;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import parser.Constants;
 import model.Model;
 import model.State;
 
@@ -27,11 +30,19 @@ public class Controller {
 		myModel=model;
 	}
 	
-	/**
-	 * creates display and command window, sets origin in model
-	 */
-	public void initiate(){
-		myModel.initiate();
+	public void processInput(String string) {
+		try {
+			myModel.processString(string);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<Line> trail = getLines();
+		double[] turtlePosition = getTurtle();
+		for (Line line:trail) {
+			//view.drawLine
+		}
+		//view.drawTurtle
 	}
 	
 	/**
@@ -41,8 +52,6 @@ public class Controller {
 	 */
 	public void processString(String string) throws Exception{
 		myModel.processString(string);
-		//myModel.getOutput();
-		//myView.setOutput();
 	}
 	
 	/**
@@ -54,13 +63,37 @@ public class Controller {
 	}
 	
 	/**
-	 * gets states to give to view to create
-	 * images on screen.  FREE SEX MONEY: WE ALSO NEED TO
-	 * PARSE THE INFO INTO A LIST OF LISTS
-	 * @return List of states
+	 * gets turtle states
+	 * @return List of Lines that create trail
 	 */
-	public List<State> getStates() { 
+	public List<State> getStates() {
+		myModel.createStates();
 		return myModel.getStates();
+	}
+	
+	public List<Line> getLines() {
+		List<State> states = getStates();
+		List<Line> lines = new ArrayList<Line>();
+		for (int i=0; i<states.size()-1; i++){
+		
+			Line line = new Line();
+			line.setCoord1(states.get(i).getX(), states.get(i).getY()); 
+			line.setCoord2(states.get(i+1).getX(), states.get(i+1).getY());
+			lines.add(line);
+		}
+		return lines;
+	}
+	
+	public double[] getTurtle() {
+		if (myModel.getCurrentState().getTurtleVisible().equals(Constants.TURTLE_NOTSHOWING)) return null;
+		else {
+			double[] coordinates = {myModel.getX(), myModel.getY(), myModel.getOrientation()};
+			return coordinates;
+		}
+	}
+	
+	public Map getVariables() {
+		return myModel.getVariableMap();
 	}
 	
 }
