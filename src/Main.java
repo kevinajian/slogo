@@ -19,5 +19,4 @@ public class Main {
 		view.setController(controller);
 		controller.initiate();
 	}
-	
 }

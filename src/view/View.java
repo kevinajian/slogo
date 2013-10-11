@@ -57,7 +57,7 @@ public class View extends JFrame{
         result.add(makeFileMenu());
         result.add(makeHelpMenu());
         result.add(new BackgroundMenu(myResources.getString("BackgroundMenu"), myTurtleGame));
-        result.add(makePenColorMenu());
+        result.add(new PenColorMenu(myResources.getString("PenMenu"), myTurtleGame));
         result.add(makeTurtleMenu());
         return result;
 	}
