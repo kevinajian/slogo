@@ -1,5 +1,6 @@
 package commands.vcu;
 
+import commands.Command;
 import commands.basic_syntax.Variable;
 
 import model.Model;
@@ -46,6 +47,9 @@ public class For extends ControlStructure{
 		//iteration of the loop
 		double result = 0.0;
 		for(double i=myValue; i<myMax; i+= myIncrement) {
+			for (Command command : model.getCommands()) {
+				result = command.evaluate(model);
+			}
 			setVariableValue(model, myVariable, result);
 		}
 		return 0;

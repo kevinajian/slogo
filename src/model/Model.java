@@ -23,6 +23,14 @@ public class Model {
 	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
 
+	public List<Command> getMyCommands() {
+		return myCommands;
+	}
+
+	public void setMyCommands(List<Command> myCommands) {
+		this.myCommands = myCommands;
+	}
+
 	/**
 	 * gets degree of current state
 	 * @return - double of current orientation
