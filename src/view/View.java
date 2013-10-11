@@ -59,57 +59,11 @@ public class View extends JFrame{
         result.add(new BackgroundMenu(myResources.getString("BackgroundMenu"), myTurtleGame));
         result.add(new PenColorMenu(myResources.getString("PenMenu"), myTurtleGame));
         result.add(new GridMenu(myResources.getString("GridMenu"), myTurtleGame));
-        result.add(makeTurtleMenu());
+        result.add(new TurtleMenu(myResources.getString("TurtleMenu"), myTurtleGame));
         return result;
 	}
     private JMenu makeHelpMenu() {
 		JMenu result = new JMenu(myResources.getString("HelpMenu"));
-        result.add(new AbstractAction(myResources.getString("HelpCommand")) {
-            public void actionPerformed (ActionEvent e) {
-            	String helpPage = "http://www.cs.duke.edu/courses/fall13/compsci308/assign/03_slogo/commands.php";
-            	URI myNewLocation = null;
-            	java.awt.Desktop myNewBrowserDesktop = java.awt.Desktop.getDesktop();
-            	try {
-					myNewLocation = new java.net.URI(helpPage);
-				} catch (URISyntaxException e1) {
-					helpPage = "www.google.com";
-				}
-				try {
-					myNewBrowserDesktop.browse(myNewLocation);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            }
-        });
-		return result;	
-	}
-    
-    private JMenu makePenColorMenu() {
-		JMenu result = new JMenu(myResources.getString("PenMenu"));
-        result.add(new AbstractAction(myResources.getString("HelpCommand")) {
-            public void actionPerformed (ActionEvent e) {
-            	String helpPage = "http://www.cs.duke.edu/courses/fall13/compsci308/assign/03_slogo/commands.php";
-            	URI myNewLocation = null;
-            	java.awt.Desktop myNewBrowserDesktop = java.awt.Desktop.getDesktop();
-            	try {
-					myNewLocation = new java.net.URI(helpPage);
-				} catch (URISyntaxException e1) {
-					helpPage = "www.google.com";
-				}
-				try {
-					myNewBrowserDesktop.browse(myNewLocation);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            }
-        });
-		return result;	
-	}
-    
-    private JMenu makeTurtleMenu() {
-		JMenu result = new JMenu(myResources.getString("TurtleMenu"));
         result.add(new AbstractAction(myResources.getString("HelpCommand")) {
             public void actionPerformed (ActionEvent e) {
             	String helpPage = "http://www.cs.duke.edu/courses/fall13/compsci308/assign/03_slogo/commands.php";

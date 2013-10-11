@@ -3,12 +3,16 @@ package slogoGame;
 import jgame.JGColor;
 import jgame.impl.*;
 import jgame.JGFont;
+import jgame.JGObject;
 import jgame.JGPoint;
 import jgame.platform.JGEngine;
 
 import java.awt.Color;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 
 @SuppressWarnings("serial")
 public class TurtleGame extends JGEngine{
@@ -48,6 +52,23 @@ public class TurtleGame extends JGEngine{
 		colorMap.put("Black", JGColor.black);		
 		setGameState("Title");
 	}
+	
+	public void setTurtleImage(String image){
+		if(image.equals("Star"))
+			squirt.changeImage("star");
+		else{
+			JFileChooser myChooser = new JFileChooser(System.getProperties().getProperty("user.dir"));
+            try {
+                int response = myChooser.showOpenDialog(null);
+                if (response == JFileChooser.APPROVE_OPTION) {
+                    new FileReader(myChooser.getSelectedFile());
+                }
+            }
+            catch (IOException io) {
+                System.out.println("exploded -- no file");
+            }
+		}
+	}
 
 	public void setBackground(String color){
 		JGColor colorBG = getJGColor(color);
@@ -79,11 +100,15 @@ public class TurtleGame extends JGEngine{
 	}
 
 	public void defineImages(){
-		//defineImage("loser","-",0,"loser.png","-");
+		for (int i = 0; i < 8; i++){
+			defineImage("turtle"+i,"-",0,"../resources/Turtle"+i+".png","-");
+		}
+		defineImage("star","-",0,"../resources/Star.png","-");
 	}
 
 	public void startTitle() {
 		removeObjects(null,0);
+		//new JGObject("z_turtle",false,0,0,0,"turtle0",0,0);
 	}
 
 	public void paintFrameTitle() {
@@ -93,6 +118,21 @@ public class TurtleGame extends JGEngine{
 	}
 
 	public void doFrameTitle() {
-
+		if (getKey(' ')) {
+			clearKey(' ');
+			squirt.rotate(Math.random()*360);
+		}
+		if (getMouseButton(1)){
+			clearMouseButton(1);
+			squirt.setPos(getMouseX(), getMouseY());
+		}
+		if (getKey(KeyEnter)){
+			clearKey(KeyEnter);
+			squirt.changeImage("star");
+		}
+		if (getKey('D')){
+			clearKey('D');
+			squirt.restoreDefaultImage();
+		}
 	}
 }

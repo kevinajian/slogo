@@ -1,21 +1,39 @@
 package slogoGame;
 
-import org.jbox2d.collision.CircleDef;
-
 import jgame.*;
-import jgame.impl.*;
 import jgame.platform.JGEngine;
 
 public class Turtle extends JGObject{
 	private JGEngine myEngine;
+	private String myImage;
+	private String myName;
+	private boolean amCustom;
 	public Turtle(String name, int collisionid, JGEngine tgame) {
-		super(name, true, tgame.getWidth(), tgame.getHeight(), collisionid, null);
+		super(name, false, tgame.getWidth(), tgame.getHeight(), collisionid, null);
 		myEngine = tgame;
-		// TODO Auto-generated constructor stub
+		myName = "turtle";
+		myImage = myName+0;
+		amCustom = false;
 	}
 	public void paint()
 	{
-		myEngine.setColor( JGColor.red );
-		myEngine.drawOval(myEngine.getWidth(), 50, (float)5*2, (float)5*2, true, true );//radius of 5
+		myEngine.drawImage(x, y, myImage);
+	}
+	public void rotate(double degree){
+		if(amCustom)
+			return;
+		degree = degree/45;
+		degree = Math.floor(degree);
+		myImage = myName+(int)degree;
+	}
+	public void changeImage(String name){
+		myName = name;
+		myImage = name;
+		amCustom = true;
+	}
+	public void restoreDefaultImage(){
+		myName = "turtle";
+		myImage = myName+0;
+		amCustom = false;
 	}
 }
