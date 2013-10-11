@@ -1,8 +1,10 @@
 package commands.vcu;
 
-import model.Model;
-import commands.Command;
-
+/**
+ * Assigns the value of expr to variable, creating the variable if necessary
+ * Returns expression
+ * @author carlosreyes
+ */
 public class Make extends ControlStructure {
 	
 	private String variable;

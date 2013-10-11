@@ -4,6 +4,8 @@ import model.Model;
 
 /**
  * Command class, has number of parameters and a list of those parameters
+ * also holds the left and right children commands for use with the recursive
+ * syntax tree.
  * @author Kevin, Carlos
  */
 public abstract class Command {
@@ -15,23 +17,23 @@ public abstract class Command {
 	
 	 
 	/**
-	 * gets number of parameters this command holds
-	 * @return
+	 * Gets number of parameters this command holds
+	 * @return number of inputs
 	 */
 	public int getNumInputs(){
 		return myNumInputs;
 	}
 	
 	/**
-	 * evaluates operations using parameters
-	 * @param model TODO
+	 * Evaluates operations using parameters
+	 * @param model
 	 * @param paramList - List<Double> of parameters
 	 * @return - double of result
 	 */
 	public abstract double evaluate(Model model);
 	
 	/**
-	 * gets input value
+	 * Gets input value
 	 * @return - double of input value
 	 */
 	public double getInputValueOne() {
@@ -39,19 +41,23 @@ public abstract class Command {
 	}
 	
 	/**
-	 * sets input value
+	 * Sets input value
 	 * @param inputValue - value to be set 
 	 */
 	public void setInputValueOne(double inputValue) {
 		myLeftChild.setInputValueOne(inputValue);
 	}
 	
+	/**
+	 * Sets left child (type command) of this command
+	 * @param leftChild (Command)
+	 */
 	public void setLeftChild(Command leftChild){
 		myLeftChild = leftChild;
 	}
 	
 	/**
-	 * gets second input value
+	 * Dets second input value
 	 * @return - double of first input value
 	 */
 	public double getInputValueTwo() {
@@ -59,13 +65,17 @@ public abstract class Command {
 	}
 	
 	/**
-	 * sets second input value
+	 * Sets second input value
 	 * @param inputValueTwo - double of value to be set
 	 */
 	public void setInputValueTwo(double inputValueTwo) {
 		myRightChild.setInputValueOne(inputValueTwo);
 	}
 	
+	/**
+	 * Sets the right child of this command
+	 * @param rightChild (Command)
+	 */
 	public void setRightChild(Command rightChild){
 		myRightChild = rightChild;
 	}

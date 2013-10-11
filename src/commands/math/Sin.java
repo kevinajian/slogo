@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns sin of input value
+ * Returns sin of input value
  * @author Kevin, Carlos
  *
  */

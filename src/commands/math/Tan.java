@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns tan of input value
+ * Returns tan of input value
  * @author Kevin, Carlos
  *
  */

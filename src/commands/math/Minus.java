@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns negative of input value
+ * Returns negative of input value
  * @author Kevin
  *
  */

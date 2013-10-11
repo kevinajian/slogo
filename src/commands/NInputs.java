@@ -25,11 +25,19 @@ public class NInputs extends Command{
 	public double evaluate(Model model) {
 		return 0;
 	}
-
+	
+	/**
+	 * Gets the name of the command
+	 * @return name of command
+	 */
 	public String getMyCommandName() {
 		return myCommandName;
 	}
-
+	
+	/**
+	 * Sets command name
+	 * @param myCommandName
+	 */
 	public void setMyCommandName(String myCommandName) {
 		this.myCommandName = myCommandName;
 	}

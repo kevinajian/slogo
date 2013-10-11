@@ -2,8 +2,16 @@ package commands.vcu;
 
 import model.Model;
 
+/**
+ * If expr is not 0, runs the commands given in the list.
+ * Returns the value of the final command executed.
+ * @author carlosreyes
+ *
+ */
 public class If extends Repeat {
+	
 	private String myExpression;
+	
 	public String getMyExpression() {
 		return myExpression;
 	}

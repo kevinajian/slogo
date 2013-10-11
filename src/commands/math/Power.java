@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * returns power of input value
+ * Returns power of input value
  * @author Kevin
  *
  */

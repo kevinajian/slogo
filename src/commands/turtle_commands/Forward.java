@@ -21,7 +21,6 @@ public class Forward extends Command {
 		super.myNumInputs = 1;
 	}
 	
-	
 	@Override
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();

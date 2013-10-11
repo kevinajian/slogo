@@ -2,6 +2,11 @@ package commands.vcu;
 
 import model.Model;
 
+/**
+ * Runs the commands for each value specified in the range, i.e., from start up to end, going by increment.
+ * @author carlosreyes
+ *
+ */
 public class For extends ControlStructure{
 	
 	private String myVariable;

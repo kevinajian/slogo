@@ -4,7 +4,7 @@ import model.Model;
 import commands.Command;
 
 /**
- * checks if two values are equal
+ * Checks if two primitive values are equal
  * @author Kevin
  *
  */
