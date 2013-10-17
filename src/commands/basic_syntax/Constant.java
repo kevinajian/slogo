@@ -21,8 +21,4 @@ public class Constant extends Command {
 		myValue = inputValue;
 	}
 
-	@Override
-	public double evaluate(Model model) {
-		return 0;
-	}
 }

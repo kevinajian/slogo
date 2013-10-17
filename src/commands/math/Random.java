@@ -8,10 +8,10 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Random extends Command {
+public class Random extends MathOneInput {
 
 	@Override
-	public double evaluate(Model model) {
+	public double evaluate(Math model) {
 		return Math.random()*getInputValueOne();
 	}
 

@@ -4,8 +4,7 @@ import model.Model;
 import commands.Command;
 
 public class Variable extends Command{
-	String myVariableName = null;
-	double myNumInputs = 1;
+	String myVariableName;
 	
 	public Variable(String variableName) {
 		myVariableName = variableName;
@@ -25,11 +24,6 @@ public class Variable extends Command{
 	 */
 	public void setVariableName(String variableName) {
 		myVariableName = variableName;
-	}
-	
-	@Override
-	public double evaluate(Model model) {
-		return getInputValueOne();
 	}
 	
 }

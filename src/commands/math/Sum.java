@@ -9,16 +9,11 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class Sum extends Command {
+public class Sum extends MathTwoInput {
 	
 	@Override
-	public double evaluate(Model model) {
+	public double evaluate(Math model) {
 		return getInputValueOne() + getInputValueTwo();
-	}
-	
-	@Override
-	public double getInputValueOne() {
-		return super.getInputValueOne() + getInputValueTwo();
 	}
 
 }

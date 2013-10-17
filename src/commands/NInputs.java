@@ -21,11 +21,6 @@ public class NInputs extends Command{
 		myNumInputs = numCommands;
 	}
 
-	@Override
-	public double evaluate(Model model) {
-		return 0;
-	}
-	
 	/**
 	 * Gets the name of the command
 	 * @return name of command

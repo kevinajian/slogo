@@ -8,9 +8,9 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Equal extends Command{
+public class Equal extends MathTwoInput {
 	@Override
-	public double evaluate(Model model){
+	public double evaluate(Math model){
 		if (getInputValueOne() == getInputValueTwo()) {
 			return 1;
 		}

@@ -8,10 +8,10 @@ import commands.Command;
  * @author Kevin, Carlos
  *
  */
-public class Sin extends Command{
+public class Sin extends MathOneInput {
 
 	@Override
-	public double evaluate(Model model) {
+	public double evaluate(Math model) {
 		return Math.sin(Math.toRadians(getInputValueOne()));
 	}
 

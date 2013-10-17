@@ -8,10 +8,10 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Minus extends Command{
+public class Minus extends MathOneInput{
 
 	@Override
-	public double evaluate(Model model) {
+	public double evaluate(Math model) {
 		return -getInputValueOne();
 	}
 

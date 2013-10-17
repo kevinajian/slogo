@@ -92,11 +92,16 @@ public class MathTest {
 		assertEquals(log.evaluate(null), 1.61, 0.02);
 	}
 	
-//	@Test
-//	public void testPower() {
-//		Power power = new Power();
-//		power.setInputList(new ArrayList<Double>(){{add(24.0);}});
-//		assertEquals(power.evaluate(), 1.19, 0.02);
-//	}
+	@Test
+	public void testPower() {
+		Pow power = new Pow();
+		Constant left = new Constant();
+		left.setInputValueOne(4.0);
+		power.setLeftChild(left);
+		Constant right = new Constant();
+		right.setInputValueOne(2.0);
+		power.setRightChild(right);
+		assertEquals(power.evaluate(null), 16.0, 0.02);
+	}
 
 }

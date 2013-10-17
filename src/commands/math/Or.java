@@ -9,10 +9,10 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Or extends Command {
+public class Or extends MathTwoInput {
 	
 	@Override
-	public double evaluate(Model model) {
+	public double evaluate(Math model) {
 		if(getInputValueOne() != 0 || getInputValueTwo() != 0){
 			return 1;
 		}

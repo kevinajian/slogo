@@ -7,10 +7,10 @@ import commands.Command;
  * Returns the remainder of division
  * @author Kevin
  */
-public class Remainder extends Command {
+public class Remainder extends MathTwoInput {
 
 	@Override
-	public double evaluate(Model model) {
+	public double evaluate(Math model) {
 		return getInputValueOne() % getInputValueTwo();
 	}
 

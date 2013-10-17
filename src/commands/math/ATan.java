@@ -8,10 +8,10 @@ import commands.Command;
  * @author Kevin, Carlos
  *
  */
-public class ATan extends Command {
+public class ATan extends MathOneInput {
 
 	@Override
-	public double evaluate(Model model) {
+	public double evaluate(Math model) {
 		return Math.atan(getInputValueOne());
 	}
 
