@@ -12,7 +12,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class Towards extends Command{
+public class Towards extends Command {
 
 	@Override
 	public double evaluate(Model model) {

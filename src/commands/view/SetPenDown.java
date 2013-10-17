@@ -3,6 +3,7 @@ package commands.view;
 import parser.Constants;
 import model.Model;
 import commands.Command;
+import commands.CommandZeroInput;
 
 /**
  * Sets the pen position to down (1) so that the turtle can
@@ -11,7 +12,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class SetPenDown extends Command {
+public class SetPenDown extends CommandZeroInput {
 
 	@Override
 	public double evaluate(Model model) {

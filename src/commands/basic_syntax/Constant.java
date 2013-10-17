@@ -5,7 +5,7 @@ import commands.Command;
 import model.Model;
 
 public class Constant extends Command {
-	public double myValue;
+	public double myValue = 0;
 	
 	public Constant(){
 		super.myNumInputs = 0;

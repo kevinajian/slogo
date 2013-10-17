@@ -2,6 +2,7 @@ package commands.math;
 
 import model.Model;
 import commands.Command;
+import commands.CommandOneInput;
 
 /**
  * Returns 1 if input value is 0
@@ -9,10 +10,10 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Not extends MathOneInput {
+public class Not extends CommandOneInput {
 
 	@Override
-	public double evaluate(Math model) {
+	public double evaluate(Model model) {
 		if (getInputValueOne() == 0) {
 			return 1;
 		}

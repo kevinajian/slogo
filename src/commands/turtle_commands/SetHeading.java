@@ -2,6 +2,7 @@ package commands.turtle_commands;
 
 import parser.Constants;
 import commands.Command;
+import commands.CommandOneInput;
 import model.Model;
 import model.State;
 
@@ -11,7 +12,7 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class SetHeading extends Command {
+public class SetHeading extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {		

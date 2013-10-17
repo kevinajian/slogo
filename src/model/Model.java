@@ -14,7 +14,7 @@ import parser.Parser;
  * interprets user input and contains state
  * @author Kevin, Carlos
  */
-public class Model implements TurtleCommands, TurtleQueries, Math{
+public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	
 	private List<State> myStates = new ArrayList<State>();
 	private State myOrigin;

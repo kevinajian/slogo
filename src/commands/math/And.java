@@ -8,10 +8,10 @@ import commands.Command;
  * else returns 0
  * @author Kevin
  */
-public class And extends MathTwoInput {
+public class And extends Command {
 
 	@Override
-	public double evaluate(Math model) {
+	public double evaluate(Model model) {
 		if ((getInputValueTwo() != 0) && (getInputValueOne() != 0)) {
 			return 1;
 		}

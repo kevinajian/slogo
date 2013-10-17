@@ -1,8 +1,8 @@
 package commands.math;
 
-import commands.CommandTwoInput;
+import commands.Command;
 
-public abstract class MathTwoInput extends CommandTwoInput {
+public abstract class MathTwoInput extends Command {
 
 	public abstract double evaluate(Math model);
 }

@@ -11,7 +11,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class SetXY extends Command {
+public class SetXY extends Command{
 
 	@Override
 	public double evaluate(Model model) {

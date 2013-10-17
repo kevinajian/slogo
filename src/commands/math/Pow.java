@@ -8,10 +8,10 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Pow extends MathTwoInput {
+public class Pow extends Command {
 
 	@Override
-	public double evaluate(Math model) {
+	public double evaluate(Model model) {
 		return Math.pow(getInputValueOne(), getInputValueTwo());
 	}
 

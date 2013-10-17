@@ -3,6 +3,7 @@ package commands.turtle_queries;
 import parser.Constants;
 import model.Model;
 import commands.Command;
+import commands.CommandZeroInput;
 
 /**
  * Returns 1 if the turtle is showing.
@@ -10,7 +11,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class Showing extends Command {
+public class Showing extends CommandZeroInput  {
 
 	@Override
 	public double evaluate(Model model) {

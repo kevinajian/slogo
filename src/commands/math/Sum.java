@@ -9,10 +9,10 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class Sum extends MathTwoInput {
+public class Sum extends Command {
 	
 	@Override
-	public double evaluate(Math model) {
+	public double evaluate(Model model) {
 		return getInputValueOne() + getInputValueTwo();
 	}
 

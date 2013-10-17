@@ -2,6 +2,7 @@ package commands.view;
 
 import parser.Constants;
 import commands.Command;
+import commands.CommandZeroInput;
 import model.Model;
 import model.State;
 
@@ -12,7 +13,7 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class ClearScreen extends Command {
+public class ClearScreen extends CommandZeroInput {
 	
 	@Override
 	public double evaluate(Model model) {

@@ -1,5 +1,7 @@
 package commands;
 
+import model.Model;
+
 /**
 * Command class, has number of parameters and a list of those parameters
 * also holds the left and right children commands for use with the recursive
@@ -7,8 +9,9 @@ package commands;
 * @author Kevin, Carlos
 */
 public abstract class Command {
-	protected int myNumInputs = 1;
+	protected int myNumInputs = 2;
 	protected Command myLeftChild;
+	protected Command myRightChild;
 	
 	/**
 	 * Gets number of parameters this command holds
@@ -42,12 +45,41 @@ public abstract class Command {
 	public void setLeftChild(Command leftChild){
 		myLeftChild = leftChild;
 	}
+	
+	/**
+	 * Evaluates operations using parameters
+	 * @param model
+	 * @param paramList - List<Double> of parameters
+	 * @return - double of result
+	 */
+	public double evaluate(Model model) {
+		return getInputValueOne();
+	}
+
+	/**
+	 * Gets second input value
+	 * @return - double of first input value
+	 */
+	public double getInputValueTwo() {
+		return myRightChild.getInputValueOne();
+	}
+	
+	/**
+	 * Sets second input value
+	 * @param inputValueTwo - double of value to be set
+	 */
+	public void setInputValueTwo(double inputValueTwo) {
+		myRightChild.setInputValueOne(inputValueTwo);
+	}
+	
+	/**
+	 * Sets the right child of this command
+	 * @param rightChild (Command)
+	 */
+	public void setRightChild(Command rightChild){
+		myRightChild = rightChild;
+	}
+
 }
 
-//	/**
-//	 * Evaluates operations using parameters
-//	 * @param model
-//	 * @param paramList - List<Double> of parameters
-//	 * @return - double of result
-//	 */
-//	public abstract double evaluate(Model model);
+

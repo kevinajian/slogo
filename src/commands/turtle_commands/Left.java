@@ -2,6 +2,7 @@ package commands.turtle_commands;
 
 import parser.Constants;
 import commands.Command;
+import commands.CommandOneInput;
 import model.Model;
 import model.State;
 
@@ -11,11 +12,8 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class Left extends Command {
+public class Left extends CommandOneInput  {
 
-	public Left() {
-		super.myNumInputs = 1;
-	}
 	@Override
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();

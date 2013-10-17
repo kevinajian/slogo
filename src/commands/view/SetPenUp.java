@@ -3,6 +3,7 @@ package commands.view;
 import parser.Constants;
 import model.Model;
 import commands.Command;
+import commands.CommandZeroInput;
 
 /**
  * Sets the pen position to be up (0) so that line drawing cannot
@@ -11,7 +12,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class SetPenUp extends Command {
+public class SetPenUp extends CommandZeroInput {
 
 	@Override
 	public double evaluate(Model model) {

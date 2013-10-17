@@ -9,10 +9,10 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Greater extends MathTwoInput {
+public class Greater extends Command {
 	
 	@Override
-	public double evaluate(Math model) {
+	public double evaluate(Model model) {
 		if (getInputValueOne() > getInputValueTwo()) {
 			return 1;
 		}

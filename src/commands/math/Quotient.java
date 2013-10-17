@@ -9,10 +9,10 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class Quotient extends MathTwoInput {
+public class Quotient extends Command {
 
 	@Override
-	public double evaluate(Math model) {
+	public double evaluate(Model model) {
 		return getInputValueOne() / getInputValueTwo();
 	}
 

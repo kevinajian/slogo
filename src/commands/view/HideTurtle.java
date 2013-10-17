@@ -3,6 +3,7 @@ package commands.view;
 import parser.Constants;
 import model.Model;
 import commands.Command;
+import commands.CommandZeroInput;
 
 /**
  * Makes the turtle invisible (0).
@@ -10,7 +11,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class HideTurtle extends Command {
+public class HideTurtle extends CommandZeroInput {
 
 	@Override
 	public double evaluate(Model model) {
