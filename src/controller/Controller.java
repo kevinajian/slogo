@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import parser.Constants;
+import model.Constants;
 import model.Model;
 import model.State;
 
@@ -28,6 +28,10 @@ public class Controller {
 	public Controller(View view, Model model){
 		myView = view;
 		myModel=model;
+	}
+	
+	public void initiate() {
+		myModel.initiate();
 	}
 	
 	public void processInput(String string) {

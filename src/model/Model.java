@@ -7,7 +7,6 @@ import java.util.Map;
 
 import commands.Command;
 import commands.basic_syntax.Variable;
-import parser.Constants;
 import parser.Parser;
 
 /**
@@ -23,6 +22,11 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
 
+	public void initiate() {
+		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
+		myStates.add(myOrigin);
+	}
+	
 	/**
 	 * gets degree of current state
 	 * @return - double of current orientation
@@ -64,8 +68,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 	
 	public void createStates() {
-		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
-		myStates.add(myOrigin);
 		for (Command c:myCommands){
 			c.evaluate(this);
 		}

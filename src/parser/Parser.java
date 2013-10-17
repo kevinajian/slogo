@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import model.Constants;
 import model.Model;
 import commands.Command;
 import commands.basic_syntax.Constant;
@@ -118,7 +119,6 @@ public class Parser {
 //		}
 
 		if (root instanceof Constant) {
-			System.out.println("root");
 			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
 			return root;
 		}	
@@ -129,7 +129,6 @@ public class Parser {
 
 		//was instance of TwoInputs
 		if (root.getNumInputs() == 2) {
-			System.out.println("2");
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));
@@ -141,8 +140,6 @@ public class Parser {
 
 		//was instance of OneInput
 		if (root.getNumInputs() == 1) {
-			System.out.println("1");
-			System.out.println(inputs.get(1));
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));

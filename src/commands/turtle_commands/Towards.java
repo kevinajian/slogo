@@ -1,6 +1,6 @@
 package commands.turtle_commands;
 
-import parser.Constants;
+import model.Constants;
 import model.Model;
 import model.State;
 import commands.Command;

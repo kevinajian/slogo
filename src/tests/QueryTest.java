@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import model.Constants;
 import model.Model;
 import model.State;
 
 import org.junit.Test;
 
-import parser.Constants;
 import commands.basic_syntax.Constant;
 import commands.turtle_commands.Forward;
 import commands.turtle_commands.Left;

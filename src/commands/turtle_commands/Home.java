@@ -1,8 +1,8 @@
 package commands.turtle_commands;
 
-import parser.Constants;
 import commands.Command;
 import commands.CommandZeroInput;
+import model.Constants;
 import model.Model;
 import model.State;
 

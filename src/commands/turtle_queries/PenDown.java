@@ -1,6 +1,6 @@
 package commands.turtle_queries;
 
-import parser.Constants;
+import model.Constants;
 import model.Model;
 import commands.Command;
 import commands.CommandZeroInput;

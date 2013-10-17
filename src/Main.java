@@ -17,5 +17,6 @@ public class Main {
 		Model model = new Model();
 		Controller controller = new Controller(view, model);
 		view.setController(controller);
+		controller.initiate();
 	}
 }
