@@ -14,7 +14,7 @@ import parser.Parser;
  * interprets user input and contains state
  * @author Kevin, Carlos
  */
-public class Model {
+public class Model implements TurtleCommands, TurtleQueries, Math{
 	
 	private List<State> myStates = new ArrayList<State>();
 	private State myOrigin;
@@ -22,14 +22,6 @@ public class Model {
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
-
-	public List<Command> getMyCommands() {
-		return myCommands;
-	}
-
-	public void setMyCommands(List<Command> myCommands) {
-		this.myCommands = myCommands;
-	}
 
 	/**
 	 * gets degree of current state
