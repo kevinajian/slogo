@@ -1,7 +1,12 @@
 package parser;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import model.Model;
 import commands.Command;
@@ -26,6 +31,32 @@ public class Parser {
 		myModel = model;
 	}
 	
+	public Map<String, String> fileToMap(String filename) {
+		Map<String, String> propertiesMap = new HashMap<String, String>();
+		
+	    FileReader reader = null;
+		try {
+			reader = new FileReader(filename);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}		
+	    
+		Properties properties = new Properties();
+	    try {
+	        properties.load(reader);
+	      }
+	      catch (Exception e) {
+
+	      }
+		
+		for (String key : properties.stringPropertyNames()) {
+		    String value = properties.getProperty(key);
+		    propertiesMap.put(key, value);
+		}
+		return propertiesMap;
+		
+	}
+	
 	/**
 	 * Splits user input and passes results to lexer
 	 * @param input - String of user input
@@ -37,8 +68,14 @@ public class Parser {
 		List<String> inputs = new ArrayList<String>();
 //		List<String> output = new ArrayList<String>();
 //		Collections.copy(inputs, output);
-		for(String string:list){
-			inputs.add(string);
+		for(String string : list){
+			if(string.matches("-?\\d+(\\.\\d+)?")){
+				inputs.add(string);
+			}
+			else{
+				inputs.add(fileToMap("src/parser/Commands.properties").get(string.toUpperCase()));
+			}
+			//inputs.add(string);
 		}
 		myModel.setCommands(lexer(inputs));
 		return inputs;//output;
