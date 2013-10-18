@@ -261,8 +261,6 @@ public class Parser {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();
 	}
-<<<<<<< HEAD
-=======
 
 	public List<String> getInputs() {
 		return inputs;
@@ -272,6 +270,4 @@ public class Parser {
 		this.inputs = inputs;
 	}
 	
-	
->>>>>>> e52a5ed3844a600192b6b0254090d559e060c7c7
 }
