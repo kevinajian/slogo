@@ -18,7 +18,7 @@ import commands.view.SetPenDown;
 import commands.view.SetPenUp;
 import commands.view.ShowTurtle;
 
-public class ViewTest {
+public class ViewCommandTest {
 
 	@Test
 	public void testClearScreen() {

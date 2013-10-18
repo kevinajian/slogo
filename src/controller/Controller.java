@@ -41,24 +41,15 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//List<Line> trail = getLines();
 		getStates();
+		List<Line> trail = getLines();
+		for (Line line:trail) {
+			double[] currentLine = line.getLine();
+			myView.drawLine(currentLine);
+		}
 		double[] turtlePosition = getTurtle();
-/*		for (Line line:trail) {
-			//view.drawLine
-		}*/
 		myView.drawTurtle(turtlePosition);
 	}
-	
-/*	*//**
-	 * passes user input to model to process
-	 * @param input - String of user input 
-	 * @throws Exception 
-	 *//*
-	public void processString(String string) throws Exception{
-		myModel.processString(string);
-		myView.
-	}*/
 	
 	/**
 	 * gets current State of turtle
@@ -73,6 +64,7 @@ public class Controller {
 	 * @return List of Lines that create trail
 	 */
 	public List<State> getStates() {
+		System.out.println("Controller.getStates");
 		myModel.createStates();
 		return myModel.getStates();
 	}
@@ -81,11 +73,12 @@ public class Controller {
 		List<State> states = getStates();
 		List<Line> lines = new ArrayList<Line>();
 		for (int i=0; i<states.size()-1; i++){
-		
-			Line line = new Line();
-			line.setCoord1(states.get(i).getX(), states.get(i).getY()); 
-			line.setCoord2(states.get(i+1).getX(), states.get(i+1).getY());
-			lines.add(line);
+			if(states.get(i).getPenVisible().equals(Constants.PEN_SHOWING)){
+				Line line = new Line();
+				line.setCoord1(states.get(i).getX(), states.get(i).getY()); 
+				line.setCoord2(states.get(i+1).getX(), states.get(i+1).getY());
+				lines.add(line);
+			}
 		}
 		return lines;
 	}

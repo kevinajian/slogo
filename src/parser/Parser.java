@@ -67,8 +67,6 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		List<String> inputs = new ArrayList<String>();
-//		List<String> output = new ArrayList<String>();
-//		Collections.copy(inputs, output);
 		for(String string : list){
 			if(string.matches("-?\\d+(\\.\\d+)?")){
 				inputs.add(string);
@@ -76,7 +74,6 @@ public class Parser {
 			else{
 				inputs.add(fileToMap("src/parser/Commands.properties").get(string.toUpperCase()));
 			}
-			//inputs.add(string);
 		}
 		myModel.getStringCommands().addAll(inputs);
 		myModel.setCommands(lexer(inputs));
@@ -96,9 +93,9 @@ public class Parser {
 		List<String> inputList = new ArrayList<String>();
 		while(inputs.size() > 1) {
 			Command headNode = getClass(inputs.get(0));
-			if(headNode instanceof ControlStructure) {
-				controlTree(headNode, inputList);
-			}
+//			if(headNode instanceof ControlStructure) {
+//				controlTree(headNode, inputList);
+//			}
 			treeBuilder(headNode, inputs);
 			inputs.remove(0);
 			rootList.add(headNode);
@@ -129,7 +126,6 @@ public class Parser {
 			return root;
 		}
 
-		//was instance of TwoInputs
 		if (root.getNumInputs() == 2) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
@@ -140,14 +136,12 @@ public class Parser {
 			root.setRightChild(treeBuilder(curr, inputs));
 		}
 
-		//was instance of OneInput
 		if (root.getNumInputs() == 1) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));
 		}
 		
-		//Should this be here?
 		return root;
 	}
 	

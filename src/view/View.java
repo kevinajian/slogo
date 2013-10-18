@@ -10,6 +10,7 @@ import javax.swing.*;
 import slogoGame.TurtleGame;
 import controller.Controller;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 import jgame.*;
@@ -137,7 +138,7 @@ public class View extends JFrame{
 		myTurtleGame.squirt.rotate(turtlePosition[2]);
 	}
 	
-	public void drawLine(double[] LinesNShit){
+	public void drawLine(double[] currentLine){
 	}
 
 }
