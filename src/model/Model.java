@@ -21,6 +21,16 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
+	private Map<String, String> customCommandMap = new HashMap<String, String>();
+	private List<String> stringCommands = new ArrayList<String>();
+
+	public List<String> getStringCommands() {
+		return stringCommands;
+	}
+
+	public void setStringCommands(List<String> thisStringCommands) {
+		this.stringCommands = thisStringCommands;
+	}
 
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
@@ -141,4 +151,13 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		}
 		return variableList;
 	}
+
+	public Map<String, String> getCustomCommandMap() {
+		return customCommandMap;
+	}
+
+	public void setCustomCommandMap(Map<String, String> customCommandMap) {
+		this.customCommandMap = customCommandMap;
+	}
 }
+
