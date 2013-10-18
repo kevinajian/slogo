@@ -78,8 +78,10 @@ public class Parser {
 			}
 			//inputs.add(string);
 		}
+		myModel.getStringCommands().addAll(inputs);
 		myModel.setCommands(lexer(inputs));
 		return inputs;//output;
+		//return null;
 	}
 	
 	/**
@@ -267,6 +269,14 @@ public class Parser {
 	public String toClass(String in) {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();
+	}
+
+	public List<String> getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(List<String> inputs) {
+		this.inputs = inputs;
 	}
 	
 	

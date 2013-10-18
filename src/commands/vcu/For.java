@@ -50,7 +50,7 @@ public class For extends ControlStructure{
 			for (Command command : model.getCommands()) {
 				result = command.evaluate(model);
 			}
-			setVariableValue(model, myVariable, result);
+			// setVariableValue(model, myVariable, result);
 		}
 		return 0;
 	}
