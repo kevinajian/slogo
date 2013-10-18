@@ -26,6 +26,7 @@ public class Forward extends CommandOneInput {
 		double newX = x + distance*Math.sin(Math.toRadians(orientation));
 		double newY = y + distance*Math.cos(Math.toRadians(orientation));
 		
+		System.out.println("newx: "+newX+" newy: "+newY);
 		model.addState(new State(newX, newY, orientation, model.getTurtleVisible(), model.getPenVisible()));
 		
 		return getInputValueOne();

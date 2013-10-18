@@ -56,6 +56,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	 * @param state - state to be added
 	 */
 	public void addState(State state) {
+		System.out.println("model.addState");
 		myStates.add(state);	
 	}
 
@@ -69,6 +70,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	
 	public void createStates() {
 		for (Command c:myCommands){
+			System.out.println("model.createStates");
 			c.evaluate(this);
 		}
 	}
