@@ -13,7 +13,6 @@ public class Sum extends Command {
 	
 	@Override
 	public double evaluate(Model model) {
-		return getInputValueOne() + getInputValueTwo();
+		return super.getInputValueOne(model) + getInputValueTwo(model);
 	}
-
 }

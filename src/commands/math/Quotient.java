@@ -13,7 +13,7 @@ public class Quotient extends Command {
 
 	@Override
 	public double evaluate(Model model) {
-		return getInputValueOne() / getInputValueTwo();
+		return getInputValueOne(model) / getInputValueTwo(model);
 	}
 
 }

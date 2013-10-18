@@ -13,7 +13,7 @@ public class Or extends Command{
 	
 	@Override
 	public double evaluate(Model model) {
-		if(getInputValueOne() != 0 || getInputValueTwo() != 0){
+		if(getInputValueOne(model) != 0 || getInputValueTwo(model) != 0){
 			return 1;
 		}
 		return 0;

@@ -13,7 +13,7 @@ public class Product extends Command {
 
 	@Override
 	public double evaluate(Model model) {
-		return getInputValueOne() * getInputValueTwo();
+		return getInputValueOne(model) * getInputValueTwo(model);
 	}
 
 }

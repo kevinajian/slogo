@@ -13,7 +13,7 @@ public class ATan extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {
-		return Math.atan(getInputValueOne());
+		return Math.atan(getInputValueOne(model));
 	}
 
 }

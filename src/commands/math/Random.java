@@ -13,7 +13,7 @@ public class Random extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {
-		return Math.random()*getInputValueOne();
+		return Math.random()*getInputValueOne(model);
 	}
 
 }

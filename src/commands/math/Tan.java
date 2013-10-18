@@ -13,7 +13,7 @@ public class Tan extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {
-		return Math.tan(Math.toRadians(getInputValueOne()));
+		return Math.tan(Math.toRadians(getInputValueOne(model)));
 	}
 
 }

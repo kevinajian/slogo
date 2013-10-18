@@ -21,14 +21,14 @@ public class Back extends CommandOneInput {
 		double orientation = model.getOrientation();
 		double x = model.getX();
 		double y = model.getY();
-		double distance = getInputValueOne();
-	
+		double distance = getInputValueOne(model);
+		
 		double newX = x - distance*Math.sin(Math.toRadians(orientation));
 		double newY = y - distance*Math.cos(Math.toRadians(orientation));
 		
 		model.addState(new State(newX, newY, orientation, model.getTurtleVisible(), model.getPenVisible()));
 		
-		return getInputValueOne();
+		return getInputValueOne(model);
 	}
 	
 }

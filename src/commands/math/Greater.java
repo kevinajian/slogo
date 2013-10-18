@@ -13,7 +13,7 @@ public class Greater extends Command {
 	
 	@Override
 	public double evaluate(Model model) {
-		if (getInputValueOne() > getInputValueTwo()) {
+		if (getInputValueOne(model) > getInputValueTwo(model)) {
 			return 1;
 		}
 		return 0;

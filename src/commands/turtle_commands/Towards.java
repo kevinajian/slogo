@@ -19,8 +19,8 @@ public class Towards extends Command {
 		double orientation = model.getOrientation();
 		double x = model.getX();
 		double y = model.getY();
-		double directionX = getInputValueOne();
-		double directionY = getInputValueTwo();
+		double directionX = getInputValueOne(model);
+		double directionY = getInputValueTwo(model);
 		double newX = directionX - x;
 		double newY = directionY - y;
 		double calculation = Math.toDegrees(Math.atan(newX / newY));

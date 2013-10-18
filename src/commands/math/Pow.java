@@ -12,7 +12,7 @@ public class Pow extends Command {
 
 	@Override
 	public double evaluate(Model model) {
-		return Math.pow(getInputValueOne(), getInputValueTwo());
+		return Math.pow(getInputValueOne(model), getInputValueTwo(model));
 	}
 
 }

@@ -13,7 +13,7 @@ public class Log extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {
-		return Math.log(getInputValueOne());
+		return Math.log(getInputValueOne(model));
 	}
 
 }

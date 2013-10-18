@@ -13,7 +13,7 @@ public class Sin extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {
-		return Math.sin(Math.toRadians(getInputValueOne()));
+		return Math.sin(Math.toRadians(getInputValueOne(model)));
 	}
 
 }

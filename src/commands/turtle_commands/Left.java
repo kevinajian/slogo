@@ -17,11 +17,9 @@ public class Left extends CommandOneInput  {
 	@Override
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
-		double newOrientation = (orientation + Constants.DEGREES - getInputValueOne())%Constants.DEGREES;
-		System.out.println("new orientation: "+newOrientation);
-		
+		double newOrientation = (orientation + Constants.DEGREES - getInputValueOne(model))%Constants.DEGREES;
 		model.addState(new State(model.getX(), model.getY(), newOrientation, model.getTurtleVisible(), model.getPenVisible()));
 		
-		return getInputValueOne();
+		return getInputValueOne(model);
 	}
 }

@@ -13,7 +13,7 @@ public class Cos extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {
-		return Math.cos(Math.toRadians(getInputValueOne()));
+		return Math.cos(Math.toRadians(getInputValueOne(model)));
 	}
 
 }

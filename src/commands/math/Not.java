@@ -14,7 +14,7 @@ public class Not extends CommandOneInput {
 
 	@Override
 	public double evaluate(Model model) {
-		if (getInputValueOne() == 0) {
+		if (getInputValueOne(model) == 0) {
 			return 1;
 		}
 		return 0;

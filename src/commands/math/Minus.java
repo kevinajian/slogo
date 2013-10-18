@@ -13,7 +13,7 @@ public class Minus extends CommandOneInput{
 
 	@Override
 	public double evaluate(Model model) {
-		return -getInputValueOne();
+		return -getInputValueOne(model);
 	}
 
 }

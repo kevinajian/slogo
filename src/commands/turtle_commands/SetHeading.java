@@ -17,8 +17,8 @@ public class SetHeading extends CommandOneInput {
 	@Override
 	public double evaluate(Model model) {		
 		double orientation = model.getOrientation();
-		model.addState(new State(model.getX(), model.getY(), getInputValueOne()%Constants.DEGREES, model.getTurtleVisible(), model.getPenVisible()));
-		return Math.abs(getInputValueOne()%Constants.DEGREES - orientation);
+		model.addState(new State(model.getX(), model.getY(), getInputValueOne(model)%Constants.DEGREES, model.getTurtleVisible(), model.getPenVisible()));
+		return Math.abs(getInputValueOne(model)%Constants.DEGREES - orientation);
 	}
 
 }

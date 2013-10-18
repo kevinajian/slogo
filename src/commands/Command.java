@@ -25,9 +25,8 @@ public abstract class Command {
 	 * Gets input value
 	 * @return - double of input value
 	 */
-	public double getInputValueOne() {
-		
-		return myLeftChild.getInputValueOne();
+	public double getInputValueOne(Model model) {
+		return myLeftChild.evaluate(model);
 	}
 	
 	/**
@@ -53,15 +52,15 @@ public abstract class Command {
 	 * @return - double of result
 	 */
 	public double evaluate(Model model) {
-		return getInputValueOne();
+		return getInputValueOne(model);
 	}
 
 	/**
 	 * Gets second input value
 	 * @return - double of first input value
 	 */
-	public double getInputValueTwo() {
-		return myRightChild.getInputValueOne();
+	public double getInputValueTwo(Model model) {
+		return myRightChild.evaluate(model);
 	}
 	
 	/**

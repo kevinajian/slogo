@@ -12,7 +12,7 @@ public class And extends Command {
 
 	@Override
 	public double evaluate(Model model) {
-		if ((getInputValueTwo() != 0) && (getInputValueOne() != 0)) {
+		if ((getInputValueTwo(model) != 0) && (getInputValueOne(model) != 0)) {
 			return 1;
 		}
 		return 0;

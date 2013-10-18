@@ -15,7 +15,6 @@ import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
 import commands.vcu.*;
 
-
 /**
  * Takes in input String and tokenizes this. Uses these
  * tokens in a recursive parse tree to build and execute the
@@ -55,7 +54,6 @@ public class Parser {
 		    propertiesMap.put(key, value);
 		}
 		return propertiesMap;
-		
 	}
 	
 	/**
@@ -200,7 +198,6 @@ public class Parser {
 		}
 		
 		return root;
-		
 	}
 	
 	private int makeParameterList(int firstBracket, List<String> inputList) {
@@ -252,7 +249,7 @@ public class Parser {
 		}
 		return xyz;
 	}
-	
+
 	/**
 	 * Gets file path from String that represents a class.
 	 * @param in
@@ -262,6 +259,4 @@ public class Parser {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();
 	}
-	
-	
 }

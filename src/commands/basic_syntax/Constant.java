@@ -12,7 +12,7 @@ public class Constant extends Command {
 	}
 	
 	@Override
-	public double getInputValueOne() {
+	public double getInputValueOne(Model model) {
 		return myValue;
 	}
 	

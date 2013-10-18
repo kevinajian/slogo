@@ -69,8 +69,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 	
 	public void createStates() {
+		System.out.println("model.createStates");
 		for (Command c:myCommands){
-			System.out.println("model.createStates");
+			System.out.println("command num inputs: "+c.getNumInputs());
 			c.evaluate(this);
 		}
 	}
@@ -136,7 +137,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	public Map getVariableMap() {
 		Map variableList = new HashMap();
 		for (Variable v:myVariables) {
-			variableList.put(v.getVariableName(), v.getInputValueOne());
+			variableList.put(v.getVariableName(), v.getInputValueOne(this));
 		}
 		return variableList;
 	}

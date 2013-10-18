@@ -41,7 +41,6 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		getStates();
 		List<Line> trail = getLines();
 		for (Line line:trail) {
 			double[] currentLine = line.getLine();

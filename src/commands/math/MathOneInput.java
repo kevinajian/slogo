@@ -6,5 +6,4 @@ import commands.CommandOneInput;
 
 public abstract class MathOneInput extends CommandOneInput {
 
-	public abstract double evaluate(MathModel model);
 }

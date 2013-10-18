@@ -17,11 +17,11 @@ public class Right extends CommandOneInput  {
 	@Override
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
-		double newOrientation = (orientation + getInputValueOne())%Constants.DEGREES;
+		double newOrientation = (orientation + getInputValueOne(model))%Constants.DEGREES;
 		
 		model.addState(new State(model.getX(), model.getY(), newOrientation, model.getTurtleVisible(), model.getPenVisible()));
 		
-		return getInputValueOne();
+		return getInputValueOne(model);
 	}
 	
 }
