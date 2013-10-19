@@ -1,5 +1,11 @@
 package slogoGame;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import jgame.*;
 import jgame.platform.JGEngine;
 
@@ -30,11 +36,8 @@ public class Turtle extends JGObject implements Constants{
 	public void rotate(double degree){
 		if(amCustom)
 			return;
-		//degree = degree/45;
-		System.out.println(degree/10);
 		degree = Math.floor(degree/10);
 		myImage = myName+ (int)degree;
-		System.out.println(myImage);
 	}
 	public void changeImage(String name){
 		myName = name;
@@ -48,8 +51,20 @@ public class Turtle extends JGObject implements Constants{
 	}
 	@Override
 	public void setPos(double x, double y){
-		this.x = x + DEFAULT_WIDTH/2 - DEFAULT_IMAGE_WIDTH/2;
-		this.y = -y + DEFAULT_HEIGHT/2 - DEFAULT_IMAGE_HEIGHT/2;
+		int width;
+		int height;
+		BufferedImage bimg = null;
+		try {
+			bimg = ImageIO.read(new File("src/resources/turtle0.png"));
+			width = bimg.getWidth();
+			height = bimg.getHeight();
+		} catch (IOException e) {
+			width = DEFAULT_IMAGE_WIDTH2;
+			height = DEFAULT_IMAGE_HEIGHT2;
+			
+		}			
+		this.x = x + DEFAULT_WIDTH/2 - width/2;
+		this.y = -y + DEFAULT_HEIGHT/2 - height/2;
 	}
 	
 	public void drawPath(double[] currentLine) {
