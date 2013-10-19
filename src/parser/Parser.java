@@ -3,6 +3,7 @@ package parser;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,7 +95,9 @@ public class Parser {
 	public List<Command> lexer(List<String> inputs) throws Exception{
 		List<Command> rootList = new ArrayList<Command>();
 		List<String> inputList = new ArrayList<String>();
+		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() > 1) {
+			System.out.println(inputs);
 			Command headNode = getClass(inputs.get(0));
 //			if(headNode instanceof ControlStructure) {
 //				controlTree(headNode, inputList);

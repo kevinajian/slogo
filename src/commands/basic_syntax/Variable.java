@@ -40,7 +40,7 @@ public class Variable extends CommandZeroInput{
 	@Override
 	public double evaluate(Model model) {
 		//variableValue = myLeftChild.getInputValueOne(model);
-		System.out.println(model.getCustomCommandMap().get(myVariableName));
+		//System.out.println(model.getCustomCommandMap().get(myVariableName));
 		return model.getCustomCommandMap().get(myVariableName);
 	}
 	
