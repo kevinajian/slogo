@@ -108,8 +108,11 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void defineImages(){
-		for (int i = 0; i < 8; i++){
-			defineImage("turtle"+i,"-",0,"../resources/Turtle"+i+".png","-");
+//		for (int i = 0; i < 8; i++){
+//			defineImage("turtle"+i,"-",0,"../resources/Turtle"+i+".png","-");
+//		}
+		for (int i=0; i < 36; i++) {
+			defineImage("turtle"+i, "-",0,"../resources/turtle"+i+".png","-");
 		}
 		defineImage("star","-",0,"../resources/Star.png","-");
 	}

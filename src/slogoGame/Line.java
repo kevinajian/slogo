@@ -23,6 +23,6 @@ public class Line extends JGObject implements Constants{
 	}
 	public void paint()
 	{
-		myEngine.drawLine(x1, y1, x2, y2, 5, myEngine.getPenColor());
+		myEngine.drawLine(x1, y1, x2, y2, GRID_LINE_WIDTH, myEngine.getPenColor());
 	}
 }

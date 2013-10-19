@@ -43,7 +43,7 @@ public class Lines extends JGObject implements Constants {
 		y1 = pfheight/2 + -currentLine[1];
 		x2 = pfwidth/2 + currentLine[2];
 		y2 = pfheight/2 + -currentLine[3];
-		miniArray.add(x1); miniArray.add(y1); miniArray.add(x2); miniArray.add(y2); miniArray.add(5.0);
+		miniArray.add(x1); miniArray.add(y1); miniArray.add(x2); miniArray.add(y2); miniArray.add(4.0);
 		System.out.println(miniArray);
 
 		linesArray.add(miniArray);

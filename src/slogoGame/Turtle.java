@@ -16,8 +16,6 @@ public class Turtle extends JGObject implements Constants{
 		amCustom = false;
 	}
 	
-	
-	
 	private double x1;
 	private double y1;
 	private double x2;
@@ -32,9 +30,11 @@ public class Turtle extends JGObject implements Constants{
 	public void rotate(double degree){
 		if(amCustom)
 			return;
-		degree = degree/45;
-		degree = Math.floor(degree);
-		myImage = myName+(int)degree;
+		//degree = degree/45;
+		System.out.println(degree/10);
+		degree = Math.floor(degree/10);
+		myImage = myName+ (int)degree;
+		System.out.println(myImage);
 	}
 	public void changeImage(String name){
 		myName = name;
