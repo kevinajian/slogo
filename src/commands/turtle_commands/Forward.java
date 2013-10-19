@@ -22,7 +22,7 @@ public class Forward extends CommandOneInput {
 		double x = model.getX();
 		double y = model.getY();
 		double distance = getInputValueOne(model);
-		System.out.println(distance);
+		
 		double newX = x + distance*Math.sin(Math.toRadians(orientation));
 		double newY = y + distance*Math.cos(Math.toRadians(orientation));
 		

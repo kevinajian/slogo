@@ -15,12 +15,10 @@ public class PenDown extends CommandZeroInput {
 
 	@Override
 	public double evaluate(Model model) {
-		model.setPenVisible(Constants.PEN_SHOWING);
-		return 1;
-//		if (model.getPenVisible().equals(Constants.PEN_SHOWING)) {
-//			return 1;
-//		}
-//		return 0;
+		if (model.getPenVisible().equals(Constants.PEN_SHOWING)) {
+			return 1;
+		}
+		return 0;
 	}
 
 }
