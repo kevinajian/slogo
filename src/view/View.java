@@ -140,7 +140,7 @@ public class View extends JFrame{
 	}
 	
 	public void drawLine(double[] currentLine){
-		myTurtleGame.squirt.drawPath(currentLine);
+		myTurtleGame.lines.drawPath(currentLine);
 		//currentLine[0], currentLine[1], currentLine[2], currentLine[3];
 		//myEngine.drawLine(currentLine[0], currentLine[1], currentLine[2], currentLine[3]);
 	}
