@@ -2,8 +2,6 @@ package commands.vcu;
 
 import model.Model;
 import commands.Command;
-import commands.CommandOneInput;
-import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
 
 /**
@@ -36,7 +34,7 @@ public class Make extends Command {
 //		var.setVariableValue(c.getInputValueOne(model));
 		
 		String key = var.getVariableName();
-		double value = myRightChild.getInputValueOne(model);
+		double value = myRightChild.evaluate(model); //.getInputValueOne(model);
 		
 		model.getCustomCommandMap().put(key, value);
 		System.out.println(model.getCustomCommandMap().keySet());

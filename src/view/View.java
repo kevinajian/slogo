@@ -10,10 +10,10 @@ import javax.swing.*;
 import slogoGame.TurtleGame;
 import controller.Controller;
 
-import java.util.List;
 import java.util.ResourceBundle;
 
 import jgame.*;
+import jgame.platform.JGEngine;
 
 @SuppressWarnings("serial")
 public class View extends JFrame{
@@ -29,7 +29,8 @@ public class View extends JFrame{
     private TurtleGame myTurtleGame;
     private Controller myController;
     private JFileChooser myChooser;
-    
+	private JGEngine myEngine;
+
     public View ()
     {
     	//this.setName("Turtle View");
@@ -42,7 +43,7 @@ public class View extends JFrame{
         // create listeners that will respond to events
         // position interface components
         myTextInput = new TextInput(this);
-        myTurtleGame = new TurtleGame(new JGPoint(800,600));//
+        myTurtleGame = new TurtleGame(new JGPoint(800,600));
         getContentPane().add(new TurtleState(new JTextArea(35,35)), BorderLayout.EAST);
         getContentPane().add(myTextInput, BorderLayout.SOUTH);
         getContentPane().add(myTurtleGame, BorderLayout.CENTER);
@@ -139,6 +140,9 @@ public class View extends JFrame{
 	}
 	
 	public void drawLine(double[] currentLine){
+		myTurtleGame.squirt.drawPath(currentLine);
+		//currentLine[0], currentLine[1], currentLine[2], currentLine[3];
+		//myEngine.drawLine(currentLine[0], currentLine[1], currentLine[2], currentLine[3]);
 	}
 
 }

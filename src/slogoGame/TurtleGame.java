@@ -31,7 +31,7 @@ public class TurtleGame extends JGEngine implements Constants{
 
 	public TurtleGame() {initEngine(DEFAULT_WIDTH, DEFAULT_HEIGHT);}
 
-	public void initCanvas() { 
+	public void initCanvas() {
 		initEngineApplet();
 		//setScalingPreferences(1,1,0,0,0,0);   ???
 		setCanvasSettings(DEFAULT_WIDTH/DEFAULT_TILE_SIZE,
