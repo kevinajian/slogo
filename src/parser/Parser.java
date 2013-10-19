@@ -66,13 +66,18 @@ public class Parser {
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		List<String> inputs = new ArrayList<String>();
 		for(String string : list){
+
 			if(string.matches("-?\\d+(\\.\\d+)?")){
+				inputs.add(string);
+			}
+			if(string.charAt(0) == ':') {
 				inputs.add(string);
 			}
 			else{
 				inputs.add(fileToMap("src/parser/Commands.properties").get(string.toUpperCase()));
 			}
 		}
+		
 		myModel.getStringCommands().addAll(inputs);
 		myModel.setCommands(lexer(inputs));
 		return inputs;//output;
@@ -244,6 +249,7 @@ public class Parser {
 		}
 		else if (className.charAt(0) == Constants.VARIABLE_ID.charAt(0)) {
 			xyz = new Variable(className);
+			((Variable) xyz).setVariableName(className);
 			myModel.addVariable(xyz);
 		} 
 		else {
@@ -261,17 +267,4 @@ public class Parser {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();
 	}
-<<<<<<< HEAD
-=======
-
-	public List<String> getInputs() {
-		return inputs;
-	}
-
-	public void setInputs(List<String> inputs) {
-		this.inputs = inputs;
-	}
-	
-	
->>>>>>> e52a5ed3844a600192b6b0254090d559e060c7c7
 }

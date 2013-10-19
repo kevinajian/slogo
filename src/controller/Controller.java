@@ -63,7 +63,7 @@ public class Controller {
 	 * @return List of Lines that create trail
 	 */
 	public List<State> getStates() {
-		System.out.println("Controller.getStates");
+		//System.out.println("Controller.getStates");
 		myModel.createStates();
 		return myModel.getStates();
 	}

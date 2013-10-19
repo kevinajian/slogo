@@ -21,7 +21,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
-	private Map<String, String> customCommandMap = new HashMap<String, String>();
+	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
 	private List<String> stringCommands = new ArrayList<String>();
 
 	public List<String> getStringCommands() {
@@ -66,7 +66,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	 * @param state - state to be added
 	 */
 	public void addState(State state) {
-		System.out.println("model.addState");
+		//System.out.println("model.addState");
 		myStates.add(state);	
 	}
 
@@ -79,9 +79,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 	
 	public void createStates() {
-		System.out.println("model.createStates");
+		//System.out.println("model.createStates");
 		for (Command c:myCommands){
-			System.out.println("command num inputs: "+c.getNumInputs());
+			//System.out.println("command num inputs: "+c.getNumInputs());
 			c.evaluate(this);
 		}
 	}
@@ -152,11 +152,11 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		return variableList;
 	}
 
-	public Map<String, String> getCustomCommandMap() {
+	public Map<String, Double> getCustomCommandMap() {
 		return customCommandMap;
 	}
 
-	public void setCustomCommandMap(Map<String, String> customCommandMap) {
+	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
 		this.customCommandMap = customCommandMap;
 	}
 }

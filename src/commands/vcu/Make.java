@@ -1,9 +1,10 @@
 package commands.vcu;
 
-import parser.Parser;
 import model.Model;
 import commands.Command;
-import commands.CommandZeroInput;
+import commands.CommandOneInput;
+import commands.basic_syntax.Constant;
+import commands.basic_syntax.Variable;
 
 /**
  * Assigns the value of expr to variable, creating the variable if necessary
@@ -30,18 +31,17 @@ public class Make extends Command {
 	
 	@Override
 	public double evaluate(Model model) {
-		String key = model.getStringCommands().get(1).toString();
-		System.out.println(key);
-		String commandString = "";
+		Variable var = (Variable) myLeftChild;
+//		Constant c = (Constant) var.myLeftChild;
+//		var.setVariableValue(c.getInputValueOne(model));
 		
-		for (String string : model.getStringCommands().subList(2, 
-				model.getStringCommands().size()))
-		{
-			commandString += string;
-			commandString += " ";
-		}
-		System.out.println(commandString);
-		model.getCustomCommandMap().put(key, commandString);
+		String key = var.getVariableName();
+		double value = myRightChild.getInputValueOne(model);
+		
+		model.getCustomCommandMap().put(key, value);
+		System.out.println(model.getCustomCommandMap().keySet());
+		System.out.println(model.getCustomCommandMap().values());
+
 		return 0;
 	}
 	

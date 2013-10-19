@@ -2,10 +2,21 @@ package commands.basic_syntax;
 
 import model.Model;
 import commands.Command;
+import commands.CommandOneInput;
+import commands.CommandZeroInput;
 
-public class Variable extends Command{
+public class Variable extends CommandZeroInput{
 	String myVariableName;
+	double variableValue;
 	
+	public double getVariableValue() {
+		return variableValue;
+	}
+
+	public void setVariableValue(double variableValue) {
+		this.variableValue = variableValue;
+	}
+
 	public Variable(String variableName) {
 		myVariableName = variableName;
 	}
@@ -24,6 +35,13 @@ public class Variable extends Command{
 	 */
 	public void setVariableName(String variableName) {
 		myVariableName = variableName;
+	}
+	
+	@Override
+	public double evaluate(Model model) {
+		//variableValue = myLeftChild.getInputValueOne(model);
+		System.out.println(model.getCustomCommandMap().get(myVariableName));
+		return model.getCustomCommandMap().get(myVariableName);
 	}
 	
 }
