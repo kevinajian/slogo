@@ -21,7 +21,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	private Map<String,JGColor> colorMap = new HashMap<String,JGColor>();
 	public Turtle squirt;
 	public Grid g;
-	public Lines lines;
+	public HoldLines lines;
 	public boolean toggleGrid;
 	/*	public TurtleGame() {initEngineApplet();}
 
@@ -47,7 +47,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		setCursor(null);
 		defineImages();
 		squirt = new Turtle("turtle", 50, this);
-		lines = new Lines("lines", 51, this);
+		lines = new HoldLines("lines", 51, this);
 		g = new Grid("grid", 69, this);
 		toggleGrid = true;
 		colorMap.put("Blue", JGColor.blue);

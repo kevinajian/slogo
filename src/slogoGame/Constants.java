@@ -9,6 +9,6 @@ public interface Constants {
 	public final int DEFAULT_IMAGE_HEIGHT2 = 60;
 	public final int DEFAULT_IMAGE_WIDTH2 = 60;
 	
-	public final int GRID_DENSITY = 20;
-	public final int GRID_LINE_WIDTH = 2;
+	public final int GRID_DENSITY = 40;
+	public final int GRID_LINE_WIDTH = 1;
 }

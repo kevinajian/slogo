@@ -17,6 +17,10 @@ public class For extends ControlStructure{
 	private double myValue;
 	private double myIncrement;
 	
+	public For() {
+		super.myNumInputs = 2;
+	}
+	
 	public double getMyValue() {
 		return myValue;
 	}
@@ -43,6 +47,7 @@ public class For extends ControlStructure{
 
 	@Override
 	public double evaluate(Model model) {
+		//System.out.println(myNumInputs);
 		//TODO: Result needs to be the output of every
 		//iteration of the loop
 		double result = 0.0;

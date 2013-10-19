@@ -9,6 +9,7 @@ import model.Model;
  *
  */
 public class ControlStructure extends Command {
+	
 	private String myVariable;
 	
 	/**
