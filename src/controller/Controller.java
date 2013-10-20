@@ -18,6 +18,14 @@ import model.State;
  */
 public class Controller { 
 	private Model myModel;
+	public Model getMyModel() {
+		return myModel;
+	}
+
+	public void setMyModel(Model myModel) {
+		this.myModel = myModel;
+	}
+
 	private View myView;
 	
 	/**

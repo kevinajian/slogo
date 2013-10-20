@@ -1,6 +1,7 @@
 package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import slogoGame.TurtleGame;
 import controller.Controller;
 
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import jgame.*;
@@ -84,6 +86,61 @@ public class View extends JFrame{
 				}
             }
         });
+
+        JMenu helpLanguages = new JMenu(myResources.getString("HelpLanguages"));
+        
+//        ArrayList<String> langList = new ArrayList<String>();
+//        langList.add("HelpEnglish");
+//        langList.add("HelpSpanish");
+//        langList.add("HelpPortuguese");
+//        
+//        for(String language : langList){
+//        	//helpLanguages.add(new JMenuItem(myResources.getString(language)));
+//            helpLanguages.add(new AbstractAction(myResources.getString(language)) {
+//    			@Override
+//    			public void actionPerformed(ActionEvent e) {
+//    				myController.getMyModel().setMyLanguage("src/parser/" + myResources.getString(language) + ".properties");
+//    			}
+//            	
+//            	
+//            });
+//        }
+//        
+//        
+//        JMenuItem helpEnglish = new JMenuItem(myResources.getString("HelpEnglish"));
+//        JMenuItem helpSpanish = new JMenuItem(myResources.getString("HelpSpanish"));
+//        JMenuItem helpPortuguese = new JMenuItem(myResources.getString("HelpPortuguese"));
+//        helpLanguages.add(helpEnglish);
+//        helpLanguages.add(helpSpanish);
+//        helpLanguages.add(helpPortuguese);
+
+        
+        helpLanguages.add(new AbstractAction(myResources.getString("HelpEnglish")) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myController.getMyModel().setMyLanguage("src/parser/" + myResources.getString("HelpEnglish") + ".properties");
+			}
+        	
+        	
+        });
+        helpLanguages.add(new AbstractAction(myResources.getString("HelpSpanish")) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myController.getMyModel().setMyLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
+			}
+        	
+        	
+        });
+        helpLanguages.add(new AbstractAction(myResources.getString("HelpPortuguese")) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myController.getMyModel().setMyLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
+			}
+        	
+        	
+        });
+
+        result.add(helpLanguages);
 		return result;	
 	}
 

@@ -23,6 +23,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private List<Command> myCommands = new ArrayList<Command>();
 	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
 	private List<String> stringCommands = new ArrayList<String>();
+	private String myLanguage = "src/parser/English.properties";
 
 	public List<String> getStringCommands() {
 		return stringCommands;
@@ -158,6 +159,14 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
 		this.customCommandMap = customCommandMap;
+	}
+
+	public String getMyLanguage() {
+		return myLanguage;
+	}
+
+	public void setMyLanguage(String myLanguage) {
+		this.myLanguage = myLanguage;
 	}
 }
 

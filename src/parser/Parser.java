@@ -75,7 +75,7 @@ public class Parser {
 				inputs.add(string);
 			}
 			else{
-				inputs.add(fileToMap("src/parser/Commands.properties").get(string.toUpperCase()));
+				inputs.add(fileToMap(myModel.getMyLanguage()).get(string.toUpperCase()));
 			}
 		}
 		
