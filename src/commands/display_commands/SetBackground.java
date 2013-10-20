@@ -1,5 +1,6 @@
 package commands.display_commands;
 
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import model.Model;
@@ -14,9 +15,13 @@ public class SetBackground extends CommandOneInput {
 	public double evaluate(Model model) {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
 		String lumpedColors = myResources.getString("Colors");
-		String Colors[] = lumpedColors.split(" ");
+		String colors1[] = lumpedColors.split(" ");
+		ArrayList<String> colors = new ArrayList<String>();
+		for(int i = 0; i<colors1.length-1;i++){
+			colors.add(colors1[i]);
+		}
 		int pos = (int) getInputValueOne(model);
-		String bgColor = Colors[pos];
+		String bgColor = colors.get(pos);
 		model.setMyBackgroundColor(bgColor);
 		return getInputValueOne(model);
 	}
