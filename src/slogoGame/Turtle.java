@@ -1,7 +1,12 @@
 package slogoGame;
 
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -51,6 +56,7 @@ public class Turtle extends JGObject implements Constants{
 	}
 	@Override
 	public void setPos(double x, double y){
+		
 		int width;
 		int height;
 		BufferedImage bimg = null;
@@ -65,6 +71,7 @@ public class Turtle extends JGObject implements Constants{
 		}			
 		this.x = x + DEFAULT_WIDTH/2 - width/2;
 		this.y = -y + DEFAULT_HEIGHT/2 - height/2;
+		
 	}
 	
 	public void drawPath(double[] currentLine) {

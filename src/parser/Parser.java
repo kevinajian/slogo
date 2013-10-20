@@ -96,7 +96,7 @@ public class Parser {
 		List<Command> rootList = new ArrayList<Command>();
 		List<String> inputList = new ArrayList<String>();
 		inputs.removeAll(Collections.singleton(null));
-		while(inputs.size() > 1) {
+		while(inputs.size() >= 1) {
 			System.out.println(inputs);
 			Command headNode = getClass(inputs.get(0));
 //			if(headNode instanceof ControlStructure) {
@@ -151,64 +151,64 @@ public class Parser {
 		return root;
 	}
 	
-	private Command controlTree(Command root, List<String> inputList) throws Exception {	
-		if(root instanceof DoTimes){
-			int openBracket = inputList.indexOf("[");
-			int closeBracket = makeParameterList(openBracket, inputList);
-			List<String> params = new ArrayList<String>();
-			for(int i=openBracket+1; i < closeBracket; i ++) {
-				params.add(inputList.get(i));
-			}
-			for(int i=openBracket+1; i < closeBracket; i ++) {
-				inputList.remove(i);
-			}
-			DoTimes doTimes = new DoTimes();
-			doTimes.setMyVariable(params.get(0));			
-			doTimes.setMyMax(Double.parseDouble(params.get(1)));
-			
-			inputList = inputList.subList(openBracket, closeBracket);
-			lexer(inputList);
-			
-		}
-		
-		if(root instanceof For) {
-			int openBracket = inputList.indexOf("[");
-			int closeBracket = makeParameterList(openBracket, inputList);
-			List<String> params = new ArrayList<String>();
-			for(int i=openBracket+1; i < closeBracket; i ++) {
-				params.add(inputList.get(i));
-			}
-			for(int i=openBracket+1; i < closeBracket; i ++) {
-				inputList.remove(i);
-			}
-			For forLoop = new For();
-			forLoop.setMyVariable(params.get(0));			
-			forLoop.setMyValue(Double.parseDouble(params.get(1)));
-			forLoop.setMyMax(Double.parseDouble(params.get(2)));
-			
-			inputList = inputList.subList(openBracket, closeBracket);
-			lexer(inputList);
-			
-		}
-		
-		if(root instanceof Repeat) {
-			int openBracket = inputList.indexOf("[");
-			int closeBracket = makeParameterList(openBracket, inputList);
-			List<String> params = new ArrayList<String>();
-			for(int i=openBracket+1; i < closeBracket; i ++) {
-				params.add(inputList.get(i));
-			}
-			for(int i=openBracket+1; i < closeBracket; i ++) {
-				inputList.remove(i);
-			}
-			Repeat repeat = new Repeat();
-			repeat.setMyExpression(params.get(0));			
-			inputList = inputList.subList(openBracket, closeBracket);
-			lexer(inputList);
-		}
-		
-		return root;
-	}
+//	private Command controlTree(Command root, List<String> inputList) throws Exception {	
+//		if(root instanceof DoTimes){
+//			int openBracket = inputList.indexOf("[");
+//			int closeBracket = makeParameterList(openBracket, inputList);
+//			List<String> params = new ArrayList<String>();
+//			for(int i=openBracket+1; i < closeBracket; i ++) {
+//				params.add(inputList.get(i));
+//			}
+//			for(int i=openBracket+1; i < closeBracket; i ++) {
+//				inputList.remove(i);
+//			}
+//			DoTimes doTimes = new DoTimes();
+//			doTimes.setMyVariable(params.get(0));			
+//			doTimes.setMyMax(Double.parseDouble(params.get(1)));
+//			
+//			inputList = inputList.subList(openBracket, closeBracket);
+//			lexer(inputList);
+//			
+//		}
+//		
+//		if(root instanceof For) {
+//			int openBracket = inputList.indexOf("[");
+//			int closeBracket = makeParameterList(openBracket, inputList);
+//			List<String> params = new ArrayList<String>();
+//			for(int i=openBracket+1; i < closeBracket; i ++) {
+//				params.add(inputList.get(i));
+//			}
+//			for(int i=openBracket+1; i < closeBracket; i ++) {
+//				inputList.remove(i);
+//			}
+//			For forLoop = new For();
+//			forLoop.setMyVariable(params.get(0));			
+//			forLoop.setMyValue(Double.parseDouble(params.get(1)));
+//			forLoop.setMyMax(Double.parseDouble(params.get(2)));
+//			
+//			inputList = inputList.subList(openBracket, closeBracket);
+//			lexer(inputList);
+//			
+//		}
+//		
+//		if(root instanceof Repeat) {
+//			int openBracket = inputList.indexOf("[");
+//			int closeBracket = makeParameterList(openBracket, inputList);
+//			List<String> params = new ArrayList<String>();
+//			for(int i=openBracket+1; i < closeBracket; i ++) {
+//				params.add(inputList.get(i));
+//			}
+//			for(int i=openBracket+1; i < closeBracket; i ++) {
+//				inputList.remove(i);
+//			}
+//			Repeat repeat = new Repeat();
+//			repeat.setMyExpression(params.get(0));			
+//			inputList = inputList.subList(openBracket, closeBracket);
+//			lexer(inputList);
+//		}
+//		
+//		return root;
+//	}
 	
 	private int makeParameterList(int firstBracket, List<String> inputList) {
 		int bcount = 1;
