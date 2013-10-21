@@ -24,7 +24,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
 	private List<String> stringCommands = new ArrayList<String>();
 	private String myLanguage = "src/parser/English.properties";
-	private String myBackgroundColor;
+	private String myBackgroundColor = "White";
 
 	public List<String> getStringCommands() {
 		return stringCommands;

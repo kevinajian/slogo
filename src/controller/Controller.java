@@ -55,6 +55,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		List<Line> trail = getLines();
+		
 		for (Line line:trail) {
 			double[] currentLine = line.getLine();
 			myView.drawLine(currentLine);
