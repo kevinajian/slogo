@@ -187,17 +187,13 @@ public class TurtleGame extends JGEngine implements Constants{
 			clearKey(' ');
 			restoreDefaults();
 			for(int i = 0; i < myActionIndex; i++){
-				//myActionList.get(i).redo();
+				myActionList.get(i).redo();
 			}
-			//myActionIndex--;
-			myActionIndex = 0;
+			myActionIndex--;
 		}
 		if (getKey('D')){
 			clearKey('D');
-			myActionList.get(myActionIndex).redo();
-			myActionIndex++;
 		}
-		//System.out.println(myActionList.size() + " " + myActionIndex);
 	}
 
 	public void drawTurtle(double[] turtlePosition){
@@ -214,6 +210,9 @@ public class TurtleGame extends JGEngine implements Constants{
 		myView.sendString(input);
 	}
 	
+	//Needs to be set so that it cuts off 
+	//any thing on the action list with an
+	//index greater than the actionindex
 	private void cleanActionList(){
 		
 	}
@@ -222,6 +221,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		removeObjects("line",0);
 	}
 	
+	//Needs to be completed to default
 	private void restoreDefaults(){
 		try {
 			myView.resetModel();

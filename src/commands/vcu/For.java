@@ -15,10 +15,23 @@ public class For extends Loop{
 	private Variable myVariable;
 	
 	public void setVariable(Variable variable) {
-		
+		myVariable = variable;
 	}
 	
 	public Variable getVariable() {
 		return myVariable;
 	}
+	
+	@Override
+	public int getIteration(Model model) {
+		return (int) model.getCustomCommandValue(myVariable.getVariableName());
+	}
+	
+	@Override
+	public void incrementIteration(Model model) {
+		int currentIteration = getIteration(model);
+		int nextIteration = currentIteration + myIncrement;
+		model.setCustomCommand(myVariable.getVariableName(), nextIteration);
+	}
+	
 }

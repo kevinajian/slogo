@@ -143,4 +143,8 @@ public class Controller {
 	public void clearLines() {
 		myView.clearLines();
 	}
+	
+	public void display(String input) {
+		myView.display(input);
+	}
 }

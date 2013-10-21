@@ -39,7 +39,7 @@ public class Variable extends CommandZeroInput{
 	
 	@Override
 	public double evaluate(Model model) {
-		return model.getCustomCommandMap().get(myVariableName);
+		return model.getCustomCommandValue(myVariableName);
 	}
 	
 }
