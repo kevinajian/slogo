@@ -30,13 +30,11 @@ public class Make extends Command {
 	@Override
 	public double evaluate(Model model) {
 		Variable var = (Variable) myLeftChild;
-//		Constant c = (Constant) var.myLeftChild;
-//		var.setVariableValue(c.getInputValueOne(model));
-		
+
 		String key = var.getVariableName();
-		double value = myRightChild.evaluate(model); //.getInputValueOne(model);
+		double value = myRightChild.evaluate(model);
 		
-		model.getCustomCommandMap().put(key, value);
+		model.addCustomCommand(key, value);
 		System.out.println(model.getCustomCommandMap().keySet());
 		System.out.println(model.getCustomCommandMap().values());
 
