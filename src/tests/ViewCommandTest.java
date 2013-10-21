@@ -23,7 +23,7 @@ public class ViewCommandTest {
 	@Test
 	public void testClearScreen() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();
 		left.setInputValueOne(5.0);
@@ -32,7 +32,7 @@ public class ViewCommandTest {
 		ClearScreen clearScreen = new ClearScreen();
 		assertEquals(clearScreen.evaluate(model), 5.0, 0.0);
 		
-		State state = new State(0.0, 0.0, 0.0, "1", "1");
+		State state = new State(0.0, 0.0, 0.0, "1", "1", "Black");
 		State modelState = model.getCurrentState();
 		assertEquals(state.getX(), modelState.getX(), 0.0);
 		assertEquals(state.getY(), modelState.getY(), 0.0);

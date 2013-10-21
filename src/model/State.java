@@ -10,19 +10,21 @@ public class State {
 	private double myOrientation;
 	private String myPenVisible;
 	private String myTurtleVisible;
-	
+	private String myPenColor;
+
 	/**
 	 * Constructor that sets x, y and orientation
 	 * @param x - double of x coordinate of turtle
 	 * @param y - double of y coordinate of turtle
 	 * @param orientation - double of degree that the turtle is facing
 	 */
-	public State(double x, double y, double orientation, String turtleVisible, String penVisible) {
+	public State(double x, double y, double orientation, String turtleVisible, String penVisible, String penColor) {
 		myX = x;
 		myY = y;
 		myOrientation = orientation;
 		myTurtleVisible = turtleVisible;
 		myPenVisible = penVisible;
+		myPenColor = penColor;
 	}
 
 	/**
@@ -55,5 +57,13 @@ public class State {
 
 	public String getPenVisible() {
 		return myPenVisible;
+	}
+	
+	public String getMyPenColor() {
+		return myPenColor;
+	}
+
+	public void setMyPenColor(String myPenColor) {
+		this.myPenColor = myPenColor;
 	}
 }

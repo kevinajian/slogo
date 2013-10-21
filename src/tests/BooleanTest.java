@@ -17,7 +17,7 @@ public class BooleanTest {
 	@Test
 	public void testAnd() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		And and = new And();
 		Constant left = new Constant();
 		left.setInputValueOne(1.0);
@@ -35,7 +35,7 @@ public class BooleanTest {
 	@Test
 	public void testOr() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Or or = new Or();
 		Constant left = new Constant();
 		left.setInputValueOne(0.0);
@@ -53,7 +53,7 @@ public class BooleanTest {
 	@Test
 	public void testGreaterThan() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Greater greater = new Greater();
 		Constant left = new Constant();
 		left.setInputValueOne(37.0);
@@ -71,7 +71,7 @@ public class BooleanTest {
 	@Test
 	public void testLessThan() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Less less = new Less();
 		Constant left = new Constant();
 		left.setInputValueOne(3.0);
@@ -89,7 +89,7 @@ public class BooleanTest {
 	@Test
 	public void testEqualTo() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Equal equal = new Equal();
 		Constant left = new Constant();
 		left.setInputValueOne(11.0);
