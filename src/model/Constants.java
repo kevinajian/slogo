@@ -27,4 +27,5 @@ public class Constants {
 	public static final String DEFAULT_PEN_COLOR = "Black";
 	public static final int DEFAULT_ITERATION = 0;
 	public static final int DEFAULT_INCREMENT = 1;
+	public static final int DEFAULT_PEN_SIZE = 1;
 }

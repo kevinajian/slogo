@@ -35,6 +35,10 @@ public class Controller {
 	public void setMyModel(Model myModel) {
 		this.myModel = myModel;
 	}
+	
+	private void setPenSize(double d) {
+		myView.getMyTurtleGame().setPenSize(d);
+	}
 
 	private View myView;
 	
@@ -72,13 +76,19 @@ public class Controller {
 			myModel.setBackgroundChanged(false);
 			setBackgroundColor(myModel.getMyBackgroundColor());
 		}
-		if(myModel.isPenChanged()){
-			myModel.setPenChanged(false);
+		if(myModel.isPenColorChanged()){
+			myModel.setPenColorChanged(false);
 			setPenColor(myModel.getPenColor());
 		}
-		System.out.println("x: "+myModel.getX()+ " y: "+myModel.getY());
+//		System.out.println("x: "+myModel.getX()+ " y: "+myModel.getY());
+		if(myModel.isPenSizeChanged()) {
+			myModel.setPenSizeChanged(false);
+			setPenSize(myModel.getPenSize());
+		}
 	}
 	
+
+
 	/**
 	 * gets current State of turtle
 	 * @return State of turtle
