@@ -116,4 +116,8 @@ public class Controller {
 	public void resetModel() {
 		myModel.resetModel();
 	}
+	
+	public void clearLines() {
+		myView.clearLines();
+	}
 }
