@@ -47,6 +47,8 @@ public class For extends Command{
 
 	@Override
 	public double evaluate(Model model) {
+		
+		
 		//System.out.println(myNumInputs);
 		//TODO: Result needs to be the output of every
 		//iteration of the loop

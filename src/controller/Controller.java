@@ -55,6 +55,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		List<Line> trail = getLines();
+		
 		for (Line line:trail) {
 			double[] currentLine = line.getLine();
 			myView.drawLine(currentLine);
@@ -106,6 +107,10 @@ public class Controller {
 	
 	public Map getVariables() {
 		return myModel.getVariableMap();
+	}
+	public List getCommandList()
+	{
+		return myModel.getCommands();
 	}
 	
 	public void resetModel() {

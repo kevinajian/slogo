@@ -23,7 +23,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private List<Command> myCommands = new ArrayList<Command>();
 	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
 	private String myLanguage = "src/parser/English.properties";
-	private String myBackgroundColor;
+	private String myBackgroundColor = "White";
 
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);

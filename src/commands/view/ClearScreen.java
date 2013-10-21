@@ -1,6 +1,5 @@
 package commands.view;
 
-import commands.Command;
 import commands.CommandZeroInput;
 import model.Constants;
 import model.Model;
@@ -17,16 +16,11 @@ public class ClearScreen extends CommandZeroInput {
 	
 	@Override
 	public double evaluate(Model model) {
-		System.out.println("hello");
 		double x = model.getX();
 		double y = model.getY();
 		model.getStates().clear();
-		
-		State current = model.getCurrentState();
-		System.out.println("x: "+current.getX() + " y: " + current.getY());
-		
-		
 		model.addState(new State(Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN, Constants.TURTLE_DEGREEORIGIN, model.getTurtleVisible(), model.getPenVisible()));
+		
 		return calculateLength(x, y, Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN);
 	}
 	
