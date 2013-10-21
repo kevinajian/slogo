@@ -223,5 +223,9 @@ public class View extends JFrame{
 	public void clearLines() {
 		myTurtleGame.clearLines();
 	}
+	
+	public void resetModel(){
+		myController.resetModel();
+	}
 
 }
