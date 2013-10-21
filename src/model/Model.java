@@ -25,7 +25,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private List<String> stringCommands = new ArrayList<String>();
 	private String myLanguage = "src/parser/English.properties";
 	private String myBackgroundColor = "White";
-
+	
 	public List<String> getStringCommands() {
 		return stringCommands;
 	}
@@ -177,5 +177,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	public void setMyBackgroundColor(String myBackgroundColor) {
 		this.myBackgroundColor = myBackgroundColor;
 	}
+
 }
 

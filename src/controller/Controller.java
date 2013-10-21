@@ -54,9 +54,12 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		List<Line> trail = getLines();
-		
+		clearLines();
+		List<Line> trail = getLines();		
+
 		for (Line line:trail) {
+			System.out.println("In the for loop");
+
 			double[] currentLine = line.getLine();
 			myView.drawLine(currentLine);
 		}
@@ -85,8 +88,12 @@ public class Controller {
 	
 	public List<Line> getLines() {
 		List<State> states = getStates();
+		System.out.println("state size: "+states.size());
 		List<Line> lines = new ArrayList<Line>();
 		for (int i=0; i<states.size()-1; i++){
+			if (states.size()<2) {
+				return lines;
+			}
 			if(states.get(i).getPenVisible().equals(Constants.PEN_SHOWING)){
 				Line line = new Line();
 				line.setCoord1(states.get(i).getX(), states.get(i).getY()); 
