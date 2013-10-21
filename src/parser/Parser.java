@@ -210,27 +210,22 @@ public class Parser {
 //		return root;
 //	}
 	
-	private int makeParameterList(int firstBracket, List<String> inputList) {
+	public int findLastBracket(int firstBracket, List<String> inputList) {
 		int bcount = 1;
-		
-		for(int i=firstBracket+1; i < inputList.size(); i ++) {
+		for(int i = firstBracket+1; i<inputList.size(); i++) {
+			if (inputList.get(i).equals("[")) {
+				bcount++;
+			}
+			else if (inputList.get(i).equals("]")) {
+				bcount--;
+			}
 			if (bcount <= 0) {
 				return i;
 			}
-			if (inputList.get(i).equals("]")){
-				i--;
-			}
-			if(inputList.get(i).equals("[")) {
-				i++;
-			}
-			else {
-				continue;
-			}
 		}
-		
-		return 1;
-	
-}
+		return 0;
+	}
+
 	
 	/**
 	 * Creates a class from a string. If its a variable, make it of type variable
