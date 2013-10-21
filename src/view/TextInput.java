@@ -40,7 +40,8 @@ public class TextInput extends JPanel{
 					myOutput.addText(myField.getText());
 					System.out.println(myField.getText());
 					try {
-						myView.sendString(myField.getText());
+						//myView.sendString(myField.getText());
+						myView.addGameAction(myField.getText());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
