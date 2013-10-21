@@ -29,7 +29,16 @@ public class View extends JFrame{
     private ResourceBundle myResources;
     private TextInput myTextInput;
     private TurtleGame myTurtleGame;
-    private Controller myController;
+   
+    public TurtleGame getMyTurtleGame() {
+		return myTurtleGame;
+	}
+
+	public void setMyTurtleGame(TurtleGame myTurtleGame) {
+		this.myTurtleGame = myTurtleGame;
+	}
+
+	private Controller myController;
     private JFileChooser myChooser;
 	//private JGEngine myEngine;
 

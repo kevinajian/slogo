@@ -1,4 +1,5 @@
 package controller;
+import slogoGame.TurtleGame;
 import view.View;
 
 import java.util.ArrayList;
@@ -21,7 +22,11 @@ public class Controller {
 	public Model getMyModel() {
 		return myModel;
 	}
-
+	
+	public void setBackgroundColor(String c) {
+		myView.getMyTurtleGame().setBackground(c);
+	}
+	
 	public void setMyModel(Model myModel) {
 		this.myModel = myModel;
 	}
@@ -56,6 +61,7 @@ public class Controller {
 		}
 		double[] turtlePosition = getTurtle();
 		myView.drawTurtle(turtlePosition);
+		setBackgroundColor(myModel.getMyBackgroundColor());
 	}
 	
 	/**
