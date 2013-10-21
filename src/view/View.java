@@ -55,6 +55,7 @@ public class View extends JFrame{
         // position interface components
         myTextInput = new TextInput(this);
         myTurtleGame = new TurtleGame(new JGPoint(800,600));
+        myTurtleGame.setController(this);
         getContentPane().add(new TurtleState(new JTextArea(35,35)), BorderLayout.EAST);
         getContentPane().add(myTextInput, BorderLayout.SOUTH);
         getContentPane().add(myTurtleGame, BorderLayout.CENTER);
