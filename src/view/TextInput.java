@@ -12,17 +12,20 @@ public class TextInput extends JPanel{
     private static final int FIELD_SIZE = 60;
     private JTextField myField;
     private View myView;
+    private TurtleState myOutput;
 	/**
 * Create an input area for the user ---
 * text field for text,
 * buttons for starting actions
 */
-	public TextInput(View view)
+	public TextInput(View view, TurtleState ts)
 	{
 	    myResources = ResourceBundle.getBundle("resources." + "English");
         add(makeTextField());
         add(makeSubmit());
         myView = view;
+        myOutput = ts;
+        
 	}
 
 	    /**
@@ -34,6 +37,7 @@ public class TextInput extends JPanel{
 	        myField.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					myOutput.addText(myField.getText());
 					System.out.println(myField.getText());
 					try {
 						myView.sendString(myField.getText());

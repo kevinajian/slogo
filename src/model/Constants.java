@@ -20,4 +20,6 @@ public class Constants {
 	public static final String CONSTANT_ID = "-?[0-9]+\\.?[0-9]*";
 	public static final String VARIABLE_ID = ":";
 	public static final String INPUT_SPLITTER = "\\s+";
+	public static final String OPEN_BRACKET = "[";
+	public static final String CLOSE_BRACKET = "]";
 }
