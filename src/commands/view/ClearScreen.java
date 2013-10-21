@@ -20,7 +20,6 @@ public class ClearScreen extends CommandZeroInput {
 		double y = model.getY();
 		model.getStates().clear();
 		model.addState(new State(Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN, Constants.TURTLE_DEGREEORIGIN, model.getTurtleVisible(), model.getPenVisible()));
-		model.setClearState(true);
 		//Controller.getLines().clear
 		
 		return calculateLength(x, y, Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN);

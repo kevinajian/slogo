@@ -78,11 +78,8 @@ public class Parser {
 				inputs.add(fileToMap(myModel.getMyLanguage()).get(string.toUpperCase()));
 			}
 		}
-		
-		myModel.getStringCommands().addAll(inputs);
 		myModel.setCommands(lexer(inputs));
-		return inputs;//output;
-		//return null;
+		return inputs;
 	}
 	
 	/**
@@ -99,16 +96,19 @@ public class Parser {
 		while(inputs.size() >= 1) {
 			System.out.println(inputs);
 			Command headNode = getClass(inputs.get(0));
-//			if(headNode instanceof ControlStructure) {
-//				controlTree(headNode, inputList);
-//			}
-			treeBuilder(headNode, inputs);
-			inputs.remove(0);
+			if (headNode instanceof Loop) {
+				inputs.remove(0);
+				specialTreeBuilder(headNode, inputs);
+			}
+			else {
+				treeBuilder(headNode, inputs);
+				inputs.remove(0);
+			}
 			rootList.add(headNode);
 		}
 		return rootList;
 	}
-	
+
 	/**
 	 * Recursively builds a tree of commands from a list of
 	 * Strings. Creates instances of the appropriate classes
@@ -119,9 +119,6 @@ public class Parser {
 	 * @throws Exception
 	 */
 	 public Command treeBuilder(Command root, List<String> inputs) throws Exception{
-		
-//		if (root.getMyCommand() instanceof ControlStructure){
-//		}
 
 		if (root instanceof Constant) {
 			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
@@ -151,72 +148,36 @@ public class Parser {
 		return root;
 	}
 	
-//	private Command controlTree(Command root, List<String> inputList) throws Exception {	
-//		if(root instanceof DoTimes){
-//			int openBracket = inputList.indexOf("[");
-//			int closeBracket = makeParameterList(openBracket, inputList);
-//			List<String> params = new ArrayList<String>();
-//			for(int i=openBracket+1; i < closeBracket; i ++) {
-//				params.add(inputList.get(i));
-//			}
-//			for(int i=openBracket+1; i < closeBracket; i ++) {
-//				inputList.remove(i);
-//			}
-//			DoTimes doTimes = new DoTimes();
-//			doTimes.setMyVariable(params.get(0));			
-//			doTimes.setMyMax(Double.parseDouble(params.get(1)));
-//			
-//			inputList = inputList.subList(openBracket, closeBracket);
-//			lexer(inputList);
-//			
-//		}
-//		
-//		if(root instanceof For) {
-//			int openBracket = inputList.indexOf("[");
-//			int closeBracket = makeParameterList(openBracket, inputList);
-//			List<String> params = new ArrayList<String>();
-//			for(int i=openBracket+1; i < closeBracket; i ++) {
-//				params.add(inputList.get(i));
-//			}
-//			for(int i=openBracket+1; i < closeBracket; i ++) {
-//				inputList.remove(i);
-//			}
-//			For forLoop = new For();
-//			forLoop.setMyVariable(params.get(0));			
-//			forLoop.setMyValue(Double.parseDouble(params.get(1)));
-//			forLoop.setMyMax(Double.parseDouble(params.get(2)));
-//			
-//			inputList = inputList.subList(openBracket, closeBracket);
-//			lexer(inputList);
-//			
-//		}
-//		
-//		if(root instanceof Repeat) {
-//			int openBracket = inputList.indexOf("[");
-//			int closeBracket = makeParameterList(openBracket, inputList);
-//			List<String> params = new ArrayList<String>();
-//			for(int i=openBracket+1; i < closeBracket; i ++) {
-//				params.add(inputList.get(i));
-//			}
-//			for(int i=openBracket+1; i < closeBracket; i ++) {
-//				inputList.remove(i);
-//			}
-//			Repeat repeat = new Repeat();
-//			repeat.setMyExpression(params.get(0));			
-//			inputList = inputList.subList(openBracket, closeBracket);
-//			lexer(inputList);
-//		}
-//		
-//		return root;
-//	}
+	private void specialTreeBuilder(Command root, List<String> inputs) {
+		if (root instanceof For) {
+			int openBracket = 0;
+			int closeBracket = findLastBracket(openBracket, inputs);
+			List<String> params = listBuilder(openBracket, closeBracket, inputs);
+			removeRange(openBracket, closeBracket, inputs);
+		}	
+	}
+
+	private List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
+		List<String> returnList = new ArrayList<String>();
+		for (int i = firstIndex; i < endIndex ; i++) {
+			returnList.add(inputs.get(i));
+		}
+		return returnList;
+	}
+	
+	private void removeRange(int firstIndex, int endIndex, List<String> inputs) {
+		for (int i=firstIndex; i<endIndex; i++){
+			inputs.remove(0);
+		}
+	}
 	
 	public int findLastBracket(int firstBracket, List<String> inputList) {
 		int bcount = 1;
 		for(int i = firstBracket+1; i<inputList.size(); i++) {
-			if (inputList.get(i).equals("[")) {
+			if (inputList.get(i).equals(Constants.OPEN_BRACKET)) {
 				bcount++;
 			}
-			else if (inputList.get(i).equals("]")) {
+			else if (inputList.get(i).equals(Constants.CLOSE_BRACKET)) {
 				bcount--;
 			}
 			if (bcount <= 0) {

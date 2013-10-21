@@ -22,17 +22,8 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
 	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
-	private List<String> stringCommands = new ArrayList<String>();
 	private String myLanguage = "src/parser/English.properties";
 	private String myBackgroundColor = "White";
-	
-	public List<String> getStringCommands() {
-		return stringCommands;
-	}
-
-	public void setStringCommands(List<String> thisStringCommands) {
-		this.stringCommands = thisStringCommands;
-	}
 
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
@@ -86,6 +77,12 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 			//System.out.println("command num inputs: "+c.getNumInputs());
 			c.evaluate(this);
 		}
+	}
+	
+	public void resetModel() {
+		myCommands.clear();
+		myStates.clear();
+		myStates.add(myOrigin);
 	}
 
 	/**

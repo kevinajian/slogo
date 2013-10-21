@@ -115,5 +115,16 @@ public class Controller {
 	public Map getVariables() {
 		return myModel.getVariableMap();
 	}
+	public List getCommandList()
+	{
+		return myModel.getCommands();
+	}
 	
+	public void resetModel() {
+		myModel.resetModel();
+	}
+	
+	public void clearLines() {
+		myView.clearLines();
+	}
 }

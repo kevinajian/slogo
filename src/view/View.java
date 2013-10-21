@@ -40,7 +40,8 @@ public class View extends JFrame{
 
 	private Controller myController;
     private JFileChooser myChooser;
-	//private JGEngine myEngine;
+    private TurtleState myInfo;
+	private JGEngine myEngine;
 
     public View ()
     {
@@ -53,9 +54,14 @@ public class View extends JFrame{
         myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
         // create listeners that will respond to events
         // position interface components
-        myTextInput = new TextInput(this);
         myTurtleGame = new TurtleGame(new JGPoint(800,600));
-        getContentPane().add(new TurtleState(new JTextArea(35,35)), BorderLayout.EAST);
+        
+		JTextArea myDoneCommands = new JTextArea(18,18);
+		JTextArea myOutput = new JTextArea(18,18);
+		
+        myInfo = new TurtleState(new JScrollPane(myDoneCommands),new JScrollPane(myOutput), this, myDoneCommands, myOutput);
+        myTextInput = new TextInput(this, myInfo);
+        getContentPane().add(myInfo, BorderLayout.EAST);
         getContentPane().add(myTextInput, BorderLayout.SOUTH);
         getContentPane().add(myTurtleGame, BorderLayout.CENTER);
         // create app menus
@@ -186,6 +192,9 @@ public class View extends JFrame{
     
 	public void sendString(String string) throws Exception {
 		myController.processInput(string);
+	}
+	public Controller getController(){
+		return myController;
 	}
 
     /**
