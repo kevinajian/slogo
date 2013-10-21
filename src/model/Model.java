@@ -21,9 +21,14 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private List<Command> myCommands = new ArrayList<Command>();
 	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
-	private String myLanguage = "src/parser/English.properties";
-	private String myBackgroundColor = "White";
-	private String myPenColor = "Black";
+	private String myLanguage = Constants.DEFAULT_LANGUAGE;
+	private String myBackgroundColor = Constants.DEFAULT_BACKGROUND_COLOR;
+	private String myPenColor = Constants.DEFAULT_PEN_COLOR;
+	private boolean backgroundChanged = false;
+	private boolean penChanged = false;
+
+
+
 
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
@@ -169,6 +174,22 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setPenColor(String penColor) {
 		myPenColor = penColor;
+	}
+	
+	public boolean isBackgroundChanged() {
+		return backgroundChanged;
+	}
+
+	public void setBackgroundChanged(boolean backgroundChanged) {
+		this.backgroundChanged = backgroundChanged;
+	}
+	
+	public boolean isPenChanged() {
+		return penChanged;
+	}
+
+	public void setPenChanged(boolean penChanged) {
+		this.penChanged = penChanged;
 	}
 
 }

@@ -18,6 +18,7 @@ import model.State;
  * @author carlosreyes kevinjian
  */
 public class Controller { 
+
 	private Model myModel;
 	public Model getMyModel() {
 		return myModel;
@@ -67,8 +68,14 @@ public class Controller {
 		}
 		double[] turtlePosition = getTurtle();
 		myView.drawTurtle(turtlePosition);
-		setBackgroundColor(myModel.getMyBackgroundColor());
-		setPenColor(myModel.getPenColor());
+		if(myModel.isBackgroundChanged()){
+			myModel.setBackgroundChanged(false);
+			setBackgroundColor(myModel.getMyBackgroundColor());
+		}
+		if(myModel.isPenChanged()){
+			myModel.setPenChanged(false);
+			setPenColor(myModel.getPenColor());
+		}
 	}
 	
 	/**
