@@ -55,7 +55,6 @@ public class View extends JFrame{
         // create listeners that will respond to events
         // position interface components
         myTurtleGame = new TurtleGame(new JGPoint(800,600));
-        
 		JTextArea myDoneCommands = new JTextArea(18,18);
 		JTextArea myOutput = new JTextArea(18,18);
 		

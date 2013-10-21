@@ -14,6 +14,8 @@ import java.util.*;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 
+import view.View;
+
 @SuppressWarnings("serial")
 public class TurtleGame extends JGEngine implements Constants{
 	private JGColor myPenColor;
@@ -21,11 +23,12 @@ public class TurtleGame extends JGEngine implements Constants{
 	private Map<String,JGColor> colorMap = new HashMap<String,JGColor>();
 	private Turtle squirt;
 	public Grid g;
-	private HoldLines lines;
+	//private HoldLines lines;
 	public boolean toggleGrid;
 	private ArrayList<Action> myActionList = new ArrayList<Action>();
-	private Action myCurrentAction;
+	//private DatedAction myCurrentAction;
 	private int myActionIndex;
+	private View myView;
 	/*	public TurtleGame() {initEngineApplet();}
 
 	public void initCanvas() { 
@@ -53,14 +56,18 @@ public class TurtleGame extends JGEngine implements Constants{
 		//lines = new HoldLines("lines", 51, this);
 		g = new Grid("grid", 69, this);
 		toggleGrid = true;
-		double[] turtleStart = {0.0,0.0,0.0};
-		myCurrentAction = new Action(turtleStart,squirt);
+		//double[] turtleStart = {0.0,0.0,0.0};
+		//myCurrentAction = new DatedAction(turtleStart,squirt);
 		myActionIndex = -1;
 		colorMap.put("Blue", JGColor.blue);
 		colorMap.put("Red", JGColor.red);
 		colorMap.put("White", JGColor.white);
 		colorMap.put("Black", JGColor.black);		
 		setGameState("Title");
+	}
+	
+	public void setController(View view){
+		myView = view;
 	}
 
 	public void setTurtleImage(String image){
@@ -81,14 +88,39 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void setBackground(String color){
+		ActionBackground backgroundColor = new ActionBackground(this,color);
+		cleanActionList();
+		myActionList.add(backgroundColor);
+		backgroundColor.redo();
+	}
+	
+	public void setBackgroundColor(String color){
 		JGColor colorBG = getJGColor(color);
 		if (colorBG == null)
 			return;
 		setBGColor(colorBG);
 		setBGImage(null);
 	}
+	
+	public void setGrid(Boolean gridOn){
+		ActionGrid gridToggle = new ActionGrid(this,gridOn);
+		cleanActionList();
+		myActionList.add(gridToggle);
+		gridToggle.redo();
+	}
+	
+	public void toggleGrid(Boolean gridOn){
+		toggleGrid = gridOn;
+	}
 
 	public void setPenColor(String color){
+		ActionPen penColor = new ActionPen(this,color);
+		cleanActionList();
+		myActionList.add(penColor);
+		penColor.redo();
+	}
+	
+	public void setPen(String color){
 		JGColor colorBG = getJGColor(color);
 		if (colorBG == null)
 			return;
@@ -114,9 +146,6 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void defineImages(){
-		//		for (int i = 0; i < 8; i++){
-		//			defineImage("turtle"+i,"-",0,"../resources/Turtle"+i+".png","-");
-		//		}
 		for (int i=0; i < 36; i++) {
 			defineImage("turtle"+i, "-",0,"../resources/turtle"+i+".png","-");
 		}
@@ -125,54 +154,42 @@ public class TurtleGame extends JGEngine implements Constants{
 
 	public void startTitle() {
 		removeObjects(null,0);
-		//new JGObject("z_turtle",false,0,0,0,"turtle0",0,0);
 	}
 
 	public void paintFrameTitle() {
 		squirt.paint();
-		/*squirt.paint();
-		lines.paint();
 		if (toggleGrid)
-			g.paint();*/
+			g.paint();
 	}
 
 	public void doFrameTitle() {
 		if (getKey(' ')){
 			clearKey(' ');
-			if (myActionIndex > -1){
-				myActionList.get(myActionIndex).undo();
-				myActionIndex--;
-			}
 		}
 		if (getKey('D')){
 			clearKey('D');
-			if (myActionIndex >= -1 && myActionIndex + 1 < myActionList.size()){
-				myActionList.get(myActionIndex + 1).redo();
-				myActionIndex++;
-			}
 		}
 	}
 
 	public void drawTurtle(double[] turtlePosition){
-		while (myActionList.size() > myActionIndex + 1){
-			myActionList.remove(myActionIndex + 1);
-		}
-		myCurrentAction.addLastTurtle(turtlePosition);
-		myActionList.add(myCurrentAction);
-		myActionIndex++;
-		if (myActionIndex > -1)
-			myCurrentAction = new Action(myActionList.get(myActionIndex).getLastTurtle(),squirt);
-		else{
-			double[] turtleStart = {0.0,0.0,0.0};
-			myCurrentAction = new Action(turtleStart,squirt);			
-		}
 		squirt.setPos(turtlePosition[0],turtlePosition[1]);
 		squirt.rotate(turtlePosition[2]);
 	}
 
 	public void drawLine(double[] currentLine){
-		myCurrentAction.addLine(
-				new Line(currentLine[0],currentLine[1],currentLine[2],currentLine[3],this));
+		new Line(currentLine[0],currentLine[1],currentLine[2],currentLine[3],this);
 
+	}
+	
+	public void sendString(String input) throws Exception{
+		myView.sendString(input);
+	}
+	
+	private void cleanActionList(){
+		
+	}
+	
+	private void restoreDefaults(){
+		
 	}
 }
