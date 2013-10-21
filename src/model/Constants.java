@@ -22,4 +22,7 @@ public class Constants {
 	public static final String INPUT_SPLITTER = "\\s+";
 	public static final String OPEN_BRACKET = "[";
 	public static final String CLOSE_BRACKET = "]";
+	public static final String DEFAULT_LANGUAGE = "src/parser/English.properties";
+	public static final String DEFAULT_BACKGROUND_COLOR = "White";
+	public static final String DEFAULT_PEN_COLOR = "Black";
 }

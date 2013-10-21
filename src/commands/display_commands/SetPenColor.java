@@ -23,6 +23,7 @@ public class SetPenColor extends CommandOneInput {
 		int pos = (int) getInputValueOne(model);
 		String penColor = colors.get(pos);
 		model.setPenColor(penColor);
+		model.penChanged = true;
 		return getInputValueOne(model);
 	}
 }
