@@ -55,6 +55,7 @@ public class View extends JFrame{
         // create listeners that will respond to events
         // position interface components
         myTurtleGame = new TurtleGame(new JGPoint(800,600));
+        myTurtleGame.setView(this);
 		JTextArea myDoneCommands = new JTextArea(18,18);
 		JTextArea myOutput = new JTextArea(18,18);
 		
@@ -205,6 +206,10 @@ public class View extends JFrame{
         JOptionPane.showMessageDialog(this, message,
                                       myResources.getString("ErrorTitle"),
                                       JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void addGameAction(String string){
+    	myTurtleGame.addInputAction(string);
     }
 
 	public void drawTurtle(double[] turtlePosition) {

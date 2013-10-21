@@ -66,8 +66,15 @@ public class TurtleGame extends JGEngine implements Constants{
 		setGameState("Title");
 	}
 	
-	public void setController(View view){
+	public void setView(View view){
 		myView = view;
+	}
+	
+	public void addInputAction(String string){
+		ActionInput inputAction = new ActionInput(this,string);
+		cleanActionList();
+		myActionList.add(inputAction);
+		inputAction.redo();
 	}
 
 	public void setTurtleImage(String image){
