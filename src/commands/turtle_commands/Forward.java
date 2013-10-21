@@ -1,6 +1,5 @@
 package commands.turtle_commands;
 
-import commands.Command;
 import commands.CommandOneInput;
 import model.Model;
 import model.State;
@@ -25,8 +24,9 @@ public class Forward extends CommandOneInput {
 		
 		double newX = x + distance*Math.sin(Math.toRadians(orientation));
 		double newY = y + distance*Math.cos(Math.toRadians(orientation));
-		
-		model.addState(new State(newX, newY, orientation, model.getTurtleVisible(), model.getPenVisible()));
+		String penColor = model.getPenColor();
+
+		model.addState(new State(newX, newY, orientation, model.getTurtleVisible(), model.getPenVisible(), penColor));
 		
 		return getInputValueOne(model);
 	}

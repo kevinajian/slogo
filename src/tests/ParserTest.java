@@ -78,7 +78,7 @@ public class ParserTest {
 		Command test1 = testOutput.get(0);
 		assertTrue(test1 instanceof Forward);
 		assertEquals(test1.getInputValueOne(model), 50.0, 0.0);
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		test1.evaluate(model);
 		assertEquals(model.getX(), 0.0, 0.0);
 		assertEquals(model.getY(), 50.0, 0.0);

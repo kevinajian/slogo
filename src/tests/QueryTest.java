@@ -1,15 +1,9 @@
 package tests;
 
 import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
-import model.Constants;
 import model.Model;
 import model.State;
-
 import org.junit.Test;
-
 import commands.basic_syntax.Constant;
 import commands.turtle_commands.Forward;
 import commands.turtle_commands.Left;
@@ -18,7 +12,6 @@ import commands.turtle_queries.PenDown;
 import commands.turtle_queries.Showing;
 import commands.turtle_queries.XCor;
 import commands.turtle_queries.YCor;
-import commands.view.ClearScreen;
 import commands.view.HideTurtle;
 import commands.view.SetPenDown;
 import commands.view.SetPenUp;
@@ -29,7 +22,7 @@ public class QueryTest {
 	@Test
 	public void testHeading() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Left left = new Left();
 		Constant leftChild = new Constant();
 		leftChild.setInputValueOne(90.0);
@@ -75,7 +68,7 @@ public class QueryTest {
 	@Test
 	public void testXCor() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();
 		left.setInputValueOne(1.0);
@@ -88,7 +81,7 @@ public class QueryTest {
 	@Test
 	public void testYCor() {
 		Model model = new Model();
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1"));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();
 		left.setInputValueOne(1.0);

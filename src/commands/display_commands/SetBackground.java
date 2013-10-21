@@ -10,7 +10,6 @@ public class SetBackground extends CommandOneInput {
 	private ResourceBundle myResources;
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
 
-
 	@Override
 	public double evaluate(Model model) {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");

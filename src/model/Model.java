@@ -24,9 +24,10 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
 	private String myLanguage = "src/parser/English.properties";
 	private String myBackgroundColor = "White";
+	private String myPenColor = "Black";
 
 	public void initiate() {
-		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING);
+		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
 		myStates.add(myOrigin);
 	}
 	
@@ -173,6 +174,14 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setMyBackgroundColor(String myBackgroundColor) {
 		this.myBackgroundColor = myBackgroundColor;
+	}
+
+	public String getPenColor() {
+		return myPenColor;
+	}
+
+	public void setPenColor(String penColor) {
+		myPenColor = penColor;
 	}
 
 }

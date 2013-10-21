@@ -1,6 +1,5 @@
 package commands.turtle_commands;
 
-import commands.Command;
 import commands.CommandOneInput;
 import model.Constants;
 import model.Model;
@@ -17,7 +16,8 @@ public class SetHeading extends CommandOneInput {
 	@Override
 	public double evaluate(Model model) {		
 		double orientation = model.getOrientation();
-		model.addState(new State(model.getX(), model.getY(), getInputValueOne(model)%Constants.DEGREES, model.getTurtleVisible(), model.getPenVisible()));
+		String penColor = model.getPenColor();
+		model.addState(new State(model.getX(), model.getY(), getInputValueOne(model)%Constants.DEGREES, model.getTurtleVisible(), model.getPenVisible(), penColor));
 		return Math.abs(getInputValueOne(model)%Constants.DEGREES - orientation);
 	}
 

@@ -220,4 +220,9 @@ public class View extends JFrame{
 		myTurtleGame.drawLine(currentLine);
 	}
 
+	public void clearLines() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

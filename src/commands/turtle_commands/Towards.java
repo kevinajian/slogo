@@ -34,8 +34,9 @@ public class Towards extends Command {
 		}
 		else
 			newOrientation = 0;
-		
-		model.addState(new State(x, y, newOrientation, model.getTurtleVisible(), model.getPenVisible()));
+		String penColor = model.getPenColor();
+
+		model.addState(new State(x, y, newOrientation, model.getTurtleVisible(), model.getPenVisible(), penColor));
 		
 		return Math.abs(orientation-newOrientation);
 	}
