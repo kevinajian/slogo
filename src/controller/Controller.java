@@ -62,8 +62,6 @@ public class Controller {
 		List<Line> trail = getLines();		
 
 		for (Line line:trail) {
-			System.out.println("In the for loop");
-
 			double[] currentLine = line.getLine();
 			myView.drawLine(currentLine);
 		}
@@ -93,7 +91,6 @@ public class Controller {
 	
 	public List<Line> getLines() {
 		List<State> states = getStates();
-		System.out.println("state size: "+states.size());
 		List<Line> lines = new ArrayList<Line>();
 		for (int i=0; i<states.size()-1; i++){
 			if (states.size()<2) {
