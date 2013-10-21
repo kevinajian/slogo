@@ -17,8 +17,9 @@ public class BackgroundMenu extends JMenu {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
 		String lumpedColors = myResources.getString("Colors");
 		String Colors[] = lumpedColors.split(" ");
-		for (String color : Colors)
+		for (String color : Colors){
 			addAction(color,game);
+		}
 	}
 	
 	public void addAction(String color, TurtleGame game){

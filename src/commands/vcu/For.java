@@ -10,7 +10,7 @@ import model.Model;
  * @author carlosreyes
  *
  */
-public class For extends ControlStructure{
+public class For extends Command{
 	
 	private String myVariable;
 	private double myMax;
@@ -47,6 +47,8 @@ public class For extends ControlStructure{
 
 	@Override
 	public double evaluate(Model model) {
+		
+		
 		//System.out.println(myNumInputs);
 		//TODO: Result needs to be the output of every
 		//iteration of the loop

@@ -19,10 +19,13 @@ public class TurtleGame extends JGEngine implements Constants{
 	private JGColor myPenColor;
 	//private JGColor myBackgroundColor;
 	private Map<String,JGColor> colorMap = new HashMap<String,JGColor>();
-	public Turtle squirt;
+	private Turtle squirt;
 	public Grid g;
-	public HoldLines lines;
+	private HoldLines lines;
 	public boolean toggleGrid;
+	private ArrayList<Action> myActionList = new ArrayList<Action>();
+	private Action myCurrentAction;
+	private int myActionIndex;
 	/*	public TurtleGame() {initEngineApplet();}
 
 	public void initCanvas() { 
@@ -46,31 +49,34 @@ public class TurtleGame extends JGEngine implements Constants{
 		setFrameRate(45,2);
 		setCursor(null);
 		defineImages();
-		squirt = new Turtle("turtle", 50, this);
-		lines = new HoldLines("lines", 51, this);
+		squirt = new Turtle("z_turtle", 50, this);
+		//lines = new HoldLines("lines", 51, this);
 		g = new Grid("grid", 69, this);
 		toggleGrid = true;
+		double[] turtleStart = {0.0,0.0,0.0};
+		myCurrentAction = new Action(turtleStart,squirt);
+		myActionIndex = -1;
 		colorMap.put("Blue", JGColor.blue);
 		colorMap.put("Red", JGColor.red);
 		colorMap.put("White", JGColor.white);
 		colorMap.put("Black", JGColor.black);		
 		setGameState("Title");
 	}
-	
+
 	public void setTurtleImage(String image){
 		if(image.equals("Star"))
 			squirt.changeImage("star");
 		else{
 			JFileChooser myChooser = new JFileChooser(System.getProperties().getProperty("user.dir"));
-            try {
-                int response = myChooser.showOpenDialog(null);
-                if (response == JFileChooser.APPROVE_OPTION) {
-                    new FileReader(myChooser.getSelectedFile());
-                }
-            }
-            catch (IOException io) {
-                System.out.println("exploded -- no file");
-            }
+			try {
+				int response = myChooser.showOpenDialog(null);
+				if (response == JFileChooser.APPROVE_OPTION) {
+					new FileReader(myChooser.getSelectedFile());
+				}
+			}
+			catch (IOException io) {
+				System.out.println("exploded -- no file");
+			}
 		}
 	}
 
@@ -89,7 +95,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		myPenColor = colorBG;
 		System.out.println(color);
 	}
-	
+
 	public JGColor getPenColor(){
 		return myPenColor;
 	}
@@ -108,9 +114,9 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void defineImages(){
-//		for (int i = 0; i < 8; i++){
-//			defineImage("turtle"+i,"-",0,"../resources/Turtle"+i+".png","-");
-//		}
+		//		for (int i = 0; i < 8; i++){
+		//			defineImage("turtle"+i,"-",0,"../resources/Turtle"+i+".png","-");
+		//		}
 		for (int i=0; i < 36; i++) {
 			defineImage("turtle"+i, "-",0,"../resources/turtle"+i+".png","-");
 		}
@@ -124,27 +130,49 @@ public class TurtleGame extends JGEngine implements Constants{
 
 	public void paintFrameTitle() {
 		squirt.paint();
+		/*squirt.paint();
 		lines.paint();
 		if (toggleGrid)
-			g.paint();
+			g.paint();*/
 	}
 
 	public void doFrameTitle() {
-		if (getKey(' ')) {
+		if (getKey(' ')){
 			clearKey(' ');
-			squirt.rotate(Math.random()*360);
-		}
-		if (getMouseButton(1)){
-			clearMouseButton(1);
-			squirt.setPos(getMouseX(), getMouseY());
-		}
-		if (getKey(KeyEnter)){
-			clearKey(KeyEnter);
-			squirt.changeImage("star");
+			if (myActionIndex > -1){
+				myActionList.get(myActionIndex).undo();
+				myActionIndex--;
+			}
 		}
 		if (getKey('D')){
 			clearKey('D');
-			squirt.restoreDefaultImage();
+			if (myActionIndex >= -1 && myActionIndex + 1 < myActionList.size()){
+				myActionList.get(myActionIndex + 1).redo();
+				myActionIndex++;
+			}
 		}
+	}
+
+	public void drawTurtle(double[] turtlePosition){
+		while (myActionList.size() > myActionIndex + 1){
+			myActionList.remove(myActionIndex + 1);
+		}
+		myCurrentAction.addLastTurtle(turtlePosition);
+		myActionList.add(myCurrentAction);
+		myActionIndex++;
+		if (myActionIndex > -1)
+			myCurrentAction = new Action(myActionList.get(myActionIndex).getLastTurtle(),squirt);
+		else{
+			double[] turtleStart = {0.0,0.0,0.0};
+			myCurrentAction = new Action(turtleStart,squirt);			
+		}
+		squirt.setPos(turtlePosition[0],turtlePosition[1]);
+		squirt.rotate(turtlePosition[2]);
+	}
+
+	public void drawLine(double[] currentLine){
+		myCurrentAction.addLine(
+				new Line(currentLine[0],currentLine[1],currentLine[2],currentLine[3],this));
+
 	}
 }

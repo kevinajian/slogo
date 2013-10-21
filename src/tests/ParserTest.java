@@ -107,4 +107,26 @@ public class ParserTest {
 		assertTrue(testOutput.isEmpty());
 	}
 	
+	@Test
+	public void testBracket() throws Exception{
+		Model model = new Model();
+		Parser parser = new Parser(model);
+		String testInputs = "[abcd]";
+		List<String> inputs = new ArrayList<String>();
+		for (int i=0; i<testInputs.length(); i++) {
+			inputs.add(testInputs.substring(i,i+1));
+		}
+		int closingBracket = parser.findLastBracket(0, inputs);
+		assertEquals(closingBracket, 5);
+		
+		testInputs = "[[[[[]]]]]";
+		inputs.clear();
+		for (int i=0; i<testInputs.length(); i++) {
+			inputs.add(testInputs.substring(i,i+1));
+		}
+		closingBracket = parser.findLastBracket(0, inputs);
+		assertEquals(closingBracket, testInputs.length()-1);
+		
+	}
+	
 }
