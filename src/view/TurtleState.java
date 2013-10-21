@@ -6,14 +6,26 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class TurtleState extends JScrollPane{
+public class TurtleState extends JSplitPane{	
     private ActionListener myActionListener;
-    private JTextArea myTextArea;
-	public TurtleState(JTextArea text)
+    private JTextArea myInfo;
+    private JTextArea myPrevCommands;
+    private View myView;
+	public TurtleState(JScrollPane myOutputPane, JScrollPane myDoneCommandsPane, View v, JTextArea myDoneCommands, JTextArea myOutput)
 	{
-		super(text);
-		myTextArea = text;
-	}
+		setOrientation(VERTICAL_SPLIT);
+		setTopComponent(myDoneCommandsPane);
+		setBottomComponent(myOutputPane);
+		setOneTouchExpandable(true);
 
-	
+		myView = v;
+		myInfo = myOutput;
+		myInfo.setLineWrap(true);
+		myPrevCommands = myDoneCommands;
+	}
+	public void addText(String text)
+	{
+		myInfo.append(text + "\n");
+		
+	}
 }
