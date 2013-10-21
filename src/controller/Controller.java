@@ -108,4 +108,7 @@ public class Controller {
 		return myModel.getVariableMap();
 	}
 	
+	public void resetModel() {
+		myModel.resetModel();
+	}
 }

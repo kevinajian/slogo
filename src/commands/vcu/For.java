@@ -10,7 +10,7 @@ import model.Model;
  * @author carlosreyes
  *
  */
-public class For extends ControlStructure{
+public class For extends Command{
 	
 	private String myVariable;
 	private double myMax;
