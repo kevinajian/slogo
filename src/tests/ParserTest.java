@@ -146,18 +146,18 @@ public class ParserTest {
 		int openBracket = 0;
 		int closeBracket = parser.findLastBracket(0, inputs);
 		List<String> test = parser.listBuilder(openBracket, closeBracket, inputs);
-		assertEquals(test.get(0), "a");
-		assertEquals(test.get(1), "b");
-		assertEquals(test.get(2), "c");
+		assertEquals(test.get(1), "a");
+		assertEquals(test.get(2), "b");
+		assertEquals(test.get(3), "c");
 	}
 	
 	@Test
-	public void testSetForParams() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public void testSetParams() throws Exception {
 		Model model = new Model();
 		Parser parser = new Parser(model);
 		Command testRoot = new For();
 		List<String> inputs = new ArrayList<String>() {{add(":x"); add("0"); add("5"); add("1");}};
-		parser.setForParams(testRoot, inputs);
+		parser.setParams(testRoot, inputs);
 		assertEquals(((For) testRoot).getVariable().getVariableName(), ":x");
 		assertEquals(model.getCustomCommandValue(((For) testRoot).getVariable().getVariableName()), 0.0, 0.0);
 		assertEquals(((For) testRoot).getMax(), 5.0, 0.0);

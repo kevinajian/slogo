@@ -76,6 +76,7 @@ public class Controller {
 			myModel.setPenChanged(false);
 			setPenColor(myModel.getPenColor());
 		}
+		System.out.println("x: "+myModel.getX()+ " y: "+myModel.getY());
 	}
 	
 	/**

@@ -25,4 +25,6 @@ public class Constants {
 	public static final String DEFAULT_LANGUAGE = "src/parser/English.properties";
 	public static final String DEFAULT_BACKGROUND_COLOR = "White";
 	public static final String DEFAULT_PEN_COLOR = "Black";
+	public static final int DEFAULT_ITERATION = 0;
+	public static final int DEFAULT_INCREMENT = 1;
 }

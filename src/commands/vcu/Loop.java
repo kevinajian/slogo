@@ -2,9 +2,15 @@ package commands.vcu;
 
 import java.util.List;
 
+import model.Constants;
 import model.Model;
 import commands.Command;
 
+/**
+ * Basic class for loop commands
+ * @author Kevin
+ *
+ */
 public class Loop extends Command{
 	protected int myIteration;
 	protected int myIncrement;
@@ -14,9 +20,7 @@ public class Loop extends Command{
 	@Override
 	public double evaluate(Model model) {
 		while(getIteration(model)<getMax()) {
-			System.out.println("Looping");
 			for (Command c:myCommandList) {
-				System.out.println("Command running");
 				c.evaluate(model);
 			}
 			incrementIteration(model);

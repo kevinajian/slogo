@@ -144,36 +144,59 @@ public class Parser {
 	
 	public Command specialTreeBuilder(Command root, List<String> inputs) throws Exception {
 		if (root instanceof For) {
-			System.out.println("special tree builder inputs: "+inputs);
-			for(String s:inputs) {
-				System.out.println(s);
+			int openBracket = findFirstBracket(inputs);
+			if (root instanceof Repeat) {
+				List<String> params = listBuilder(0, openBracket-1, inputs);
+				setParams(root, params);
+				setCommandList(root, inputs);
+				return root;
 			}
-			int openBracket = 0;
 			int closeBracket = findLastBracket(openBracket, inputs);
-			System.out.println(closeBracket);
-			List<String> params = listBuilder(openBracket, closeBracket, inputs);
-			System.out.println(params);
-			setForParams(root, params);
-			closeBracket = findLastBracket(openBracket, inputs);
-			List<String> inputList = listBuilder(openBracket, closeBracket, inputs);
-			((For) root).setCommandList(lexer(inputList));
-		}	
+			List<String> params = listBuilder(openBracket+1, closeBracket-1, inputs);
+			setParams(root, params);
+			inputs.remove(0); inputs.remove(0);
+			setCommandList(root, inputs);
+		}
 		return root;
 	}
+	
+	public void setCommandList(Command root, List<String> inputs) throws Exception {
+		int openBracket = findFirstBracket(inputs);
+		int closeBracket = findLastBracket(openBracket, inputs);
+		List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs);
+		((For) root).setCommandList(lexer(inputList));
+		inputs.remove(0);inputs.remove(0);
+	}
 
-	public void setForParams(Command root, List<String> params) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		System.out.println(params);
+	public void setParams(Command root, List<String> params) throws Exception {
+		if (root instanceof Repeat) {
+			Command variable = new Variable(":repcount");
+			myModel.setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
+			((For) root).setVariable((Variable) variable);
+			((For) root).setMax((int) lexer(params).get(0).evaluate(myModel));
+			System.out.println(((For) root).getMax());
+			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
+			return;
+		}
 		Command variable = getClass(params.get(0));
+		if (root instanceof DoTimes) {
+			myModel.setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
+			((For) root).setVariable((Variable) variable);
+			((For) root).setMax(Integer.parseInt(params.get(1)));
+			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
+			return;
+		}
 		int start = Integer.parseInt(params.get(1));
 		myModel.setCustomCommand(((Variable) variable).getVariableName(), start);
 		((For) root).setVariable((Variable) variable);
-		((Loop) root).setMax(Integer.parseInt(params.get(2)));
-		((Loop) root).setIncrement(Integer.parseInt(params.get(3)));
+		((For) root).setMax(Integer.parseInt(params.get(2)));
+		((For) root).setIncrement(Integer.parseInt(params.get(3)));	
 	}
 
 	public List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
 		List<String> returnList = new ArrayList<String>();
-		for (int i = firstIndex+1; i < endIndex ; i++) {
+		for (int i = firstIndex; i <=endIndex ; i++) {
+			System.out.println(inputs.get(i));
 			returnList.add(inputs.get(i));
 		}
 		removeRange(firstIndex, endIndex, inputs);
@@ -184,6 +207,16 @@ public class Parser {
 		for (int i=firstIndex; i<=endIndex; i++){
 			inputs.remove(firstIndex);
 		}
+	}
+	
+	
+	public int findFirstBracket(List<String> inputList) {
+		for (int i=0; i < inputList.size(); i++) {
+			if (inputList.get(i).equals(Constants.OPEN_BRACKET)) {
+				return i;
+			}
+		}
+		return 0;
 	}
 	
 	public int findLastBracket(int firstBracket, List<String> inputList) {
