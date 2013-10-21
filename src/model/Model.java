@@ -131,14 +131,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		myTurtleVisible = turtleVisible;
 	}
 
-	public Map<String, Double> getCustomCommandMap() {
-		return customCommandMap;
-	}
-
-	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
-		this.customCommandMap = customCommandMap;
-	}
-
 	public String getMyLanguage() {
 		return myLanguage;
 	}
@@ -155,8 +147,20 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		this.myBackgroundColor = myBackgroundColor;
 	}
 	
-	public void addCustomCommand(String key, double value) {
+	public Map<String, Double> getCustomCommandMap() {
+		return customCommandMap;
+	}
+
+	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
+		this.customCommandMap = customCommandMap;
+	}
+	
+	public void setCustomCommand(String key, double value) {
 		customCommandMap.put(key, value);
+	}
+	
+	public double getCustomCommandValue(String key) {
+		return customCommandMap.get(key);
 	}
 		
 	public String getPenColor() {

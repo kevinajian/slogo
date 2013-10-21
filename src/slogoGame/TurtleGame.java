@@ -186,7 +186,7 @@ public class TurtleGame extends JGEngine implements Constants{
 			clearKey('D');
 			
 		}
-		System.out.println(myActionList.size() + " " + myActionIndex);
+//		System.out.println(myActionList.size() + " " + myActionIndex);
 	}
 
 	public void drawTurtle(double[] turtlePosition){

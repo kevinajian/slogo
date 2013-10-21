@@ -14,6 +14,7 @@ import commands.*;
 import commands.math.*;
 import commands.turtle_commands.*;
 import commands.turtle_queries.*;
+import commands.vcu.For;
 import parser.Parser;
 
 public class ParserTest {
@@ -126,7 +127,56 @@ public class ParserTest {
 		}
 		closingBracket = parser.findLastBracket(0, inputs);
 		assertEquals(closingBracket, testInputs.length()-1);
-		
 	}
 	
+	@Test
+	public void testRemoveRange() {
+		Model model = new Model();
+		Parser parser = new Parser(model);
+		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]");}};
+		parser.removeRange(0, inputs.size()-1, inputs);
+		assertTrue(inputs.isEmpty());
+	}
+	
+	@Test
+	public void testListBuilder() {
+		Model model = new Model();
+		Parser parser = new Parser(model);
+		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]"); add("end");}};
+		int openBracket = 0;
+		int closeBracket = parser.findLastBracket(0, inputs);
+		List<String> test = parser.listBuilder(openBracket, closeBracket, inputs);
+		assertEquals(test.get(0), "a");
+		assertEquals(test.get(1), "b");
+		assertEquals(test.get(2), "c");
+	}
+	
+	@Test
+	public void testSetForParams() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		Model model = new Model();
+		Parser parser = new Parser(model);
+		Command testRoot = new For();
+		List<String> inputs = new ArrayList<String>() {{add(":x"); add("0"); add("5"); add("1");}};
+		parser.setForParams(testRoot, inputs);
+		assertEquals(((For) testRoot).getVariable().getVariableName(), ":x");
+		assertEquals(model.getCustomCommandValue(((For) testRoot).getVariable().getVariableName()), 0.0, 0.0);
+		assertEquals(((For) testRoot).getMax(), 5.0, 0.0);
+		assertEquals(((For) testRoot).getIncrement(), 1);
+	}
+	
+	@Test
+	public void testSpecialTreeBuilderFor() throws Exception {
+		Model model = new Model();
+		Parser parser = new Parser(model);
+		Command testRoot = new For();
+		List<String> inputs = new ArrayList<String>() {{add("["); add(":x"); add("0"); add("5"); add("1"); add("]"); add("["); add("Forward"); add("50"); add("]");}};
+		parser.specialTreeBuilder(testRoot, inputs);
+		System.out.println("variable value: "+model.getCustomCommandValue(((For) testRoot).getVariable().getVariableName()) + " max value: " + ((For) testRoot).getMax());
+		List<Command> test = ((For) testRoot).getCommandList();
+		System.out.println(test.get(0).getClass());
+		System.out.println(test.get(0).getInputValueOne(model));
+		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
+		testRoot.evaluate(model);
+		assertEquals(model.getY(), 250.0, 0.0);
+	}
 }

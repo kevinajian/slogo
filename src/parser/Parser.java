@@ -67,10 +67,7 @@ public class Parser {
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		List<String> inputs = new ArrayList<String>();
 		for(String string : list){
-			if(string.matches("-?\\d+(\\.\\d+)?")){
-				inputs.add(string);
-			}
-			if(string.charAt(0) == ':') {
+			if(string.matches(Constants.CONSTANT_ID) || (string.charAt(0) == Constants.VARIABLE_ID.charAt(0)) || (string.equals(Constants.OPEN_BRACKET)) || (string.equals(Constants.CLOSE_BRACKET))){
 				inputs.add(string);
 			}
 			else{
@@ -92,7 +89,6 @@ public class Parser {
 		List<Command> rootList = new ArrayList<Command>();
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
-			System.out.println(inputs);
 			Command headNode = getClass(inputs.get(0));
 			if (headNode instanceof Loop) {
 				inputs.remove(0);
@@ -146,35 +142,46 @@ public class Parser {
 		return root;
 	}
 	
-	private void specialTreeBuilder(Command root, List<String> inputs) throws Exception {
+	public Command specialTreeBuilder(Command root, List<String> inputs) throws Exception {
 		if (root instanceof For) {
+			System.out.println("special tree builder inputs: "+inputs);
+			for(String s:inputs) {
+				System.out.println(s);
+			}
 			int openBracket = 0;
 			int closeBracket = findLastBracket(openBracket, inputs);
+			System.out.println(closeBracket);
 			List<String> params = listBuilder(openBracket, closeBracket, inputs);
+			System.out.println(params);
 			setForParams(root, params);
 			closeBracket = findLastBracket(openBracket, inputs);
 			List<String> inputList = listBuilder(openBracket, closeBracket, inputs);
 			((For) root).setCommandList(lexer(inputList));
 		}	
+		return root;
 	}
 
-	private void setForParams(Command root, List<String> params) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public void setForParams(Command root, List<String> params) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		System.out.println(params);
 		Command variable = getClass(params.get(0));
 		int start = Integer.parseInt(params.get(1));
-		myModel.addCustomCommand(((Variable) variable).getVariableName(), start);
+		myModel.setCustomCommand(((Variable) variable).getVariableName(), start);
+		((For) root).setVariable((Variable) variable);
+		((Loop) root).setMax(Integer.parseInt(params.get(2)));
+		((Loop) root).setIncrement(Integer.parseInt(params.get(3)));
 	}
 
-	private List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
+	public List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
 		List<String> returnList = new ArrayList<String>();
-		for (int i = firstIndex; i < endIndex ; i++) {
+		for (int i = firstIndex+1; i < endIndex ; i++) {
 			returnList.add(inputs.get(i));
 		}
 		removeRange(firstIndex, endIndex, inputs);
 		return returnList;
 	}
 	
-	private void removeRange(int firstIndex, int endIndex, List<String> inputs) {
-		for (int i=firstIndex; i<endIndex; i++){
+	public void removeRange(int firstIndex, int endIndex, List<String> inputs) {
+		for (int i=firstIndex; i<=endIndex; i++){
 			inputs.remove(firstIndex);
 		}
 	}
@@ -195,7 +202,6 @@ public class Parser {
 		return 0;
 	}
 
-	
 	/**
 	 * Creates a class from a string. If its a variable, make it of type variable
 	 * and add its name to a map in model which maps the variable name (including
