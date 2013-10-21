@@ -11,4 +11,5 @@ public interface Constants {
 	
 	public final int GRID_DENSITY = 40;
 	public final int GRID_LINE_WIDTH = 1;
+	public final int TURTLE_LINE_WIDTH = 1;
 }

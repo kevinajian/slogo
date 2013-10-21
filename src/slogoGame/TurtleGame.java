@@ -142,6 +142,15 @@ public class TurtleGame extends JGEngine implements Constants{
 	public JGColor getPenColor(){
 		return myPenColor;
 	}
+	
+	private double myPenSize;
+
+	public void setPenSize(double size){
+		this.myPenSize = size;
+	}
+	public double getPenSize() {
+		return myPenSize;
+	}
 
 	private JGColor getJGColor(String color){
 		if (colorMap.containsKey(color)){
@@ -223,4 +232,6 @@ public class TurtleGame extends JGEngine implements Constants{
 		squirt.setPos(0, 0);
 		squirt.rotate(0);
 	}
+
+
 }

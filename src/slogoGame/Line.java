@@ -8,7 +8,7 @@ public class Line extends JGObject implements Constants{
 	private double y1;
 	private double x2;
 	private double y2;
-	
+
 	public Line(double ex1, double why1, double ex2, double why2, TurtleGame tgame){
 		this("line",0,tgame,ex1,why1,ex2,why2);
 	}
@@ -24,6 +24,6 @@ public class Line extends JGObject implements Constants{
 	
 	public void paint()
 	{
-		myEngine.drawLine(x1, y1, x2, y2, GRID_LINE_WIDTH, myEngine.getPenColor());
+		myEngine.drawLine(x1, y1, x2, y2, myEngine.getPenSize(), myEngine.getPenColor());
 	}
 }

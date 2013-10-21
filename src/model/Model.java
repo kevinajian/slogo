@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import commands.Command;
-import commands.basic_syntax.Variable;
 import parser.Parser;
 
 /**
@@ -24,11 +22,10 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private String myLanguage = Constants.DEFAULT_LANGUAGE;
 	private String myBackgroundColor = Constants.DEFAULT_BACKGROUND_COLOR;
 	private String myPenColor = Constants.DEFAULT_PEN_COLOR;
+	private double myPenSize = Constants.DEFAULT_PEN_SIZE;
 	private boolean backgroundChanged = false;
-	private boolean penChanged = false;
-
-
-
+	private boolean penColorChanged = false;
+	private boolean penSizeChanged = false;
 
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
@@ -180,12 +177,28 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		this.backgroundChanged = backgroundChanged;
 	}
 	
-	public boolean isPenChanged() {
-		return penChanged;
+	public boolean isPenColorChanged() {
+		return penColorChanged;
 	}
 
-	public void setPenChanged(boolean penChanged) {
-		this.penChanged = penChanged;
+	public void setPenColorChanged(boolean penChanged) {
+		this.penColorChanged = penChanged;
+	}
+
+	public double getPenSize() {
+		return myPenSize;
+	}
+
+	public void setPenSize(double d) {
+		this.myPenSize = d;
+	}
+	
+	public boolean isPenSizeChanged() {
+		return penSizeChanged;
+	}
+
+	public void setPenSizeChanged(boolean penSizeChanged) {
+		this.penSizeChanged = penSizeChanged;
 	}
 
 }
