@@ -19,7 +19,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private State myOrigin;
 	private String myTurtleVisible = Constants.TURTLE_SHOWING;
 	private String myPenVisible = Constants.PEN_SHOWING;
-	private List<Variable> myVariables = new ArrayList<Variable>();
 	private List<Command> myCommands = new ArrayList<Command>();
 	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
 	private String myLanguage = "src/parser/English.properties";
@@ -131,26 +130,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		myTurtleVisible = turtleVisible;
 	}
 
-	public List<Variable> getVariableList() {
-		return myVariables;
-	}
-
-	public void setVariableList(List variableMap) {
-		myVariables = variableMap;
-	}
-	
-	public void addVariable(Command variable) {
-		myVariables.add((Variable) variable);
-	}
-
-	public Map getVariableMap() {
-		Map variableList = new HashMap();
-		for (Variable v:myVariables) {
-			variableList.put(v.getVariableName(), v.getInputValueOne(this));
-		}
-		return variableList;
-	}
-
 	public Map<String, Double> getCustomCommandMap() {
 		return customCommandMap;
 	}
@@ -173,6 +152,11 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setMyBackgroundColor(String myBackgroundColor) {
 		this.myBackgroundColor = myBackgroundColor;
+	}
+
+	public void addCustomCommand(String key, double value) {
+		customCommandMap.put(key, value);
+		
 	}
 
 }

@@ -112,9 +112,6 @@ public class Controller {
 		}
 	}
 	
-	public Map getVariables() {
-		return myModel.getVariableMap();
-	}
 	public List getCommandList()
 	{
 		return myModel.getCommands();
