@@ -1,6 +1,5 @@
 package commands.turtle_commands;
 
-import commands.Command;
 import commands.CommandZeroInput;
 import model.Constants;
 import model.Model;
@@ -19,7 +18,8 @@ public class Home extends CommandZeroInput {
 	public double evaluate(Model model) {
 		double x = model.getX();
 		double y = model.getY();
-		model.addState(new State(Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN, Constants.TURTLE_DEGREEORIGIN, model.getTurtleVisible(), model.getPenVisible()));
+		String penColor = model.getPenColor();
+		model.addState(new State(Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN, Constants.TURTLE_DEGREEORIGIN, model.getTurtleVisible(), model.getPenVisible(), penColor));
 		return calculateLength(x, y, Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN);
 	}
 	

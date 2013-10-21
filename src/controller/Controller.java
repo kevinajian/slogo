@@ -27,6 +27,10 @@ public class Controller {
 		myView.getMyTurtleGame().setBackground(c);
 	}
 	
+	public void setPenColor(String c) {
+		myView.getMyTurtleGame().setPenColor(c);
+	}
+	
 	public void setMyModel(Model myModel) {
 		this.myModel = myModel;
 	}
@@ -66,6 +70,7 @@ public class Controller {
 		double[] turtlePosition = getTurtle();
 		myView.drawTurtle(turtlePosition);
 		setBackgroundColor(myModel.getMyBackgroundColor());
+		setPenColor(myModel.getPenColor());
 	}
 	
 	/**

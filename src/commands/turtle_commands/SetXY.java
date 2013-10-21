@@ -17,7 +17,8 @@ public class SetXY extends Command{
 	public double evaluate(Model model) {
 		double x = model.getX();
 		double y = model.getY();
-		model.addState(new State(getInputValueOne(model), getInputValueTwo(model), model.getOrientation(), model.getTurtleVisible(), model.getPenVisible()));
+		String penColor = model.getPenColor();
+		model.addState(new State(getInputValueOne(model), getInputValueTwo(model), model.getOrientation(), model.getTurtleVisible(), model.getPenVisible(), penColor));
 		return calculateLength(x, y, getInputValueOne(model), getInputValueTwo(model));
 	}
 	

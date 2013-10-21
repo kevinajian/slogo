@@ -1,6 +1,5 @@
 package commands.turtle_commands;
 
-import commands.Command;
 import commands.CommandOneInput;
 import model.Constants;
 import model.Model;
@@ -18,7 +17,8 @@ public class Left extends CommandOneInput  {
 	public double evaluate(Model model) {
 		double orientation = model.getOrientation();
 		double newOrientation = (orientation + Constants.DEGREES - getInputValueOne(model))%Constants.DEGREES;
-		model.addState(new State(model.getX(), model.getY(), newOrientation, model.getTurtleVisible(), model.getPenVisible()));
+		String penColor = model.getPenColor();
+		model.addState(new State(model.getX(), model.getY(), newOrientation, model.getTurtleVisible(), model.getPenVisible(), penColor));
 		
 		return getInputValueOne(model);
 	}
