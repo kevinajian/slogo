@@ -10,7 +10,7 @@ public class ActionBackground extends Action {
 	
 	@Override
 	public void redo(){
-		myTurtleGame.setBackground(myColor);
+		myTurtleGame.setBackgroundColor(myColor);
 	}
 
 }

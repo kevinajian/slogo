@@ -28,4 +28,8 @@ public class Loop extends Command{
 		return myMax;
 	}
 	
+	public void setCommandList(List<Command> commandList) {
+		myCommandList = commandList;
+	}
+	
 }

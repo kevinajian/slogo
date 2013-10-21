@@ -67,7 +67,6 @@ public class Parser {
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		List<String> inputs = new ArrayList<String>();
 		for(String string : list){
-
 			if(string.matches("-?\\d+(\\.\\d+)?")){
 				inputs.add(string);
 			}
@@ -91,7 +90,6 @@ public class Parser {
 	 */
 	public List<Command> lexer(List<String> inputs) throws Exception{
 		List<Command> rootList = new ArrayList<Command>();
-		List<String> inputList = new ArrayList<String>();
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
 			System.out.println(inputs);
@@ -148,13 +146,22 @@ public class Parser {
 		return root;
 	}
 	
-	private void specialTreeBuilder(Command root, List<String> inputs) {
+	private void specialTreeBuilder(Command root, List<String> inputs) throws Exception {
 		if (root instanceof For) {
 			int openBracket = 0;
 			int closeBracket = findLastBracket(openBracket, inputs);
 			List<String> params = listBuilder(openBracket, closeBracket, inputs);
-			removeRange(openBracket, closeBracket, inputs);
+			setForParams(root, params);
+			closeBracket = findLastBracket(openBracket, inputs);
+			List<String> inputList = listBuilder(openBracket, closeBracket, inputs);
+			((For) root).setCommandList(lexer(inputList));
 		}	
+	}
+
+	private void setForParams(Command root, List<String> params) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		Command variable = getClass(params.get(0));
+		int start = Integer.parseInt(params.get(1));
+		myModel.addCustomCommand(((Variable) variable).getVariableName(), start);
 	}
 
 	private List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
@@ -162,12 +169,13 @@ public class Parser {
 		for (int i = firstIndex; i < endIndex ; i++) {
 			returnList.add(inputs.get(i));
 		}
+		removeRange(firstIndex, endIndex, inputs);
 		return returnList;
 	}
 	
 	private void removeRange(int firstIndex, int endIndex, List<String> inputs) {
 		for (int i=firstIndex; i<endIndex; i++){
-			inputs.remove(0);
+			inputs.remove(firstIndex);
 		}
 	}
 	
@@ -208,8 +216,6 @@ public class Parser {
 		}
 		else if (className.charAt(0) == Constants.VARIABLE_ID.charAt(0)) {
 			xyz = new Variable(className);
-			((Variable) xyz).setVariableName(className);
-			myModel.addVariable(xyz);
 		} 
 		else {
 			xyz = (Command) Class.forName(toClass(className)).newInstance(); // IF THIS ISN"T FOUND WE SHOULD RETURN AT ERROR. 
