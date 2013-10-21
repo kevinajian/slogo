@@ -18,9 +18,10 @@ public class Line extends JGObject implements Constants{
 		myEngine = tgame;
 		x1 = ex1 + DEFAULT_WIDTH/2;
 		x2 = ex2 + DEFAULT_WIDTH/2;
-		y1 = why1 + DEFAULT_HEIGHT/2;
-		y2 = why2 + DEFAULT_HEIGHT/2;
+		y1 = -why1 + DEFAULT_HEIGHT/2;
+		y2 = -why2 + DEFAULT_HEIGHT/2;
 	}
+	
 	public void paint()
 	{
 		myEngine.drawLine(x1, y1, x2, y2, GRID_LINE_WIDTH, myEngine.getPenColor());

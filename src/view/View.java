@@ -31,7 +31,7 @@ public class View extends JFrame{
     private TurtleGame myTurtleGame;
     private Controller myController;
     private JFileChooser myChooser;
-	private JGEngine myEngine;
+	//private JGEngine myEngine;
 
     public View ()
     {
@@ -191,15 +191,11 @@ public class View extends JFrame{
     }
 
 	public void drawTurtle(double[] turtlePosition) {
-		// TODO Auto-generated method stub
-		myTurtleGame.squirt.setPos(turtlePosition[0],turtlePosition[1]);
-		myTurtleGame.squirt.rotate(turtlePosition[2]);
+		myTurtleGame.drawTurtle(turtlePosition);
 	}
 	
 	public void drawLine(double[] currentLine){
-		myTurtleGame.lines.drawPath(currentLine);
-		//currentLine[0], currentLine[1], currentLine[2], currentLine[3];
-		//myEngine.drawLine(currentLine[0], currentLine[1], currentLine[2], currentLine[3]);
+		myTurtleGame.drawLine(currentLine);
 	}
 
 }
