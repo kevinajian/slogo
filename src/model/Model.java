@@ -24,8 +24,10 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private String myLanguage = Constants.DEFAULT_LANGUAGE;
 	private String myBackgroundColor = Constants.DEFAULT_BACKGROUND_COLOR;
 	private String myPenColor = Constants.DEFAULT_PEN_COLOR;
-	public boolean backgroundChanged = false;
-	public boolean penChanged = false;
+	private boolean backgroundChanged = false;
+	private boolean penChanged = false;
+
+
 
 
 	public void initiate() {
@@ -168,6 +170,22 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setPenColor(String penColor) {
 		myPenColor = penColor;
+	}
+	
+	public boolean isBackgroundChanged() {
+		return backgroundChanged;
+	}
+
+	public void setBackgroundChanged(boolean backgroundChanged) {
+		this.backgroundChanged = backgroundChanged;
+	}
+	
+	public boolean isPenChanged() {
+		return penChanged;
+	}
+
+	public void setPenChanged(boolean penChanged) {
+		this.penChanged = penChanged;
 	}
 
 }

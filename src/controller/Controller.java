@@ -68,12 +68,12 @@ public class Controller {
 		}
 		double[] turtlePosition = getTurtle();
 		myView.drawTurtle(turtlePosition);
-		if(myModel.backgroundChanged){
-			myModel.backgroundChanged = false;
+		if(myModel.isBackgroundChanged()){
+			myModel.setBackgroundChanged(false);
 			setBackgroundColor(myModel.getMyBackgroundColor());
 		}
-		if(myModel.penChanged){
-			myModel.backgroundChanged = false;
+		if(myModel.isPenChanged()){
+			myModel.setPenChanged(false);
 			setPenColor(myModel.getPenColor());
 		}
 	}
