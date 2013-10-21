@@ -221,8 +221,7 @@ public class View extends JFrame{
 	}
 
 	public void clearLines() {
-		// TODO Auto-generated method stub
-		
+		myTurtleGame.clearLines();
 	}
 
 }

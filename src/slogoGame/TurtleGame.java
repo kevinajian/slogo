@@ -74,6 +74,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		ActionInput inputAction = new ActionInput(this,string);
 		cleanActionList();
 		myActionList.add(inputAction);
+		myActionIndex++;
 		inputAction.redo();
 	}
 
@@ -98,6 +99,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		ActionBackground backgroundColor = new ActionBackground(this,color);
 		cleanActionList();
 		myActionList.add(backgroundColor);
+		myActionIndex++;
 		backgroundColor.redo();
 	}
 	
@@ -113,6 +115,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		ActionGrid gridToggle = new ActionGrid(this,gridOn);
 		cleanActionList();
 		myActionList.add(gridToggle);
+		myActionIndex++;
 		gridToggle.redo();
 	}
 	
@@ -124,6 +127,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		ActionPen penColor = new ActionPen(this,color);
 		cleanActionList();
 		myActionList.add(penColor);
+		myActionIndex++;
 		penColor.redo();
 	}
 	
@@ -172,10 +176,17 @@ public class TurtleGame extends JGEngine implements Constants{
 	public void doFrameTitle() {
 		if (getKey(' ')){
 			clearKey(' ');
+			restoreDefaults();
+			for(int i = 0; i < myActionIndex; i++){
+				//myActionList.get(i).redo();
+			}
+			myActionIndex--;
 		}
 		if (getKey('D')){
 			clearKey('D');
+			
 		}
+		System.out.println(myActionList.size() + " " + myActionIndex);
 	}
 
 	public void drawTurtle(double[] turtlePosition){
@@ -196,7 +207,18 @@ public class TurtleGame extends JGEngine implements Constants{
 		
 	}
 	
+	public void clearLines(){
+		removeObjects("line",0);
+	}
+	
 	private void restoreDefaults(){
-		
+		try {
+			myView.sendString("resetModel");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		clearLines();
+		squirt.setPos(0, 0);
+		squirt.rotate(0);
 	}
 }
