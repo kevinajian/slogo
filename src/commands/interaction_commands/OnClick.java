@@ -1,5 +1,5 @@
 package commands.interaction_commands;
 
-public class OnClick {
+public class OnClick extends CommandZeroInput{
 
 }

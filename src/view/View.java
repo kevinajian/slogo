@@ -246,10 +246,10 @@ public class View extends JFrame{
 	}
 
 	public int getMouseX() {
-		return myEngine.getMouseX();
+		return myTurtleGame.getMouseX();
 	}
 	public int getMouseY() {
-		return myEngine.getMouseY();
+		return myTurtleGame.getMouseY();
 	}
 
 	public void display(String input) {
