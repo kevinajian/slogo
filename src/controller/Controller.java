@@ -39,6 +39,10 @@ public class Controller {
 	private void setPenSize(double d) {
 		myView.getMyTurtleGame().setPenSize(d);
 	}
+	
+	private void setShape(String shape) {
+		myView.getMyTurtleGame().setTurtleImage(shape);
+	}
 
 	private View myView;
 	
@@ -72,6 +76,7 @@ public class Controller {
 		}
 		double[] turtlePosition = getTurtle();
 		myView.drawTurtle(turtlePosition);
+		
 		if(myModel.isBackgroundChanged()){
 			myModel.setBackgroundChanged(false);
 			setBackgroundColor(myModel.getMyBackgroundColor());
@@ -80,10 +85,16 @@ public class Controller {
 			myModel.setPenColorChanged(false);
 			setPenColor(myModel.getPenColor());
 		}
-//		System.out.println("x: "+myModel.getX()+ " y: "+myModel.getY());
 		if(myModel.isPenSizeChanged()) {
 			myModel.setPenSizeChanged(false);
 			setPenSize(myModel.getPenSize());
+		}
+		if(myModel.isStamp()) {
+			myModel.setStamp(false);
+		}
+		if(myModel.isShapeChanged()) {
+			myModel.setShapeChanged(false);
+			setShape(myModel.getShape());
 		}
 	}
 	
