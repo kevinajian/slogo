@@ -34,6 +34,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private int myMouseY;
 	private boolean myShapeChanged = false;
 	private boolean myActive = true;
+	private boolean myClicked = false;
 
 	public Model(int id) {
 		myId = id;
@@ -251,6 +252,14 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setMouseY(int myMouseY) {
 		this.myMouseY = myMouseY;
+	}
+
+	public boolean isClicked() {
+		return myClicked;
+	}
+
+	public void setClicked(boolean clicked) {
+		this.myClicked = clicked;
 	}
 
 }
