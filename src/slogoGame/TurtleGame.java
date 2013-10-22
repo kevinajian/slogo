@@ -183,8 +183,9 @@ public class TurtleGame extends JGEngine implements Constants{
 			g.paint();
 	}
 
-	private int mouseX = 0;
-	private int mouseY = 0;
+	public int mouseX = 0;
+	public int mouseY = 0;
+	public boolean clicked = false;
 	
 	public void doFrameTitle() {
 		if (getKey(' ')){
@@ -200,10 +201,9 @@ public class TurtleGame extends JGEngine implements Constants{
 		}
 		if (getMouseButton(1)) {
             clearMouseButton(1);
+            clicked = true;
             mouseX = getMouseX() - pfWidth()/2;
             mouseY = getMouseY() - pfHeight()/2;
-            System.out.println(getMouseX() - pfWidth()/2);
-            System.out.println(getMouseY() - pfHeight()/2);
 
 		}
 	}
