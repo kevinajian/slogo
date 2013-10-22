@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import model.Constants;
 import model.Model;
+import multiple_turtles.Tell;
 import commands.Command;
 import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
@@ -97,6 +98,9 @@ public class Parser {
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
+			else if (headNode instanceof Tell) {
+				
+			}
 			else {
 				treeBuilder(headNode, inputs);
 				inputs.remove(0);
@@ -116,7 +120,6 @@ public class Parser {
 	 * @throws Exception
 	 */
 	 public Command treeBuilder(Command root, List<String> inputs) throws Exception{
-
 		if (root instanceof Constant) {
 			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
 			return root;
@@ -141,7 +144,6 @@ public class Parser {
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));
 		}
-		
 		return root;
 	}
 	
