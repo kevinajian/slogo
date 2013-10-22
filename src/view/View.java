@@ -245,6 +245,13 @@ public class View extends JFrame{
 		myController.resetModels();
 	}
 
+	public int getMouseX() {
+		return myTurtleGame.getMouseX();
+	}
+	public int getMouseY() {
+		return myTurtleGame.getMouseY();
+	}
+
 	public void display(String input) {
 		// TODO Auto-generated method stub
 		
