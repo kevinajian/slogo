@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import commands.Command;
 import parser.Parser;
 
@@ -13,23 +14,36 @@ import parser.Parser;
  */
 public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	
+	private int myId;
 	private List<State> myStates = new ArrayList<State>();
 	private State myOrigin;
 	private String myTurtleVisible = Constants.TURTLE_SHOWING;
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private List<Command> myCommands = new ArrayList<Command>();
-	private Map<String, Double> customCommandMap = new HashMap<String, Double>();
-	private String myLanguage = Constants.DEFAULT_LANGUAGE;
+	private Map<String, Double> myCustomCommandMap = new HashMap<String, Double>();
 	private String myBackgroundColor = Constants.DEFAULT_BACKGROUND_COLOR;
 	private String myPenColor = Constants.DEFAULT_PEN_COLOR;
 	private double myPenSize = Constants.DEFAULT_PEN_SIZE;
-	private String shape;
-	private boolean backgroundChanged = false;
-	private boolean penColorChanged = false;
-	private boolean penSizeChanged = false;
+	private String myShape;
+	private boolean myBackgroundChanged = false;
+	private boolean myPenColorChanged = false;
+	private boolean myPenSizeChanged = false;
 	private boolean myStamp = false;
-	private boolean shapeChanged = false;
+	private boolean myShapeChanged = false;
+	private boolean myActive = true;
 
+	public Model(int id) {
+		myId = id;
+	}
+	
+	public int getId() {
+		return myId;
+	}
+	
+	public void setId(int id) {
+		myId = id;
+	}
+	
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
 		myStates.add(myOrigin);
@@ -77,9 +91,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 	
 	public void createStates() {
-		//System.out.println("model.createStates");
 		for (Command c:myCommands){
-			//System.out.println("command num inputs: "+c.getNumInputs());
 			c.evaluate(this);
 		}
 	}
@@ -106,16 +118,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		myCommands = commands;
 	}
 	
-	/**
-	 * processes user input, sends through parser
-	 * @param input - user input
-	 * @throws Exception 
-	 */
-	public void processString(String input) throws Exception {
-		Parser parser = new Parser((this));
-		parser.parse(input);
-	}
-	
 	public String getPenVisible() {
 		return myPenVisible;
 	}
@@ -136,36 +138,12 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		myTurtleVisible = turtleVisible;
 	}
 
-	public String getMyLanguage() {
-		return myLanguage;
-	}
-
-	public void setMyLanguage(String myLanguage) {
-		this.myLanguage = myLanguage;
-	}
-
-	public String getMyBackgroundColor() {
+	public String getBackgroundColor() {
 		return myBackgroundColor;
 	}
 
-	public void setMyBackgroundColor(String myBackgroundColor) {
-		this.myBackgroundColor = myBackgroundColor;
-	}
-	
-	public Map<String, Double> getCustomCommandMap() {
-		return customCommandMap;
-	}
-
-	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
-		this.customCommandMap = customCommandMap;
-	}
-	
-	public void setCustomCommand(String key, double value) {
-		customCommandMap.put(key, value);
-	}
-	
-	public double getCustomCommandValue(String key) {
-		return customCommandMap.get(key);
+	public void setBackgroundColor(String backgroundColor) {
+		myBackgroundColor = backgroundColor;
 	}
 		
 	public String getPenColor() {
@@ -177,19 +155,19 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 	
 	public boolean isBackgroundChanged() {
-		return backgroundChanged;
+		return myBackgroundChanged;
 	}
 
 	public void setBackgroundChanged(boolean backgroundChanged) {
-		this.backgroundChanged = backgroundChanged;
+		myBackgroundChanged = backgroundChanged;
 	}
 	
 	public boolean isPenColorChanged() {
-		return penColorChanged;
+		return myPenColorChanged;
 	}
 
 	public void setPenColorChanged(boolean penChanged) {
-		this.penColorChanged = penChanged;
+		myPenColorChanged = penChanged;
 	}
 
 	public double getPenSize() {
@@ -197,39 +175,63 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 
 	public void setPenSize(double d) {
-		this.myPenSize = d;
+		myPenSize = d;
 	}
 	
 	public boolean isPenSizeChanged() {
-		return penSizeChanged;
+		return myPenSizeChanged;
 	}
 
 	public void setPenSizeChanged(boolean penSizeChanged) {
-		this.penSizeChanged = penSizeChanged;
+		myPenSizeChanged = penSizeChanged;
 	}
 	
 	public boolean isStamp() {
 		return myStamp;
 	}
 
-	public void setStamp(boolean myStamp) {
-		this.myStamp = myStamp;
+	public void setStamp(boolean stamp) {
+		myStamp = stamp;
 	}
 
 	public String getShape() {
-		return shape;
+		return myShape;
 	}
 
 	public void setShape(String shape) {
-		this.shape = shape;
+		myShape = shape;
 	}
 	
 	public boolean isShapeChanged() {
-		return shapeChanged;
+		return myShapeChanged;
 	}
 
 	public void setShapeChanged(boolean shapeChanged) {
-		this.shapeChanged = shapeChanged;
+		myShapeChanged = shapeChanged;
+	}
+	
+	public Map<String, Double> getCustomCommandMap() {
+		return myCustomCommandMap;
+	}
+
+	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
+		myCustomCommandMap = customCommandMap;
+	}
+	
+	public void setCustomCommand(String key, double value) {
+		myCustomCommandMap.put(key, value);
+	}
+	
+	public double getCustomCommandValue(String key) {
+		return myCustomCommandMap.get(key);
+	}
+
+	public boolean getActive() {
+		return myActive;
+	}
+
+	public void setActive(boolean active) {
+		myActive = active;
 	}
 
 }

@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import model.Constants;
 import model.Model;
+import multiple_turtles.Tell;
 import commands.Command;
 import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
@@ -25,11 +26,11 @@ import commands.vcu.*;
  *
  */
 public class Parser {
-	private List<String> inputs;
-	private Model myModel;
+	private Map<Integer, Model> myModels;
+	private String myLanguage = Constants.DEFAULT_LANGUAGE;
 	
-	public Parser(Model model){
-		myModel = model;
+	public Parser(Map<Integer, Model> models){
+		myModels = models;
 	}
 	
 	public Map<String, String> fileToMap(String filename) {
@@ -71,10 +72,13 @@ public class Parser {
 				inputs.add(string);
 			}
 			else{
-				inputs.add(fileToMap(myModel.getMyLanguage()).get(string.toUpperCase()));
+				inputs.add(fileToMap(getLanguage()).get(string.toUpperCase()));
 			}
 		}
-		myModel.setCommands(lexer(inputs));
+		List<Command> commands = lexer(inputs);
+		for (Model m: myModels.values()) {
+			m.setCommands(commands);
+		}
 		return inputs;
 	}
 	
@@ -93,6 +97,9 @@ public class Parser {
 			if (headNode instanceof Loop) {
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
+			}
+			else if (headNode instanceof Tell) {
+				
 			}
 			else {
 				treeBuilder(headNode, inputs);
@@ -113,7 +120,6 @@ public class Parser {
 	 * @throws Exception
 	 */
 	 public Command treeBuilder(Command root, List<String> inputs) throws Exception{
-
 		if (root instanceof Constant) {
 			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
 			return root;
@@ -138,7 +144,6 @@ public class Parser {
 			inputs.remove(0);
 			root.setLeftChild(treeBuilder(curr, inputs));
 		}
-		
 		return root;
 	}
 	
@@ -171,23 +176,23 @@ public class Parser {
 	public void setParams(Command root, List<String> params) throws Exception {
 		if (root instanceof Repeat) {
 			Command variable = new Variable(":repcount");
-			myModel.setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
+			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
 			((For) root).setVariable((Variable) variable);
-			((For) root).setMax((int) lexer(params).get(0).evaluate(myModel));
+			((For) root).setMax((int) lexer(params).get(0).evaluate(myModels.get(0)));
 			System.out.println(((For) root).getMax());
 			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
 			return;
 		}
 		Command variable = getClass(params.get(0));
 		if (root instanceof DoTimes) {
-			myModel.setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
+			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
 			((For) root).setVariable((Variable) variable);
 			((For) root).setMax(Integer.parseInt(params.get(1)));
 			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
 			return;
 		}
 		int start = Integer.parseInt(params.get(1));
-		myModel.setCustomCommand(((Variable) variable).getVariableName(), start);
+		setCustomCommand(((Variable) variable).getVariableName(), start);
 		((For) root).setVariable((Variable) variable);
 		((For) root).setMax(Integer.parseInt(params.get(2)));
 		((For) root).setIncrement(Integer.parseInt(params.get(3)));	
@@ -270,5 +275,47 @@ public class Parser {
 	public String toClass(String in) {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();
+	}
+
+	public void initiate() {
+		for (Model m:myModels.values()) {
+			m.initiate();
+		}
+	}
+	
+	public Map<String, Double> getCustomCommandMap() {
+		return myModels.get(1).getCustomCommandMap();
+	}
+
+	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
+		for (Model m: myModels.values()) {
+			m.setCustomCommandMap(customCommandMap);
+		}
+	}
+	
+	public void setCustomCommand(String key, double value) {
+		for (Model m: myModels.values()) {
+			m.setCustomCommand(key, value);
+		}
+	}
+	
+	public double getCustomCommandValue(String key) {
+		return myModels.get(1).getCustomCommandValue(key);
+	}
+	
+	public Map<Integer, Model> getModels() {
+		return myModels;
+	}
+	
+	public void setModels(Map<Integer, Model> models) {
+		myModels = models;
+	}
+	
+	public String getLanguage() {
+		return myLanguage;
+	}
+
+	public void setLanguage(String language) {
+		myLanguage = language;
 	}
 }
