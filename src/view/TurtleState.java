@@ -17,7 +17,6 @@ public class TurtleState extends JSplitPane{
 		setTopComponent(myDoneCommandsPane);
 		setBottomComponent(myOutputPane);
 		setOneTouchExpandable(true);
-
 		myView = v;
 		myInfo = myOutput;
 		myInfo.setLineWrap(true);
@@ -26,6 +25,9 @@ public class TurtleState extends JSplitPane{
 	public void addText(String text)
 	{
 		myInfo.append(text + "\n");
-		
+	}
+	public String getContents()
+	{
+		return myInfo.getText();
 	}
 }
