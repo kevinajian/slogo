@@ -8,10 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import model.Constants;
 import model.Model;
 import multiple_turtles.Tell;
+import multiple_turtles.TellEven;
+import multiple_turtles.TellOdd;
 import commands.Command;
 import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
@@ -99,7 +102,7 @@ public class Parser {
 				specialTreeBuilder(headNode, inputs);
 			}
 			else if (headNode instanceof Tell) {
-				
+				specialTreeBuilder(headNode, inputs);
 			}
 			else {
 				treeBuilder(headNode, inputs);
@@ -124,11 +127,6 @@ public class Parser {
 			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
 			return root;
 		}	
-		 
-		if (root.getNumInputs() == 0) {
-			return root;
-		}
-
 		if (root.getNumInputs() == 2) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
@@ -138,7 +136,6 @@ public class Parser {
 			inputs.remove(0);
 			root.setRightChild(treeBuilder(curr, inputs));
 		}
-
 		if (root.getNumInputs() == 1) {
 			Command curr = getClass(inputs.get(1));
 			inputs.remove(0);
@@ -161,6 +158,34 @@ public class Parser {
 			setParams(root, params);
 			inputs.remove(0); inputs.remove(0);
 			setCommandList(root, inputs);
+		}
+		else if (root instanceof Tell) {
+			Set<Integer> turtles = myModels.keySet();
+			if (root instanceof TellEven) {
+				List<String> evens = new ArrayList<String>();
+				for (Integer i: turtles) {
+					if ((i%2) == 0) {
+						evens.add(i.toString());
+					}
+				}
+				((Tell) root).setTurtles(evens);
+			}
+			else if (root instanceof TellOdd) {
+				List<String> odds = new ArrayList<String>();
+				for (Integer i: turtles) {
+					if ((i%2) != 0) {
+						odds.add(i.toString());
+					}
+				}
+				((Tell) root).setTurtles(odds);
+			}
+			else {
+				int openBracket = findFirstBracket(inputs);
+				int closeBracket = findLastBracket(openBracket, inputs);
+				List<String> ids = listBuilder(openBracket+1, closeBracket-1, inputs);
+				inputs.remove(0); inputs.remove(0);
+				((Tell) root).setTurtles(ids);
+			}
 		}
 		return root;
 	}
