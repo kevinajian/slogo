@@ -22,7 +22,7 @@ public class ViewCommandTest {
 
 	@Test
 	public void testClearScreen() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();
@@ -43,7 +43,7 @@ public class ViewCommandTest {
 
 	@Test
 	public void testHideTurtle() {
-		Model model = new Model();
+		Model model = new Model(1);
 		assertEquals(model.getTurtleVisible(), Constants.TURTLE_SHOWING);
 		
 		HideTurtle hideTurtle = new HideTurtle();
@@ -53,7 +53,7 @@ public class ViewCommandTest {
 	
 	@Test
 	public void testShowTurtle() {
-		Model model = new Model();
+		Model model = new Model(1);
 		assertEquals(model.getTurtleVisible(), Constants.TURTLE_SHOWING);
 		
 		HideTurtle hideTurtle = new HideTurtle();
@@ -66,7 +66,7 @@ public class ViewCommandTest {
 	
 	@Test
 	public void testSetPenUp() {
-		Model model = new Model();
+		Model model = new Model(1);
 		SetPenUp penUp = new SetPenUp();
 		assertEquals(penUp.evaluate(model), Double.parseDouble(Constants.PEN_NOTSHOWING), 0.0);
 		assertEquals(model.getPenVisible(), Constants.PEN_NOTSHOWING);
@@ -74,7 +74,7 @@ public class ViewCommandTest {
 	
 	@Test
 	public void testSetPenDown() {
-		Model model = new Model();
+		Model model = new Model(1);
 		SetPenUp penUp = new SetPenUp();
 		assertEquals(penUp.evaluate(model), Double.parseDouble(Constants.PEN_NOTSHOWING), 0.0);
 		assertEquals(model.getPenVisible(), Constants.PEN_NOTSHOWING);

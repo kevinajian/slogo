@@ -127,7 +127,7 @@ public class View extends JFrame{
         helpLanguages.add(new AbstractAction(myResources.getString("HelpEnglish")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myController.getMyModel().setMyLanguage("src/parser/" + myResources.getString("HelpEnglish") + ".properties");
+				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpEnglish") + ".properties");
 			}
         	
         	
@@ -135,7 +135,7 @@ public class View extends JFrame{
         helpLanguages.add(new AbstractAction(myResources.getString("HelpSpanish")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myController.getMyModel().setMyLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
+				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
 			}
         	
         	
@@ -143,7 +143,7 @@ public class View extends JFrame{
         helpLanguages.add(new AbstractAction(myResources.getString("HelpPortuguese")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				myController.getMyModel().setMyLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
+				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
 			}
         	
         	
@@ -242,7 +242,11 @@ public class View extends JFrame{
 	}
 	
 	public void resetModel(){
-		myController.resetModel();
+		myController.resetModels();
 	}
 
+	public void display(String input) {
+		// TODO Auto-generated method stub
+		
+	}
 }

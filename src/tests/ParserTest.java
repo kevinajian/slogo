@@ -3,7 +3,9 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.Model;
 import model.State;
@@ -21,19 +23,22 @@ public class ParserTest {
 
 	@Test
 	public void testToClass() {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		Forward fd = new Forward();
 		assertEquals(parser.toClass("Forward"), "commands.turtle_commands.Forward");
 		assertEquals(parser.toClass("Sum"), "commands.math.Sum");
 		assertEquals(parser.toClass("Constant"), "commands.basic_syntax.Constant");
-
 	}
 
 	@Test
 	public void testGetClass() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		Command test = parser.getClass("Back");
 		assertTrue(test instanceof Back);
 		Command test2 = parser.getClass("And");
@@ -41,13 +46,15 @@ public class ParserTest {
 		Command test3 = parser.getClass("Remainder");
 		assertTrue(test3 instanceof Remainder);
 		Command test4 = parser.getClass("Heading");
-//		assertTrue(test4 instanceof Heading);
+		assertTrue(test4 instanceof Heading);
 	}
 	
 	@Test
 	public void testTreeBuilder() throws Exception {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		List<String> testInputs = new ArrayList<String>(){{add("Forward"); add("50");}};
 		Command test1 = parser.getClass("Forward");
 		assertTrue(test1 instanceof Forward);
@@ -65,8 +72,10 @@ public class ParserTest {
 	
 	@Test
 	public void testLexer() {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		List<String> testInputs = new ArrayList<String>(){{add("Forward"); add("50"); add("Sum"); add("3"); add("5");}};
 		List<Command> testOutput = null;
 		try {
@@ -92,8 +101,10 @@ public class ParserTest {
 	
 	@Test
 	public void testParse() {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		String testInputs = "Forward 50 Sum 3 5";
 		List<String> testOutput = null;
 		try {
@@ -110,8 +121,10 @@ public class ParserTest {
 	
 	@Test
 	public void testBracket() throws Exception{
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		String testInputs = "[abcd]";
 		List<String> inputs = new ArrayList<String>();
 		for (int i=0; i<testInputs.length(); i++) {
@@ -131,8 +144,10 @@ public class ParserTest {
 	
 	@Test
 	public void testRemoveRange() {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]");}};
 		parser.removeRange(0, inputs.size()-1, inputs);
 		assertTrue(inputs.isEmpty());
@@ -140,8 +155,10 @@ public class ParserTest {
 	
 	@Test
 	public void testListBuilder() {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]"); add("end");}};
 		int openBracket = 0;
 		int closeBracket = parser.findLastBracket(0, inputs);
@@ -153,8 +170,10 @@ public class ParserTest {
 	
 	@Test
 	public void testSetParams() throws Exception {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		Command testRoot = new For();
 		List<String> inputs = new ArrayList<String>() {{add(":x"); add("0"); add("5"); add("1");}};
 		parser.setParams(testRoot, inputs);
@@ -166,8 +185,10 @@ public class ParserTest {
 	
 	@Test
 	public void testSpecialTreeBuilderFor() throws Exception {
-		Model model = new Model();
-		Parser parser = new Parser(model);
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
 		Command testRoot = new For();
 		List<String> inputs = new ArrayList<String>() {{add("["); add(":x"); add("0"); add("5"); add("1"); add("]"); add("["); add("Forward"); add("50"); add("]");}};
 		parser.specialTreeBuilder(testRoot, inputs);
