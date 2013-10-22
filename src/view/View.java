@@ -161,6 +161,29 @@ public class View extends JFrame{
 
 	protected JMenu makeFileMenu () {
         JMenu result = new JMenu(myResources.getString("FileMenu"));
+        
+        result.add(new AbstractAction(myResources.getString("SaveMenu")) {
+        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	
+            	String sb = "TEST CONTENT";
+                JFileChooser chooser = new JFileChooser();
+                chooser.setCurrentDirectory(new File("src/"));
+                int retrival = chooser.showSaveDialog(null);
+                if (retrival == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt");
+                        fw.write(sb.toString());
+                        fw.close();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+            
+        });
+        
         result.add(new AbstractAction(myResources.getString("OpenCommand")) {
             @Override
             public void actionPerformed (ActionEvent e) {

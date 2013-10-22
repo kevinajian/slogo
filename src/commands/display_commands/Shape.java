@@ -10,7 +10,6 @@ public class Shape extends CommandZeroInput {
 	
 	@Override
 	public double evaluate(Model model) {
-		System.out.println("THISANDTHAT");
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
 		String lumpedShapes = myResources.getString("TurtleCommands");
 		String turtleCommands[] = lumpedShapes.split(" ");
@@ -18,7 +17,6 @@ public class Shape extends CommandZeroInput {
 		String shape = model.getShape();
 		for(int i = 0; i<turtleCommands.length;i++){
 			if(shape.equals(turtleCommands[i])){
-				System.out.println(i);
 				return i;
 			}
 		}
