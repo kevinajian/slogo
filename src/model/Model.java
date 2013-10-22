@@ -91,9 +91,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 	
 	public void createStates() {
-		//System.out.println("model.createStates");
 		for (Command c:myCommands){
-			//System.out.println("command num inputs: "+c.getNumInputs());
 			c.evaluate(this);
 		}
 	}
@@ -192,8 +190,8 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		return myStamp;
 	}
 
-	public void setStamp(boolean myStamp) {
-		myStamp = myStamp;
+	public void setStamp(boolean stamp) {
+		myStamp = stamp;
 	}
 
 	public String getShape() {
