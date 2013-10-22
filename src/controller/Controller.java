@@ -115,6 +115,7 @@ public class Controller {
 				return lines;
 			}
 			if(states.get(i).getPenVisible().equals(Constants.PEN_SHOWING)){
+				System.out.println(states.get(i).getPenVisible());
 				Line line = new Line();
 				line.setCoord1(states.get(i).getX(), states.get(i).getY()); 
 				line.setCoord2(states.get(i+1).getX(), states.get(i+1).getY());
