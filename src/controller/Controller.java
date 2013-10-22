@@ -77,7 +77,7 @@ public class Controller {
 
 		}
 	}
-	
+
 	/**
 	 * gets current State of turtle
 	 * @return State of turtle
@@ -102,7 +102,8 @@ public class Controller {
 			if (states.size()<2) {
 				return lines;
 			}
-			if(states.get(i).getPenVisible().equals(Constants.PEN_SHOWING) && states.get(i+1).getPenVisible().equals(Constants.PEN_SHOWING)){
+			if(states.get(i+1).getPenVisible().equals(Constants.PEN_SHOWING)){
+				System.out.println(states.get(i).getPenVisible());
 				Line line = new Line();
 				line.setCoord1(states.get(i).getX(), states.get(i).getY()); 
 				line.setCoord2(states.get(i+1).getX(), states.get(i+1).getY());
@@ -162,4 +163,17 @@ public class Controller {
 	public void display(String input) {
 		myView.display(input);
 	}
+	
+	public void setMouseX() {
+		for (Model m: myParser.getModels().values()) {
+			m.setMouseX(myView.getMouseX());
+		}
+	}
+	
+	public void setMouseY() {
+		for (Model m: myParser.getModels().values()) {
+			m.setMouseY(myView.getMouseY());
+		}
+	}
+	
 }

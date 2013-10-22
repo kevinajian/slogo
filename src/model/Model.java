@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import multiple_turtles.Tell;
 import commands.Command;
 import parser.Parser;
 
@@ -29,6 +30,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private boolean myPenColorChanged = false;
 	private boolean myPenSizeChanged = false;
 	private boolean myStamp = false;
+	private boolean shapeChanged = false;
+	private int myMouseX;
+	private int myMouseY;
 	private boolean myShapeChanged = false;
 	private boolean myActive = true;
 
@@ -92,7 +96,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	
 	public void createStates() {
 		for (Command c:myCommands){
-			c.evaluate(this);
+			if (c instanceof Tell || myActive) {
+				c.evaluate(this);
+			}
 		}
 	}
 	
@@ -232,6 +238,22 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setActive(boolean active) {
 		myActive = active;
+	}
+
+	public int getMouseX() {
+		return myMouseX;
+	}
+
+	public void setMouseX(int myMouseX) {
+		this.myMouseX = myMouseX;
+	}
+
+	public int getMouseY() {
+		return myMouseY;
+	}
+
+	public void setMouseY(int myMouseY) {
+		this.myMouseY = myMouseY;
 	}
 
 }

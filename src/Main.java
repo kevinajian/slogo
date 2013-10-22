@@ -17,6 +17,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[]args){
+		System.out.println("Carlos sucks");
 		View view = new View();
 		Model model = new Model(1);
 		Map<Integer, Model> models = new HashMap<Integer, Model>();

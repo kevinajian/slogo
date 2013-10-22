@@ -161,31 +161,38 @@ public class Parser {
 		}
 		else if (root instanceof Tell) {
 			Set<Integer> turtles = myModels.keySet();
+			List<String> turtleSet;
 			if (root instanceof TellEven) {
-				List<String> evens = new ArrayList<String>();
+				turtleSet = new ArrayList<String>();
 				for (Integer i: turtles) {
 					if ((i%2) == 0) {
-						evens.add(i.toString());
+						turtleSet.add(i.toString());
 					}
 				}
-				((Tell) root).setTurtles(evens);
 			}
 			else if (root instanceof TellOdd) {
-				List<String> odds = new ArrayList<String>();
+				turtleSet = new ArrayList<String>();
 				for (Integer i: turtles) {
 					if ((i%2) != 0) {
-						odds.add(i.toString());
+						turtleSet.add(i.toString());
 					}
 				}
-				((Tell) root).setTurtles(odds);
 			}
 			else {
 				int openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
-				List<String> ids = listBuilder(openBracket+1, closeBracket-1, inputs);
+				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs);
+				for (Integer i: turtles) {
+					for (String s: turtleSet) {
+						if (i != Integer.parseInt(s)) {
+							Model m = new Model(i);
+							myModels.put(m.getId(), m);
+						}
+					}
+				}
 				inputs.remove(0); inputs.remove(0);
-				((Tell) root).setTurtles(ids);
 			}
+			((Tell) root).setTurtles(turtleSet);
 		}
 		return root;
 	}
