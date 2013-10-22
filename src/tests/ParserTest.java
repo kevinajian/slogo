@@ -200,4 +200,13 @@ public class ParserTest {
 		testRoot.evaluate(model);
 		assertEquals(model.getY(), 250.0, 0.0);
 	}
+	
+	@Test
+	public void testSpecialTreeBuilderTell() throws Exception {
+		Model model = new Model(1);
+		Map<Integer, Model> models = new HashMap<Integer, Model>();
+		models.put(model.getId(), model);
+		Parser parser = new Parser(models);
+		Command testRoot = new For();
+	}
 }

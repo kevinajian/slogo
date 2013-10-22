@@ -38,7 +38,6 @@ public class TextInput extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					myOutput.addText(myField.getText());
-					System.out.println(myField.getText());
 					try {
 						//myView.sendString(myField.getText());
 						myView.addGameAction(myField.getText());

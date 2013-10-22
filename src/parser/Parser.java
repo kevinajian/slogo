@@ -96,12 +96,15 @@ public class Parser {
 		List<Command> rootList = new ArrayList<Command>();
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
+			System.out.println("making command");
 			Command headNode = getClass(inputs.get(0));
+			System.out.println("command made");
 			if (headNode instanceof Loop) {
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
 			else if (headNode instanceof Tell) {
+				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
 			else {
@@ -160,6 +163,7 @@ public class Parser {
 			setCommandList(root, inputs);
 		}
 		else if (root instanceof Tell) {
+			System.out.println("Tell");
 			Set<Integer> turtles = myModels.keySet();
 			List<String> turtleSet;
 			if (root instanceof TellEven) {
@@ -192,6 +196,7 @@ public class Parser {
 				}
 				inputs.remove(0); inputs.remove(0);
 			}
+			System.out.println(inputs);
 			((Tell) root).setTurtles(turtleSet);
 		}
 		return root;
@@ -211,7 +216,6 @@ public class Parser {
 			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
 			((For) root).setVariable((Variable) variable);
 			((For) root).setMax((int) lexer(params).get(0).evaluate(myModels.get(0)));
-			System.out.println(((For) root).getMax());
 			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
 			return;
 		}
@@ -233,7 +237,6 @@ public class Parser {
 	public List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
 		List<String> returnList = new ArrayList<String>();
 		for (int i = firstIndex; i <=endIndex ; i++) {
-			System.out.println(inputs.get(i));
 			returnList.add(inputs.get(i));
 		}
 		removeRange(firstIndex, endIndex, inputs);

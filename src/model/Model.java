@@ -82,7 +82,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	 * @param state - state to be added
 	 */
 	public void addState(State state) {
-		//System.out.println("model.addState");
 		myStates.add(state);	
 	}
 
