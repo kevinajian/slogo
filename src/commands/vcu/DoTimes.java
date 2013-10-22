@@ -4,7 +4,7 @@ import model.Model;
 
 /**
  * Runs the commands for each value specified in the range, i.e., from 0 up to (limit - 1).
- * @author Kevin, clos.
+ * @author Kevin
  *
  */
 public class DoTimes extends For {

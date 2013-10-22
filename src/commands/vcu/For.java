@@ -73,7 +73,4 @@ public class For extends Loop{
 		int nextIteration = currentIteration + myIncrement;
 		model.setCustomCommand(myVariable.getVariableName(), nextIteration);
 	}
-	
-	
-	
 }
