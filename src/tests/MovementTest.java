@@ -18,7 +18,7 @@ public class MovementTest {
 	
 	@Test
 	public void testForward() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();
@@ -37,7 +37,7 @@ public class MovementTest {
 
 	@Test
 	public void testBack() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Back back = new Back();
 		Constant left = new Constant();
@@ -56,7 +56,7 @@ public class MovementTest {
 	
 	@Test
 	public void testLeft() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Left left = new Left();
 		Constant leftChild = new Constant();
@@ -75,7 +75,7 @@ public class MovementTest {
 	
 	@Test
 	public void testRight() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Right right = new Right();
 		Constant left = new Constant();
@@ -94,7 +94,7 @@ public class MovementTest {
 	
 	@Test
 	public void testHome() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();
@@ -116,7 +116,7 @@ public class MovementTest {
 	
 	@Test
 	public void testSetXY() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		SetXY setXY = new SetXY();
 		Constant left = new Constant();
@@ -138,7 +138,7 @@ public class MovementTest {
 	
 	@Test
 	public void testSetHeading() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		SetHeading setHeading = new SetHeading();
 		Constant left = new Constant();
@@ -157,7 +157,7 @@ public class MovementTest {
 	
 	@Test
 	public void testTowards() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Towards towards = new Towards();
 		Constant left = new Constant();
