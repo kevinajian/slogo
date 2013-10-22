@@ -28,7 +28,7 @@ public class SetBackground extends CommandOneInput {
 		}
 		int pos = (int) getInputValueOne(model);
 		String bgColor = colors.get(pos);
-		model.setMyBackgroundColor(bgColor);
+		model.setBackgroundColor(bgColor);
 		model.setBackgroundChanged(true);
 		return getInputValueOne(model);
 	}

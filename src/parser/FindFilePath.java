@@ -65,9 +65,9 @@ public class FindFilePath {
 	 * @return Formatted String representing the package path
 	 */
 	public String findStringAndCut() {
-		String rawPath = null; 
+		String rawPath = null;
 		for (int i=0; i < pathStringList.size(); i++) {
-			if(pathStringList.get(i).contains("/" + myInputString+".java")){
+			if(pathStringList.get(i).contains("\\" + myInputString+".java") || pathStringList.get(i).contains("/" + myInputString+".java")){
 				rawPath = pathStringList.get(i);
 				rawPath = rawPath.replaceAll( Pattern.quote("\\"), "." );
 				rawPath = rawPath.replaceAll( Pattern.quote("/"), "." );

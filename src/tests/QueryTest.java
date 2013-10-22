@@ -21,7 +21,7 @@ public class QueryTest {
 
 	@Test
 	public void testHeading() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Left left = new Left();
 		Constant leftChild = new Constant();
@@ -34,7 +34,7 @@ public class QueryTest {
 	
 	@Test
 	public void testPenDown() {
-		Model model = new Model();		
+		Model model = new Model(1);		
 		PenDown penDown = new PenDown();
 		Constant left = new Constant();
 		left.setInputValueOne(30.0);
@@ -52,7 +52,7 @@ public class QueryTest {
 
 	@Test
 	public void testShowing() {
-		Model model = new Model();
+		Model model = new Model(1);
 		Showing showing = new Showing();
 		assertEquals(showing.evaluate(model), 1, 0.0);
 		
@@ -67,7 +67,7 @@ public class QueryTest {
 	
 	@Test
 	public void testXCor() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();
@@ -80,7 +80,7 @@ public class QueryTest {
 
 	@Test
 	public void testYCor() {
-		Model model = new Model();
+		Model model = new Model(1);
 		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
 		Forward forward = new Forward();
 		Constant left = new Constant();

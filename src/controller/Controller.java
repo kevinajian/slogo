@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import parser.Parser;
 import model.Constants;
 import model.Model;
 import model.State;
@@ -19,82 +20,61 @@ import model.State;
  */
 public class Controller { 
 
-	private Model myModel;
-	public Model getMyModel() {
-		return myModel;
-	}
-	
-	public void setBackgroundColor(String c) {
-		myView.getMyTurtleGame().setBackground(c);
-	}
-	
-	public void setPenColor(String c) {
-		myView.getMyTurtleGame().setPenColor(c);
-	}
-	
-	public void setMyModel(Model myModel) {
-		this.myModel = myModel;
-	}
-	
-	private void setPenSize(double d) {
-		myView.getMyTurtleGame().setPenSize(d);
-	}
-	
-	private void setShape(String shape) {
-		myView.getMyTurtleGame().setTurtleImage(shape);
-	}
-
+	private Parser myParser;
 	private View myView;
 	
 	/**
 	 * constructor for controller
 	 * @param view - view object
-	 * @param model - model object
+	 * @param parser - model object
 	 */
-	public Controller(View view, Model model){
+	public Controller(View view, Parser parser){
 		myView = view;
-		myModel=model;
+		myParser = parser;
 	}
 	
 	public void initiate() {
-		myModel.initiate();
+		myParser.initiate();
 	}
 	
 	public void processInput(String string) {
 		try {
-			myModel.processString(string);
+			myParser.parse(string);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		clearLines();
-		List<Line> trail = getLines();		
+		for (Model m: myParser.getModels().values()) {
+			List<Line> trail = getLines(m);		
 
-		for (Line line:trail) {
-			double[] currentLine = line.getLine();
-			myView.drawLine(currentLine);
-		}
-		double[] turtlePosition = getTurtle();
-		myView.drawTurtle(turtlePosition);
-		
-		if(myModel.isBackgroundChanged()){
-			myModel.setBackgroundChanged(false);
-			setBackgroundColor(myModel.getMyBackgroundColor());
-		}
-		if(myModel.isPenColorChanged()){
-			myModel.setPenColorChanged(false);
-			setPenColor(myModel.getPenColor());
-		}
-		if(myModel.isPenSizeChanged()) {
-			myModel.setPenSizeChanged(false);
-			setPenSize(myModel.getPenSize());
-		}
-		if(myModel.isStamp()) {
-			myModel.setStamp(false);
-		}
-		if(myModel.isShapeChanged()) {
-			myModel.setShapeChanged(false);
-			setShape(myModel.getShape());
+			for (Line line:trail) {
+				double[] currentLine = line.getLine();
+				myView.drawLine(currentLine);
+			}
+			double[] turtlePosition = getTurtle(m);
+			myView.drawTurtle(turtlePosition);
+			
+			if(m.isBackgroundChanged()){
+				m.setBackgroundChanged(false);
+				setBackgroundColor(m.getBackgroundColor());
+			}
+			if(m.isPenColorChanged()){
+				m.setPenColorChanged(false);
+				setPenColor(m.getPenColor());
+			}
+			if(m.isPenSizeChanged()) {
+				m.setPenSizeChanged(false);
+				setPenSize(m.getPenSize());
+			}
+			if(m.isStamp()) {
+				m.setStamp(false);
+			}
+			if(m.isShapeChanged()) {
+				m.setShapeChanged(false);
+				setShape(m.getShape());
+			}
+
 		}
 	}
 
@@ -102,22 +82,21 @@ public class Controller {
 	 * gets current State of turtle
 	 * @return State of turtle
 	 */
-	public State modelCurrentState() {
-		return myModel.getCurrentState();
+	public State modelCurrentState(Model m) {
+		return m.getCurrentState();
 	}
 	
 	/**
 	 * gets turtle states
 	 * @return List of Lines that create trail
 	 */
-	public List<State> getStates() {
-		//System.out.println("Controller.getStates");
-		myModel.createStates();
-		return myModel.getStates();
+	public List<State> getStates(Model m) {
+		m.createStates();
+		return m.getStates();
 	}
 	
-	public List<Line> getLines() {
-		List<State> states = getStates();
+	public List<Line> getLines(Model m) {
+		List<State> states = getStates(m);
 		List<Line> lines = new ArrayList<Line>();
 		for (int i=0; i<states.size()-1; i++){
 			if (states.size()<2) {
@@ -134,21 +113,47 @@ public class Controller {
 		return lines;
 	}
 	
-	public double[] getTurtle() {
-		if (myModel.getCurrentState().getTurtleVisible().equals(Constants.TURTLE_NOTSHOWING)) return null;
+	public double[] getTurtle(Model m) {
+		if (m.getCurrentState().getTurtleVisible().equals(Constants.TURTLE_NOTSHOWING)) return null;
 		else {
-			double[] coordinates = {myModel.getX(), myModel.getY(), myModel.getOrientation()};
+			double[] coordinates = {m.getX(), m.getY(), m.getOrientation()};
 			return coordinates;
 		}
 	}
 	
-	public List getCommandList()
-	{
-		return myModel.getCommands();
+	public Parser getParser() {
+		return myParser;
 	}
 	
-	public void resetModel() {
-		myModel.resetModel();
+	public void setParser(Parser p) {
+		myParser = p;
+	}
+	
+	public void setBackgroundColor(String c) {
+		myView.getMyTurtleGame().setBackground(c);
+	}
+	
+	public void setPenColor(String c) {
+		myView.getMyTurtleGame().setPenColor(c);
+	}
+	
+	private void setPenSize(double d) {
+		myView.getMyTurtleGame().setPenSize(d);
+	}
+	
+	private void setShape(String shape) {
+		myView.getMyTurtleGame().setTurtleImage(shape);
+	}
+
+	public List getCommandList(Model m)
+	{
+		return m.getCommands();
+	}
+	
+	public void resetModels() {
+		for (Model m: myParser.getModels().values()) {
+			m.resetModel();
+		}
 	}
 	
 	public void clearLines() {
