@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import multiple_turtles.Tell;
 import commands.Command;
 import parser.Parser;
 
@@ -96,7 +97,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	
 	public void createStates() {
 		for (Command c:myCommands){
-			c.evaluate(this);
+			if (c instanceof Tell || myActive) {
+				c.evaluate(this);
+			}
 		}
 	}
 	
