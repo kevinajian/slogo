@@ -195,6 +195,10 @@ public class TurtleGame extends JGEngine implements Constants{
 		if (getKey('D')){
 			clearKey('D');
 		}
+		if (getMouseButton(1)) {
+            clearMouseButton(1);
+            System.out.println(getMouseX() - pfHeight()/2);
+		}
 	}
 
 	public void drawTurtle(double[] turtlePosition){

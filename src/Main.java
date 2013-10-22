@@ -13,6 +13,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[]args){
+		System.out.println("Carlos sucks");
 		View view = new View();
 		Model model = new Model();
 		Controller controller = new Controller(view, model);

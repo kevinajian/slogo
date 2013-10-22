@@ -244,5 +244,12 @@ public class View extends JFrame{
 	public void resetModel(){
 		myController.resetModel();
 	}
-
+	
+	public int getMouseX() {
+		return myEngine.getMouseX();
+	}
+	public int getMouseY() {
+		return myEngine.getMouseY();
+	}
+	
 }

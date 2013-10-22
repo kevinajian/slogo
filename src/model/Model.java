@@ -29,6 +29,8 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private boolean penSizeChanged = false;
 	private boolean myStamp = false;
 	private boolean shapeChanged = false;
+	private int myMouseX;
+	private int myMouseY;
 
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
@@ -230,6 +232,22 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setShapeChanged(boolean shapeChanged) {
 		this.shapeChanged = shapeChanged;
+	}
+
+	public int getMouseX() {
+		return myMouseX;
+	}
+
+	public void setMouseX(int myMouseX) {
+		this.myMouseX = myMouseX;
+	}
+
+	public int getMouseY() {
+		return myMouseY;
+	}
+
+	public void setMouseY(int myMouseY) {
+		this.myMouseY = myMouseY;
 	}
 
 }

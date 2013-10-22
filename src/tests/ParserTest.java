@@ -41,7 +41,7 @@ public class ParserTest {
 		Command test3 = parser.getClass("Remainder");
 		assertTrue(test3 instanceof Remainder);
 		Command test4 = parser.getClass("Heading");
-//		assertTrue(test4 instanceof Heading);
+		assertTrue(test4 instanceof Heading);
 	}
 	
 	@Test
