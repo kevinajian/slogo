@@ -161,7 +161,7 @@ public class View extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
             	
-            	String sb = "TEST CONTENT";
+            	String sb = myInfo.getContents();
                 JFileChooser chooser = new JFileChooser();
                 chooser.setCurrentDirectory(new File("src/"));
                 int retrival = chooser.showSaveDialog(null);
