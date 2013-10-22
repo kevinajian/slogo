@@ -7,6 +7,12 @@ import commands.CommandOneInput;
 
 import model.Model;
 
+/**
+ * Sets the color of the pen to the color corresponding to the position,
+ * starting at 0, of the color in the drop down menu.
+ * @author carlosreyes
+ *
+ */
 public class SetPenColor extends CommandOneInput {
 	private ResourceBundle myResources;
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";

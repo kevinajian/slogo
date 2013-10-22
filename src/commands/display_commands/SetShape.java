@@ -7,6 +7,12 @@ import model.Model;
 
 import commands.CommandOneInput;
 
+/**
+ * Sets the turtle image to the number (starting at 0) corresponding to the image
+ * in the drop down turtle image selection menu.
+ * @author carlosreyes
+ *
+ */
 public class SetShape extends CommandOneInput {
 	private ResourceBundle myResources;
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
@@ -14,8 +20,8 @@ public class SetShape extends CommandOneInput {
 	@Override
 	public double evaluate(Model model) {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
-		String lumpedColors = myResources.getString("TurtleCommands");
-		String turtleCommands1[] = lumpedColors.split(" ");
+		String lumpedShape = myResources.getString("TurtleCommands");
+		String turtleCommands1[] = lumpedShape.split(" ");
 		ArrayList<String> turtleCommands = new ArrayList<String>();
 		for(int i = 0; i<turtleCommands1.length-1;i++){
 			turtleCommands.add(turtleCommands1[i]);
