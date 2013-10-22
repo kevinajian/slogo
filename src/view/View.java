@@ -1,19 +1,13 @@
 package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import javax.swing.*;
-
 import slogoGame.TurtleGame;
 import controller.Controller;
-
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import jgame.*;
 import jgame.platform.JGEngine;
 
