@@ -23,9 +23,12 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private String myBackgroundColor = Constants.DEFAULT_BACKGROUND_COLOR;
 	private String myPenColor = Constants.DEFAULT_PEN_COLOR;
 	private double myPenSize = Constants.DEFAULT_PEN_SIZE;
+	private String shape;
 	private boolean backgroundChanged = false;
 	private boolean penColorChanged = false;
 	private boolean penSizeChanged = false;
+	private boolean myStamp = false;
+	private boolean shapeChanged = false;
 
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
@@ -203,6 +206,30 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setPenSizeChanged(boolean penSizeChanged) {
 		this.penSizeChanged = penSizeChanged;
+	}
+	
+	public boolean isStamp() {
+		return myStamp;
+	}
+
+	public void setStamp(boolean myStamp) {
+		this.myStamp = myStamp;
+	}
+
+	public String getShape() {
+		return shape;
+	}
+
+	public void setShape(String shape) {
+		this.shape = shape;
+	}
+	
+	public boolean isShapeChanged() {
+		return shapeChanged;
+	}
+
+	public void setShapeChanged(boolean shapeChanged) {
+		this.shapeChanged = shapeChanged;
 	}
 
 }

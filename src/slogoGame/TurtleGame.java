@@ -79,8 +79,9 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void setTurtleImage(String image){
-		if(image.equals("Star"))
+		if(image.equals("Star")){
 			squirt.changeImage("star");
+		}
 		else{
 			JFileChooser myChooser = new JFileChooser(System.getProperties().getProperty("user.dir"));
 			try {
