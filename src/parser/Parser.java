@@ -96,9 +96,7 @@ public class Parser {
 		List<Command> rootList = new ArrayList<Command>();
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
-			System.out.println("making command");
 			Command headNode = getClass(inputs.get(0));
-			System.out.println("command made");
 			if (headNode instanceof Loop) {
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
@@ -190,13 +188,13 @@ public class Parser {
 					for (String s: turtleSet) {
 						if (i != Integer.parseInt(s)) {
 							Model m = new Model(i);
+							m.initiate();
 							myModels.put(m.getId(), m);
 						}
 					}
 				}
 				inputs.remove(0); inputs.remove(0);
 			}
-			System.out.println(inputs);
 			((Tell) root).setTurtles(turtleSet);
 		}
 		return root;
