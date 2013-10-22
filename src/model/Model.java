@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import multiple_turtles.Tell;
 import commands.Command;
+import commands.multiple_commands.Tell;
 import parser.Parser;
 
 /**
