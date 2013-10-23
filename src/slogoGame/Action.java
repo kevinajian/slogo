@@ -1,8 +1,7 @@
 package slogoGame;
 
-import java.io.Serializable;
+public class Action extends java.lang.Object implements Constants{
 
-public class Action implements Serializable{
 	protected TurtleGame myTurtleGame;
 
 	public Action(TurtleGame game) {

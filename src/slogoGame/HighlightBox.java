@@ -10,23 +10,15 @@ import jgame.JGObject;
 import jgame.platform.JGEngine;
 
 public class HighlightBox extends Turtle{
-	private JGEngine myEngine;
-	private String myImage;
 	private String myName;
-	private boolean amCustom;
 	public HighlightBox(String name, int collisionid, JGEngine tgame) {
 		super("border", true, 0, 0, collisionid, "border");
-		myEngine = tgame;
 		myName = "border";
-		myImage = myName;
-		amCustom = false;
 	}
 	public void paint()
-	{
+	{  }
 	
-	}
 	public void setPos(double x, double y){
-		
 		int width;
 		int height;
 		BufferedImage bimg = null;
@@ -41,6 +33,15 @@ public class HighlightBox extends Turtle{
 		}			
 		this.x = x + DEFAULT_WIDTH/2 - width/2;
 		this.y = -y + DEFAULT_HEIGHT/2 - height/2;
-		
+	}
+	
+	public void toggle(Boolean borderOn)
+	{
+		if (borderOn){
+			this.resume();
+		}
+		else{
+			this.suspend();
+		}
 	}
 }

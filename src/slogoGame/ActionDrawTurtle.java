@@ -1,5 +1,7 @@
 package slogoGame;
 
+import java.io.Serializable;
+
 public class ActionDrawTurtle extends Action {
 	private double[] myPosition;
 
@@ -10,7 +12,7 @@ public class ActionDrawTurtle extends Action {
 	
 	@Override
 	public void redo(){
-		myTurtleGame.drawTurtleActually(myPosition);
+		myTurtleGame.drawTurtle(myPosition);
 	}
 
 }

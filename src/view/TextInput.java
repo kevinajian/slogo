@@ -39,10 +39,8 @@ public class TextInput extends JPanel{
 				public void actionPerformed(ActionEvent arg0) {
 					myOutput.addText(myField.getText());
 					try {
-						//myView.sendString(myField.getText());
 						myView.addGameAction(myField.getText());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					myField.setText("");
@@ -61,11 +59,10 @@ public class TextInput extends JPanel{
 	        result.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					System.out.println(myField.getText());
+					myOutput.addText(myField.getText());
 					try {
 						myView.sendString(myField.getText());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					myField.setText("");

@@ -440,4 +440,7 @@ public class Parser {
 	public void setLanguage(String language) {
 		myLanguage = language;
 	}
+	public Model getModel(){
+		return myModels.get(Constants.DEFAULT_MODEL);
+	}
 }

@@ -1,5 +1,7 @@
 package slogoGame;
 
+import java.io.Serializable;
+
 public class ActionPen extends Action {
 	private String myColor;
 
@@ -10,7 +12,7 @@ public class ActionPen extends Action {
 
 	@Override
 	public void redo(){
-		myTurtleGame.setPen(myColor);
+		myTurtleGame.setPenColor(myColor);
 	}
 	
 }

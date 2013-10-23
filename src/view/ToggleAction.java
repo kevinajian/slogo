@@ -7,19 +7,18 @@ import javax.swing.AbstractAction;
 import slogoGame.TurtleGame;
 
 @SuppressWarnings("serial")
-public class GridAction extends AbstractAction {
+public class ToggleAction extends AbstractAction {
 	String cmd;
 	TurtleGame myGame;
 	
-	public GridAction(String command, TurtleGame game) {
+	public ToggleAction(String command, TurtleGame game){
 		super(command);
 		cmd = command;
-		myGame = game;
+		myGame = game;		
 	}
-
+	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		myGame.makeGridAction(!cmd.equals("Toggle Grid Off"));
+	public void actionPerformed(ActionEvent e) {
+		myGame.makeBorderAction(!cmd.equals("Toggle Border Off"));
 	}
-
 }

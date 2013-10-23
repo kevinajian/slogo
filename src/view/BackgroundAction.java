@@ -19,7 +19,7 @@ public class BackgroundAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		myGame.setBackground(myColor);
+		myGame.makeBackgroundAction(myColor);
 	}
 
 }
