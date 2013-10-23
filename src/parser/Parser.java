@@ -33,6 +33,7 @@ import commands.vcu.*;
 public class Parser {
 	private Map<Integer, Model> myModels;
 	private String myLanguage = Constants.DEFAULT_LANGUAGE;
+	private String name;
 	
 	public Parser(Map<Integer, Model> models){
 		myModels = models;
@@ -69,44 +70,23 @@ public class Parser {
 	 * @throws Exception 
 	 */
 	public List<String> parse(String input) throws Exception{
-//		String [] checker = input.split(Constants.INPUT_SPLITTER);
-//		if (getClass(checker[0]) != null) {
-//			System.out.println(":(");
-//		}
-//		else{
-//			System.out.println(checker[0]);
-//		}
 		
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
-		List<String> inputs = new ArrayList<String>();
-		for(String string : list){
-			if(string.matches(Constants.CONSTANT_ID) || (string.charAt(0) == Constants.VARIABLE_ID.charAt(0)) || (string.equals(Constants.OPEN_BRACKET)) || (string.equals(Constants.CLOSE_BRACKET))){
-				inputs.add(string);
-			}
-			else{
-				inputs.add(fileToMap(getLanguage()).get(string.toUpperCase()));
-			}
+		if(list.length>1){
+			name = list[1];
 		}
-		
+		List<String> inputs = new ArrayList<String>();
+		parseArrayToArrayList(inputs, list);
 		for(Model m : myModels.values()) {
 			m.getCustomCommandMap().put("SUMTHREE", "Forward Sum Sum :x :y :z");
 		}
 		
 		if (inputs.get(0) == null) {
 			String outString = customCommandHandler(input);
-			System.out.println(outString);
 			String[] toInputs = outString.split(Constants.INPUT_SPLITTER);
-			for(String string : toInputs){
-				if(string.matches(Constants.CONSTANT_ID) || (string.charAt(0) == Constants.VARIABLE_ID.charAt(0)) || (string.equals(Constants.OPEN_BRACKET)) || (string.equals(Constants.CLOSE_BRACKET))){
-					inputs.add(string);
-				}
-				else{
-					inputs.add(fileToMap(getLanguage()).get(string.toUpperCase()));
-				}
-			}
+			parseArrayToArrayList(inputs, toInputs);
 		}
-		
 		
 		List<Command> commands = lexer(inputs);
 		for (Model m: myModels.values()) {
@@ -114,6 +94,22 @@ public class Parser {
 		}
 		
 		return inputs;
+	}
+	/**
+	 * Helper method for parse, makes an array containing string commands
+	 * into an arraylist containing string commands.
+	 * @param inputs
+	 * @param toInputs
+	 */
+	private void parseArrayToArrayList(List<String> inputs, String[] toInputs) {
+		for(String string : toInputs){
+			if(string.matches(Constants.CONSTANT_ID) || (string.charAt(0) == Constants.VARIABLE_ID.charAt(0)) || (string.equals(Constants.OPEN_BRACKET)) || (string.equals(Constants.CLOSE_BRACKET))){
+				inputs.add(string);
+			}
+			else{
+				inputs.add(fileToMap(getLanguage()).get(string.toUpperCase()));
+			}
+		}
 	}
 	
 	/**
@@ -130,6 +126,10 @@ public class Parser {
 			Command headNode = getClass(inputs.get(0));
 			if (headNode instanceof Loop) {
 				inputs.remove(0);
+				specialTreeBuilder(headNode, inputs);
+			}
+			else if (headNode instanceof To) {
+				((To) headNode).setName(name);
 				specialTreeBuilder(headNode, inputs);
 			}
 			else if (headNode instanceof Tell) {
@@ -178,12 +178,10 @@ public class Parser {
 	
 	public Command specialTreeBuilder(Command root, List<String> inputs) throws Exception {
 		if (root instanceof To) {
-			((To) root).setName(inputs.get(0));
 			inputs.remove(0);
 			int openBracket = findFirstBracket(inputs);
 			int closeBracket = findLastBracket(openBracket, inputs);
 			List<String> params = listBuilder(openBracket+1, closeBracket-1, inputs);
-			setParams(root, params);
 			inputs.remove(0); inputs.remove(0);
 			setCommandList(root, inputs);
 		}
@@ -255,7 +253,11 @@ public class Parser {
 			((For) root).setCommandList(lexer(inputList));
 		}
 		else if (root instanceof To) {
-			((To) root).setCommandList(lexer(inputList));
+			String commandString = "";
+			for(String str : inputList){
+				commandString += str + " ";
+			}
+			((To) root).setCommands(commandString);
 		}
 		else if (root instanceof Ask) {
 			((Ask) root).setCommandList(lexer(inputList));
@@ -264,9 +266,9 @@ public class Parser {
 	}
 
 	public void setParams(Command root, List<String> params) throws Exception {
-		if (root instanceof To) {
-			((To) root).setParameters(params);
-		}
+//		if (root instanceof To) {
+//			((To) root).setParameters(params);
+//		}
 		if (root instanceof Repeat) {
 			Command variable = new Variable(":repcount");
 			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
