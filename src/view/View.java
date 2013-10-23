@@ -259,7 +259,7 @@ public class View extends JFrame{
 	}
 
 	public void drawBox(double[] boxPosition) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("PENIS");
+		myTurtleGame.drawRect(boxPosition[0], boxPosition[1], 10, 10, false, true);
 	}
 }
