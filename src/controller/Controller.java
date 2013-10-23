@@ -59,10 +59,7 @@ public class Controller {
 				drawTurtle(s);
 			}
 			
-			double[] boxPosition = getBox(m);
-			if (boxPosition != null) {
-				myView.drawBox(boxPosition);
-			}
+			drawBox(m);
 			
 			if(m.isBackgroundChanged()){
 				m.setBackgroundChanged(false);
@@ -155,6 +152,13 @@ public class Controller {
 		}
 		m.getCurrentState().setTurtleVisible(turtleVisible);
 		return null;
+	}
+	
+	public void drawBox(Model m) {
+		double[] boxPosition = getBox(m);
+		if (boxPosition != null) {
+			myView.drawBox(boxPosition);
+		}
 	}
 	
 	public Parser getParser() {

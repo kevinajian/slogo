@@ -120,6 +120,8 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		myCommands.clear();
 		myStates.clear();
 		myStates.add(myOrigin);
+		System.out.println(myCommands+" commands");
+		System.out.println(myStates+" states");
 	}
 
 	/**
