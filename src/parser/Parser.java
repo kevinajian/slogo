@@ -182,16 +182,18 @@ public class Parser {
 				}
 			}
 			else {
+				System.out.println("specialTreeBuilder: Tell Tell command");
 				int openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
 				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs);
-				for (Integer i: turtles) {
-					for (String s: turtleSet) {
-						if (i != Integer.parseInt(s)) {
-							Model m = new Model(i);
-							m.initiate();
-							myModels.put(m.getId(), m);
-						}
+				System.out.println("specialTreeBuilder: Tell Tell command turtleSet: " +turtleSet);
+				for (String s: turtleSet) {
+					if (!turtles.contains(Integer.parseInt(s))) {
+						System.out.println("specialTreeBuilder: new Turtle: " +s);
+						Model m = new Model(Integer.parseInt(s));
+						m.initiate();
+						System.out.println("specialTreeBuilder: new Turtle id: " + m.getId());
+						myModels.put(m.getId(), m);
 					}
 				}
 				inputs.remove(0); inputs.remove(0);
