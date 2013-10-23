@@ -229,6 +229,7 @@ public class View extends JFrame{
 	* @param message message to display
 	*/
     public void showError (String message) {
+    	System.out.println("WE SHOWIN ERRS UP IN HUR");
         JOptionPane.showMessageDialog(this, message, myResources.getString("ErrorTitle"), JOptionPane.ERROR_MESSAGE);
     }
     
