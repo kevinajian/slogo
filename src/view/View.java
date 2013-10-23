@@ -131,24 +131,18 @@ public class View extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpEnglish") + ".properties");
 			}
-        	
-        	
         });
         helpLanguages.add(new AbstractAction(myResources.getString("HelpSpanish")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
-			}
-        	
-        	
+			}	
         });
         helpLanguages.add(new AbstractAction(myResources.getString("HelpPortuguese")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
 			}
-        	
-        	
         });
 
         result.add(helpLanguages);
@@ -157,9 +151,7 @@ public class View extends JFrame{
 
 	protected JMenu makeFileMenu () {
         JMenu result = new JMenu(myResources.getString("FileMenu"));
-        
         result.add(new AbstractAction(myResources.getString("SaveMenu")) {
-        	
             public void actionPerformed(ActionEvent e) 
             {
             	ArrayList<slogoGame.Action> myList = myTurtleGame.getActionList();
@@ -172,15 +164,13 @@ public class View extends JFrame{
                         ObjectOutputStream oos = new ObjectOutputStream(fout);
                         oos.writeObject(myList);
                         oos.close();
+                        fout.close();
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
-            	
-            }
-            
+            }   
         });
-        
         result.add(new AbstractAction(myResources.getString("OpenCommand")) {
             public void actionPerformed (ActionEvent e) {
                 try {
@@ -190,14 +180,12 @@ public class View extends JFrame{
                         new FileReader(myChooser.getSelectedFile());
                         System.out.println("unserializing list");
                         try {
-                            FileInputStream fin = new FileInputStream("list.dat");
+                            FileInputStream fin = new FileInputStream("list.txt");
                             ObjectInputStream ois = new ObjectInputStream(fin);
                             ArrayList<Action> list = (ArrayList) ois.readObject();
-                             
                             for (Action a : list){
                                 System.out.println(a);
                             }
-                             
                             ois.close();
                         }
                         catch (Exception ex) {
