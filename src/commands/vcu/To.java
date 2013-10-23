@@ -2,6 +2,8 @@ package commands.vcu;
 
 import java.util.List;
 
+import model.Model;
+
 import commands.Command;
 
 /**
@@ -14,7 +16,7 @@ import commands.Command;
 public class To extends IfElse {
 	private String myName;
 	private List<String> myParameters;
-	private List<Command> myCommandList;
+	private String myCommands;
 
 	public String getName() {
 		return myName;
@@ -32,12 +34,19 @@ public class To extends IfElse {
 		this.myParameters = myParameters;
 	}
 
-	public List<Command> getCommandList() {
-		return myCommandList;
+	public String getCommands() {
+		return myCommands;
 	}
 
-	public void setCommandList(List<Command> myCommands) {
-		this.myCommandList = myCommands;
+	public void setCommands(String myCommands) {
+		this.myCommands = myCommands;
+	}
+	
+	@Override
+	public double evaluate(Model model) {
+		model.getCustomCommandMap().put(myName, myCommands);
+		return myNumInputs;
+		
 	}
 
 }
