@@ -270,6 +270,8 @@ public class TurtleGame extends JGEngine implements Constants{
 		toggleGrid(true);
 		setPen("Black");		
 	}
-	
-
+	public ArrayList<Action> getActionList()
+	{
+		return myActionList;
+	}
 }
