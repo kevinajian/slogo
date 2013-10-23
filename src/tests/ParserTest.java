@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.Model;
+import model.ModelController;
 import model.State;
 
 import org.junit.Test;
@@ -95,24 +96,19 @@ public class ParserTest {
 		Parser parser = new Parser();
 		String testInputs = "Forward 50 Sum 3 5";
 		List<String> testOutput = null;
+		testOutput = parser.parse(testInputs);
 		try {
-			testOutput = parser.parse(testInputs);
+			parser.lexer(testOutput);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		for (String s:testOutput){
-			System.out.println(s);
 		}
 		assertTrue(testOutput.isEmpty());
 	}
 	
 	@Test
 	public void testBracket() throws Exception{
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		String testInputs = "[abcd]";
 		List<String> inputs = new ArrayList<String>();
 		for (int i=0; i<testInputs.length(); i++) {
@@ -132,10 +128,7 @@ public class ParserTest {
 	
 	@Test
 	public void testRemoveRange() {
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]");}};
 		parser.removeRange(0, inputs.size()-1, inputs);
 		assertTrue(inputs.isEmpty());
@@ -143,10 +136,7 @@ public class ParserTest {
 	
 	@Test
 	public void testListBuilder() {
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]"); add("end");}};
 		int openBracket = 0;
 		int closeBracket = parser.findLastBracket(0, inputs);
@@ -158,43 +148,30 @@ public class ParserTest {
 	
 	@Test
 	public void testSetParams() throws Exception {
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		ModelController mc = new ModelController();
+		mc.initiate();
+		Parser p = mc.getParser();
 		Command testRoot = new For();
 		List<String> inputs = new ArrayList<String>() {{add(":x"); add("0"); add("5"); add("1");}};
-		parser.setParams(testRoot, inputs);
+		p.setParams(testRoot, inputs);
 		assertEquals(((For) testRoot).getVariable().getVariableName(), ":x");
-		assertEquals(model.getVariable(((For) testRoot).getVariable().getVariableName()), 0.0, 0.0);
+		assertEquals(mc.getCustomCommandValue(((For) testRoot).getVariable().getVariableName()), 0.0, 0.0);
 		assertEquals(((For) testRoot).getMax(), 5.0, 0.0);
 		assertEquals(((For) testRoot).getIncrement(), 1);
 	}
 	
 	@Test
 	public void testSpecialTreeBuilderFor() throws Exception {
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		ModelController mc = new ModelController();
+		mc.initiate();
+		Parser p = mc.getParser();
+		Model m = mc.getModel();
 		Command testRoot = new For();
 		List<String> inputs = new ArrayList<String>() {{add("["); add(":x"); add("0"); add("5"); add("1"); add("]"); add("["); add("Forward"); add("50"); add("]");}};
-		parser.specialTreeBuilder(testRoot, inputs);
-		System.out.println("variable value: "+model.getVariable(((For) testRoot).getVariable().getVariableName()) + " max value: " + ((For) testRoot).getMax());
+		p.specialTreeBuilder(testRoot, inputs);
 		List<Command> test = ((For) testRoot).getCommandList();
-		System.out.println(test.get(0).getClass());
-		System.out.println(test.get(0).getInputValueOne(model));
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
-		testRoot.evaluate(model);
-		assertEquals(model.getY(), 250.0, 0.0);
-	}
-	
-	@Test
-	public void testSpecialTreeBuilderTell() throws Exception {
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
-		Command testRoot = new For();
+		m.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
+		testRoot.evaluate(m);
+		assertEquals(m.getY(), 250.0, 0.0);
 	}
 }

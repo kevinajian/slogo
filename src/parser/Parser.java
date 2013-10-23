@@ -71,7 +71,7 @@ public class Parser {
 	 * @param input - String of user input
 	 * @throws Exception 
 	 */
-	public List<Command> parse(String input) throws Exception{
+	public List<String> parse(String input) {
 		
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
@@ -87,7 +87,7 @@ public class Parser {
 			parseArrayToArrayList(inputs, toInputs);
 		}
 
-		return lexer(inputs);
+		return inputs;
 	}
 	/**
 	 * Helper method one for parse, makes an array containing string commands

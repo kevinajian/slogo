@@ -26,7 +26,8 @@ public class ModelController {
 	}
 	
 	public List<Command> parse(String input) throws Exception {
-		List<Command> commands = myParser.parse(input);
+		List<String> inputs = myParser.parse(input);
+		List<Command> commands = myParser.lexer(inputs);
 		for (Model m: myModelMap.values()) {
 			m.setCommands(commands);
 		}
@@ -80,5 +81,13 @@ public class ModelController {
 	
 	public void setLanguage(String language) {
 		myParser.setLanguage(language);
+	}
+	
+	public Parser getParser() {
+		return myParser;
+	}
+	
+	public void setParser(Parser p) {
+		myParser = p;
 	}
 }
