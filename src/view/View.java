@@ -269,4 +269,9 @@ public class View extends JFrame{
 	public void display(String input) {
 		myInfo.addTurtleStatsText(input);
 	}
+
+	public void drawBox(double[] boxPosition) {
+		// TODO Auto-generated method stub
+		
+	}
 }

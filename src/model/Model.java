@@ -34,7 +34,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private boolean myShapeChanged = false;
 	private boolean myActive = true;
 	private Map<String, String> customCommandMap = new HashMap<String, String>();
-
+	private List<State> myStamps = new ArrayList<State>();
 	public Model(int id) {
 		myId = id;
 	}
@@ -46,6 +46,12 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	public void setId(int id) {
 		myId = id;
 	}
+	
+	public List<State> getStamps() {
+		return myStamps;
+	}
+	
+//	public 
 	
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
