@@ -183,9 +183,6 @@ public class TurtleGame extends JGEngine implements Constants{
 			g.paint();
 	}
 
-	public int mouseX = 0;
-	public int mouseY = 0;
-	public boolean clicked = false;
 	
 	public void doFrameTitle() {
 		if (getKey(' ')){
@@ -200,11 +197,21 @@ public class TurtleGame extends JGEngine implements Constants{
 			clearKey('D');
 		}
 		if (getMouseButton(1)) {
-            clearMouseButton(1);
-            clicked = true;
-            mouseX = getMouseX() - pfWidth()/2;
-            mouseY = getMouseY() - pfHeight()/2;
+			onClickAction();
+		}
+	}
+	
+	private void onClickAction() {
+        clearMouseButton(1);
 
+        int mouseX = getMouseX() - pfWidth()/2;
+        int mouseY = getMouseY() - pfHeight()/2;
+        
+        try {
+			sendString("OnClick" + " " +  mouseX + " " + mouseY);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -238,7 +245,6 @@ public class TurtleGame extends JGEngine implements Constants{
 		try {
 			myView.resetModel();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		clearLines();
 		squirt.setPos(0, 0);

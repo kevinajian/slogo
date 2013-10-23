@@ -31,11 +31,8 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private boolean myPenSizeChanged = false;
 	private boolean myStamp = false;
 	private boolean shapeChanged = false;
-	private int myMouseX;
-	private int myMouseY;
 	private boolean myShapeChanged = false;
 	private boolean myActive = true;
-	private boolean myClicked = false;
 
 	public Model(int id) {
 		myId = id;
@@ -239,30 +236,5 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	public void setActive(boolean active) {
 		myActive = active;
 	}
-
-	public int getMouseX() {
-		return myMouseX;
-	}
-
-	public void setMouseX(int mouseX) {
-		myMouseX = mouseX;
-	}
-
-	public int getMouseY() {
-		return myMouseY;
-	}
-
-	public void setMouseY(int mouseY) {
-		myMouseY = mouseY;
-	}
-
-	public boolean isClicked() {
-		return myClicked;
-	}
-
-	public void setClicked(boolean clicked) {
-		myClicked = clicked;
-	}
-
 }
 
