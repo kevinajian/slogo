@@ -13,7 +13,7 @@ import commands.Command;
  * @author carlosreyes
  *
  */
-public class To extends IfElse {
+public class To extends Command {
 	private String myName;
 	private List<String> myParameters;
 	private String myCommands;
