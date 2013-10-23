@@ -1,9 +1,7 @@
 package commands.turtle_commands;
 
-import commands.CommandOneInput;
 import model.Constants;
 import model.Model;
-import model.State;
 
 /**
  * Rotates the turtle left, by shifting the angle
@@ -11,15 +9,15 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class Left extends CommandOneInput  {
-
+public class Left extends Direction  {
+	
+	protected double makeOrientation(double orientation, double firstInput) {
+		return (orientation + Constants.DEGREES - firstInput)%Constants.DEGREES;
+	}
+	
 	@Override
 	public double evaluate(Model model) {
-		double orientation = model.getOrientation();
-		double newOrientation = (orientation + Constants.DEGREES - getInputValueOne(model))%Constants.DEGREES;
-		String penColor = model.getPenColor();
-		model.addState(new State(model.getX(), model.getY(), newOrientation, model.getTurtleVisible(), model.getPenVisible(), penColor));
-		
+		handle(model);
 		return getInputValueOne(model);
 	}
 }
