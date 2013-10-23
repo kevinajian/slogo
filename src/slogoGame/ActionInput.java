@@ -1,6 +1,6 @@
 package slogoGame;
 
-public class ActionInput extends Action {
+public class ActionInput extends Action{
 	private String myString;
 
 	public ActionInput(TurtleGame game, String string) {
@@ -15,6 +15,10 @@ public class ActionInput extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getMyString(){
+		return myString;
 	}
 	
 }

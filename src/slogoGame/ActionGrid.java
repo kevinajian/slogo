@@ -1,5 +1,7 @@
 package slogoGame;
 
+import java.io.Serializable;
+
 public class ActionGrid extends Action {
 	private Boolean toggle;
 
@@ -10,7 +12,7 @@ public class ActionGrid extends Action {
 	
 	@Override
 	public void redo(){
-		myTurtleGame.toggleGrid(toggle);
+		myTurtleGame.setGrid(toggle);
 		}
 
 }
