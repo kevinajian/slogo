@@ -166,7 +166,7 @@ public class Controller {
 	public void drawBox(Model m) {
 		double[] boxPosition = getBox(m);
 		if (boxPosition != null) {
-			System.out.println("drawing box");
+			//System.out.println("drawing box");
 			myView.drawBox(boxPosition);
 		}
 	}
