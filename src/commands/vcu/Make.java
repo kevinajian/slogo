@@ -34,7 +34,7 @@ public class Make extends Command {
 		String key = var.getVariableName();
 		double value = myRightChild.evaluate(model);
 		
-		model.setCustomCommand(key, value);
+		model.addVariable(key, value);
 		System.out.println(model.getCustomCommandMap().keySet());
 		System.out.println(model.getCustomCommandMap().values());
 

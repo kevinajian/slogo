@@ -13,6 +13,7 @@ public class OnClick extends Command {
 		Command customCommand = null;
 		try {
 			customCommand = parser.getClass("SetXY");
+			//customCommand = parser.getClass();
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -30,11 +31,11 @@ public class OnClick extends Command {
 	public void setVariables(Command customCommand, Model model) {
 		Variable x = new Variable("X");
 		x.setVariableValue(getInputValueOne(model));
-		model.setCustomCommand(x.getVariableName(), x.getVariableValue());
+		model.addVariable(x.getVariableName(), x.getVariableValue());
 		
 		Variable y = new Variable("Y");
 		y.setVariableValue(getInputValueTwo(model));
-		model.setCustomCommand(y.getVariableName(), y.getVariableValue());
+		model.addVariable(y.getVariableName(), y.getVariableValue());
 		
 		customCommand.setLeftChild(x);
 		customCommand.setRightChild(y);
