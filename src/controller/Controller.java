@@ -99,10 +99,6 @@ public class Controller {
 		clearBoxes();
 	}
 
-	private void clearBoxes() {
-//		myView.clearBoxes();
-	}
-
 	/**
 	 * gets current State of turtle
 	 * @return State of turtle
@@ -214,6 +210,10 @@ public class Controller {
 		myView.clearTurtles();
 	}
 	
+	private void clearBoxes() {
+		myView.clearBoxes();
+	}
+
 	public void display(String input) {
 		myView.display(input);
 	}

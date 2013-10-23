@@ -15,7 +15,7 @@ public class HighlightBox extends Turtle{
 	private String myName;
 	private boolean amCustom;
 	public HighlightBox(String name, int collisionid, JGEngine tgame) {
-		super(name, true, 0, 0, collisionid, "border");
+		super("border", true, 0, 0, collisionid, "border");
 		myEngine = tgame;
 		myName = "border";
 		myImage = myName;
@@ -24,10 +24,6 @@ public class HighlightBox extends Turtle{
 	public void paint()
 	{
 	
-	}
-	public void restoreDefaultImage(){
-		myName = "border";
-		myImage = myName;
 	}
 	public void setPos(double x, double y){
 		

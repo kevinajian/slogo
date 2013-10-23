@@ -57,7 +57,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		setCursor(null);
 		defineImages();
 		squirt = new Turtle("turtle", 50, this);
-		b = new HighlightBox("box", 20, this);
+		b = new HighlightBox("border", 20, this);
 		//lines = new HoldLines("lines", 51, this);
 		/*		g = new Grid("grid", 69, this);
 		toggleGrid = true;*/
@@ -279,7 +279,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		clearTurtles();
 		clearBoxes();
 		squirt = new Turtle("turtle",50,this);
-		b = new HighlightBox("box", 20, this);
+		b = new HighlightBox("border", 20, this);
 		setBackgroundColor("White");
 		toggleGrid(true);
 		setPen("Black");		
