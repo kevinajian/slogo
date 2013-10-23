@@ -15,17 +15,17 @@ import jgame.platform.JGEngine;
 
 @SuppressWarnings("serial")
 public class View extends JFrame{
-    // this constant should be defined by Java, not me :(
-    // most GUI components will be temporary variables,
-    // only store components you need to refer to later
-    // get strings from resource file
+	
     private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
     private static final String USER_DIR = "user.dir";
-    // this constant should be defined by Java, not me :(
     private ResourceBundle myResources;
     private TextInput myTextInput;
     private TurtleGame myTurtleGame;
-   
+	private Controller myController;
+    private JFileChooser myChooser;
+    private TurtleState myInfo;
+	private JGEngine myEngine;
+
     public TurtleGame getMyTurtleGame() {
 		return myTurtleGame;
 	}
@@ -34,22 +34,12 @@ public class View extends JFrame{
 		this.myTurtleGame = myTurtleGame;
 	}
 
-	private Controller myController;
-    private JFileChooser myChooser;
-    private TurtleState myInfo;
-	private JGEngine myEngine;
-
     public View ()
     {
-    	//this.setName("Turtle View");
         setTitle("Turtle View");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // create a single file chooser for the entire example
         myChooser = new JFileChooser(System.getProperties().getProperty(USER_DIR));
-        // create and arrange sub-parts of the GUI
         myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
-        // create listeners that will respond to events
-        // position interface components
         myTurtleGame = new TurtleGame(new JGPoint(800,600));
         myTurtleGame.setView(this);
 		JTextArea myDoneCommands = new JTextArea(18,18);
@@ -60,9 +50,7 @@ public class View extends JFrame{
         getContentPane().add(myInfo, BorderLayout.EAST);
         getContentPane().add(myTextInput, BorderLayout.SOUTH);
         getContentPane().add(myTurtleGame, BorderLayout.CENTER);
-        // create app menus
         setJMenuBar(makeMenus());
-        // size and display the GUI
         pack();
         setVisible(true);
     }
@@ -79,6 +67,7 @@ public class View extends JFrame{
         result.add(new TurtleToggleMenu(myResources.getString("BorderMenu"), myTurtleGame));
         return result;
 	}
+    
     private JMenu makeHelpMenu() {
 		JMenu result = new JMenu(myResources.getString("HelpMenu"));
         result.add(new AbstractAction(myResources.getString("HelpCommand")) {
@@ -94,7 +83,6 @@ public class View extends JFrame{
 				try {
 					myNewBrowserDesktop.browse(myNewLocation);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
             }
@@ -127,7 +115,6 @@ public class View extends JFrame{
 //        helpLanguages.add(helpSpanish);
 //        helpLanguages.add(helpPortuguese);
 
-        
         helpLanguages.add(new AbstractAction(myResources.getString("HelpEnglish")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -146,7 +133,6 @@ public class View extends JFrame{
 				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
 			}
         });
-
         result.add(helpLanguages);
         result.addMouseListener(new MouseFocus(result));
 		return result;	
@@ -187,7 +173,7 @@ public class View extends JFrame{
                     	
                     }
                 }
-            	
+            	//THIS WAS ISSUE WITH SERIALIZATION AND STRANGE VOLATILEIMAGE ERROR
                 /*try {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) 
@@ -210,7 +196,7 @@ public class View extends JFrame{
                 }
                 catch (IOException io) {
                     showError(io.toString());
-                }*/
+                }*/    
             }
         });
         result.add(new JSeparator());
@@ -242,9 +228,7 @@ public class View extends JFrame{
 	* @param message message to display
 	*/
     public void showError (String message) {
-        JOptionPane.showMessageDialog(this, message,
-                                      myResources.getString("ErrorTitle"),
-                                      JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, message, myResources.getString("ErrorTitle"), JOptionPane.ERROR_MESSAGE);
     }
     
     public void addGameAction(String string){
@@ -275,7 +259,7 @@ public class View extends JFrame{
 		myController.resetModels();
 	}
 
-	public void display(String input) {
+	public void display(String input) {  //used for current turtle information only!  variables, user def cmds, etc.
 		myInfo.addTurtleStatsText(input);
 	}
 

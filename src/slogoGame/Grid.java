@@ -25,20 +25,8 @@ public class Grid extends JGObject implements Constants{
 			l.add(new Line("grid",-DEFAULT_WIDTH/2+(DEFAULT_WIDTH/GRID_DENSITY)*i,-DEFAULT_HEIGHT/2,
 					-DEFAULT_WIDTH/2+(DEFAULT_WIDTH/GRID_DENSITY)*i,DEFAULT_HEIGHT/2,myEngine));
 		}		
-		
-/*		for (int i = 0; i <= num; i++) //horizontal lines
-		{
-			l.add(new Line("line", 10, myEngine, 0 - DEFAULT_WIDTH/2, (yNum-DEFAULT_HEIGHT/2)*i, 
-					myEngine.viewWidth() - DEFAULT_WIDTH/2, (yNum-DEFAULT_HEIGHT/2)*i));
-		}
-		for (int i = 0; i <= num; i++) //vertical lines
-		{
-			l.add(new Line("line", 10, myEngine, (xNum-DEFAULT_WIDTH/2)*i, 0-DEFAULT_HEIGHT/2, 
-					(xNum-DEFAULT_WIDTH/2)*i, myEngine.viewHeight()-DEFAULT_HEIGHT/2));
-		}*/
-		
-		
 	}
+	
 	public void toggle(Boolean gridOn)
 	{
 		for (Line line : l){
