@@ -33,6 +33,11 @@ public class Turtle extends JGObject implements Constants{
 	private double y2;
 	private double thickness = 5;*/
 
+	public Turtle(String name, boolean b, int i, int j, int collisionid,
+			String string) {
+		super(name, b, i, j, collisionid, string);
+	}
+
 	public void paint()
 	{
 		//myEngine.drawLine(x1, y1, x2, y2, thickness, JGColor.black);

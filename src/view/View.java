@@ -215,6 +215,7 @@ public class View extends JFrame{
 	public void sendString(String string) throws Exception {
 		myController.processInput(string);
 	}
+	
 	public Controller getController(){
 		return myController;
 	}
@@ -250,6 +251,10 @@ public class View extends JFrame{
 		myTurtleGame.clearTurtles();
 	}
 	
+	public void clearBoxes() {
+		myTurtleGame.clearBoxes();
+	}
+	
 	public void resetModel(){
 		myController.resetModels();
 	}
@@ -259,7 +264,6 @@ public class View extends JFrame{
 	}
 
 	public void drawBox(double[] boxPosition) {
-		System.out.println("PENIS");
-		myTurtleGame.drawRect(boxPosition[0], boxPosition[1], 10, 10, false, true);
+		myTurtleGame.drawBox(boxPosition);
 	}
 }

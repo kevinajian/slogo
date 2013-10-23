@@ -53,6 +53,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		setCursor(null);
 		defineImages();
 		squirt = new Turtle("turtle", 50, this);
+		HighlightBox b = new HighlightBox("box", 20, this);
 		//lines = new HoldLines("lines", 51, this);
 /*		g = new Grid("grid", 69, this);
 		toggleGrid = true;*/
@@ -171,6 +172,7 @@ public class TurtleGame extends JGEngine implements Constants{
 			defineImage("turtle"+i, "-",0,"../resources/turtle"+i+".png","-");
 		}
 		defineImage("star","-",0,"../resources/Star.png","-");
+		defineImage("border", "-",0,"../resources/border.png","-");
 	}
 
 	public void startTitle() {
@@ -232,9 +234,13 @@ public class TurtleGame extends JGEngine implements Constants{
 
 	public void drawLine(double[] currentLine){
 		new Line(currentLine[0],currentLine[1],currentLine[2],currentLine[3],this);
-
 	}
 	
+	public void drawBox(double[] boxPosition) {
+		System.out.println("boxes boxes boxes");
+		HighlightBox b = new HighlightBox("box", 20, this);
+		b.setPos(boxPosition[0], boxPosition[1]);
+	}
 	public void sendString(String input) throws Exception{
 		myView.sendString(input);
 	}
@@ -255,6 +261,10 @@ public class TurtleGame extends JGEngine implements Constants{
 	public void clearTurtles(){
 		removeObjects("turtle", 0);
 		System.out.println("turtles cleared");
+	}
+	
+	public void clearBoxes() {
+		removeObjects("border", 0);
 	}
 	
 	//Needs to be completed to default
