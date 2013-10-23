@@ -66,4 +66,8 @@ public class State {
 	public void setMyPenColor(String myPenColor) {
 		this.myPenColor = myPenColor;
 	}
+	
+	public void setTurtleVisible(String s) {
+		myTurtleVisible = s;
+	}
 }

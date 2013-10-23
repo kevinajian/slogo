@@ -7,6 +7,8 @@ import java.net.URISyntaxException;
 import javax.swing.*;
 import slogoGame.TurtleGame;
 import controller.Controller;
+
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import jgame.*;
 import jgame.platform.JGEngine;
@@ -130,24 +132,18 @@ public class View extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpEnglish") + ".properties");
 			}
-        	
-        	
         });
         helpLanguages.add(new AbstractAction(myResources.getString("HelpSpanish")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
-			}
-        	
-        	
+			}	
         });
         helpLanguages.add(new AbstractAction(myResources.getString("HelpPortuguese")) {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				myController.getParser().setLanguage("src/parser/" + myResources.getString("HelpSpanish") + ".properties");
 			}
-        	
-        	
         });
 
         result.add(helpLanguages);
@@ -156,40 +152,49 @@ public class View extends JFrame{
 
 	protected JMenu makeFileMenu () {
         JMenu result = new JMenu(myResources.getString("FileMenu"));
-        
         result.add(new AbstractAction(myResources.getString("SaveMenu")) {
-        	
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	
-            	String sb = myInfo.getContents();
+            public void actionPerformed(ActionEvent e) 
+            {
+            	ArrayList<slogoGame.Action> myList = myTurtleGame.getActionList();
                 JFileChooser chooser = new JFileChooser();
                 chooser.setCurrentDirectory(new File("src/"));
                 int retrival = chooser.showSaveDialog(null);
                 if (retrival == JFileChooser.APPROVE_OPTION) {
                     try {
-                        FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt");
-                        fw.write(sb.toString());
-                        fw.close();
+                        FileOutputStream fout = new FileOutputStream(chooser.getSelectedFile()+".txt");
+                        ObjectOutputStream oos = new ObjectOutputStream(fout);
+                        oos.writeObject(myList);
+                        oos.close();
+                        fout.close();
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
-            }
-            
+            }   
         });
-        
         result.add(new AbstractAction(myResources.getString("OpenCommand")) {
-            @Override
             public void actionPerformed (ActionEvent e) {
                 try {
                     int response = myChooser.showOpenDialog(null);
-                    if (response == JFileChooser.APPROVE_OPTION) {
+                    if (response == JFileChooser.APPROVE_OPTION) 
+                    {
                         new FileReader(myChooser.getSelectedFile());
+                        System.out.println("unserializing list");
+                        try {
+                            FileInputStream fin = new FileInputStream("list.txt");
+                            ObjectInputStream ois = new ObjectInputStream(fin);
+                            ArrayList<Action> list = (ArrayList) ois.readObject();
+                            for (Action a : list){
+                                System.out.println(a);
+                            }
+                            ois.close();
+                        }
+                        catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
                 catch (IOException io) {
-                    // let user know an error occurred, but keep going
                     showError(io.toString());
                 }
             }
@@ -252,5 +257,10 @@ public class View extends JFrame{
 
 	public void display(String input) {
 		myInfo.addTurtleStatsText(input);
+	}
+
+	public void drawBox(double[] boxPosition) {
+		// TODO Auto-generated method stub
+		
 	}
 }

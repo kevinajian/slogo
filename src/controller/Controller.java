@@ -35,6 +35,11 @@ public class Controller {
 	
 	public void initiate() {
 		myParser.initiate();
+		double[] initialBox = new double[3];
+		initialBox[0] = Constants.TURTLE_XORIGIN;
+		initialBox[1] = Constants.TURTLE_YORIGIN;
+		initialBox[2] = Constants.TURTLE_DEGREEORIGIN;
+		myView.drawBox(initialBox);
 	}
 	
 	public void processInput(String string) {
@@ -44,17 +49,22 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		clearLines();
-		clearTurtles();
+		clearLinesAndTurtlesAndBoxes();
 		for (Model m: myParser.getModels().values()) {
-			List<Line> trail = getLines(m);		
+			List<Line> trail = getLines(m);
 
 			for (Line line:trail) {
-				double[] currentLine = line.getLine();
-				myView.drawLine(currentLine);
+				drawLine(line);
 			}
-			double[] turtlePosition = getTurtle(m);
-			myView.drawTurtle(turtlePosition);
+			
+			State currentState = m.getCurrentState();
+			drawTurtle(currentState);
+			for (State s:m.getStamps()) {
+				System.out.println("drawing stamp");
+				drawTurtle(s);
+			}
+			
+			drawBox(m);
 			
 			if(m.isBackgroundChanged()){
 				m.setBackgroundChanged(false);
@@ -76,6 +86,21 @@ public class Controller {
 				setShape(m.getShape());
 			}
 		}
+	}
+
+	private void drawLine(Line line) {
+		double[] currentLine = line.getLine();
+		myView.drawLine(currentLine);
+	}
+
+	private void clearLinesAndTurtlesAndBoxes() {
+		clearLines();
+		clearTurtles();
+		clearBoxes();
+	}
+
+	private void clearBoxes() {
+//		myView.clearBoxes();
 	}
 
 	/**
@@ -112,11 +137,37 @@ public class Controller {
 		return lines;
 	}
 	
-	public double[] getTurtle(Model m) {
-		if (m.getCurrentState().getTurtleVisible().equals(Constants.TURTLE_NOTSHOWING)) return null;
+	public void drawTurtle(State s) {
+		double[] turtlePosition = getTurtle(s);
+		if (turtlePosition != null) {
+			myView.drawTurtle(turtlePosition);
+		}
+	}
+	
+	public double[] getTurtle(State s) {
+		if (s.getTurtleVisible().equals(Constants.TURTLE_NOTSHOWING)) return null;
 		else {
-			double[] coordinates = {m.getX(), m.getY(), m.getOrientation()};
+			double[] coordinates = {s.getX(), s.getY(), s.getOrientation()};
 			return coordinates;
+		}
+	}
+	
+	public double[] getBox(Model m) {
+		String turtleVisible = m.getCurrentState().getTurtleVisible();
+		if (turtleVisible.equals(Constants.TURTLE_NOTSHOWING)) { 
+			m.getCurrentState().setTurtleVisible(Constants.TURTLE_SHOWING);
+		}
+		if (m.getActive()) {
+			return getTurtle(m.getCurrentState());
+		}
+		m.getCurrentState().setTurtleVisible(turtleVisible);
+		return null;
+	}
+	
+	public void drawBox(Model m) {
+		double[] boxPosition = getBox(m);
+		if (boxPosition != null) {
+			myView.drawBox(boxPosition);
 		}
 	}
 	

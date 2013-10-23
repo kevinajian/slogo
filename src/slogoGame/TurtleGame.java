@@ -292,4 +292,8 @@ public class TurtleGame extends JGEngine implements Constants{
 		redoing = false;
 	}
 
+	public ArrayList<Action> getActionList()
+	{
+		return myActionList;
+	}
 }
