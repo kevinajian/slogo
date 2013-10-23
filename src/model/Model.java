@@ -33,6 +33,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private boolean shapeChanged = false;
 	private boolean myShapeChanged = false;
 	private boolean myActive = true;
+	private Map<String, String> customCommandMap = new HashMap<String, String>();
 
 	public Model(int id) {
 		myId = id;
@@ -213,7 +214,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		myShapeChanged = shapeChanged;
 	}
 	
-	public Map<String, Double> getCustomCommandMap() {
+	public Map<String, Double> getVariableMap() {
 		return myVariableMap;
 	}
 
@@ -235,6 +236,14 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setActive(boolean active) {
 		myActive = active;
+	}
+
+	public Map<String, String> getCustomCommandMap() {
+		return customCommandMap;
+	}
+
+	public void setCustomCommandMap(Map<String, String> customCommandMap) {
+		this.customCommandMap = customCommandMap;
 	}
 }
 
