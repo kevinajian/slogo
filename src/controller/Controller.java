@@ -49,13 +49,16 @@ public class Controller {
 			List<Line> trail = getLines(m);
 
 			for (Line line:trail) {
-				double[] currentLine = line.getLine();
-				myView.drawLine(currentLine);
+				drawLine(line);
 			}
-			double[] turtlePosition = getTurtle(m);
-			if (turtlePosition != null) {
-				myView.drawTurtle(turtlePosition);
+			
+			State currentState = m.getCurrentState();
+			drawTurtle(currentState);
+			for (State s:m.getStamps()) {
+				System.out.println("drawing stamp");
+				drawTurtle(s);
 			}
+			
 			double[] boxPosition = getBox(m);
 			if (boxPosition != null) {
 				myView.drawBox(boxPosition);
@@ -81,6 +84,11 @@ public class Controller {
 				setShape(m.getShape());
 			}
 		}
+	}
+
+	private void drawLine(Line line) {
+		double[] currentLine = line.getLine();
+		myView.drawLine(currentLine);
 	}
 
 	private void clearLinesAndTurtles() {
@@ -122,10 +130,17 @@ public class Controller {
 		return lines;
 	}
 	
-	public double[] getTurtle(Model m) {
-		if (m.getCurrentState().getTurtleVisible().equals(Constants.TURTLE_NOTSHOWING)) return null;
+	public void drawTurtle(State s) {
+		double[] turtlePosition = getTurtle(s);
+		if (turtlePosition != null) {
+			myView.drawTurtle(turtlePosition);
+		}
+	}
+	
+	public double[] getTurtle(State s) {
+		if (s.getTurtleVisible().equals(Constants.TURTLE_NOTSHOWING)) return null;
 		else {
-			double[] coordinates = {m.getX(), m.getY(), m.getOrientation()};
+			double[] coordinates = {s.getX(), s.getY(), s.getOrientation()};
 			return coordinates;
 		}
 	}
@@ -136,7 +151,7 @@ public class Controller {
 			m.getCurrentState().setTurtleVisible(Constants.TURTLE_SHOWING);
 		}
 		if (m.getActive()) {
-			return getTurtle(m);
+			return getTurtle(m.getCurrentState());
 		}
 		m.getCurrentState().setTurtleVisible(turtleVisible);
 		return null;
