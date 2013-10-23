@@ -205,7 +205,7 @@ public class TurtleGame extends JGEngine implements Constants{
         clearMouseButton(1);
 
         int mouseX = getMouseX() - pfWidth()/2;
-        int mouseY = getMouseY() - pfHeight()/2;
+        int mouseY = -(getMouseY() - pfHeight()/2);
         
         try {
 			sendString("OnClick" + " " +  mouseX + " " + mouseY);
