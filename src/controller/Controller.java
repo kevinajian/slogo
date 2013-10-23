@@ -35,6 +35,11 @@ public class Controller {
 	
 	public void initiate() {
 		myParser.initiate();
+		double[] initialBox = new double[3];
+		initialBox[0] = Constants.TURTLE_XORIGIN;
+		initialBox[1] = Constants.TURTLE_YORIGIN;
+		initialBox[2] = Constants.TURTLE_DEGREEORIGIN;
+		myView.drawBox(initialBox);
 	}
 	
 	public void processInput(String string) {
@@ -156,6 +161,7 @@ public class Controller {
 	
 	public void drawBox(Model m) {
 		double[] boxPosition = getBox(m);
+		System.out.println("boxPosition: "+ boxPosition[0]+ " y "+boxPosition[1]);
 		if (boxPosition != null) {
 			myView.drawBox(boxPosition);
 		}
