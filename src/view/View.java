@@ -241,12 +241,16 @@ public class View extends JFrame{
 		myTurtleGame.clearLines();
 	}
 	
+	public void clearTurtles() {
+		myTurtleGame.clearTurtles();
+	}
+	
 	public void resetModel(){
 		myController.resetModels();
 	}
 
 	public void display(String input) {
-		// TODO Auto-generated method stub
+		System.out.println(input);
 		
 	}
 }
