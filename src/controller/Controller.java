@@ -9,6 +9,7 @@ import java.util.Map;
 import parser.Parser;
 import model.Constants;
 import model.Model;
+import model.ModelController;
 import model.State;
 
 /**
@@ -19,8 +20,7 @@ import model.State;
  * @author carlosreyes kevinjian
  */
 public class Controller { 
-
-	private Parser myParser;
+	private ModelController myMC;
 	private View myView;
 	
 	/**
@@ -28,13 +28,13 @@ public class Controller {
 	 * @param view - view object
 	 * @param parser - model object
 	 */
-	public Controller(View view, Parser parser){
+	public Controller(View view, ModelController MC){
 		myView = view;
-		myParser = parser;
+		myMC = MC;
 	}
 	
 	public void initiate() {
-		myParser.initiate();
+		myMC.initiate();
 		double[] initialBox = new double[3];
 		initialBox[0] = Constants.TURTLE_XORIGIN;
 		initialBox[1] = Constants.TURTLE_YORIGIN;
@@ -49,12 +49,12 @@ public class Controller {
 	 */
 	public void processInput(String string) {
 		try {
-			myParser.parse(string);
+			myMC.parse(string);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		clearLinesAndTurtlesAndBoxes();
-		for (Model m: myParser.getModels().values()) {
+		for (Model m: myMC.getModelMap().values()) {
 			List<Line> trail = getLines(m);
 
 			for (Line line:trail) {
@@ -197,14 +197,6 @@ public class Controller {
 		}
 	}
 	
-	public Parser getParser() {
-		return myParser;
-	}
-	
-	public void setParser(Parser p) {
-		myParser = p;
-	}
-	
 	public void setBackgroundColor(String c) {
 		myView.getMyTurtleGame().makeBackgroundAction(c);
 	}
@@ -227,7 +219,7 @@ public class Controller {
 	}
 	
 	public void resetModels() {
-		for (Model m: myParser.getModels().values()) {
+		for (Model m: myMC.getModelMap().values()) {
 			m.resetModel();
 		}
 	}
@@ -245,7 +237,7 @@ public class Controller {
 	}
 
 	public void display() {
-		Model m = myParser.getModel();
+		Model m = myMC.getModel();
 		myView.display("X position: " + m.getX());
 		myView.display("Y position: " + m.getY());
 		myView.display("Orientation: "+ m.getOrientation());
@@ -257,9 +249,17 @@ public class Controller {
 	}
 
 	public Map<String, String> getCustomCommandMap() {
-		for (Model m: myParser.getModels().values()) {
+		for (Model m: myMC.getModelMap().values()) {
 			return m.getCustomCommandMap();
 		}
 		return null;
+	}
+	
+	public void setModelController(ModelController mc) {
+		myMC = mc;
+	}
+	
+	public ModelController getModelController() {
+		return myMC;
 	}
 }

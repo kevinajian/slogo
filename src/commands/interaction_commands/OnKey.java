@@ -13,7 +13,7 @@ public class OnKey extends CommandZeroInput {
 	
 	@Override
 	public double evaluate(Model model) {
-		Parser parser = new Parser(null);
+		Parser parser = new Parser();
 		Command customCommand = null;
 		
 		try {

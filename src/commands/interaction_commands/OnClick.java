@@ -17,7 +17,7 @@ public class OnClick extends Command {
 	
 	@Override
 	public double evaluate(Model model) {
-		Parser parser = new Parser(null);
+		Parser parser = new Parser();
 		Command customCommand = null;
 		try {
 			//customCommand = parser.getClass("SetXY");

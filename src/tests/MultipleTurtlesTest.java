@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import model.Model;
+import model.ModelController;
 import model.State;
 
 import org.junit.Test;
@@ -24,28 +25,25 @@ public class MultipleTurtlesTest {
 
 	@Test
 	public void testTell() throws Exception {
-		Model model = new Model(1);
-		Map<Integer, Model> modelMap = new HashMap<Integer, Model>();
-		modelMap.put(model.getId(), model);
-		Parser p = new Parser(modelMap);
-		p.parse("Tell [ 2 ]");
-		modelMap = p.getModels();
-		Collection<Model> models = modelMap.values();
+		ModelController mc = new ModelController();
+		mc.initiate();
+		Map<Integer, Model> modelMap = mc.getModelMap();
+		mc.parse("Tell [ 2 ]");
 		for (Model m: modelMap.values()) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
-		p.parse("Tell [ 1 2 ]");
+		mc.parse("Tell [ 1 2 ]");
 		for (Model m: modelMap.values()) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
-		p.parse("Tell [ 1 2 5 ]");
+		mc.parse("Tell [ 1 2 5 ]");
 		for (Model m: modelMap.values()) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
-		p.parse("Tell [ 3 4 ]");
+		mc.parse("Tell [ 3 4 ]");
 		for (Model m: modelMap.values()) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
@@ -54,20 +52,17 @@ public class MultipleTurtlesTest {
 
 	@Test
 	public void testTellEven() throws Exception {
-		Model model = new Model(1);
-		Map<Integer, Model> modelMap = new HashMap<Integer, Model>();
-		modelMap.put(model.getId(), model);
-		Parser p = new Parser(modelMap);
-		
-		p.parse("Tell [ 1 2 3 4 5 6 ]");
-		modelMap = p.getModels();
-		for (Model m: modelMap.values()) {
+		ModelController mc = new ModelController();
+		mc.initiate();
+		Collection<Model> models = mc.getModels();
+		mc.parse("Tell [ 1 2 3 4 5 6 ]");
+		for (Model m: models) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
-		
-		p.parse("TellEven");
-		for (Model m: modelMap.values()) {
+		models = mc.getModels();
+		mc.parse("TellEven");
+		for (Model m: models) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
@@ -75,20 +70,18 @@ public class MultipleTurtlesTest {
 	
 	@Test
 	public void testTellOdd() throws Exception {
-		Model model = new Model(1);
-		Map<Integer, Model> modelMap = new HashMap<Integer, Model>();
-		modelMap.put(model.getId(), model);
-		Parser p = new Parser(modelMap);
-		
-		p.parse("Tell [ 1 2 3 4 5 6 ]");
-		modelMap = p.getModels();
-		for (Model m: modelMap.values()) {
+		ModelController mc = new ModelController();
+		mc.initiate();
+		Collection<Model> models = mc.getModels();
+		mc.parse("Tell [ 1 2 3 4 5 6 ]");
+		for (Model m: models) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
 		
-		p.parse("TellOdd");
-		for (Model m: modelMap.values()) {
+		models = mc.getModels();
+		mc.parse("TellOdd");
+		for (Model m: models) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}

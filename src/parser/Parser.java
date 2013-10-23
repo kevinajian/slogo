@@ -12,6 +12,7 @@ import java.util.Set;
 
 import model.Constants;
 import model.Model;
+import model.ModelController;
 import commands.Command;
 import commands.CommandList;
 import commands.basic_syntax.Constant;
@@ -27,13 +28,17 @@ import commands.vcu.*;
  * @author carlosreyes, Kevin
  *
  */
-public class Parser {
-	private Map<Integer, Model> myModels;
+public class Parser { 
+	private ModelController myMC;
 	private String myLanguage = Constants.DEFAULT_LANGUAGE;
 	private String name;
 	
-	public Parser(Map<Integer, Model> models){
-		myModels = models;
+	public ModelController getModelController() {
+		return myMC;
+	}
+	
+	public void setModelController(ModelController mc) {
+		myMC = mc;
 	}
 	
 	public Map<String, String> fileToMap(String filename) {
@@ -66,12 +71,12 @@ public class Parser {
 	 * @param input - String of user input
 	 * @throws Exception 
 	 */
-	public List<String> parse(String input) throws Exception{
+	public List<Command> parse(String input) throws Exception{
 		
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		
-		handleSpecial(list);
+//		handleSpecial(list);
 		
 		List<String> inputs = new ArrayList<String>();
 		parseArrayToArrayList(inputs, list);
@@ -81,13 +86,8 @@ public class Parser {
 			String[] toInputs = outString.split(Constants.INPUT_SPLITTER);
 			parseArrayToArrayList(inputs, toInputs);
 		}
-		
-		List<Command> commands = lexer(inputs);
-		for (Model m: myModels.values()) {
-			m.setCommands(commands);
-		}
-		
-		return inputs;
+
+		return lexer(inputs);
 	}
 	/**
 	 * Helper method one for parse, makes an array containing string commands
@@ -210,7 +210,7 @@ public class Parser {
 			setCommandList(root, inputs);
 		}
 		else if (root instanceof Tell) {
-			Set<Integer> turtles = myModels.keySet();
+			Set<Integer> turtles = myMC.getModelMap().keySet();
 			List<String> turtleSet;
 			if (root instanceof TellEven) {
 				turtleSet = new ArrayList<String>();
@@ -239,10 +239,11 @@ public class Parser {
 				}
 				else {
 					for (String s: turtleSet) {
+						System.out.println("adding turtle: "+s);
 						if (!turtles.contains(Integer.parseInt(s))) {
 							Model m = new Model(Integer.parseInt(s));
 							m.initiate();
-							myModels.put(m.getId(), m);
+							myMC.addModel(m.getId(), m);
 						}
 					}
 				}
@@ -303,7 +304,7 @@ public class Parser {
 			Command variable = new Variable(":repcount");
 			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
 			((For) root).setVariable((Variable) variable);
-			((For) root).setMax((int) lexer(params).get(0).evaluate(myModels.get(0)));
+			((For) root).setMax((int) lexer(params).get(0).evaluate(myMC.getModel()));
 			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
 			return;
 		}
@@ -425,7 +426,7 @@ public class Parser {
 		for(int i=1; i<commandList.length; i++) {
 			valuesList.add(Integer.parseInt(commandList[i]));
 		}
-		for (Model m:myModels.values()) {
+		for (Model m:myMC.getModelMap().values()) {
 			if (m.getCustomCommandMap().containsKey(commandList[0])) {
 				String out = m.getCustomCommandMap().get(commandList[0]);
 				for(int i=0; i < valuesList.size(); i++) {
@@ -435,8 +436,7 @@ public class Parser {
 			}
 		}
 		return commandString;
-	}
-	
+	}	
 	
 	/**
 	 * Gets file path from String that represents a class.
@@ -447,39 +447,21 @@ public class Parser {
 		FindFilePath filePath = new FindFilePath(in);
 		return filePath.makePath();
 	}
-
-	public void initiate() {
-		for (Model m:myModels.values()) {
-			m.initiate();
-		}
-	}
 	
 	public Map<String, Double> getCustomCommandMap() {
-		return myModels.get(1).getVariableMap();
+		return myMC.getCustomCommandMap();
 	}
 
 	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
-		for (Model m: myModels.values()) {
-			m.setVariableMap(customCommandMap);
-		}
+		myMC.setCustomCommandMap(customCommandMap);
 	}
 	
 	public void setCustomCommand(String key, double value) {
-		for (Model m: myModels.values()) {
-			m.addVariable(key, value);
-		}
+		myMC.setCustomCommand(key, value);
 	}
 	
 	public double getCustomCommandValue(String key) {
-		return myModels.get(1).getVariable(key);
-	}
-	
-	public Map<Integer, Model> getModels() {
-		return myModels;
-	}
-	
-	public void setModels(Map<Integer, Model> models) {
-		myModels = models;
+		return myMC.getCustomCommandValue(key);
 	}
 	
 	public String getLanguage() {
@@ -488,8 +470,5 @@ public class Parser {
 
 	public void setLanguage(String language) {
 		myLanguage = language;
-	}
-	public Model getModel(){
-		return myModels.get(Constants.DEFAULT_MODEL);
 	}
 }

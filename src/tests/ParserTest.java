@@ -23,10 +23,7 @@ public class ParserTest {
 
 	@Test
 	public void testToClass() {
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		Forward fd = new Forward();
 		assertEquals(parser.toClass("Forward"), "commands.turtle_commands.Forward");
 		assertEquals(parser.toClass("Sum"), "commands.math.Sum");
@@ -35,10 +32,7 @@ public class ParserTest {
 
 	@Test
 	public void testGetClass() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		Command test = parser.getClass("Back");
 		assertTrue(test instanceof Back);
 		Command test2 = parser.getClass("And");
@@ -52,9 +46,7 @@ public class ParserTest {
 	@Test
 	public void testTreeBuilder() throws Exception {
 		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		List<String> testInputs = new ArrayList<String>(){{add("Forward"); add("50");}};
 		Command test1 = parser.getClass("Forward");
 		assertTrue(test1 instanceof Forward);
@@ -73,9 +65,7 @@ public class ParserTest {
 	@Test
 	public void testLexer() {
 		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		List<String> testInputs = new ArrayList<String>(){{add("Forward"); add("50"); add("Sum"); add("3"); add("5");}};
 		List<Command> testOutput = null;
 		try {
@@ -102,9 +92,7 @@ public class ParserTest {
 	@Test
 	public void testParse() {
 		Model model = new Model(1);
-		Map<Integer, Model> models = new HashMap<Integer, Model>();
-		models.put(model.getId(), model);
-		Parser parser = new Parser(models);
+		Parser parser = new Parser();
 		String testInputs = "Forward 50 Sum 3 5";
 		List<String> testOutput = null;
 		try {

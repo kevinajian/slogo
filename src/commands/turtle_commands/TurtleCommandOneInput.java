@@ -1,8 +1,10 @@
 package commands.turtle_commands;
 
+import model.Model;
 import model.TurtleCommands;
 import commands.Command;
 
 public abstract class TurtleCommandOneInput extends Command {
-	public abstract double evaluate(TurtleCommands model);
+	@Override
+	public abstract double evaluate(Model model);
 }
