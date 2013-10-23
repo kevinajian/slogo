@@ -122,6 +122,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	
 	public void toggleGrid(Boolean gridOn){
 		g.toggle(gridOn);
+		System.out.println("grid toggled");
 	}
 
 	public void setPenColor(String color){
@@ -194,6 +195,7 @@ public class TurtleGame extends JGEngine implements Constants{
 			clearKey('D');
 		}
 		if (getMouseButton(1)) {
+			System.out.println(this.countObjects("turtle", 50));
 			//onClickAction();
 		}
 	}
@@ -247,10 +249,12 @@ public class TurtleGame extends JGEngine implements Constants{
 	
 	public void clearLines(){
 		removeObjects("line",0);
+		System.out.println("lines cleared");
 	}
 	
 	public void clearTurtles(){
 		removeObjects("turtle", 0);
+		System.out.println("turtles cleared");
 	}
 	
 	//Needs to be completed to default
@@ -260,9 +264,8 @@ public class TurtleGame extends JGEngine implements Constants{
 		} catch (Exception e) {
 		}
 		clearLines();
-		//reset turtles
-		squirt.setPos(0, 0);
-		squirt.rotate(0);
+		clearTurtles();
+		squirt = new Turtle("turtle",50,this);
 		setBackgroundColor("White");
 		toggleGrid(true);
 		setPen("Black");		

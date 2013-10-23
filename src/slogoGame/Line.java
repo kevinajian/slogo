@@ -13,6 +13,10 @@ public class Line extends JGObject implements Constants{
 		this("line",0,tgame,ex1,why1,ex2,why2);
 	}
 	
+	public Line(String name, double ex1, double why1, double ex2, double why2, TurtleGame tgame){
+		this(name,0,tgame,ex1,why1,ex2,why2);
+	}
+	
 	public Line(String name, int collisionid, TurtleGame tgame, double ex1, double why1, double ex2, double why2) {
 		super(name, true,0, 0, collisionid, null);
 		myEngine = tgame;
