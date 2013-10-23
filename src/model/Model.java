@@ -51,7 +51,17 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		return myStamps;
 	}
 	
-//	public 
+	public void setStamps(List<State> stamps) {
+		myStamps = stamps;
+	}
+	
+	public void addStamp(State stamp) {
+		myStamps.add(stamp);
+	}
+	
+	public void clearStamps() {
+		myStamps.clear();
+	}
 	
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
@@ -110,6 +120,12 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		myCommands.clear();
 		myStates.clear();
 		myStates.add(myOrigin);
+		if (myId == Constants.DEFAULT_MODEL) {
+			myActive = true;
+		}
+		else {
+			myActive = false;
+		}
 	}
 
 	/**
