@@ -19,7 +19,7 @@ public class GridAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		myGame.setGrid(!cmd.equals("Toggle Grid Off"));
+		myGame.makeGridAction(!cmd.equals("Toggle Grid Off"));
 	}
 
 }

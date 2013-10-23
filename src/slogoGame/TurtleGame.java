@@ -81,7 +81,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		myView = view;
 	}
 
-	public void addInputAction(String string){
+	public void makeInputAction(String string){
 		addAction(new ActionInput(this,string));
 	}
 
@@ -103,7 +103,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		}
 	}
 
-	public void setBackground(String color){
+	public void makeBackgroundAction(String color){
 		addAction(new ActionBackground(this,color));
 	}
 
@@ -116,20 +116,20 @@ public class TurtleGame extends JGEngine implements Constants{
 		backgroundColor = color;
 	}
 
-	public void setGrid(Boolean gridOn){
+	public void makeGridAction(Boolean gridOn){
 		addAction(new ActionGrid(this,gridOn));
 	}
 
-	public void toggleGrid(Boolean gridOn){
+	public void setGrid(Boolean gridOn){
 		g.toggle(gridOn);
 		//System.out.println("grid toggled");
 	}
 
-	public void setPenColor(String color){
+	public void makePenAction(String color){
 		addAction(new ActionPen(this,color));
 	}
 
-	public void setPen(String color){
+	public void setPenColor(String color){
 		JGColor colorBG = getJGColor(color);
 		if (colorBG == null)
 			return;
@@ -234,15 +234,9 @@ public class TurtleGame extends JGEngine implements Constants{
 
 	public void drawTurtle(double[] turtlePosition){
 		//addAction(new ActionDrawTurtle(this,turtlePosition));
-		drawTurtleActually(turtlePosition);
-	}
-
-	public void drawTurtleActually(double[] turtlePosition){
-		//squirt.setPos(turtlePosition[0],turtlePosition[1]);
-		//squirt.rotate(turtlePosition[2]);
 		Turtle newTurts = new Turtle("turtle", 50, this);				
 		newTurts.setPos(turtlePosition[0], turtlePosition[1]);
-		newTurts.rotate(turtlePosition[2]);
+		newTurts.rotate(turtlePosition[2]);		
 	}
 
 	public void drawLine(double[] currentLine){
@@ -296,8 +290,8 @@ public class TurtleGame extends JGEngine implements Constants{
 		squirt = new Turtle("turtle",50,this);
 		b = new HighlightBox("border", 20, this);
 		setBackgroundColor("White");
-		toggleGrid(true);
-		setPen("Black");
+		setGrid(true);
+		setPenColor("Black");
 	}
 
 	public void setWorkspace(int index){
@@ -359,9 +353,9 @@ public class TurtleGame extends JGEngine implements Constants{
 /*			for (String string : array)
 				System.out.println(string);*/
 			
-			toggleGrid(array.get(0).equals("on"));
-			setPen(array.get(1));
-			setBackground(array.get(2));
+			setGrid(array.get(0).equals("on"));
+			setPenColor(array.get(1));
+			makeBackgroundAction(array.get(2));
 			redoing = true;
 			for(int i = 3; i < array.size(); i++){
 				sendString(array.get(i));

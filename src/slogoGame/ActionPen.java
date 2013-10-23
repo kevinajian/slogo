@@ -12,7 +12,7 @@ public class ActionPen extends Action {
 
 	@Override
 	public void redo(){
-		myTurtleGame.setPen(myColor);
+		myTurtleGame.setPenColor(myColor);
 	}
 	
 }

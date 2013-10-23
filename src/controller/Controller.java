@@ -179,11 +179,11 @@ public class Controller {
 	}
 	
 	public void setBackgroundColor(String c) {
-		myView.getMyTurtleGame().setBackground(c);
+		myView.getMyTurtleGame().makeBackgroundAction(c);
 	}
 	
 	public void setPenColor(String c) {
-		myView.getMyTurtleGame().setPenColor(c);
+		myView.getMyTurtleGame().makePenAction(c);
 	}
 	
 	private void setPenSize(double d) {

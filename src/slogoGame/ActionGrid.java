@@ -12,7 +12,7 @@ public class ActionGrid extends Action {
 	
 	@Override
 	public void redo(){
-		myTurtleGame.toggleGrid(toggle);
+		myTurtleGame.setGrid(toggle);
 		}
 
 }

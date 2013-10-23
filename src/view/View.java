@@ -247,7 +247,7 @@ public class View extends JFrame{
     }
     
     public void addGameAction(String string){
-    	myTurtleGame.addInputAction(string);
+    	myTurtleGame.makeInputAction(string);
     }
 
 	public void drawTurtle(double[] turtlePosition) {
