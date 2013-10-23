@@ -9,7 +9,7 @@ import commands.CommandZeroInput;
  * Sets the pen position to down (1) so that the turtle can
  * draw lines as it moves.
  * Returns 1
- * @author carlosreyes
+ * @author carlosreyes, kevin
  *
  */
 public class SetPenDown extends CommandZeroInput {

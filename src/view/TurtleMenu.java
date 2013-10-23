@@ -18,5 +18,6 @@ public class TurtleMenu extends JMenu {
 		String commands[] = lumpedColors.split(" ");
 		for (String command : commands)
 			add(new TurtleAction(command,game));
+		addMouseListener(new MouseFocus(this));
 	}
 }

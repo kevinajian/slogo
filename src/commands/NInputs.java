@@ -36,10 +36,4 @@ public class NInputs extends Command{
 	public void setMyCommandName(String myCommandName) {
 		this.myCommandName = myCommandName;
 	}
-
-	@Override
-	public double evaluate(Model model) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

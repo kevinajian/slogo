@@ -8,7 +8,7 @@ import commands.CommandZeroInput;
 
 /**
  * Sets the visibility of the turtle to on (1)
- * @author carlosreyes
+ * @author carlosreyes, kevin
  *
  */
 public class ShowTurtle extends CommandZeroInput {
