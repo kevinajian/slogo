@@ -74,7 +74,6 @@ public class Controller {
 				m.setShapeChanged(false);
 				setShape(m.getShape());
 			}
-
 		}
 	}
 
@@ -159,8 +158,11 @@ public class Controller {
 		myView.clearLines();
 	}
 	
+	public void clearTurtles() {
+		myView.clearTurtles();
+	}
+	
 	public void display(String input) {
 		myView.display(input);
 	}
-	
 }
