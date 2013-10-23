@@ -20,7 +20,7 @@ public class Turtle extends JGObject implements Constants{
 	private String myName;
 	private boolean amCustom;
 	public Turtle(String name, int collisionid, JGEngine tgame) {
-		super(name, false, 0, 0, collisionid, "turtle0");
+		super(name, true, 0, 0, collisionid, "turtle0");
 		myEngine = tgame;
 		myName = "turtle";
 		myImage = myName+0;
@@ -36,7 +36,7 @@ public class Turtle extends JGObject implements Constants{
 	public void paint()
 	{
 		//myEngine.drawLine(x1, y1, x2, y2, thickness, JGColor.black);
-		myEngine.drawImage(x, y, myImage);
+		//myEngine.drawImage(x, y, myImage);
 	}
 	
 	public void rotate(double degree){
@@ -44,6 +44,7 @@ public class Turtle extends JGObject implements Constants{
 			return;
 		degree = Math.floor(degree/10);
 		myImage = myName+ (int)degree;
+		setImage(myImage);
 	}
 	public void changeImage(String name){
 		myName = name;

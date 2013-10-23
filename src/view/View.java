@@ -250,11 +250,6 @@ public class View extends JFrame{
 	}
 
 	public void display(String input) {
-		System.out.println(input);
-		
-	}
-
-	public void clearTurtles() {
-		// TODO Auto-generated method stub
+		myInfo.addTurtleStatsText(input);
 	}
 }

@@ -45,6 +45,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		clearLines();
+		clearTurtles();
 		for (Model m: myParser.getModels().values()) {
 			List<Line> trail = getLines(m);		
 

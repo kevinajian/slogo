@@ -3,9 +3,11 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import model.Model;
 import model.State;
@@ -14,28 +16,42 @@ import org.junit.Test;
 
 import commands.basic_syntax.Constant;
 import commands.turtle_commands.Forward;
-
+import controller.Controller;
 import parser.Parser;
+import view.View;
 
 public class MultipleTurtlesTest {
 
 	@Test
-	public void testTell() {
+	public void testTell() throws Exception {
 		Model model = new Model(1);
-		model.addState(new State(0.0, 0.0, 0.0, "1", "1", "Black"));
-		Forward forward = new Forward();
-		Constant left = new Constant();
-		left.setInputValueOne(1.0);
-		forward.setLeftChild(left);
-		assertEquals(forward.evaluate(model), 1.0, 0.0);
-		
-		State state = new State(0.0, 1.0, 0.0, "1", "1", "Black");
-		State modelState = model.getCurrentState();
-		assertEquals(state.getX(), modelState.getX(), 0.0);
-		assertEquals(state.getY(), modelState.getY(), 0.0);
-		assertEquals(state.getOrientation(), modelState.getOrientation(), 0.0);
-		assertEquals(state.getTurtleVisible(), modelState.getTurtleVisible());
-		assertEquals(state.getPenVisible(), modelState.getPenVisible());
+		Map<Integer, Model> modelMap = new HashMap<Integer, Model>();
+		modelMap.put(model.getId(), model);
+		Parser p = new Parser(modelMap);
+		p.parse("Tell [ 2 ]");
+		modelMap = p.getModels();
+		Collection<Model> models = modelMap.values();
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
+		assertEquals()
+		p.parse("Tell [ 1 2 ]");
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
+		p.parse("Tell [ 1 2 5 ]");
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
+		p.parse("Tell [ 3 4 ]");
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
 	}
-
+	
+	
 }

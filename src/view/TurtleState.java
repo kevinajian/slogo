@@ -24,9 +24,17 @@ public class TurtleState extends JSplitPane{
 	}
 	public void addText(String text)
 	{
-		myInfo.append(text + "\n");
+		myPrevCommands.append(text + "\n");
 	}
 	public String getContents()
+	{
+		return myPrevCommands.getText();
+	}
+	public void addTurtleStatsText(String turtlestats)
+	{
+		myInfo.append(turtlestats + "\n");
+	}
+	public String getStats()
 	{
 		return myInfo.getText();
 	}
