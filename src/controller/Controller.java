@@ -46,8 +46,7 @@ public class Controller {
 		}
 		clearLinesAndTurtles();
 		for (Model m: myParser.getModels().values()) {
-			List<Line> trail = getLines(m);		
-			System.out.println("trail.length: " + trail.size());
+			List<Line> trail = getLines(m);
 
 			for (Line line:trail) {
 				double[] currentLine = line.getLine();
@@ -132,9 +131,14 @@ public class Controller {
 	}
 	
 	public double[] getBox(Model m) {
+		String turtleVisible = m.getCurrentState().getTurtleVisible();
+		if (turtleVisible.equals(Constants.TURTLE_NOTSHOWING)) { 
+			m.getCurrentState().setTurtleVisible(Constants.TURTLE_SHOWING);
+		}
 		if (m.getActive()) {
 			return getTurtle(m);
 		}
+		m.getCurrentState().setTurtleVisible(turtleVisible);
 		return null;
 	}
 	
