@@ -195,6 +195,7 @@ public class Parser {
 				int openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
 				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs);
+				inputs.remove(0); inputs.remove(0);
 				if (root instanceof AskWith) {
 					List<Command> expression = lexer(turtleSet);
 					((AskWith) root).setExpression(expression.get(0));
@@ -208,7 +209,6 @@ public class Parser {
 						}
 					}
 				}
-				inputs.remove(0); inputs.remove(0);
 				if (root instanceof Ask) {
 					setCommandList(root, inputs);
 				}

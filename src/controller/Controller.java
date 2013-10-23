@@ -100,7 +100,7 @@ public class Controller {
 	}
 
 	private void clearBoxes() {
-		myView.clearBoxes();
+//		myView.clearBoxes();
 	}
 
 	/**
@@ -166,7 +166,6 @@ public class Controller {
 	
 	public void drawBox(Model m) {
 		double[] boxPosition = getBox(m);
-		System.out.println("boxPosition: "+ boxPosition[0]+ " y "+boxPosition[1]);
 		if (boxPosition != null) {
 			myView.drawBox(boxPosition);
 		}
