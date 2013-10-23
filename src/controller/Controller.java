@@ -35,6 +35,11 @@ public class Controller {
 	
 	public void initiate() {
 		myParser.initiate();
+		double[] initialBox = new double[3];
+		initialBox[0] = Constants.TURTLE_XORIGIN;
+		initialBox[1] = Constants.TURTLE_YORIGIN;
+		initialBox[2] = Constants.TURTLE_DEGREEORIGIN;
+		myView.drawBox(initialBox);
 	}
 	
 	public void processInput(String string) {
@@ -44,7 +49,7 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		clearLinesAndTurtles();
+		clearLinesAndTurtlesAndBoxes();
 		for (Model m: myParser.getModels().values()) {
 			List<Line> trail = getLines(m);
 
@@ -88,9 +93,14 @@ public class Controller {
 		myView.drawLine(currentLine);
 	}
 
-	private void clearLinesAndTurtles() {
+	private void clearLinesAndTurtlesAndBoxes() {
 		clearLines();
 		clearTurtles();
+		clearBoxes();
+	}
+
+	private void clearBoxes() {
+//		myView.clearBoxes();
 	}
 
 	/**

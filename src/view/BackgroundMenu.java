@@ -4,6 +4,8 @@ import javax.swing.JMenu;
 
 import slogoGame.TurtleGame;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
 
 @SuppressWarnings("serial")
@@ -20,6 +22,7 @@ public class BackgroundMenu extends JMenu {
 		for (String color : Colors){
 			addAction(color,game);
 		}
+		addMouseListener(new MouseFocus(this));
 	}
 	
 	public void addAction(String color, TurtleGame game){

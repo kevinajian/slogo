@@ -3,6 +3,7 @@ import java.util.Map;
 
 import parser.Parser;
 import controller.Controller;
+import model.Constants;
 import model.Model;
 import view.View;
 
@@ -18,7 +19,7 @@ public class Main {
 	 */
 	public static void main(String[]args){
 		View view = new View();
-		Model model = new Model(1);
+		Model model = new Model(Constants.DEFAULT_MODEL);
 		Map<Integer, Model> models = new HashMap<Integer, Model>();
 		models.put(model.getId(), model);
 		Parser parser = new Parser(models);

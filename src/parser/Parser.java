@@ -69,6 +69,14 @@ public class Parser {
 	 * @throws Exception 
 	 */
 	public List<String> parse(String input) throws Exception{
+//		String [] checker = input.split(Constants.INPUT_SPLITTER);
+//		if (getClass(checker[0]) != null) {
+//			System.out.println(":(");
+//		}
+//		else{
+//			System.out.println(checker[0]);
+//		}
+		
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		List<String> inputs = new ArrayList<String>();
@@ -80,10 +88,31 @@ public class Parser {
 				inputs.add(fileToMap(getLanguage()).get(string.toUpperCase()));
 			}
 		}
+		
+		for(Model m : myModels.values()) {
+			m.getCustomCommandMap().put("SUMTHREE", "Forward Sum Sum :x :y :z");
+		}
+		
+		if (inputs.get(0) == null) {
+			String outString = customCommandHandler(input);
+			System.out.println(outString);
+			String[] toInputs = outString.split(Constants.INPUT_SPLITTER);
+			for(String string : toInputs){
+				if(string.matches(Constants.CONSTANT_ID) || (string.charAt(0) == Constants.VARIABLE_ID.charAt(0)) || (string.equals(Constants.OPEN_BRACKET)) || (string.equals(Constants.CLOSE_BRACKET))){
+					inputs.add(string);
+				}
+				else{
+					inputs.add(fileToMap(getLanguage()).get(string.toUpperCase()));
+				}
+			}
+		}
+		
+		
 		List<Command> commands = lexer(inputs);
 		for (Model m: myModels.values()) {
 			m.setCommands(commands);
 		}
+		
 		return inputs;
 	}
 	
@@ -195,6 +224,7 @@ public class Parser {
 				int openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
 				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs);
+				inputs.remove(0); inputs.remove(0);
 				if (root instanceof AskWith) {
 					List<Command> expression = lexer(turtleSet);
 					((AskWith) root).setExpression(expression.get(0));
@@ -208,7 +238,6 @@ public class Parser {
 						}
 					}
 				}
-				inputs.remove(0); inputs.remove(0);
 				if (root instanceof Ask) {
 					setCommandList(root, inputs);
 				}
@@ -330,6 +359,35 @@ public class Parser {
 		return xyz;
 	}
 
+	/**
+	 * Deals with custom commands from a command map
+	 * and sends them through to the parser.
+	 * Takes a commandstring if its first element was found not
+	 * to be a valid class, and pulls it out of the custom command
+	 * map, puts the value of the command in a string and replaces
+	 * all of the parameters
+	 */
+	public String customCommandHandler(String commandString) {
+		commandString.toUpperCase();
+		String [] commandList = commandString.split(Constants.INPUT_SPLITTER);
+		ArrayList<Integer> valuesList = new ArrayList<Integer>(); 
+		//making parameter values into ints and adding to list
+		for(int i=1; i<commandList.length; i++) {
+			valuesList.add(Integer.parseInt(commandList[i]));
+		}
+		for (Model m:myModels.values()) {
+			if (m.getCustomCommandMap().containsKey(commandList[0])) {
+				String out = m.getCustomCommandMap().get(commandList[0]);
+				for(int i=0; i < valuesList.size(); i++) {
+					out = out.replaceFirst(":[\\w*]", valuesList.get(i).toString());
+				}
+				return out;
+			}
+		}
+		return commandString;
+	}
+	
+	
 	/**
 	 * Gets file path from String that represents a class.
 	 * @param in
