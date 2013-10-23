@@ -3,6 +3,7 @@ package commands.vcu;
 import java.util.List;
 
 import commands.Command;
+import commands.CommandList;
 import commands.basic_syntax.Variable;
 import model.Model;
 
@@ -11,11 +12,10 @@ import model.Model;
  * @author Kevin
  *
  */
-public class For extends Loop{
+public class For extends CommandList{
 	protected int myIteration;
 	protected int myIncrement;
 	protected int myMax;
-	protected List<Command> myCommandList;
 	protected Variable myVariable;
 	
 	public void setVariable(Variable variable) {
@@ -27,13 +27,14 @@ public class For extends Loop{
 	}
 	@Override
 	public double evaluate(Model model) {
+		double ret = 0;
 		while(getIteration(model)<getMax()) {
 			for (Command c:myCommandList) {
-				c.evaluate(model);
+				ret = c.evaluate(model);
 			}
 			incrementIteration(model);
 		}
-		return 0;
+		return ret;
 	}
 	
 	public void setIteration(int iteration) {
@@ -46,14 +47,6 @@ public class For extends Loop{
 	
 	public int getMax() {
 		return myMax;
-	}
-	
-	public void setCommandList(List<Command> commandList) {
-		myCommandList = commandList;
-	}
-
-	public List<Command> getCommandList() {
-		return myCommandList;
 	}
 	
 	public void setIncrement(int increment) {

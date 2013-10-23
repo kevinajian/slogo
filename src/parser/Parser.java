@@ -13,11 +13,10 @@ import java.util.Set;
 import model.Constants;
 import model.Model;
 import commands.Command;
+import commands.CommandList;
 import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
 import commands.multiple_turtles.*;
-import commands.multiple_turtles.Ask;
-import commands.multiple_turtles.AskWith;
 import commands.vcu.*;
 
 /**
@@ -122,16 +121,12 @@ public class Parser {
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
 			Command headNode = getClass(inputs.get(0));
-			if (headNode instanceof Loop) {
+			if (headNode instanceof CommandList) {
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
 			else if (headNode instanceof To) {
 				((To) headNode).setName(name);
-				specialTreeBuilder(headNode, inputs);
-			}
-			else if (headNode instanceof Tell) {
-				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
 			else {
@@ -240,6 +235,20 @@ public class Parser {
 			}
 			((Tell) root).setTurtles(turtleSet);
 		}
+		else if (root instanceof If) {
+			int openBracket = findFirstBracket(inputs);
+			List<String> expressionList = listBuilder(0, openBracket -1, inputs);
+			List<Command> expression = lexer(expressionList);
+			((If) root).setExpression(expression.get(0));
+			setCommandList(root, inputs);
+			if (root instanceof IfElse) {
+				openBracket = findFirstBracket(inputs);
+				int closeBracket = findLastBracket(openBracket, inputs);
+				List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs);
+				((IfElse) root).setCommandList2(lexer(inputList));
+				inputs.remove(0);inputs.remove(0);
+			}
+		}
 		return root;
 	}
 	
@@ -247,8 +256,8 @@ public class Parser {
 		int openBracket = findFirstBracket(inputs);
 		int closeBracket = findLastBracket(openBracket, inputs);
 		List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs);
-		if (root instanceof For) {
-			((For) root).setCommandList(lexer(inputList));
+		if (root instanceof CommandList) {
+			((CommandList) root).setCommandList(lexer(inputList));
 		}
 		else if (root instanceof To) {
 			String commandString = "";
@@ -257,16 +266,10 @@ public class Parser {
 			}
 			((To) root).setCommands(commandString);
 		}
-		else if (root instanceof Ask) {
-			((Ask) root).setCommandList(lexer(inputList));
-		}
 		inputs.remove(0);inputs.remove(0);
 	}
 
 	public void setParams(Command root, List<String> params) throws Exception {
-//		if (root instanceof To) {
-//			((To) root).setParameters(params);
-//		}
 		if (root instanceof Repeat) {
 			Command variable = new Variable(":repcount");
 			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
@@ -283,7 +286,6 @@ public class Parser {
 			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
 			return;
 		}
-		
 		int start = Integer.parseInt(params.get(1));
 		setCustomCommand(((Variable) variable).getVariableName(), start);
 		((For) root).setVariable((Variable) variable);
@@ -343,8 +345,9 @@ public class Parser {
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 */
-	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		//check if it starts with ':' if so its a variable
+		System.out.println("get class className: "+className);
 		Command xyz;
 		if (className.matches(Constants.CONSTANT_ID)) {
 			xyz = new Constant();

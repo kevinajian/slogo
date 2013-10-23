@@ -29,8 +29,8 @@ public class AskWith extends Ask {
 		if (result == 1) {
 			boolean active = m.getActive();
 			m.setActive(true);
-			for (int i=0; i<myCommandList.size(); i++) {
-					ret = myCommandList.get(i).evaluate(m);					
+			for (Command c: myCommandList) {
+				ret = c.evaluate(m);
 			}
 			m.setActive(active);
 		}

@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Model;
 import commands.Command;
+import commands.CommandList;
 
 /**
  * Tell command, selects turtles to be active. If the turtle is
@@ -12,7 +13,7 @@ import commands.Command;
  * @author Kevin
  *
  */
-public class Tell extends Command{
+public class Tell extends CommandList{
 	protected List<String> myTurtles = new ArrayList<String>();
 	
 	public List<String> getTurtles() {
