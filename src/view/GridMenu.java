@@ -17,6 +17,7 @@ public class GridMenu extends JMenu {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
 		addAction(myResources.getString("GridOn"),game);
 		addAction(myResources.getString("GridOff"),game);
+		addMouseListener(new MouseFocus(this));
 	}
 	
 	public void addAction(String command, TurtleGame game){

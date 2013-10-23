@@ -147,6 +147,7 @@ public class View extends JFrame{
         });
 
         result.add(helpLanguages);
+        result.addMouseListener(new MouseFocus(result));
 		return result;	
 	}
 
@@ -206,6 +207,7 @@ public class View extends JFrame{
                 System.exit(0);
             }
         });
+        result.addMouseListener(new MouseFocus(result));
         return result;
     }
 
