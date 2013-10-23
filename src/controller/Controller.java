@@ -85,6 +85,7 @@ public class Controller {
 				setShape(m.getShape());
 			}
 		}
+		display();
 	}
 
 	private void drawLine(Line line) {
@@ -217,7 +218,13 @@ public class Controller {
 		myView.clearBoxes();
 	}
 
-	public void display(String input) {
-		myView.display(input);
+	public void display() {
+		Model m = myParser.getModel();
+		System.out.println("WE REALLY OUT HERE" + m.getVariableMap().keySet().size());
+		for(String s : m.getVariableMap().keySet())
+		{
+			System.out.println(s + " : " + m.getVariableMap().get(s));
+			myView.display(s + " : " + m.getVariableMap().get(s));
+		}
 	}
 }
