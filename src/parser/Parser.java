@@ -102,6 +102,7 @@ public class Parser {
 				specialTreeBuilder(headNode, inputs);
 			}
 			else if (headNode instanceof Tell) {
+				System.out.println("lexer: tell command");
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
@@ -161,7 +162,7 @@ public class Parser {
 			setCommandList(root, inputs);
 		}
 		else if (root instanceof Tell) {
-			System.out.println("Tell");
+			System.out.println("specialTreeBuilder: Tell command");
 			Set<Integer> turtles = myModels.keySet();
 			List<String> turtleSet;
 			if (root instanceof TellEven) {
