@@ -1,6 +1,7 @@
 package commands.interaction_commands;
 
 import parser.Parser;
+import model.Constants;
 import model.Model;
 import commands.Command;
 import commands.basic_syntax.Variable;
@@ -12,8 +13,9 @@ public class OnClick extends Command {
 		Parser parser = new Parser(null);
 		Command customCommand = null;
 		try {
-			customCommand = parser.getClass("SetXY");
-			//customCommand = parser.getClass(model.getCustomCommandMap().get("OnClick"));
+			//customCommand = parser.getClass("SetXY");
+			String[] command = model.getCustomCommandMap().get("OnClick").split(Constants.INPUT_SPLITTER);
+			customCommand = parser.getClass(command[0]);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -21,10 +23,8 @@ public class OnClick extends Command {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-	
 		setVariables(customCommand, model);
 		customCommand.evaluate(model);
-
 		return myNumInputs;	
 	}
 	

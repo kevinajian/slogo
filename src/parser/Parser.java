@@ -74,11 +74,11 @@ public class Parser {
 		if(list.length>1){
 			name = list[1];
 		}
+		if(list[1].equals("OnClick"))
+			list[1] = "";
+		System.out.println(list[1]);
 		List<String> inputs = new ArrayList<String>();
 		parseArrayToArrayList(inputs, list);
-		for(Model m : myModels.values()) {
-			m.getCustomCommandMap().put("SUMTHREE", "Forward Sum Sum :x :y :z");
-		}
 		
 		if (inputs.get(0) == null) {
 			String outString = customCommandHandler(input);

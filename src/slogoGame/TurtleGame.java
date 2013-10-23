@@ -189,7 +189,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		}
 		if (getMouseButton(1)) {
 			//System.out.println(this.countObjects("turtle", 50));
-			//onClickAction();
+			onClickAction();
 		}
 	}
 
