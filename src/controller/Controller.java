@@ -49,7 +49,7 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		clearLinesAndTurtles();
+		clearLinesAndTurtlesAndBoxes();
 		for (Model m: myParser.getModels().values()) {
 			List<Line> trail = getLines(m);
 
@@ -93,9 +93,14 @@ public class Controller {
 		myView.drawLine(currentLine);
 	}
 
-	private void clearLinesAndTurtles() {
+	private void clearLinesAndTurtlesAndBoxes() {
 		clearLines();
 		clearTurtles();
+		clearBoxes();
+	}
+
+	private void clearBoxes() {
+		myView.clearBoxes();
 	}
 
 	/**
