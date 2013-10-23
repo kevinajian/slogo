@@ -43,4 +43,13 @@ public class HighlightBox extends Turtle{
 		this.y = -y + DEFAULT_HEIGHT/2 - height/2;
 		
 	}
+	public void toggle(Boolean borderOn)
+	{
+			if (borderOn){
+				this.resume();
+			}
+			else{
+				this.suspend();
+			}
+	}
 }

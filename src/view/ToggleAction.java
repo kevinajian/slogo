@@ -8,16 +8,19 @@ import slogoGame.TurtleGame;
 
 @SuppressWarnings("serial")
 public class ToggleAction extends AbstractAction {
-	protected TurtleGame myGame;
-
-	public ToggleAction(String name, TurtleGame game){
-		super(name);
+	TurtleGame myGame;
+	String cmd;
+	
+	public ToggleAction(String command, TurtleGame game){
+		super(command);
+		cmd = command;
 		myGame = game;		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		myGame.toggleHighlightBorder();
+		myGame.makeBorderAction(!cmd.equals("Toggle Border Off"));
+		System.out.println("TOGGLING BORDER OFF");
 	}
 
 }

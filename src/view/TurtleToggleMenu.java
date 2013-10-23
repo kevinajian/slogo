@@ -17,8 +17,8 @@ public class TurtleToggleMenu extends JMenu {
 	public TurtleToggleMenu(String menuName, TurtleGame game){
 		super(menuName);
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
-		add(new ToggleAction(myResources.getString("Toggle"),game));
+		add(new ToggleAction(myResources.getString("BorderOn"),game));
+		add(new ToggleAction(myResources.getString("BorderOff"),game));
 		addMouseListener(new MouseFocus(this));
 	}
-	
 }
