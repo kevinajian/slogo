@@ -1,5 +1,7 @@
 package slogoGame;
 
+import java.io.Serializable;
+
 public class ActionBackground extends Action {
 	private String myColor;
 

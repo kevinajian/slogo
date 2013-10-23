@@ -8,8 +8,10 @@ import jgame.JGPoint;
 import jgame.platform.JGEngine;
 
 import java.awt.Color;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.*;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
@@ -19,6 +21,7 @@ import view.View;
 @SuppressWarnings("serial")
 public class TurtleGame extends JGEngine implements Constants{
 	private JGColor myPenColor;
+	private String penColor, backgroundColor;
 	//private JGColor myBackgroundColor;
 	private Map<String,JGColor> colorMap = new HashMap<String,JGColor>();
 	private Turtle squirt;
@@ -68,7 +71,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		colorMap.put("Blue", JGColor.blue);
 		colorMap.put("Red", JGColor.red);
 		colorMap.put("White", JGColor.white);
-		colorMap.put("Black", JGColor.black);		
+		colorMap.put("Black", JGColor.black);
 		setGameState("Title");
 	}
 
@@ -108,6 +111,7 @@ public class TurtleGame extends JGEngine implements Constants{
 			return;
 		setBGColor(colorBG);
 		setBGImage(null);
+		backgroundColor = color;
 	}
 
 	public void setGrid(Boolean gridOn){
@@ -128,6 +132,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		if (colorBG == null)
 			return;
 		myPenColor = colorBG;
+		penColor = color;
 	}
 
 	public JGColor getPenColor(){
@@ -183,6 +188,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		}
 		if (getKey('D')){
 			clearKey('D');
+			redo();
 		}
 		if (getMouseButton(1)) {
 			//System.out.println(this.countObjects("turtle", 50));
@@ -199,6 +205,15 @@ public class TurtleGame extends JGEngine implements Constants{
 		redoing = false;
 		if (myActionIndex > -1)
 			myActionIndex--;	
+	}
+
+	private void redo(){
+		if (myActionIndex + 1 < myActionList.size()){
+			redoing = true;
+			myActionIndex++;
+			myActionList.get(myActionIndex).redo();
+			redoing = false;
+		}
 	}
 
 	private void onClickAction() {
@@ -269,7 +284,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		squirt = new Turtle("turtle",50,this);
 		setBackgroundColor("White");
 		toggleGrid(true);
-		setPen("Black");		
+		setPen("Black");
 	}
 
 	public void setWorkspace(int index){
@@ -292,8 +307,57 @@ public class TurtleGame extends JGEngine implements Constants{
 		redoing = false;
 	}
 
-	public ArrayList<Action> getActionList()
+	public ArrayList<String> getStringArray()
 	{
-		return myActionList;
+		ArrayList<String> list = new ArrayList<String>();
+		if(g.is_suspended)
+			list.add("off");
+		else
+			list.add("on");
+
+		if(penColor == null)
+			list.add("Black");
+		else
+			list.add(penColor);
+
+		if(backgroundColor == null)
+			list.add("White");
+		else
+			list.add(backgroundColor);
+
+		cleanActionList();
+		for (Action action : myActionList){
+			if (action instanceof ActionInput){
+				ActionInput input = (ActionInput) action;
+				list.add(input.getMyString());
+			}
+		}
+
+		return list;
+	}
+
+	public void setPreferences(String filename){
+		try{
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
+			@SuppressWarnings("unchecked")
+			ArrayList<String> array = (ArrayList<String>) in.readObject();
+			in.close();
+			
+/*			for (String string : array)
+				System.out.println(string);*/
+			
+			toggleGrid(array.get(0).equals("on"));
+			setPen(array.get(1));
+			setBackground(array.get(2));
+			redoing = true;
+			for(int i = 3; i < array.size(); i++){
+				sendString(array.get(i));
+			}
+			redoing = false;
+		}
+		catch (Exception e){
+			System.out.println("Preference error");
+			return;
+		}
 	}
 }

@@ -156,7 +156,7 @@ public class View extends JFrame{
         result.add(new AbstractAction(myResources.getString("SaveMenu")) {
             public void actionPerformed(ActionEvent e) 
             {
-            	ArrayList<slogoGame.Action> myList = myTurtleGame.getActionList();
+            	ArrayList<String> myList = myTurtleGame.getStringArray();
                 JFileChooser chooser = new JFileChooser();
                 chooser.setCurrentDirectory(new File("src/"));
                 int retrival = chooser.showSaveDialog(null);
@@ -175,7 +175,19 @@ public class View extends JFrame{
         });
         result.add(new AbstractAction(myResources.getString("OpenCommand")) {
             public void actionPerformed (ActionEvent e) {
-                try {
+            	JFileChooser chooser = new JFileChooser();
+                chooser.setCurrentDirectory(new File("src/"));
+                int retrival = chooser.showSaveDialog(null);
+                if (retrival == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        myTurtleGame.setPreferences(chooser.getSelectedFile()+"");
+                    }
+                    catch (Exception err){
+                    	
+                    }
+                }
+            	
+                /*try {
                     int response = myChooser.showOpenDialog(null);
                     if (response == JFileChooser.APPROVE_OPTION) 
                     {
@@ -197,7 +209,7 @@ public class View extends JFrame{
                 }
                 catch (IOException io) {
                     showError(io.toString());
-                }
+                }*/
             }
         });
         result.add(new JSeparator());

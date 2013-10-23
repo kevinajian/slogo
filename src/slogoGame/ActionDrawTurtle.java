@@ -1,5 +1,7 @@
 package slogoGame;
 
+import java.io.Serializable;
+
 public class ActionDrawTurtle extends Action {
 	private double[] myPosition;
 

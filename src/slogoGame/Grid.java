@@ -42,10 +42,14 @@ public class Grid extends JGObject implements Constants{
 	public void toggle(Boolean gridOn)
 	{
 		for (Line line : l){
-			if (gridOn)
+			if (gridOn){
 				line.resume();
-			else
+				resume();
+			}
+			else{
 				line.suspend();
+				suspend();
+			}
 		}	
 	}
 }

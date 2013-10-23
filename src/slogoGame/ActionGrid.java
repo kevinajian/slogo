@@ -1,5 +1,7 @@
 package slogoGame;
 
+import java.io.Serializable;
+
 public class ActionGrid extends Action {
 	private Boolean toggle;
 
