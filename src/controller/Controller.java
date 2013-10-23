@@ -51,7 +51,6 @@ public class Controller {
 		try {
 			myParser.parse(string);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		clearLinesAndTurtlesAndBoxes();
