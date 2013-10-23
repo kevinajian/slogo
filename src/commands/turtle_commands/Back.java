@@ -1,8 +1,6 @@
 package commands.turtle_commands;
 
-import commands.CommandOneInput;
 import model.Model;
-import model.State;
 
 /**
  * Takes input pixels, changes x or y values based on
@@ -14,19 +12,18 @@ import model.State;
  * @author carlosreyes
  *
  */
-public class Back extends CommandOneInput {
+public class Back extends Movement {
+	
+	public double makeX(double distance, double angle, double x){ 
+		return x - distance*Math.sin(angle);
+	}
+	public double makeY(double distance, double angle, double y){ 
+		return y - distance*Math.cos(angle);
+	}
+	
 	@Override
 	public double evaluate(Model model) {
-		double orientation = model.getOrientation();
-		double x = model.getX();
-		double y = model.getY();
-		double distance = getInputValueOne(model);
-		
-		double newX = x - distance*Math.sin(Math.toRadians(orientation));
-		double newY = y - distance*Math.cos(Math.toRadians(orientation));
-		String penColor = model.getPenColor();
-		model.addState(new State(newX, newY, orientation, model.getTurtleVisible(), model.getPenVisible(), penColor));
-		
+		model.addState(handle(model));
 		return getInputValueOne(model);
 	}
 	
