@@ -220,11 +220,13 @@ public class Controller {
 
 	public void display() {
 		Model m = myParser.getModel();
-		System.out.println("WE REALLY OUT HERE" + m.getVariableMap().keySet().size());
+		myView.display("X position: " + m.getX());
+		myView.display("Y position: " + m.getY());
+		myView.display("Orientation: "+ m.getOrientation());
 		for(String s : m.getVariableMap().keySet())
 		{
-			System.out.println(s + " : " + m.getVariableMap().get(s));
-			myView.display(s + " : " + m.getVariableMap().get(s));
+			myView.display("Variable: " + s + " : " + m.getVariableMap().get(s));
 		}
+		myView.display("----------------------");
 	}
 }
