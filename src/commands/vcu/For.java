@@ -8,7 +8,7 @@ import model.Model;
 
 /**
  * Runs the commands for each value specified in the range, i.e., from start up to end, going by increment.
- * @author Kevin, clos.
+ * @author Kevin
  *
  */
 public class For extends Loop{

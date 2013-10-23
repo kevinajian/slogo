@@ -3,6 +3,11 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Constants page
+ * @author Kevin
+ *
+ */
 public class Constants {
 	public static final double VARIABLE_DEFAULT = 0;
 	public static final double TURTLE_XORIGIN = 0.0;

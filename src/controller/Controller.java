@@ -63,7 +63,6 @@ public class Controller {
 				System.out.println("drawing stamp");
 				drawTurtle(s);
 			}
-			
 			drawBox(m);
 			
 			if(m.isBackgroundChanged()){
@@ -150,10 +149,13 @@ public class Controller {
 	
 	public double[] getBox(Model m) {
 		String turtleVisible = m.getCurrentState().getTurtleVisible();
+		double[] ret;
 		if (turtleVisible.equals(Constants.TURTLE_NOTSHOWING)) { 
 			m.getCurrentState().setTurtleVisible(Constants.TURTLE_SHOWING);
 		}
 		if (m.getActive()) {
+			ret = getTurtle(m.getCurrentState());
+			m.getCurrentState().setTurtleVisible(turtleVisible);
 			return getTurtle(m.getCurrentState());
 		}
 		m.getCurrentState().setTurtleVisible(turtleVisible);
@@ -163,6 +165,7 @@ public class Controller {
 	public void drawBox(Model m) {
 		double[] boxPosition = getBox(m);
 		if (boxPosition != null) {
+			System.out.println("drawing box");
 			myView.drawBox(boxPosition);
 		}
 	}
