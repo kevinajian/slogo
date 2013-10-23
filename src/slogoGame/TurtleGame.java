@@ -137,7 +137,6 @@ public class TurtleGame extends JGEngine implements Constants{
 		if (colorBG == null)
 			return;
 		myPenColor = colorBG;
-		System.out.println(color);
 	}
 
 	public JGColor getPenColor(){
@@ -174,11 +173,11 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void startTitle() {
-		removeObjects(null,0);
+		//removeObjects(null,0);
 	}
 
 	public void paintFrameTitle() {
-		squirt.paint();
+		//squirt.paint();
 		if (toggleGrid)
 			g.paint();
 	}
@@ -187,18 +186,23 @@ public class TurtleGame extends JGEngine implements Constants{
 	public void doFrameTitle() {
 		if (getKey(' ')){
 			clearKey(' ');
-			restoreDefaults();
-			for(int i = 0; i < myActionIndex; i++){
-				myActionList.get(i).redo();
-			}
-			myActionIndex--;
+			undo();
 		}
 		if (getKey('D')){
 			clearKey('D');
 		}
 		if (getMouseButton(1)) {
-			onClickAction();
+			//onClickAction();
 		}
+	}
+	
+	private void undo(){
+		restoreDefaults();
+		for(int i = 0; i < myActionIndex; i++){
+			myActionList.get(i).redo();
+		}
+		if (myActionIndex > -1)
+			myActionIndex--;	
 	}
 	
 	private void onClickAction() {
@@ -218,7 +222,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	public void drawTurtle(double[] turtlePosition){
 		//squirt.setPos(turtlePosition[0],turtlePosition[1]);
 		//squirt.rotate(turtlePosition[2]);
-		Turtle newTurts = new Turtle("turtle", 50, this);
+		Turtle newTurts = new Turtle("turtle", 50, this);				
 		newTurts.setPos(turtlePosition[0], turtlePosition[1]);
 		newTurts.rotate(turtlePosition[2]);
 	}
@@ -236,12 +240,14 @@ public class TurtleGame extends JGEngine implements Constants{
 	//any thing on the action list with an
 	//index greater than the actionindex
 	private void cleanActionList(){
-		
+		while (myActionList.size() > myActionIndex + 1)
+			myActionList.remove(myActionIndex + 1); 
 	}
 	
 	public void clearLines(){
 		removeObjects("line",0);
 	}
+	
 	public void clearTurtles(){
 		removeObjects("turtle", 0);
 	}
@@ -253,8 +259,12 @@ public class TurtleGame extends JGEngine implements Constants{
 		} catch (Exception e) {
 		}
 		clearLines();
+		//reset turtles
 		squirt.setPos(0, 0);
 		squirt.rotate(0);
+		setBackgroundColor("White");
+		toggleGrid(true);
+		setPen("Black");		
 	}
 	
 
