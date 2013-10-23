@@ -7,6 +7,8 @@ import java.net.URISyntaxException;
 import javax.swing.*;
 import slogoGame.TurtleGame;
 import controller.Controller;
+
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import jgame.*;
 import jgame.platform.JGEngine;
@@ -158,37 +160,52 @@ public class View extends JFrame{
         
         result.add(new AbstractAction(myResources.getString("SaveMenu")) {
         	
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	
-            	String sb = myInfo.getContents();
+            public void actionPerformed(ActionEvent e) 
+            {
+            	ArrayList<slogoGame.Action> myList = myTurtleGame.getActionList();
                 JFileChooser chooser = new JFileChooser();
                 chooser.setCurrentDirectory(new File("src/"));
                 int retrival = chooser.showSaveDialog(null);
                 if (retrival == JFileChooser.APPROVE_OPTION) {
                     try {
-                        FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt");
-                        fw.write(sb.toString());
-                        fw.close();
+                        FileOutputStream fout = new FileOutputStream(chooser.getSelectedFile()+".txt");
+                        ObjectOutputStream oos = new ObjectOutputStream(fout);
+                        oos.writeObject(myList);
+                        oos.close();
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
+            	
             }
             
         });
         
         result.add(new AbstractAction(myResources.getString("OpenCommand")) {
-            @Override
             public void actionPerformed (ActionEvent e) {
                 try {
                     int response = myChooser.showOpenDialog(null);
-                    if (response == JFileChooser.APPROVE_OPTION) {
+                    if (response == JFileChooser.APPROVE_OPTION) 
+                    {
                         new FileReader(myChooser.getSelectedFile());
+                        System.out.println("unserializing list");
+                        try {
+                            FileInputStream fin = new FileInputStream("list.dat");
+                            ObjectInputStream ois = new ObjectInputStream(fin);
+                            ArrayList<Action> list = (ArrayList) ois.readObject();
+                             
+                            for (Action a : list){
+                                System.out.println(a);
+                            }
+                             
+                            ois.close();
+                        }
+                        catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
                 catch (IOException io) {
-                    // let user know an error occurred, but keep going
                     showError(io.toString());
                 }
             }
