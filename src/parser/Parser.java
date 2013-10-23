@@ -334,7 +334,7 @@ public class Parser {
 	}
 	
 	public Map<String, Double> getCustomCommandMap() {
-		return myModels.get(1).getCustomCommandMap();
+		return myModels.get(1).getVariableMap();
 	}
 
 	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
