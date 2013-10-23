@@ -65,12 +65,12 @@ public class For extends Loop{
 	}
 	
 	public int getIteration(Model model) {
-		return (int) model.getCustomCommandValue(myVariable.getVariableName());
+		return (int) model.getVariable(myVariable.getVariableName());
 	}
 	
 	public void incrementIteration(Model model) {
 		int currentIteration = getIteration(model);
 		int nextIteration = currentIteration + myIncrement;
-		model.setCustomCommand(myVariable.getVariableName(), nextIteration);
+		model.addVariable(myVariable.getVariableName(), nextIteration);
 	}
 }

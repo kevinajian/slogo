@@ -52,7 +52,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		setFrameRate(45,2);
 		setCursor(null);
 		defineImages();
-		squirt = new Turtle("z_turtle", 50, this);
+		squirt = new Turtle("turtle", 50, this);
 		//lines = new HoldLines("lines", 51, this);
 		g = new Grid("grid", 69, this);
 		toggleGrid = true;
@@ -205,7 +205,7 @@ public class TurtleGame extends JGEngine implements Constants{
         clearMouseButton(1);
 
         int mouseX = getMouseX() - pfWidth()/2;
-        int mouseY = getMouseY() - pfHeight()/2;
+        int mouseY = -(getMouseY() - pfHeight()/2);
         
         try {
 			sendString("OnClick" + " " +  mouseX + " " + mouseY);
@@ -216,8 +216,11 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void drawTurtle(double[] turtlePosition){
-		squirt.setPos(turtlePosition[0],turtlePosition[1]);
-		squirt.rotate(turtlePosition[2]);
+		//squirt.setPos(turtlePosition[0],turtlePosition[1]);
+		//squirt.rotate(turtlePosition[2]);
+		Turtle newTurts = new Turtle("turtle", 50, this);
+		newTurts.setPos(turtlePosition[0], turtlePosition[1]);
+		newTurts.rotate(turtlePosition[2]);
 	}
 
 	public void drawLine(double[] currentLine){
@@ -239,6 +242,9 @@ public class TurtleGame extends JGEngine implements Constants{
 	public void clearLines(){
 		removeObjects("line",0);
 	}
+	public void clearTurtles(){
+		removeObjects("turtle", 0);
+	}
 	
 	//Needs to be completed to default
 	private void restoreDefaults(){
@@ -250,6 +256,6 @@ public class TurtleGame extends JGEngine implements Constants{
 		squirt.setPos(0, 0);
 		squirt.rotate(0);
 	}
-
+	
 
 }
