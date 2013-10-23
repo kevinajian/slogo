@@ -13,7 +13,7 @@ public class OnClick extends Command {
 		Command customCommand = null;
 		try {
 			customCommand = parser.getClass("SetXY");
-			//customCommand = parser.getClass();
+			//customCommand = parser.getClass(model.getCustomCommandMap().get("OnClick"));
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
