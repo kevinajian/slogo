@@ -367,4 +367,8 @@ public class TurtleGame extends JGEngine implements Constants{
 			return;
 		}
 	}
+	
+	public void toggleHighlightBorder(){
+		System.out.println("should toggle the boxes");
+	}
 }
