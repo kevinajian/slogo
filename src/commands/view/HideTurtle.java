@@ -9,7 +9,7 @@ import commands.CommandZeroInput;
 /**
  * Makes the turtle invisible (0).
  * Returns 0
- * @author carlosreyes
+ * @author carlosreyes, kevin
  *
  */
 public class HideTurtle extends CommandZeroInput {

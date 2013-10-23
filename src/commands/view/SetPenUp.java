@@ -9,7 +9,7 @@ import commands.CommandZeroInput;
  * Sets the pen position to be up (0) so that line drawing cannot
  * occur as the turtle moves.
  * Returns 0
- * @author carlosreyes
+ * @author carlosreyes, kevin
  *
  */
 public class SetPenUp extends CommandZeroInput {

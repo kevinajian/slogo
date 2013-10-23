@@ -5,6 +5,11 @@ import commands.Command;
 import commands.CommandOneInput;
 import commands.CommandZeroInput;
 
+/**
+ * Variable class
+ * @author Kevin
+ *
+ */
 public class Variable extends CommandZeroInput{
 	String myVariableName;
 	double variableValue;
@@ -17,6 +22,10 @@ public class Variable extends CommandZeroInput{
 		this.variableValue = variableValue;
 	}
 
+	/**
+	 * creates a variable and sets the name
+	 * @param variableName - name of variable to be set
+	 */
 	public Variable(String variableName) {
 		myVariableName = variableName;
 	}
@@ -37,6 +46,9 @@ public class Variable extends CommandZeroInput{
 		myVariableName = variableName;
 	}
 	
+	/**
+	 * returns the variable's value
+	 */
 	@Override
 	public double evaluate(Model model) {
 		return model.getVariable(myVariableName);

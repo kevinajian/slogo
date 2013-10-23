@@ -1,8 +1,13 @@
-package multiple_turtles;
+package commands.multiple_turtles;
 
 import model.Model;
 import commands.Command;
 
+/**
+ * AskWith command, evaluates commands given for turtles that satisfy the provided expression
+ * @author Kevin
+ *
+ */
 public class AskWith extends Ask {
 	private Command myExpression;
 	
@@ -14,6 +19,9 @@ public class AskWith extends Ask {
 		return myExpression;
 	}
 	
+	/**
+	 * If the turtle satisfies the expression, the command list will be run for that turtle
+	 */
 	@Override
 	public double evaluate(Model m) {
 		double ret = 0;
@@ -21,7 +29,7 @@ public class AskWith extends Ask {
 		if (result == 1) {
 			boolean active = m.getActive();
 			m.setActive(true);
-			for (int i=0; i<myCommandList.size()-1; i++) {
+			for (int i=0; i<myCommandList.size(); i++) {
 					ret = myCommandList.get(i).evaluate(m);					
 			}
 			m.setActive(active);

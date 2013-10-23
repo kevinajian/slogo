@@ -12,14 +12,12 @@ import java.util.Set;
 
 import model.Constants;
 import model.Model;
-import multiple_turtles.Ask;
-import multiple_turtles.AskWith;
 import commands.Command;
 import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
-import commands.multiple_commands.Tell;
-import commands.multiple_commands.TellEven;
-import commands.multiple_commands.TellOdd;
+import commands.multiple_turtles.*;
+import commands.multiple_turtles.Ask;
+import commands.multiple_turtles.AskWith;
 import commands.vcu.*;
 
 /**
