@@ -12,7 +12,7 @@ public class ActionDrawTurtle extends Action {
 	
 	@Override
 	public void redo(){
-		myTurtleGame.drawTurtleActually(myPosition);
+		myTurtleGame.drawTurtle(myPosition);
 	}
 
 }
