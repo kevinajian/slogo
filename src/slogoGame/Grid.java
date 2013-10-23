@@ -39,9 +39,13 @@ public class Grid extends JGObject implements Constants{
 		
 		
 	}
-	public void paint()
+	public void toggle(Boolean gridOn)
 	{
-		for (Line line : l)
-			line.paint();
+		for (Line line : l){
+			if (gridOn)
+				line.resume();
+			else
+				line.suspend();
+		}	
 	}
 }

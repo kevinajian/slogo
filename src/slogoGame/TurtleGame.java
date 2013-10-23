@@ -54,8 +54,8 @@ public class TurtleGame extends JGEngine implements Constants{
 		defineImages();
 		squirt = new Turtle("turtle", 50, this);
 		//lines = new HoldLines("lines", 51, this);
-		g = new Grid("grid", 69, this);
-		toggleGrid = true;
+/*		g = new Grid("grid", 69, this);
+		toggleGrid = true;*/
 		//double[] turtleStart = {0.0,0.0,0.0};
 		//myCurrentAction = new DatedAction(turtleStart,squirt);
 		myActionIndex = -1;
@@ -121,7 +121,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 	
 	public void toggleGrid(Boolean gridOn){
-		toggleGrid = gridOn;
+		g.toggle(gridOn);
 	}
 
 	public void setPenColor(String color){
@@ -174,12 +174,14 @@ public class TurtleGame extends JGEngine implements Constants{
 
 	public void startTitle() {
 		//removeObjects(null,0);
+		g = new Grid("grid", 69, this);
+		//toggleGrid = true;
 	}
 
 	public void paintFrameTitle() {
 		//squirt.paint();
-		if (toggleGrid)
-			g.paint();
+/*		if (toggleGrid)
+			g.paint();*/
 	}
 
 	
@@ -214,7 +216,6 @@ public class TurtleGame extends JGEngine implements Constants{
         try {
 			sendString("OnClick" + " " +  mouseX + " " + mouseY);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
