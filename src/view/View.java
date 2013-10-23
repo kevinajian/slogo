@@ -259,4 +259,8 @@ public class View extends JFrame{
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void clearTurtles() {
+		// TODO Auto-generated method stub
+	}
 }

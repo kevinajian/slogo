@@ -244,16 +244,16 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		return myMouseX;
 	}
 
-	public void setMouseX(int myMouseX) {
-		this.myMouseX = myMouseX;
+	public void setMouseX(int mouseX) {
+		myMouseX = mouseX;
 	}
 
 	public int getMouseY() {
 		return myMouseY;
 	}
 
-	public void setMouseY(int myMouseY) {
-		this.myMouseY = myMouseY;
+	public void setMouseY(int mouseY) {
+		myMouseY = mouseY;
 	}
 
 	public boolean isClicked() {
@@ -261,7 +261,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 
 	public void setClicked(boolean clicked) {
-		this.myClicked = clicked;
+		myClicked = clicked;
 	}
 
 }
