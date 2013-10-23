@@ -4,6 +4,11 @@ import java.util.ResourceBundle;
 import model.Model;
 import commands.CommandZeroInput;
 
+/**
+ * Returns the index of the current turtle shape being used.
+ * @author carlosreyes
+ *
+ */
 public class Shape extends CommandZeroInput {	
 	private ResourceBundle myResources;
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";

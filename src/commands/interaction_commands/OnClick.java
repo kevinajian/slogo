@@ -6,6 +6,13 @@ import model.Model;
 import commands.Command;
 import commands.basic_syntax.Variable;
 
+/**
+ * If defined by the user in the customCommandMap,
+ * this function will execute the command set to it with
+ * the mouse's x and y coordinates as arguements.
+ * @author carlosreyes
+ *
+ */
 public class OnClick extends Command {
 	
 	@Override
@@ -28,6 +35,11 @@ public class OnClick extends Command {
 		return myNumInputs;	
 	}
 	
+	/**
+	 * sets the variables x and y to the left and right child of this command.
+	 * @param customCommand
+	 * @param model
+	 */
 	public void setVariables(Command customCommand, Model model) {
 		Variable x = new Variable("X");
 		x.setVariableValue(getInputValueOne(model));

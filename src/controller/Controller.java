@@ -42,6 +42,11 @@ public class Controller {
 		myView.drawBox(initialBox);
 	}
 	
+	/**
+	 * Sends user input to the parser to be parsed and handles
+	 * line drawing.
+	 * @param string
+	 */
 	public void processInput(String string) {
 		try {
 			myParser.parse(string);
@@ -65,29 +70,42 @@ public class Controller {
 			}
 			drawBox(m);
 			
-			if(m.isBackgroundChanged()){
-				m.setBackgroundChanged(false);
-				setBackgroundColor(m.getBackgroundColor());
-			}
-			if(m.isPenColorChanged()){
-				m.setPenColorChanged(false);
-				setPenColor(m.getPenColor());
-			}
-			if(m.isPenSizeChanged()) {
-				m.setPenSizeChanged(false);
-				setPenSize(m.getPenSize());
-			}
-			if(m.isStamp()) {
-				m.setStamp(false);
-			}
-			if(m.isShapeChanged()) {
-				m.setShapeChanged(false);
-				setShape(m.getShape());
-			}
+			checkEnvironmentChanges(m);
 		}
 		display();
 	}
-
+	
+	/**
+	 * Checks to see if any environment properties are changed
+	 * by user, if they are, these properties are reflected by the view.
+	 * @param m
+	 */
+	public void checkEnvironmentChanges(Model m) {
+		if(m.isBackgroundChanged()){
+			m.setBackgroundChanged(false);
+			setBackgroundColor(m.getBackgroundColor());
+		}
+		if(m.isPenColorChanged()){
+			m.setPenColorChanged(false);
+			setPenColor(m.getPenColor());
+		}
+		if(m.isPenSizeChanged()) {
+			m.setPenSizeChanged(false);
+			setPenSize(m.getPenSize());
+		}
+		if(m.isStamp()) {
+			m.setStamp(false);
+		}
+		if(m.isShapeChanged()) {
+			m.setShapeChanged(false);
+			setShape(m.getShape());
+		}
+	}
+	
+	/**
+	 * Draws a line that exists.
+	 * @param line
+	 */
 	private void drawLine(Line line) {
 		double[] currentLine = line.getLine();
 		myView.drawLine(currentLine);
@@ -116,6 +134,12 @@ public class Controller {
 		return m.getStates();
 	}
 	
+	/**
+	 * Get list of current lines based on all of the
+	 * states up to this point.
+	 * @param m
+	 * @return
+	 */
 	public List<Line> getLines(Model m) {
 		List<State> states = getStates(m);
 		List<Line> lines = new ArrayList<Line>();
@@ -133,6 +157,10 @@ public class Controller {
 		return lines;
 	}
 	
+	/**
+	 * Draws an image of the turtle.
+	 * @param s
+	 */
 	public void drawTurtle(State s) {
 		double[] turtlePosition = getTurtle(s);
 		if (turtlePosition != null) {

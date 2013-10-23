@@ -2,10 +2,14 @@ package commands.display_commands;
 
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import model.Model;
 import commands.CommandZeroInput;
 
+/**
+ * Returns the index of the current pen color.
+ * @author carlosreyes
+ *
+ */
 public class PenColor extends CommandZeroInput {
 	private ResourceBundle myResources;
 	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
