@@ -9,7 +9,7 @@ import model.State;
  * Clears the view of the turtle's trail and resets the turtle to
  * its home position of 0,0 and returns the direction its facing
  * to default.
- * @author carlosreyes
+ * @author carlosreyes, kevin
  *
  */
 public class ClearScreen extends CommandZeroInput {

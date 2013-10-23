@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import commands.Command;
-import commands.multiple_commands.Tell;
+import commands.multiple_turtles.Tell;
 import parser.Parser;
 
 /**
@@ -35,6 +35,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private boolean myActive = true;
 	private Map<String, String> customCommandMap = new HashMap<String, String>();
 	private List<State> myStamps = new ArrayList<State>();
+	
 	public Model(int id) {
 		myId = id;
 	}
@@ -267,5 +268,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	public void setCustomCommandMap(Map<String, String> customCommandMap) {
 		this.customCommandMap = customCommandMap;
 	}
+
 }
 

@@ -230,6 +230,7 @@ public class View extends JFrame{
 	public void sendString(String string) throws Exception {
 		myController.processInput(string);
 	}
+	
 	public Controller getController(){
 		return myController;
 	}
@@ -265,6 +266,10 @@ public class View extends JFrame{
 		myTurtleGame.clearTurtles();
 	}
 	
+	public void clearBoxes() {
+		myTurtleGame.clearBoxes();
+	}
+	
 	public void resetModel(){
 		myController.resetModels();
 	}
@@ -274,7 +279,6 @@ public class View extends JFrame{
 	}
 
 	public void drawBox(double[] boxPosition) {
-		// TODO Auto-generated method stub
-		
+		myTurtleGame.drawBox(boxPosition);
 	}
 }
