@@ -1,5 +1,9 @@
 package commands.vcu;
 
+import java.util.List;
+
+import commands.Command;
+
 /**
  * Assigns commands given in the second list to commandName using parameters given in first list as variables
  * When commandName is used later in a program, any given values are assigned to variables that can be accessed when the command list is run
@@ -8,13 +12,32 @@ package commands.vcu;
  *
  */
 public class To extends IfElse {
-	String myName;
+	private String myName;
+	private List<String> myParameters;
+	private List<Command> myCommandList;
 
-	public String getMyName() {
+	public String getName() {
 		return myName;
 	}
 
-	public void setMyName(String myName) {
+	public void setName(String myName) {
 		this.myName = myName;
 	}
+
+	public List<String> getParameters() {
+		return myParameters;
+	}
+
+	public void setParameters(List<String> myParameters) {
+		this.myParameters = myParameters;
+	}
+
+	public List<Command> getCommandList() {
+		return myCommandList;
+	}
+
+	public void setCommandList(List<Command> myCommands) {
+		this.myCommandList = myCommands;
+	}
+
 }

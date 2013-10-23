@@ -44,17 +44,23 @@ public class Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		clearLines();
-		clearTurtles();
+		clearLinesAndTurtles();
 		for (Model m: myParser.getModels().values()) {
 			List<Line> trail = getLines(m);		
+			System.out.println("trail.length: " + trail.size());
 
 			for (Line line:trail) {
 				double[] currentLine = line.getLine();
 				myView.drawLine(currentLine);
 			}
 			double[] turtlePosition = getTurtle(m);
-			myView.drawTurtle(turtlePosition);
+			if (turtlePosition != null) {
+				myView.drawTurtle(turtlePosition);
+			}
+			double[] boxPosition = getBox(m);
+			if (boxPosition != null) {
+				myView.drawBox(boxPosition);
+			}
 			
 			if(m.isBackgroundChanged()){
 				m.setBackgroundChanged(false);
@@ -76,6 +82,11 @@ public class Controller {
 				setShape(m.getShape());
 			}
 		}
+	}
+
+	private void clearLinesAndTurtles() {
+		clearLines();
+		clearTurtles();
 	}
 
 	/**
@@ -118,6 +129,13 @@ public class Controller {
 			double[] coordinates = {m.getX(), m.getY(), m.getOrientation()};
 			return coordinates;
 		}
+	}
+	
+	public double[] getBox(Model m) {
+		if (m.getActive()) {
+			return getTurtle(m);
+		}
+		return null;
 	}
 	
 	public Parser getParser() {

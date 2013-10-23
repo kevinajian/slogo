@@ -147,7 +147,17 @@ public class Parser {
 	}
 	
 	public Command specialTreeBuilder(Command root, List<String> inputs) throws Exception {
-		if (root instanceof For) {
+		if (root instanceof To) {
+			((To) root).setName(inputs.get(0));
+			inputs.remove(0);
+			int openBracket = findFirstBracket(inputs);
+			int closeBracket = findLastBracket(openBracket, inputs);
+			List<String> params = listBuilder(openBracket+1, closeBracket-1, inputs);
+			setParams(root, params);
+			inputs.remove(0); inputs.remove(0);
+			setCommandList(root, inputs);
+		}
+		else if (root instanceof For) {
 			int openBracket = findFirstBracket(inputs);
 			if (root instanceof Repeat) {
 				List<String> params = listBuilder(0, openBracket-1, inputs);
@@ -162,7 +172,6 @@ public class Parser {
 			setCommandList(root, inputs);
 		}
 		else if (root instanceof Tell) {
-			System.out.println("specialTreeBuilder: Tell command");
 			Set<Integer> turtles = myModels.keySet();
 			List<String> turtleSet;
 			if (root instanceof TellEven) {
@@ -182,17 +191,13 @@ public class Parser {
 				}
 			}
 			else {
-				System.out.println("specialTreeBuilder: Tell Tell command");
 				int openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
 				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs);
-				System.out.println("specialTreeBuilder: Tell Tell command turtleSet: " +turtleSet);
 				for (String s: turtleSet) {
 					if (!turtles.contains(Integer.parseInt(s))) {
-						System.out.println("specialTreeBuilder: new Turtle: " +s);
 						Model m = new Model(Integer.parseInt(s));
 						m.initiate();
-						System.out.println("specialTreeBuilder: new Turtle id: " + m.getId());
 						myModels.put(m.getId(), m);
 					}
 				}
@@ -207,11 +212,19 @@ public class Parser {
 		int openBracket = findFirstBracket(inputs);
 		int closeBracket = findLastBracket(openBracket, inputs);
 		List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs);
-		((For) root).setCommandList(lexer(inputList));
+		if (root instanceof For) {
+			((For) root).setCommandList(lexer(inputList));
+		}
+		else if (root instanceof To) {
+			((To) root).setCommandList(lexer(inputList));
+		}
 		inputs.remove(0);inputs.remove(0);
 	}
 
 	public void setParams(Command root, List<String> params) throws Exception {
+		if (root instanceof To) {
+			((To) root).setParameters(params);
+		}
 		if (root instanceof Repeat) {
 			Command variable = new Variable(":repcount");
 			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
@@ -228,6 +241,7 @@ public class Parser {
 			((For) root).setIncrement(Constants.DEFAULT_INCREMENT);
 			return;
 		}
+		
 		int start = Integer.parseInt(params.get(1));
 		setCustomCommand(((Variable) variable).getVariableName(), start);
 		((For) root).setVariable((Variable) variable);
