@@ -9,8 +9,6 @@ public class OnKey extends CommandZeroInput {
 	
 	@Override
 	public double evaluate(Model model) {
-		System.out.println(model.getMouseX());
-		return model.getMouseX();
-		
+		return 0;
 	}
 }

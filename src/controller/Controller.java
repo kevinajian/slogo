@@ -163,22 +163,4 @@ public class Controller {
 		myView.display(input);
 	}
 	
-	public void setMouseX() {
-		for(Model m : myParser.getModels().values())
-			m.setMouseX(myView.getMouseX());
-	}
-	
-	public void setMouseY() {
-		for(Model m : myParser.getModels().values()){
-			m.setMouseY(myView.getMouseY());
-		}
-	}
-	
-	public void setClicked() {
-		for(Model m : myParser.getModels().values()){
-			m.setClicked(myView.getClicked());
-		}
-	}
-	
-	
 }
