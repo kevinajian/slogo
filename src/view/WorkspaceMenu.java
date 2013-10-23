@@ -15,11 +15,14 @@ public class WorkspaceMenu extends JMenu {
 		myIndex = 1;
 		add(new WorkspaceMenuAction(this));
 		addAction();
+		addMouseListener(new MouseFocus(this));
 	}
 	
 	public void addAction(){
 		add(new WorkspaceAction(myIndex,myGame));
 		myIndex++;
 	}
+	
+	
 	
 }
