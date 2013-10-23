@@ -191,6 +191,9 @@ public class TurtleGame extends JGEngine implements Constants{
 			//System.out.println(this.countObjects("turtle", 50));
 			onClickAction();
 		}
+		if (getKey(myView.getCustomCommandMap().get("OnKey").charAt(0))) {
+			//Do the command set
+		}
 	}
 
 	private void undo(){

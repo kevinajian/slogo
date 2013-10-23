@@ -9,6 +9,7 @@ import slogoGame.TurtleGame;
 import controller.Controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 import jgame.*;
 import jgame.platform.JGEngine;
@@ -268,5 +269,9 @@ public class View extends JFrame{
 
 	public void drawBox(double[] boxPosition) {
 		myTurtleGame.drawBox(boxPosition);
+	}
+	
+	public Map<String, String> getCustomCommandMap() {
+		return myController.getCustomCommandMap();
 	}
 }

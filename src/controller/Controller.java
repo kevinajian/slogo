@@ -220,4 +220,11 @@ public class Controller {
 	public void display(String input) {
 		myView.display(input);
 	}
+
+	public Map<String, String> getCustomCommandMap() {
+		for (Model m: myParser.getModels().values()) {
+			return m.getCustomCommandMap();
+		}
+		return null;
+	}
 }
