@@ -162,7 +162,6 @@ public class Parser {
 			setCommandList(root, inputs);
 		}
 		else if (root instanceof Tell) {
-			System.out.println("specialTreeBuilder: Tell command");
 			Set<Integer> turtles = myModels.keySet();
 			List<String> turtleSet;
 			if (root instanceof TellEven) {
@@ -182,17 +181,13 @@ public class Parser {
 				}
 			}
 			else {
-				System.out.println("specialTreeBuilder: Tell Tell command");
 				int openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
 				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs);
-				System.out.println("specialTreeBuilder: Tell Tell command turtleSet: " +turtleSet);
 				for (String s: turtleSet) {
 					if (!turtles.contains(Integer.parseInt(s))) {
-						System.out.println("specialTreeBuilder: new Turtle: " +s);
 						Model m = new Model(Integer.parseInt(s));
 						m.initiate();
-						System.out.println("specialTreeBuilder: new Turtle id: " + m.getId());
 						myModels.put(m.getId(), m);
 					}
 				}

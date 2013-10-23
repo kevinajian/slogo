@@ -2,6 +2,7 @@ package commands.view;
 
 import model.Constants;
 import model.Model;
+import model.State;
 import commands.Command;
 import commands.CommandZeroInput;
 
@@ -15,6 +16,9 @@ public class ShowTurtle extends CommandZeroInput {
 	@Override
 	public double evaluate(Model model) {
 		model.setTurtleVisible(Constants.TURTLE_SHOWING);
+		State newState = model.getCurrentState();
+		newState.setTurtleVisible(model.getTurtleVisible());
+		model.addState(newState);
 		return 1;
 	}
 	

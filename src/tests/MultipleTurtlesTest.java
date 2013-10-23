@@ -28,24 +28,26 @@ public class MultipleTurtlesTest {
 		Map<Integer, Model> modelMap = new HashMap<Integer, Model>();
 		modelMap.put(model.getId(), model);
 		Parser p = new Parser(modelMap);
+		
 		p.parse("Tell [ 2 ]");
 		modelMap = p.getModels();
-		Collection<Model> models = modelMap.values();
 		for (Model m: modelMap.values()) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
-		assertEquals()
+		
 		p.parse("Tell [ 1 2 ]");
 		for (Model m: modelMap.values()) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
+		
 		p.parse("Tell [ 1 2 5 ]");
 		for (Model m: modelMap.values()) {
 			m.createStates();
 			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
 		}
+		
 		p.parse("Tell [ 3 4 ]");
 		for (Model m: modelMap.values()) {
 			m.createStates();
@@ -53,5 +55,45 @@ public class MultipleTurtlesTest {
 		}
 	}
 	
+	@Test
+	public void testTellEven() throws Exception {
+		Model model = new Model(1);
+		Map<Integer, Model> modelMap = new HashMap<Integer, Model>();
+		modelMap.put(model.getId(), model);
+		Parser p = new Parser(modelMap);
+		
+		p.parse("Tell [ 1 2 3 4 5 6 ]");
+		modelMap = p.getModels();
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
+		
+		p.parse("TellEven");
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
+	}
 	
+	@Test
+	public void testTellOdd() throws Exception {
+		Model model = new Model(1);
+		Map<Integer, Model> modelMap = new HashMap<Integer, Model>();
+		modelMap.put(model.getId(), model);
+		Parser p = new Parser(modelMap);
+		
+		p.parse("Tell [ 1 2 3 4 5 6 ]");
+		modelMap = p.getModels();
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
+		
+		p.parse("TellOdd");
+		for (Model m: modelMap.values()) {
+			m.createStates();
+			System.out.println("id: "+m.getId()+ " is active: "+m.getActive());
+		}
+	}
 }
