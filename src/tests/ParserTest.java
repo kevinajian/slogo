@@ -178,7 +178,7 @@ public class ParserTest {
 		List<String> inputs = new ArrayList<String>() {{add(":x"); add("0"); add("5"); add("1");}};
 		parser.setParams(testRoot, inputs);
 		assertEquals(((For) testRoot).getVariable().getVariableName(), ":x");
-		assertEquals(model.getCustomCommandValue(((For) testRoot).getVariable().getVariableName()), 0.0, 0.0);
+		assertEquals(model.getVariable(((For) testRoot).getVariable().getVariableName()), 0.0, 0.0);
 		assertEquals(((For) testRoot).getMax(), 5.0, 0.0);
 		assertEquals(((For) testRoot).getIncrement(), 1);
 	}
@@ -192,7 +192,7 @@ public class ParserTest {
 		Command testRoot = new For();
 		List<String> inputs = new ArrayList<String>() {{add("["); add(":x"); add("0"); add("5"); add("1"); add("]"); add("["); add("Forward"); add("50"); add("]");}};
 		parser.specialTreeBuilder(testRoot, inputs);
-		System.out.println("variable value: "+model.getCustomCommandValue(((For) testRoot).getVariable().getVariableName()) + " max value: " + ((For) testRoot).getMax());
+		System.out.println("variable value: "+model.getVariable(((For) testRoot).getVariable().getVariableName()) + " max value: " + ((For) testRoot).getMax());
 		List<Command> test = ((For) testRoot).getCommandList();
 		System.out.println(test.get(0).getClass());
 		System.out.println(test.get(0).getInputValueOne(model));

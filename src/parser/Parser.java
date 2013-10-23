@@ -322,18 +322,18 @@ public class Parser {
 
 	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
 		for (Model m: myModels.values()) {
-			m.setCustomCommandMap(customCommandMap);
+			m.setVariableMap(customCommandMap);
 		}
 	}
 	
 	public void setCustomCommand(String key, double value) {
 		for (Model m: myModels.values()) {
-			m.setCustomCommand(key, value);
+			m.addVariable(key, value);
 		}
 	}
 	
 	public double getCustomCommandValue(String key) {
-		return myModels.get(1).getCustomCommandValue(key);
+		return myModels.get(1).getVariable(key);
 	}
 	
 	public Map<Integer, Model> getModels() {

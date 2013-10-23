@@ -21,7 +21,7 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private String myTurtleVisible = Constants.TURTLE_SHOWING;
 	private String myPenVisible = Constants.PEN_SHOWING;
 	private List<Command> myCommands = new ArrayList<Command>();
-	private Map<String, Double> myCustomCommandMap = new HashMap<String, Double>();
+	private Map<String, Double> myVariableMap = new HashMap<String, Double>();
 	private String myBackgroundColor = Constants.DEFAULT_BACKGROUND_COLOR;
 	private String myPenColor = Constants.DEFAULT_PEN_COLOR;
 	private double myPenSize = Constants.DEFAULT_PEN_SIZE;
@@ -214,19 +214,19 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	}
 	
 	public Map<String, Double> getCustomCommandMap() {
-		return myCustomCommandMap;
+		return myVariableMap;
 	}
 
-	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
-		myCustomCommandMap = customCommandMap;
+	public void setVariableMap(Map<String, Double> customCommandMap) {
+		myVariableMap = customCommandMap;
 	}
 	
-	public void setCustomCommand(String key, double value) {
-		myCustomCommandMap.put(key, value);
+	public void addVariable(String key, double value) {
+		myVariableMap.put(key, value);
 	}
 	
-	public double getCustomCommandValue(String key) {
-		return myCustomCommandMap.get(key);
+	public double getVariable(String key) {
+		return myVariableMap.get(key);
 	}
 
 	public boolean getActive() {
