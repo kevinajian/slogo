@@ -70,13 +70,9 @@ public class Parser {
 		
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
-		if(list.length>1){
-			name = list[1];
-		}
-		if(list[1].equals("OnClick") || list[1].equals("OnKey")){
-			list[1] = "";
-		}
-		System.out.println(list[1]);
+		
+		handleSpecial(list);
+		
 		List<String> inputs = new ArrayList<String>();
 		parseArrayToArrayList(inputs, list);
 		
@@ -94,7 +90,7 @@ public class Parser {
 		return inputs;
 	}
 	/**
-	 * Helper method for parse, makes an array containing string commands
+	 * Helper method one for parse, makes an array containing string commands
 	 * into an arraylist containing string commands.
 	 * @param inputs
 	 * @param toInputs
@@ -107,6 +103,18 @@ public class Parser {
 			else{
 				inputs.add(fileToMap(getLanguage()).get(string.toUpperCase()));
 			}
+		}
+	}
+	
+	/**
+	 * Helper method two for parse, handles specific command declaration
+	 */
+	public void handleSpecial(String[] list) {
+		if(list.length>1){
+			name = list[1];
+		}
+		if(list[1].equals("OnClick") || list[1].equals("OnKey")){
+			list[1] = "";
 		}
 	}
 	
@@ -170,6 +178,14 @@ public class Parser {
 		return root;
 	}
 	
+	 /**
+	  * Recursively builds a tree of commands from a list of strings. Specifically handles
+	  * commands with brackets as they must be treated slightly differently than other commands.
+	  * @param root
+	  * @param inputs
+	  * @return
+	  * @throws Exception
+	  */
 	public Command specialTreeBuilder(Command root, List<String> inputs) throws Exception {
 		if (root instanceof To) {
 			inputs.remove(0);
@@ -253,6 +269,12 @@ public class Parser {
 		return root;
 	}
 	
+	/**
+	 * Makes a list of commands from within a set of brackets.
+	 * @param root
+	 * @param inputs
+	 * @throws Exception
+	 */
 	public void setCommandList(Command root, List<String> inputs) throws Exception {
 		int openBracket = findFirstBracket(inputs);
 		int closeBracket = findLastBracket(openBracket, inputs);
@@ -270,6 +292,12 @@ public class Parser {
 		inputs.remove(0);inputs.remove(0);
 	}
 
+	/**
+	 * Sets parameters for loop structure commands manually.
+	 * @param root
+	 * @param params
+	 * @throws Exception
+	 */
 	public void setParams(Command root, List<String> params) throws Exception {
 		if (root instanceof Repeat) {
 			Command variable = new Variable(":repcount");
@@ -293,7 +321,7 @@ public class Parser {
 		((For) root).setMax(Integer.parseInt(params.get(2)));
 		((For) root).setIncrement(Integer.parseInt(params.get(3)));	
 	}
-
+	
 	public List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
 		List<String> returnList = new ArrayList<String>();
 		for (int i = firstIndex; i <=endIndex ; i++) {
@@ -303,13 +331,24 @@ public class Parser {
 		return returnList;
 	}
 	
+	/**
+	 * Removes a range of items in an array given the first and last index.
+	 * @param firstIndex
+	 * @param endIndex
+	 * @param inputs
+	 */
 	public void removeRange(int firstIndex, int endIndex, List<String> inputs) {
 		for (int i=firstIndex; i<=endIndex; i++){
 			inputs.remove(firstIndex);
 		}
 	}
 	
-	
+	/**
+	 * Returns the index of the first open bracket in a string array of 
+	 * commands.
+	 * @param inputList
+	 * @return
+	 */
 	public int findFirstBracket(List<String> inputList) {
 		for (int i=0; i < inputList.size(); i++) {
 			if (inputList.get(i).equals(Constants.OPEN_BRACKET)) {
@@ -319,6 +358,13 @@ public class Parser {
 		return 0;
 	}
 	
+	/**
+	 * Given the position of an open bracket in a string array, returns the position 
+	 * of the matching close bracket.
+	 * @param firstBracket
+	 * @param inputList
+	 * @return
+	 */
 	public int findLastBracket(int firstBracket, List<String> inputList) {
 		int bcount = 1;
 		for(int i = firstBracket+1; i<inputList.size(); i++) {
