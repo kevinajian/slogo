@@ -85,6 +85,7 @@ public class Controller {
 				setShape(m.getShape());
 			}
 		}
+		display();
 	}
 
 	private void drawLine(Line line) {
@@ -165,7 +166,6 @@ public class Controller {
 	public void drawBox(Model m) {
 		double[] boxPosition = getBox(m);
 		if (boxPosition != null) {
-			System.out.println("drawing box");
 			myView.drawBox(boxPosition);
 		}
 	}
@@ -179,11 +179,11 @@ public class Controller {
 	}
 	
 	public void setBackgroundColor(String c) {
-		myView.getMyTurtleGame().setBackground(c);
+		myView.getMyTurtleGame().makeBackgroundAction(c);
 	}
 	
 	public void setPenColor(String c) {
-		myView.getMyTurtleGame().setPenColor(c);
+		myView.getMyTurtleGame().makePenAction(c);
 	}
 	
 	private void setPenSize(double d) {
@@ -217,7 +217,22 @@ public class Controller {
 		myView.clearBoxes();
 	}
 
-	public void display(String input) {
-		myView.display(input);
+	public void display() {
+		Model m = myParser.getModel();
+		myView.display("X position: " + m.getX());
+		myView.display("Y position: " + m.getY());
+		myView.display("Orientation: "+ m.getOrientation());
+		for(String s : m.getVariableMap().keySet())
+		{
+			myView.display("Variable: " + s + " : " + m.getVariableMap().get(s));
+		}
+		myView.display("----------------------");
+	}
+
+	public Map<String, String> getCustomCommandMap() {
+		for (Model m: myParser.getModels().values()) {
+			return m.getCustomCommandMap();
+		}
+		return null;
 	}
 }

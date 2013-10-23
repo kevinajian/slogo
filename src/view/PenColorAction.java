@@ -13,7 +13,7 @@ public class PenColorAction extends BackgroundAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		myGame.setPenColor(myColor);
+		myGame.makePenAction(myColor);
 	}
 
 
