@@ -1,5 +1,6 @@
 package commands.view;
 
+import utilities.Utilities;
 import commands.CommandZeroInput;
 import model.Constants;
 import model.Model;
@@ -21,22 +22,7 @@ public class ClearScreen extends CommandZeroInput {
 		String penColor = model.getPenColor();
 		model.getStates().clear();
 		model.addState(new State(Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN, Constants.TURTLE_DEGREEORIGIN, model.getTurtleVisible(), model.getPenVisible(), penColor));
-		//Controller.getLines().clear
-		
-		return calculateLength(x, y, Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN);
+
+		return Utilities.calculateLength(x, y, Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN);
 	}
-	
-	/**
-	 * Uses pythagorean theorem to find the distance between the turtles previous point
-	 * and the point 0,0 where it moves to.
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
-	 * @return
-	 */
-	private double calculateLength(double x1, double y1, double x2, double y2) {
-		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)); 
-	}
-	
 }
