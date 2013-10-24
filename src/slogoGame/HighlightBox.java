@@ -12,11 +12,9 @@ import jgame.platform.JGEngine;
 public class HighlightBox extends Turtle{
 	private String myName;
 	public HighlightBox(String name, int collisionid, JGEngine tgame) {
-		super("border", true, 0, 0, collisionid, "border");
-		myName = "border";
+		super(name, true, 0, 0, collisionid, "border");
+		myName = name;
 	}
-	public void paint()
-	{  }
 	
 	public void setPos(double x, double y){
 		int width;

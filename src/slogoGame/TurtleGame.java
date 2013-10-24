@@ -25,16 +25,16 @@ public class TurtleGame extends JGEngine implements Constants{
 	//private JGColor myBackgroundColor;
 	private Map<String,JGColor> colorMap = new HashMap<String,JGColor>();
 	private Turtle squirt;
-	public Grid g;
+	private Grid g;
 	private ArrayList<Action> myActionList = new ArrayList<Action>();
 	//private DatedAction myCurrentAction;
 	private int myActionIndex;
 	private View myView;
 	private ArrayList<ArrayList<Action>> myWorkspaces = new ArrayList<ArrayList<Action>>();
 	private boolean redoing;
-	public HighlightBox b;
-	public ArrayList<HighlightBox> bList = new ArrayList<HighlightBox>();;
-	
+	//public HighlightBox b;
+	private ArrayList<HighlightBox> bList = new ArrayList<HighlightBox>();;
+	private boolean drawBoxes;
 	private double myPenSize;
 	//private ArrayList<Integer> myIndices = new ArrayList<Integer>();
 	/*	public TurtleGame() {initEngineApplet();}
@@ -61,10 +61,12 @@ public class TurtleGame extends JGEngine implements Constants{
 		setCursor(null);
 		defineImages();
 		squirt = new Turtle("turtle", 50, this);
+		bList.add(new HighlightBox("box",20,this));
 		//double[] turtleStart = {0.0,0.0,0.0};
 		//myCurrentAction = new DatedAction(turtleStart,squirt);
 		myActionIndex = -1;
 		redoing = false;
+		drawBoxes = true;
 		//myIndices.add(myActionIndex);
 		myWorkspaces.add(myActionList);
 		colorMap.put("Blue", JGColor.blue);
@@ -168,7 +170,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	public void startTitle() {
 		//removeObjects(null,0);
 		g = new Grid("grid", 69, this);
-		b = new HighlightBox("border", 20, this);
+		//b = new HighlightBox("border", 20, this);
 	}
 
 	public void paintFrameTitle() {
@@ -186,11 +188,12 @@ public class TurtleGame extends JGEngine implements Constants{
 		}
 		if (getMouseButton(1)) {
 			//System.out.println(this.countObjects("turtle", 50));
-			onClickAction();
+			//onClickAction();
 		}
 		//if (getKey(myView.getCustomCommandMap().get("OnKey").charAt(0))) {
 			//Do the command set
 		//}
+		//System.out.println(bList.size());
 	}
 
 	private void undo(){
@@ -229,7 +232,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	public void drawTurtle(double[] turtlePosition){
 		Turtle newTurts = new Turtle("turtle", 50, this);				
 		newTurts.setPos(turtlePosition[0], turtlePosition[1]);
-		newTurts.rotate(turtlePosition[2]);		
+		newTurts.rotate(turtlePosition[2]);
 	}
 
 	public void drawLine(double[] currentLine){
@@ -240,6 +243,8 @@ public class TurtleGame extends JGEngine implements Constants{
 		HighlightBox b = new HighlightBox("box", 20, this);
 		b.setPos(boxPosition[0], boxPosition[1]);
 		bList.add(b);
+		b.toggle(drawBoxes);
+		//System.out.println("made a box");
 	}
 
 	public void sendString(String input) throws Exception{
@@ -269,7 +274,12 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void clearBoxes() {
-		removeObjects("border", 0);
+		for(HighlightBox b : bList){
+			b.remove();
+		}
+		removeObjects("box", 0);
+		bList.clear();
+		//System.out.println("beep");
 	}
 	
 	private void restoreDefaults(){
@@ -281,6 +291,9 @@ public class TurtleGame extends JGEngine implements Constants{
 		clearTurtles();
 		clearBoxes();
 		squirt = new Turtle("turtle",50,this);
+		bList.add(new HighlightBox("box",20,this));
+		//System.out.println("drawing box for reset");
+		drawBoxes = true;
 		setBackgroundColor("White");
 		setGrid(true);
 		setBorder(true);
@@ -366,6 +379,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void setBorder(Boolean borderOn) {
+		drawBoxes = borderOn;
 		for(HighlightBox b : bList){
 			b.toggle(borderOn);
 		}
