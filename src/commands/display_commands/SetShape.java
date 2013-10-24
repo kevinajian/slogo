@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import model.Model;
+import model.TurtleCommands;
 
 import commands.CommandOneInput;
 
@@ -13,19 +14,11 @@ import commands.CommandOneInput;
  * @author carlosreyes
  *
  */
-public class SetShape extends CommandOneInput {
-	private ResourceBundle myResources;
-	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
+public class SetShape extends SetViewProperties {
 	
 	@Override
 	public double evaluate(Model model) {
-		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
-		String lumpedShape = myResources.getString("TurtleCommands");
-		String turtleCommands1[] = lumpedShape.split(" ");
-		ArrayList<String> turtleCommands = new ArrayList<String>();
-		for(int i = 0; i<turtleCommands1.length-1;i++){
-			turtleCommands.add(turtleCommands1[i]);
-		}
+		ArrayList<String> turtleCommands = handleSet(model);
 		int pos = (int) getInputValueOne(model);
 		String shape = turtleCommands.get(pos);
 		model.setShape(shape);

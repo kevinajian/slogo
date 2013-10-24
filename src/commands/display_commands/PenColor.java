@@ -10,19 +10,15 @@ import commands.CommandZeroInput;
  * @author carlosreyes
  *
  */
-public class PenColor extends CommandZeroInput {
-	private ResourceBundle myResources;
-	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
+public class PenColor extends SetViewProperties {
+	
+	PenColor() {
+		this.myNumInputs = 0;
+	}
 	
 	@Override
 	public double evaluate(Model model) {
-		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
-		String lumpedColors = myResources.getString("Colors");
-		String colors1[] = lumpedColors.split(" ");
-		ArrayList<String> colors = new ArrayList<String>();	
-		for(int i = 0; i<colors1.length-1;i++){
-			colors.add(colors1[i]);
-		}
+		ArrayList<String> colors = handleSet(model);
 		String currentColor = model.getPenColor();
 		for(int i=0; i < colors.size(); i++){
 			if(colors.get(0).equals(currentColor)){
