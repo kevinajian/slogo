@@ -14,10 +14,18 @@ public class Variable extends CommandZeroInput{
 	String myVariableName;
 	double variableValue;
 	
+	/**
+	 * returns variable's value
+	 * @return - double of value
+	 */
 	public double getVariableValue() {
 		return variableValue;
 	}
 
+	/**
+	 * sets variable's value
+	 * @param variableValue - value to be set
+	 */
 	public void setVariableValue(double variableValue) {
 		this.variableValue = variableValue;
 	}

@@ -1,5 +1,10 @@
 package utilities;
 
+/**
+ * Contains methods that can be used by all commands
+ * @author carlos
+ *
+ */
 public class Utilities {
 
 	/**

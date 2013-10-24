@@ -27,7 +27,7 @@ public class ModelController {
 		}
 	}
 	
-	public List<Command> parse(String input) throws Exception {
+	public List<Command> parse(String input) throws Exception{
 		List<String> inputs = myParser.parse(input);
 		List<Command> commands = myParser.lexer(inputs);
 		for (Model m: myModelMap.values()) {

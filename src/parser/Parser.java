@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+
 import model.Constants;
 import model.Model;
 import model.ModelController;
@@ -32,14 +33,27 @@ public class Parser {
 	private String myLanguage = Constants.DEFAULT_LANGUAGE;
 	private String name;
 	
+	/**
+	 * returns Model Controller of parser
+	 * @return - ModelController
+	 */
 	public ModelController getModelController() {
 		return myMC;
 	}
 	
+	/**
+	 * sets ModelController of parser
+	 * @param mc - ModelController to be set
+	 */
 	public void setModelController(ModelController mc) {
 		myMC = mc;
 	}
 	
+	/**
+	 * takes a filename and returns a map of its properties
+	 * @param filename
+	 * @return
+	 */
 	public Map<String, String> fileToMap(String filename) {
 		Map<String, String> propertiesMap = new HashMap<String, String>();
 		
@@ -65,10 +79,11 @@ public class Parser {
 		return propertiesMap;
 	}
 	
+
 	/**
-	 * Splits user input and passes results to lexer
-	 * @param input - String of user input
-	 * @throws Exception 
+	 * Splits user's input and passes it to the lexer. If user input contains invalid commands, will throw an exception
+	 * @param input - String that user entered
+	 * @return - List of Strings from user input
 	 */
 	public List<String> parse(String input) {
 		
@@ -160,7 +175,7 @@ public class Parser {
 	 * Strings. Creates instances of the appropriate classes
 	 * when it encounters strings of the same name and executes
 	 * the function of the classes.
-	 * @param root
+	 * @param root - root Command whose children are to be added
 	 * @return Command which is the root Node of the tree
 	 * @throws Exception
 	 */
@@ -189,9 +204,9 @@ public class Parser {
 	 /**
 	  * Recursively builds a tree of commands from a list of strings. Specifically handles
 	  * commands with brackets as they must be treated slightly differently than other commands.
-	  * @param root
-	  * @param inputs
-	  * @return
+	  * @param root - root Command to add chilren and parameters to
+	  * @param inputs - List of Strings that contain user input
+	  * @return - returns built root command
 	  * @throws Exception
 	  */
 	public Command specialTreeBuilder(Command root, List<String> inputs) throws Exception {
@@ -276,8 +291,8 @@ public class Parser {
 	
 	/**
 	 * Makes a list of commands from within a set of brackets.
-	 * @param root
-	 * @param inputs
+	 * @param root - root Command to set CommandList of
+	 * @param inputs - List of String of user inputs
 	 * @throws Exception
 	 */
 	public void setCommandList(Command root, List<String> inputs) throws Exception {
@@ -298,8 +313,8 @@ public class Parser {
 
 	/**
 	 * Sets parameters for loop structure commands manually.
-	 * @param root
-	 * @param params
+	 * @param root - root Command to set params of
+	 * @param params - List of Strings of params to be set
 	 * @throws Exception
 	 */
 	public void setParams(Command root, List<String> params) throws Exception {
@@ -337,9 +352,9 @@ public class Parser {
 	
 	/**
 	 * Removes a range of items in an array given the first and last index.
-	 * @param firstIndex
-	 * @param endIndex
-	 * @param inputs
+	 * @param firstIndex - index of beginning of range
+	 * @param endIndex - index of end of range
+	 * @param inputs - List of Strings to remove range from
 	 */
 	public void removeRange(int firstIndex, int endIndex, List<String> inputs, boolean brackets) {
 		for (int i=firstIndex; i<=endIndex; i++){
@@ -354,8 +369,8 @@ public class Parser {
 	/**
 	 * Returns the index of the first open bracket in a string array of 
 	 * commands.
-	 * @param inputList
-	 * @return
+	 * @param inputList - List of Strings to find bracket of
+	 * @return - int of index of first bracket
 	 */
 	public int findFirstBracket(List<String> inputList) {
 		for (int i=0; i < inputList.size(); i++) {
@@ -369,9 +384,9 @@ public class Parser {
 	/**
 	 * Given the position of an open bracket in a string array, returns the position 
 	 * of the matching close bracket.
-	 * @param firstBracket
-	 * @param inputList
-	 * @return
+	 * @param firstBracket - int index of first bracket
+	 * @param inputList - List of Strings
+	 * @return - int of index of closing bracket
 	 */
 	public int findLastBracket(int firstBracket, List<String> inputList) {
 		int bcount = 1;
@@ -394,7 +409,7 @@ public class Parser {
 	 * and add its name to a map in model which maps the variable name (including
 	 * the ':' to the value (which is set by default to 0.
 	 * Otherwise a new command is created based on the String passed.
-	 * @param className
+	 * @param className - String of name of class to be made
 	 * @return A class that is a subclass of Command, based off of the string given.
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
@@ -402,7 +417,7 @@ public class Parser {
 	 */
 	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		//check if it starts with ':' if so its a variable
-		Command xyz;
+		Command xyz = null;
 		if (className.matches(Constants.CONSTANT_ID)) {
 			xyz = new Constant();
 			xyz.setInputValueOne(Double.parseDouble(className));
@@ -411,10 +426,11 @@ public class Parser {
 			xyz = new Variable(className);
 		} 
 		else {
-			xyz = (Command) Class.forName(toClass(className)).newInstance(); // IF THIS ISN"T FOUND WE SHOULD RETURN AT ERROR. 
+			xyz = (Command) Class.forName(toClass(className)).newInstance();
 		}
 		return xyz;
 	}
+	
 
 	/**
 	 * Deals with custom commands from a command map

@@ -15,7 +15,7 @@ import view.View;
 public class Main {
 	
 	/**
-	 * initializes controller
+	 * initializes controller with view and model controller
 	 * @param args
 	 */
 	public static void main(String[]args){
