@@ -35,12 +35,12 @@ public class Controller {
 	
 	public void initiate() {
 		myMC.initiate();
-		double[] initialBox = new double[3];
+		/*double[] initialBox = new double[3];
 		initialBox[0] = Constants.TURTLE_XORIGIN;
 		initialBox[1] = Constants.TURTLE_YORIGIN;
 		initialBox[2] = Constants.TURTLE_DEGREEORIGIN;
-		myView.drawBox(initialBox);
-	}
+		//myView.drawBox(initialBox);
+*/	}
 	
 	/**
 	 * Sends user input to the parser to be parsed and handles
