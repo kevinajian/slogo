@@ -191,22 +191,20 @@ public class Parser {
 			inputs.remove(0);
 			int openBracket = findFirstBracket(inputs);
 			int closeBracket = findLastBracket(openBracket, inputs);
-			List<String> params = listBuilder(openBracket+1, closeBracket-1, inputs);
-			inputs.remove(0); inputs.remove(0);
+			List<String> params = listBuilder(openBracket+1, closeBracket-1, inputs, true);
 			setCommandList(root, inputs);
 		}
 		else if (root instanceof For) {
 			int openBracket = findFirstBracket(inputs);
 			if (root instanceof Repeat) {
-				List<String> params = listBuilder(0, openBracket-1, inputs);
+				List<String> params = listBuilder(0, openBracket-1, inputs, false);
 				setParams(root, params);
 				setCommandList(root, inputs);
 				return root;
 			}
 			int closeBracket = findLastBracket(openBracket, inputs);
-			List<String> params = listBuilder(openBracket+1, closeBracket-1, inputs);
+			List<String> params = listBuilder(openBracket+1, closeBracket-1, inputs, true);
 			setParams(root, params);
-			inputs.remove(0); inputs.remove(0);
 			setCommandList(root, inputs);
 		}
 		else if (root instanceof Tell) {
@@ -231,8 +229,7 @@ public class Parser {
 			else {
 				int openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
-				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs);
-				inputs.remove(0); inputs.remove(0);
+				turtleSet = listBuilder(openBracket+1, closeBracket-1, inputs, true);
 				if (root instanceof AskWith) {
 					List<Command> expression = lexer(turtleSet);
 					((AskWith) root).setExpression(expression.get(0));
@@ -255,16 +252,15 @@ public class Parser {
 		}
 		else if (root instanceof If) {
 			int openBracket = findFirstBracket(inputs);
-			List<String> expressionList = listBuilder(0, openBracket -1, inputs);
+			List<String> expressionList = listBuilder(0, openBracket -1, inputs, false);
 			List<Command> expression = lexer(expressionList);
 			((If) root).setExpression(expression.get(0));
 			setCommandList(root, inputs);
 			if (root instanceof IfElse) {
 				openBracket = findFirstBracket(inputs);
 				int closeBracket = findLastBracket(openBracket, inputs);
-				List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs);
+				List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs, true);
 				((IfElse) root).setCommandList2(lexer(inputList));
-				inputs.remove(0);inputs.remove(0);
 			}
 		}
 		return root;
@@ -279,7 +275,7 @@ public class Parser {
 	public void setCommandList(Command root, List<String> inputs) throws Exception {
 		int openBracket = findFirstBracket(inputs);
 		int closeBracket = findLastBracket(openBracket, inputs);
-		List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs);
+		List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs, true);
 		if (root instanceof CommandList) {
 			((CommandList) root).setCommandList(lexer(inputList));
 		}
@@ -290,7 +286,6 @@ public class Parser {
 			}
 			((To) root).setCommands(commandString);
 		}
-		inputs.remove(0);inputs.remove(0);
 	}
 
 	/**
@@ -323,12 +318,12 @@ public class Parser {
 		((For) root).setIncrement(Integer.parseInt(params.get(3)));	
 	}
 	
-	public List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs) {
+	public List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs, boolean brackets) {
 		List<String> returnList = new ArrayList<String>();
 		for (int i = firstIndex; i <=endIndex ; i++) {
 			returnList.add(inputs.get(i));
 		}
-		removeRange(firstIndex, endIndex, inputs);
+		removeRange(firstIndex, endIndex, inputs, brackets);
 		return returnList;
 	}
 	
@@ -338,12 +333,16 @@ public class Parser {
 	 * @param endIndex
 	 * @param inputs
 	 */
-	public void removeRange(int firstIndex, int endIndex, List<String> inputs) {
+	public void removeRange(int firstIndex, int endIndex, List<String> inputs, boolean brackets) {
 		for (int i=firstIndex; i<=endIndex; i++){
 			inputs.remove(firstIndex);
 		}
+		if (brackets) {
+			inputs.remove(0);
+			inputs.remove(0);
+		}
 	}
-	
+
 	/**
 	 * Returns the index of the first open bracket in a string array of 
 	 * commands.
@@ -395,7 +394,6 @@ public class Parser {
 	 */
 	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		//check if it starts with ':' if so its a variable
-		System.out.println("get class className: "+className);
 		Command xyz;
 		if (className.matches(Constants.CONSTANT_ID)) {
 			xyz = new Constant();
@@ -426,7 +424,7 @@ public class Parser {
 		for(int i=1; i<commandList.length; i++) {
 			valuesList.add(Integer.parseInt(commandList[i]));
 		}
-		for (Model m:myMC.getModelMap().values()) {
+		for (Model m:myMC.getModels()) {
 			if (m.getCustomCommandMap().containsKey(commandList[0])) {
 				String out = m.getCustomCommandMap().get(commandList[0]);
 				for(int i=0; i < valuesList.size(); i++) {
