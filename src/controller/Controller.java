@@ -53,8 +53,8 @@ public class Controller {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		clearLinesAndTurtlesAndBoxes();
-		for (Model m: myMC.getModelMap().values()) {
+		clearGame();
+		for (Model m: myMC.getModels()) {
 			List<Line> trail = getLines(m);
 
 			for (Line line:trail) {
@@ -110,7 +110,7 @@ public class Controller {
 		myView.drawLine(currentLine);
 	}
 
-	private void clearLinesAndTurtlesAndBoxes() {
+	private void clearGame() {
 		clearLines();
 		clearTurtles();
 		clearBoxes();
@@ -219,7 +219,7 @@ public class Controller {
 	}
 	
 	public void resetModels() {
-		for (Model m: myMC.getModelMap().values()) {
+		for (Model m: myMC.getModels()) {
 			m.resetModel();
 		}
 	}

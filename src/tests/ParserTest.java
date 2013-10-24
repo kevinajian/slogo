@@ -130,7 +130,7 @@ public class ParserTest {
 	public void testRemoveRange() {
 		Parser parser = new Parser();
 		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]");}};
-		parser.removeRange(0, inputs.size()-1, inputs);
+		parser.removeRange(0, inputs.size()-1, inputs, false);
 		assertTrue(inputs.isEmpty());
 	}
 	
@@ -140,7 +140,7 @@ public class ParserTest {
 		List<String> inputs = new ArrayList<String>() {{add("["); add("a"); add("b"); add("c"); add("]"); add("end");}};
 		int openBracket = 0;
 		int closeBracket = parser.findLastBracket(0, inputs);
-		List<String> test = parser.listBuilder(openBracket, closeBracket, inputs);
+		List<String> test = parser.listBuilder(openBracket, closeBracket, inputs, false);
 		assertEquals(test.get(1), "a");
 		assertEquals(test.get(2), "b");
 		assertEquals(test.get(3), "c");

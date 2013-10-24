@@ -20,7 +20,7 @@ public class ModelController {
 		p.setModelController(this);
 		Model model = new Model(Constants.DEFAULT_MODEL);
 		myModelMap.put(model.getId(), model);
-		for (Model m: myModelMap.values()) {
+		for (Model m: getModels()) {
 			m.initiate();
 		}
 	}

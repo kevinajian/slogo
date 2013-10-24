@@ -36,61 +36,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	private Map<String, String> customCommandMap = new HashMap<String, String>();
 	private List<State> myStamps = new ArrayList<State>();
 	
-	public Model(int id) {
-		myId = id;
-	}
-	
-	public int getId() {
-		return myId;
-	}
-	
-	public void setId(int id) {
-		myId = id;
-	}
-	
-	public List<State> getStamps() {
-		return myStamps;
-	}
-	
-	public void setStamps(List<State> stamps) {
-		myStamps = stamps;
-	}
-	
-	public void addStamp(State stamp) {
-		myStamps.add(stamp);
-	}
-	
-	public void clearStamps() {
-		myStamps.clear();
-	}
-	
 	public void initiate() {
 		myOrigin = new State(Constants.TURTLE_XORIGIN,Constants.TURTLE_YORIGIN,Constants.TURTLE_DEGREEORIGIN, Constants.TURTLE_SHOWING, Constants.PEN_SHOWING, getPenColor());
 		myStates.add(myOrigin);
-	}
-	
-	/**
-	 * gets degree of current state
-	 * @return - double of current orientation
-	 */
-	public double getOrientation() {
-		return getCurrentState().getOrientation();
-	}
-
-	/**
-	 * gets x coordinate of current state
-	 * @return - double of current x
-	 */
-	public double getX() {
-		return getCurrentState().getX();
-	}
-
-	/**
-	 * gets y coordinate of current state
-	 * @return - double of current y
-	 */
-	public double getY() {
-		return getCurrentState().getY();
 	}
 	
 	/**
@@ -135,6 +83,30 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 	 */
 	public State getCurrentState() {
 		return myStates.get(myStates.size()-1);
+	}
+
+	/**
+	 * gets degree of current state
+	 * @return - double of current orientation
+	 */
+	public double getOrientation() {
+		return getCurrentState().getOrientation();
+	}
+
+	/**
+	 * gets x coordinate of current state
+	 * @return - double of current x
+	 */
+	public double getX() {
+		return getCurrentState().getX();
+	}
+
+	/**
+	 * gets y coordinate of current state
+	 * @return - double of current y
+	 */
+	public double getY() {
+		return getCurrentState().getY();
 	}
 	
 	public List<Command> getCommands() {
@@ -267,6 +239,34 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 
 	public void setCustomCommandMap(Map<String, String> customCommandMap) {
 		this.customCommandMap = customCommandMap;
+	}
+	
+	public Model(int id) {
+		myId = id;
+	}
+	
+	public int getId() {
+		return myId;
+	}
+	
+	public void setId(int id) {
+		myId = id;
+	}
+	
+	public List<State> getStamps() {
+		return myStamps;
+	}
+	
+	public void setStamps(List<State> stamps) {
+		myStamps = stamps;
+	}
+	
+	public void addStamp(State stamp) {
+		myStamps.add(stamp);
+	}
+	
+	public void clearStamps() {
+		myStamps.clear();
 	}
 
 }
