@@ -15,17 +15,10 @@ public class OnKey extends CommandZeroInput {
 	public double evaluate(Model model) {
 		Parser parser = new Parser();
 		Command customCommand = null;
-		
-		try {
-			String[] command = model.getCustomCommandMap().get("OnKey").split(Constants.INPUT_SPLITTER);
-			customCommand = parser.getClass(command[0]);
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+
+		String[] command = model.getCustomCommandMap().get("OnKey").split(Constants.INPUT_SPLITTER);
+		customCommand = parser.getClass(command[0]);
+
 		setVariables(customCommand, model);
 		customCommand.evaluate(model);
 		return myNumInputs;	

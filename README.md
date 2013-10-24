@@ -6,7 +6,7 @@ Started - 9/30
 
 Hours worked - a lot
 
-Finished - ?
+Finished - 10/23
 
 
 [Respository](https://github.com/duke-compsci308-fall2013/slogo_team07.git)
@@ -15,21 +15,21 @@ Finished - ?
 * For plan:
 	* Created basic design layout together
 * For implementation 1:
-	* John
-	* Kevin
-	* Carlos
-	* Vincent
+	* John - Front end
+	* Kevin - Back end -
+	* Carlos - Back end - Created initial commands
+	* Vincent - Front end
 
 
 ### Any books, papers, online, or human resources that you used in developing the project
-
+None
 
 ### Files used to start the project (i.e., the class containing main) and test the project (the class containing TestSuite)
 * Main starts file.
-
+* Tests are found in the test package.
 
 ### Any data or resource files required by the project (including format of non-standard files)
-
+* Uses the jgame library
 
 ### Any information about using the program (i.e., command-line/applet arguments, key inputs, interesting example data files, or easter eggs)
 

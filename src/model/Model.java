@@ -55,6 +55,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		return myStates;
 	}
 	
+	/**
+	 * Evaluates commands to create states
+	 */
 	public void createStates() {
 		for (Command c:myCommands){
 			if (c instanceof Tell || myActive) {
@@ -63,6 +66,9 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		}
 	}
 	
+	/**
+	 * resets the commands, states, and active value of the model
+	 */
 	public void resetModel() {
 		myCommands.clear();
 		myStates.clear();
@@ -127,10 +133,6 @@ public class Model implements TurtleCommands, TurtleQueries, MathModel {
 		return myTurtleVisible;
 	}
 	
-	/**
-	 * sets the visibility of the turtle
-	 * @param turtleVisible - new visibility of turtle
-	 */
 	public void setTurtleVisible(String turtleVisible) {
 		myTurtleVisible = turtleVisible;
 	}

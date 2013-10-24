@@ -148,7 +148,7 @@ public class Parser {
 	 * @param inputs
 	 * @throws Exception
 	 */
-	public List<Command> lexer(List<String> inputs) throws Exception{
+	public List<Command> lexer(List<String> inputs) {
 		List<Command> rootList = new ArrayList<Command>();
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
@@ -179,7 +179,7 @@ public class Parser {
 	 * @return Command which is the root Node of the tree
 	 * @throws Exception
 	 */
-	 public Command treeBuilder(Command root, List<String> inputs) throws Exception{
+	 public Command treeBuilder(Command root, List<String> inputs) {
 		if (root instanceof Constant) {
 			root.setInputValueOne(Double.parseDouble(inputs.get(0)));
 			return root;
@@ -204,12 +204,12 @@ public class Parser {
 	 /**
 	  * Recursively builds a tree of commands from a list of strings. Specifically handles
 	  * commands with brackets as they must be treated slightly differently than other commands.
-	  * @param root - root Command to add chilren and parameters to
+	  * @param root - root Command to add children and parameters to
 	  * @param inputs - List of Strings that contain user input
 	  * @return - returns built root command
 	  * @throws Exception
 	  */
-	public Command specialTreeBuilder(Command root, List<String> inputs) throws Exception {
+	public Command specialTreeBuilder(Command root, List<String> inputs) {
 		if (root instanceof To) {
 			inputs.remove(0);
 			int openBracket = findFirstBracket(inputs);
@@ -295,7 +295,7 @@ public class Parser {
 	 * @param inputs - List of String of user inputs
 	 * @throws Exception
 	 */
-	public void setCommandList(Command root, List<String> inputs) throws Exception {
+	public void setCommandList(Command root, List<String> inputs) {
 		int openBracket = findFirstBracket(inputs);
 		int closeBracket = findLastBracket(openBracket, inputs);
 		List<String> inputList = listBuilder(openBracket+1, closeBracket-1, inputs, true);
@@ -317,7 +317,7 @@ public class Parser {
 	 * @param params - List of Strings of params to be set
 	 * @throws Exception
 	 */
-	public void setParams(Command root, List<String> params) throws Exception {
+	public void setParams(Command root, List<String> params) {
 		if (root instanceof Repeat) {
 			Command variable = new Variable(":repcount");
 			setCustomCommand(((Variable) variable).getVariableName(), Constants.DEFAULT_ITERATION);
@@ -415,7 +415,7 @@ public class Parser {
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 */
-	public Command getClass(String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public Command getClass(String className) {
 		//check if it starts with ':' if so its a variable
 		Command xyz = null;
 		if (className.matches(Constants.CONSTANT_ID)) {
@@ -426,7 +426,18 @@ public class Parser {
 			xyz = new Variable(className);
 		} 
 		else {
-			xyz = (Command) Class.forName(toClass(className)).newInstance();
+			try {
+				xyz = (Command) Class.forName(toClass(className)).newInstance();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return xyz;
 	}

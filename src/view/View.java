@@ -174,30 +174,6 @@ public class View extends JFrame{
                     	
                     }
                 }
-            	//THIS WAS ISSUE WITH SERIALIZATION AND STRANGE VOLATILEIMAGE ERROR
-                /*try {
-                    int response = myChooser.showOpenDialog(null);
-                    if (response == JFileChooser.APPROVE_OPTION) 
-                    {
-                        new FileReader(myChooser.getSelectedFile());
-                        System.out.println("unserializing list");
-                        try {
-                            FileInputStream fin = new FileInputStream("list.txt");
-                            ObjectInputStream ois = new ObjectInputStream(fin);
-                            ArrayList<Action> list = (ArrayList) ois.readObject();
-                            for (Action a : list){
-                                System.out.println(a);
-                            }
-                            ois.close();
-                        }
-                        catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                }
-                catch (IOException io) {
-                    showError(io.toString());
-                }*/    
             }
         });
         result.add(new JSeparator());
@@ -215,7 +191,7 @@ public class View extends JFrame{
     	myController = controller;
     }
     
-	public void sendString(String string) throws Exception {
+	public void sendString(String string) {
 		myController.processInput(string);
 	}
 	

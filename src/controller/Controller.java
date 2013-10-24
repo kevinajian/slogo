@@ -35,12 +35,7 @@ public class Controller {
 	
 	public void initiate() {
 		myMC.initiate();
-		/*double[] initialBox = new double[3];
-		initialBox[0] = Constants.TURTLE_XORIGIN;
-		initialBox[1] = Constants.TURTLE_YORIGIN;
-		initialBox[2] = Constants.TURTLE_DEGREEORIGIN;
-		//myView.drawBox(initialBox);
-*/	}
+	}
 	
 	/**
 	 * Sends user input to the parser to be parsed and handles
@@ -48,11 +43,7 @@ public class Controller {
 	 * @param string
 	 */
 	public void processInput(String string) {
-		try {
-			myMC.parse(string);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		myMC.parse(string);
 		clearGame();
 		for (Model m: myMC.getModels()) {
 			List<Line> trail = getLines(m);
@@ -213,8 +204,7 @@ public class Controller {
 		myView.getMyTurtleGame().setTurtleImage(shape);
 	}
 
-	public List getCommandList(Model m)
-	{
+	public List getCommandList(Model m) {
 		return m.getCommands();
 	}
 	

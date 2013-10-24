@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Constants page
+ * Constants page for magic numbers
  * @author Kevin
  *
  */
