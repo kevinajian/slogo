@@ -75,7 +75,7 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		
-//		handleSpecial(list);
+		handleSpecial(list);
 		
 		List<String> inputs = new ArrayList<String>();
 		parseArrayToArrayList(inputs, list);
@@ -115,10 +115,12 @@ public class Parser {
 	public void handleSpecial(String[] list) {
 		if(list.length>1){
 			name = list[1];
+			if(list[1].equals("OnClick") || list[1].equals("OnKey")){
+				list[1] = "";
+			}
 		}
-		if(list[1].equals("OnClick") || list[1].equals("OnKey")){
-			list[1] = "";
-		}
+		System.out.println("asd");
+
 	}
 	
 	/**
@@ -132,12 +134,14 @@ public class Parser {
 		List<Command> rootList = new ArrayList<Command>();
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
+			System.out.println(inputs);
 			Command headNode = getClass(inputs.get(0));
 			if (headNode instanceof CommandList) {
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
 			else if (headNode instanceof To) {
+				System.out.println(name);
 				((To) headNode).setName(name);
 				specialTreeBuilder(headNode, inputs);
 			}
