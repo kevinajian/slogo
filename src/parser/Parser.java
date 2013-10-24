@@ -85,10 +85,13 @@ public class Parser {
 			String outString = customCommandHandler(input);
 			String[] toInputs = outString.split(Constants.INPUT_SPLITTER);
 			parseArrayToArrayList(inputs, toInputs);
-	          throw new NotACommandException();
+	        throw new NotACommandException();
 		}
 		} catch (NotACommandException n) {
-			System.out.println("NOT A VALID COMMAND");
+			for (Model m : myMC.getModels()){
+				if(!m.getCustomCommandMap().containsKey(list[0]))
+					System.out.println("NOT A VALID COMMAND");
+			}
 		}
 		return inputs;
 	}
@@ -119,7 +122,6 @@ public class Parser {
 				list[1] = "";
 			}
 		}
-		System.out.println("asd");
 
 	}
 	
@@ -134,14 +136,12 @@ public class Parser {
 		List<Command> rootList = new ArrayList<Command>();
 		inputs.removeAll(Collections.singleton(null));
 		while(inputs.size() >= 1) {
-			System.out.println(inputs);
 			Command headNode = getClass(inputs.get(0));
 			if (headNode instanceof CommandList) {
 				inputs.remove(0);
 				specialTreeBuilder(headNode, inputs);
 			}
 			else if (headNode instanceof To) {
-				System.out.println(name);
 				((To) headNode).setName(name);
 				specialTreeBuilder(headNode, inputs);
 			}
