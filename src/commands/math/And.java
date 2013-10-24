@@ -6,7 +6,7 @@ import commands.Command;
 /**
  * Returns 1 if two inputs are not zero
  * else returns 0
- * @author Kevin
+ * @author Kevin, Carlos
  */
 public class And extends Command {
 

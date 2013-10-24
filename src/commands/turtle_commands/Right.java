@@ -6,7 +6,7 @@ import model.Model;
 /**
  * Rotates the turtle left, by shifting the angle
  * by 90 degrees.
- * @author carlosreyes
+ * @author carlosreyes, kevinjian
  *
  */
 public class Right extends Direction  {

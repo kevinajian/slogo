@@ -6,7 +6,9 @@ import commands.basic_syntax.Constant;
 import model.Model;
 
 /**
- * repeat command
+ * repeat command, evaluates for the amount of times that
+ * an expression evaluates to.
+ * iteration is saved in variable :repcount
  * @author Kevin
  *
  */

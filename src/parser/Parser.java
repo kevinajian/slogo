@@ -138,15 +138,13 @@ public class Parser {
 				list[1] = "";
 			}
 		}
-
 	}
 	
 	/**
 	 * Makes a list of trees by storing their root, loops over
 	 * all commands tokenized by the parse method, and calls
 	 * treebuilder, putting the root in an array of roots.
-	 * @param inputs
-	 * @throws Exception
+	 * @param inputs - List of strings to make command tree out of
 	 */
 	public List<Command> lexer(List<String> inputs) {
 		List<Command> rootList = new ArrayList<Command>();
@@ -177,7 +175,6 @@ public class Parser {
 	 * the function of the classes.
 	 * @param root - root Command whose children are to be added
 	 * @return Command which is the root Node of the tree
-	 * @throws Exception
 	 */
 	 public Command treeBuilder(Command root, List<String> inputs) {
 		if (root instanceof Constant) {
@@ -207,7 +204,6 @@ public class Parser {
 	  * @param root - root Command to add children and parameters to
 	  * @param inputs - List of Strings that contain user input
 	  * @return - returns built root command
-	  * @throws Exception
 	  */
 	public Command specialTreeBuilder(Command root, List<String> inputs) {
 		if (root instanceof To) {
@@ -293,7 +289,6 @@ public class Parser {
 	 * Makes a list of commands from within a set of brackets.
 	 * @param root - root Command to set CommandList of
 	 * @param inputs - List of String of user inputs
-	 * @throws Exception
 	 */
 	public void setCommandList(Command root, List<String> inputs) {
 		int openBracket = findFirstBracket(inputs);
@@ -315,7 +310,6 @@ public class Parser {
 	 * Sets parameters for loop structure commands manually.
 	 * @param root - root Command to set params of
 	 * @param params - List of Strings of params to be set
-	 * @throws Exception
 	 */
 	public void setParams(Command root, List<String> params) {
 		if (root instanceof Repeat) {
@@ -341,6 +335,14 @@ public class Parser {
 		((For) root).setIncrement(Integer.parseInt(params.get(3)));	
 	}
 	
+	/** 
+	 * makes List of Strings from List of Strings for certain range and removes that range from original
+	 * @param firstIndex - int of beginning of range
+	 * @param endIndex - int of end of range
+	 * @param inputs - List of Strings to build from
+	 * @param brackets - boolean for if there are brackets in the range or not
+	 * @return - List of Strings of range
+	 */
 	public List<String> listBuilder(int firstIndex, int endIndex, List<String> inputs, boolean brackets) {
 		List<String> returnList = new ArrayList<String>();
 		for (int i = firstIndex; i <=endIndex ; i++) {
@@ -355,6 +357,7 @@ public class Parser {
 	 * @param firstIndex - index of beginning of range
 	 * @param endIndex - index of end of range
 	 * @param inputs - List of Strings to remove range from
+	 * @param brackets - boolean of if there are brackets in the range to be removed or not
 	 */
 	public void removeRange(int firstIndex, int endIndex, List<String> inputs, boolean brackets) {
 		for (int i=firstIndex; i<=endIndex; i++){
@@ -411,9 +414,6 @@ public class Parser {
 	 * Otherwise a new command is created based on the String passed.
 	 * @param className - String of name of class to be made
 	 * @return A class that is a subclass of Command, based off of the string given.
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
 	 */
 	public Command getClass(String className) {
 		//check if it starts with ':' if so its a variable
@@ -450,6 +450,7 @@ public class Parser {
 	 * to be a valid class, and pulls it out of the custom command
 	 * map, puts the value of the command in a string and replaces
 	 * all of the parameters
+	 * @param commandString - String to be considered
 	 */
 	public String customCommandHandler(String commandString) {
 		commandString.toUpperCase();
@@ -473,7 +474,7 @@ public class Parser {
 	
 	/**
 	 * Gets file path from String that represents a class.
-	 * @param in
+	 * @param in - String to make command with
 	 * @return String that is the package path to that class.
 	 */
 	public String toClass(String in) {

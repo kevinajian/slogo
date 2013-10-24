@@ -61,6 +61,10 @@ public class For extends CommandList{
 		return (int) model.getVariable(myVariable.getVariableName());
 	}
 	
+	/**
+	 * increases iteration by one increment value
+	 * @param model - Model where the variables are retrieved from
+	 */
 	public void incrementIteration(Model model) {
 		int currentIteration = getIteration(model);
 		int nextIteration = currentIteration + myIncrement;

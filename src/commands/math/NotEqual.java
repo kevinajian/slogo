@@ -6,7 +6,7 @@ import commands.Command;
 /**
  * Returns 1 if two values are not equal to each other
  * else returns 0
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class NotEqual extends Command {

@@ -6,7 +6,7 @@ import commands.Command;
 /**
  * Returns 1 if either input value is not 0
  * else returns 0
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Or extends Command{

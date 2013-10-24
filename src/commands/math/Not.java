@@ -7,7 +7,7 @@ import commands.CommandOneInput;
 /**
  * Returns 1 if input value is 0
  * else returns 0
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Not extends CommandOneInput {

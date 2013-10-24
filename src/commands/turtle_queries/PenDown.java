@@ -8,7 +8,7 @@ import commands.CommandZeroInput;
 /**
  * Returns 1 if the turtle's pen in down.
  * Returns 0 if its up.
- * @author carlosreyes
+ * @author carlosreyes, kevin
  *
  */
 public class PenDown extends CommandZeroInput {

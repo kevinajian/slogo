@@ -6,7 +6,7 @@ import commands.Command;
 /**
  * Returns 1 if the first input is greater than the second
  * else returns 0
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Greater extends Command {

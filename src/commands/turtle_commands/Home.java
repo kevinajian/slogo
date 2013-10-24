@@ -10,7 +10,7 @@ import utilities.Utilities;
  * Returns the turtle to the 0,0 coordinate (center of the grid)
  * and resets the orientation of the turtle to the default orientation.
  * Returns the distance that the turtle moved to get to the origin.
- * @author carlosreyes
+ * @author carlosreyes, kevinjian
  *
  */
 public class Home extends CommandZeroInput {

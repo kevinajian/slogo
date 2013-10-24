@@ -36,9 +36,9 @@ public class ModelController {
 	}
 	
 	/**
-	 * 
-	 * @param input
-	 * @return
+	 * Passes string into parser to create List of Commands with
+	 * @param input - String to be parsed
+	 * @return - List of Commands that are created
 	 */
 	public List<Command> parse(String input) {
 		List<String> inputs = myParser.parse(input);
@@ -53,12 +53,21 @@ public class ModelController {
 		return myModelMap.get(Constants.DEFAULT_MODEL).getVariableMap();
 	}
 	
+	/**
+	 * Sets customCommandMap in all models
+	 * @param customCommandMap - Map to be set
+	 */
 	public void setCustomCommandMap(Map<String, Double> customCommandMap) {
 		for (Model m: myModelMap.values()) {
 			m.setVariableMap(customCommandMap);
 		}
 	}
 	
+	/**
+	 * Adds custom command to map for all models
+	 * @param key - String of command to be set
+	 * @param value - double of value
+	 */
 	public void setCustomCommand(String key, double value) {
 		for (Model m: myModelMap.values()) {
 			m.addVariable(key, value);

@@ -6,7 +6,7 @@ import commands.CommandOneInput;
 
 /**
  * returns Random number less than input
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Random extends CommandOneInput {

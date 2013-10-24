@@ -5,7 +5,7 @@ import commands.Command;
 
 /**
  * Returns the remainder of division
- * @author Kevin
+ * @author Kevin, Carlos
  */
 public class Remainder extends Command {
 

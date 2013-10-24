@@ -6,7 +6,7 @@ import commands.Command;
 /**
  * Returns 1 if the first input is less than the second input
  * else returns 0
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Less extends Command {

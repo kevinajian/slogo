@@ -9,7 +9,7 @@ import commands.Command;
  * Changes the orientation of the turtle to be facing
  * coordinates x,y as specified.
  * Returns the number of degrees that the turtle turned.
- * @author carlosreyes
+ * @author carlosreyes, kevinjian
  *
  */
 public class Towards extends Command {

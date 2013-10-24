@@ -6,7 +6,7 @@ import commands.CommandOneInput;
 
 /**
  * Takes the log of the input value
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Log extends CommandOneInput {

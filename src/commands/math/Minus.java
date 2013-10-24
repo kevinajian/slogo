@@ -6,7 +6,7 @@ import commands.CommandOneInput;
 
 /**
  * Returns negative of input value
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Minus extends CommandOneInput{
