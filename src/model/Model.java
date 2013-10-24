@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import commands.Command;
 import commands.multiple_turtles.Tell;
-import parser.Parser;
 
 /**
  * interprets user input and contains state

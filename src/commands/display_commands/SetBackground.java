@@ -13,21 +13,12 @@ import commands.CommandOneInput;
  * @author carlosreyes
  *
  */
-public class SetBackground extends CommandOneInput {
-	private ResourceBundle myResources;
-	private static final String DEFAULT_RESOURCE_PACKAGE = "resources.";
-
+public class SetBackground extends SetViewProperties {
+	
 	@Override
 	public double evaluate(Model model) {
-		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "English");
-		String lumpedColors = myResources.getString("Colors");
-		String colors1[] = lumpedColors.split(" ");
-		ArrayList<String> colors = new ArrayList<String>();
-		for(int i = 0; i<colors1.length-1;i++){
-			colors.add(colors1[i]);
-		}
 		int pos = (int) getInputValueOne(model);
-		String bgColor = colors.get(pos);
+		String bgColor = handleSet(model).get(pos);
 		model.setBackgroundColor(bgColor);
 		model.setBackgroundChanged(true);
 		return getInputValueOne(model);

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-
 import model.Constants;
 import model.Model;
 import model.ModelController;
@@ -19,7 +18,7 @@ import commands.basic_syntax.Constant;
 import commands.basic_syntax.Variable;
 import commands.multiple_turtles.*;
 import commands.vcu.*;
-
+import exception.NotACommandException;
 /**
  * Takes in input String and tokenizes this. Uses these
  * tokens in a recursive parse tree to build and execute the
@@ -81,12 +80,16 @@ public class Parser {
 		List<String> inputs = new ArrayList<String>();
 		parseArrayToArrayList(inputs, list);
 		
+		try{
 		if (inputs.get(0) == null) {
 			String outString = customCommandHandler(input);
 			String[] toInputs = outString.split(Constants.INPUT_SPLITTER);
 			parseArrayToArrayList(inputs, toInputs);
+	          throw new NotACommandException();
 		}
-
+		} catch (NotACommandException n) {
+			System.out.println("NOT A VALID COMMAND");
+		}
 		return inputs;
 	}
 	/**
