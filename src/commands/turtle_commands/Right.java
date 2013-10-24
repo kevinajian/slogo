@@ -11,6 +11,11 @@ import model.Model;
  */
 public class Right extends Direction  {
 	
+	/**
+	 * returns double of new orientation of turtle
+	 * @param orientation - double of previous orientation
+	 * @param firstInput - double of degrees to turn
+	 */
 	protected double makeOrientation(double orientation, double firstInput) {
 		return (orientation + firstInput)%Constants.DEGREES;
 	}

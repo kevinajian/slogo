@@ -5,7 +5,7 @@ import commands.Command;
 
 /**
  * Checks if two primitive values are equal
- * @author Kevin
+ * @author Kevin, Carlos
  *
  */
 public class Equal extends Command{
