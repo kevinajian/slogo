@@ -16,6 +16,8 @@ import java.util.*;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 
+import exception.NotACommandException;
+
 import view.View;
 
 @SuppressWarnings("serial")
@@ -190,7 +192,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		}
 		if (getMouseButton(1)) {
 			//System.out.println(this.countObjects("turtle", 50));
-			//onClickAction();
+			onClickAction();
 		}
 		//if (getKey(myView.getCustomCommandMap().get("OnKey").charAt(0))) {
 			//Do the command set
@@ -226,9 +228,16 @@ public class TurtleGame extends JGEngine implements Constants{
 
 		try {
 			sendString("OnClick" + " " +  mouseX + " " + mouseY);
+	        throw new NotACommandException();
 		} catch (Exception e) {
-			e.printStackTrace();
+			myView.showError(model.Constants.INVALID);
 		}
+		double[] arrayNew = new double[3];
+		arrayNew[0] = model.Constants.TURTLE_XORIGIN;
+		arrayNew[1] = model.Constants.TURTLE_YORIGIN;
+		arrayNew[2] = 0.0;
+		drawTurtle(arrayNew);
+
 	}
 
 	public void drawTurtle(double[] turtlePosition){

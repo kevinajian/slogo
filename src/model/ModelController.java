@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.Map;
 
 import commands.Command;
+import controller.Controller;
 import parser.Parser;
 import model.Model;
 
 public class ModelController {
 	private Map<Integer, Model> myModelMap = new HashMap<Integer, Model>();
 	private Parser myParser;
+	private Controller myController;
 	
 	public void initiate() {
 		Parser p = new Parser();
@@ -89,5 +91,13 @@ public class ModelController {
 	
 	public void setParser(Parser p) {
 		myParser = p;
+	}
+
+	public void sendError(String invalid) {
+		myController.sendWarning(invalid);		
+	}
+	
+	public void setController(Controller c) {
+		myController = c;
 	}
 }

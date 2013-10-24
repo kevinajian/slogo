@@ -262,4 +262,12 @@ public class Controller {
 	public ModelController getModelController() {
 		return myMC;
 	}
+	
+	public void sendWarning(String string) {
+		try {
+			myView.showError(string);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

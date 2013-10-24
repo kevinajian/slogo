@@ -89,8 +89,9 @@ public class Parser {
 		}
 		} catch (NotACommandException n) {
 			for (Model m : myMC.getModels()){
-				if(!m.getCustomCommandMap().containsKey(list[0]))
-					System.out.println("NOT A VALID COMMAND");
+				if(!m.getCustomCommandMap().containsKey(list[0])){
+					myMC.sendError(Constants.INVALID);
+				}
 			}
 		}
 		return inputs;
