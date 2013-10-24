@@ -75,7 +75,7 @@ public class Parser {
 		input.toUpperCase();
 		String [] list = input.split(Constants.INPUT_SPLITTER);
 		
-//		handleSpecial(list);
+		handleSpecial(list);
 		
 		List<String> inputs = new ArrayList<String>();
 		parseArrayToArrayList(inputs, list);
@@ -85,10 +85,13 @@ public class Parser {
 			String outString = customCommandHandler(input);
 			String[] toInputs = outString.split(Constants.INPUT_SPLITTER);
 			parseArrayToArrayList(inputs, toInputs);
-	          throw new NotACommandException();
+	        throw new NotACommandException();
 		}
 		} catch (NotACommandException n) {
-			System.out.println("NOT A VALID COMMAND");
+			for (Model m : myMC.getModels()){
+				if(!m.getCustomCommandMap().containsKey(list[0]))
+					System.out.println("NOT A VALID COMMAND");
+			}
 		}
 		return inputs;
 	}
@@ -115,10 +118,11 @@ public class Parser {
 	public void handleSpecial(String[] list) {
 		if(list.length>1){
 			name = list[1];
+			if(list[1].equals("OnClick") || list[1].equals("OnKey")){
+				list[1] = "";
+			}
 		}
-		if(list[1].equals("OnClick") || list[1].equals("OnKey")){
-			list[1] = "";
-		}
+
 	}
 	
 	/**
