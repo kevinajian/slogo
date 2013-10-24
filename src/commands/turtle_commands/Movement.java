@@ -4,6 +4,13 @@ import model.Model;
 import model.State;
 import commands.CommandOneInput;
 
+/**
+ * Movement handles making new states when a turtle moves in given
+ * direction (forward or backward) and returns the new state of the
+ * turtle.
+ * @author carlosreyes
+ *
+ */
 public abstract class Movement extends CommandOneInput {
 
 	public State handle(Model model) {

@@ -4,6 +4,7 @@ import commands.CommandZeroInput;
 import model.Constants;
 import model.Model;
 import model.State;
+import utilities.Utilities;
 
 /**
  * Returns the turtle to the 0,0 coordinate (center of the grid)
@@ -20,11 +21,6 @@ public class Home extends CommandZeroInput {
 		double y = model.getY();
 		String penColor = model.getPenColor();
 		model.addState(new State(Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN, Constants.TURTLE_DEGREEORIGIN, model.getTurtleVisible(), model.getPenVisible(), penColor));
-		return calculateLength(x, y, Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN);
+		return Utilities.calculateLength(x, y, Constants.TURTLE_XORIGIN, Constants.TURTLE_YORIGIN);
 	}
-	
-	private double calculateLength(double x1, double y1, double x2, double y2) {
-		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)); 
-	}
-
 }
