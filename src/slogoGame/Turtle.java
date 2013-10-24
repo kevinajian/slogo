@@ -19,12 +19,14 @@ public class Turtle extends JGObject implements Constants{
 	private String myImage;
 	private String myName;
 	private boolean amCustom;
-	public Turtle(String name, int collisionid, JGEngine tgame) {
-		super(name, true, 0, 0, collisionid, "turtle0");
+	public Turtle(String name, int collisionid, JGEngine tgame, String nameImage) {
+		super(name, true, 0, 0, collisionid, nameImage+"0");
 		myEngine = tgame;
-		myName = "turtle";
+		myName = nameImage;
 		myImage = myName+0;
-		amCustom = false;
+		amCustom = true;
+		if(nameImage.equals("turtle"))
+			amCustom = false;
 	}
 /*	
 	private double x1;
@@ -52,14 +54,14 @@ public class Turtle extends JGObject implements Constants{
 		setImage(myImage);
 	}
 	public void changeImage(String name){
-		myName = name;
+		/*myName = name;
 		myImage = name;
-		amCustom = true;
+		amCustom = true;*/
 	}
 	public void restoreDefaultImage(){
-		myName = "turtle";
+		/*myName = "turtle";
 		myImage = myName+0;
-		amCustom = false;
+		amCustom = false;*/
 	}
 	@Override
 	public void setPos(double x, double y){

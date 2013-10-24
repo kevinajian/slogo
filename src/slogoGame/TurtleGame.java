@@ -36,6 +36,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	private ArrayList<HighlightBox> bList = new ArrayList<HighlightBox>();;
 	private boolean drawBoxes;
 	private double myPenSize;
+	private String turtleImage;
 	//private ArrayList<Integer> myIndices = new ArrayList<Integer>();
 	/*	public TurtleGame() {initEngineApplet();}
 
@@ -60,7 +61,8 @@ public class TurtleGame extends JGEngine implements Constants{
 		setFrameRate(45,2);
 		setCursor(null);
 		defineImages();
-		squirt = new Turtle("turtle", 50, this);
+		turtleImage = "turtle";
+		squirt = new Turtle("turtle", 50, this,turtleImage);
 		bList.add(new HighlightBox("box",20,this));
 		//double[] turtleStart = {0.0,0.0,0.0};
 		//myCurrentAction = new DatedAction(turtleStart,squirt);
@@ -86,7 +88,7 @@ public class TurtleGame extends JGEngine implements Constants{
 
 	public void setTurtleImage(String image){
 		if(image.equals("Star")){
-			squirt.changeImage("star");
+			turtleImage = "star";
 		}
 		else{
 			JFileChooser myChooser = new JFileChooser(System.getProperties().getProperty("user.dir"));
@@ -163,7 +165,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		for (int i=0; i < 36; i++) {
 			defineImage("turtle"+i, "-",0,"../resources/turtle"+i+".png","-");
 		}
-		defineImage("star","-",0,"../resources/Star.png","-");
+		defineImage("star0","-",0,"../resources/Star.png","-");
 		defineImage("border", "-",0,"../resources/border.png","-");
 	}
 
@@ -230,7 +232,7 @@ public class TurtleGame extends JGEngine implements Constants{
 	}
 
 	public void drawTurtle(double[] turtlePosition){
-		Turtle newTurts = new Turtle("turtle", 50, this);				
+		Turtle newTurts = new Turtle("turtle", 50, this,turtleImage);				
 		newTurts.setPos(turtlePosition[0], turtlePosition[1]);
 		newTurts.rotate(turtlePosition[2]);
 	}
@@ -290,7 +292,7 @@ public class TurtleGame extends JGEngine implements Constants{
 		clearLines();
 		clearTurtles();
 		clearBoxes();
-		squirt = new Turtle("turtle",50,this);
+		squirt = new Turtle("turtle",50,this,turtleImage);
 		bList.add(new HighlightBox("box",20,this));
 		//System.out.println("drawing box for reset");
 		drawBoxes = true;
