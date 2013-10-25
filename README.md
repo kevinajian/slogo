@@ -11,13 +11,17 @@ Finished - 10/23
 
 [Respository](https://github.com/duke-compsci308-fall2013/slogo_team07.git)
 
+### API Link ###
+[Link](http://duke-compsci308-fall2013.github.io/slogo_team07/)
+
+
 ### For team projects, each person's role in developing the project
 * For plan:
 	* Created basic design layout together
 * For implementation 1:
 	* John - Front end
 	* Kevin - Back end -
-	* Carlos - Back end - Created initial commands
+	* Carlos - Back end -
 	* Vincent - Front end
 
 
