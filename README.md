@@ -20,8 +20,8 @@ Finished - 10/23
 	* Created basic design layout together
 * For implementation 1:
 	* John - Front end
-	* Kevin - Back end -
-	* Carlos - Back end -
+	* Kevin - Back end 
+	* Carlos - Back end 
 	* Vincent - Front end
 
 
@@ -36,7 +36,7 @@ None
 * Uses the jgame library
 
 ### Any information about using the program (i.e., command-line/applet arguments, key inputs, interesting example data files, or easter eggs)
-
+*To redo, press d.  To undo, press space
 
 ### Any known bugs, crashes, or problems with the project's functionality
 
