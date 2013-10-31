@@ -1,0 +1,14 @@
+SLogo Team 7 API Changes
+
+The biggest change we made to the API was creating a controller that would contain both the front and back ends. This change was made so that the back end and front end of the program could be interchangeable, allowing it to adapt to the user’s preference. In this case, the front end and back end have no knowledge of each other, and only receive information from one another through the controller. 
+
+Back End
+All of the changes made to the back end were okay because the controller would modify all of the output so that it could be processed by the front end.
+
+Another significant change that we made was to the structure of the commands hierarchy that we initially designed via an XML diagram. Most of the commands were grouped in the fashion that we planned as directories within the commands package as opposed to all having separate superclasses based on their categories. The most significant superclasses in the commands segment of this project became commands that required zero, one, and two inputs, and we moved the List from under Basic Syntax to it’s own type of command as well. These super classes were extended by most commands or most superclasses to commands. Furthermore within the movement commands, a set of superclasses were added to reduce code redundancy. The List was extended by the classes of the VCU, and the hierarchy within the VCU change as well. DOTIMES and REPEAT were specific versions of FOR, so they were made subclasses of it. 
+
+When implementation two was released, the back end was changed again so that it could handle several turtles running at the same time. It originally had the model, which contained a parser, communicating with the controller. Each model only considered one turtle, so a model controller was made that contained all of the different turtles, and the parser was moved up to be held by the model controller. The model controller handled the passing of information from the different models to the controller, which would then pass the information from the multiple turtles to the view to be displayed.
+
+Front End
+Our initial plan had a UML diagram which if you look at had a very basic outline of what we planned to do with our View.  We didn’t have any hands on experience with Swing so really we were going in pretty blind.  The format and connections we had in the UML were almost immediately completely scrapped.  I believe we initially wanted to do basically all buttons and text boxes, but over time this ended up being changed to become all menu items instead for ease of implementation.  But all the modules and links were mostly the same- the input display box doesn’t communicate with any other text boxes except the View which communicates with the controller etc….  This stayed essentially the same.    
+The controller, again, was also a big change, but one that happened early on enough so that the front end didn’t have any issues adapting to it.
